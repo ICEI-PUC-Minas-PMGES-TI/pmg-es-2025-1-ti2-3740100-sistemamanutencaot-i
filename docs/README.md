@@ -1,27 +1,28 @@
 # TITULO DO PROJETO
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+**Felipe Augusto Mendes, felipepepe64@gmail.com**
 
-**Nome completo do Aluno 2, email do aluno 2**
+**Francisco Rafael Pereira, email do aluno 2**
 
-**Nome completo do Aluno 3, email do aluno 3**
+**Gabriel Victor Souza Lopes, gabrieelvictor26@gmail.com**
 
-**Nome completo do Aluno 4, email do aluno 4**
+**Igor Rodrigo Costa, igorrcosta250705@gmail.com**
 
-**Nome completo do Aluno 5, email do aluno 5**
+**João Pedro Maciel de Oliveira, jpmaciel74@gmail.com**
 
-**Nome completo do Aluno 6, email do aluno 6**
+**João Ricardo Fiuza, Joaoricfiuza@gmail.com**
+
 
 ---
 
 Professores:
 
-** Prof. Nome do Prof 1 **
+** Prof. Michelle Hanne Soares de Andradre  **
 
-** Prof. Nome do Prof 2 **
+** Prof. Danilo de Quadros Maia Filhp **
 
-** Prof. Nome do Prof 3 **
+** Prof. Joana Gabriela Ribeiro de Souza **
 
 ---
 
@@ -39,35 +40,50 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 ## 1. Introdução
 
-_Apresente uma frase introdutória definindo o que será apresentado._
+Este projeto tem como objetivo desenvolver um software de gerenciamento de processos que otimize o fluxo de trabalho e melhore a comunicação com o cliente, tornando-a mais clara e eficiente.
 
 ### 1.1 Contextualização
+O sistema de gerenciamento de processos voltado para empresas de manutenção de computadores. Seu principal objetivo é *facilitar a comunicação entre a equipe técnica e os clientes*, garantindo um fluxo organizado e transparente durante o processo de reparo.
 
-_Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere.
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas)._
+Através de uma interface intuitiva, os técnicos de TI podem *registrar e atualizar o status de cada serviço em tempo real*, informando diagnósticos, peças necessárias, tempo estimado para conclusão e qualquer outra observação relevante. Dessa forma, os clientes e gestores podem acompanhar o andamento das manutenções sem a necessidade de ligações constantes ou visitas presenciais.
+
 
 ### 1.2 Problema
 
-_Em seguida o aluno deve caminhar a contextualização para descrever o **problema** que o trabalho trata. 
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve rapidamente apresentar 
-o cenário de problema da empresa. A empresa só deve ser citada explicitamente se o aluno tiver autorização 
-para tal._
+Empresas de manutenção de computadores frequentemente enfrentam dificuldades na organização e comunicação dos processos de reparo. Os principais problemas incluem:
+
+- *Falta de organização das ordens de serviço*, dificultando o acompanhamento do status de cada manutenção.  
+- *Dificuldade na comunicação com os clientes*, que muitas vezes precisam ligar ou visitar a empresa para obter atualizações sobre seus equipamentos.  
+- *Gestão ineficiente das tarefas da equipe técnica*, resultando em atrasos e baixa produtividade.  
+- *Falta de um overview gerencial*, dificultando que os gestores tenham uma visão clara do andamento das operações e da eficiência da equipe.  
 
 ### 1.3 Objetivo geral
 
-_O aluno deve escrever um pequeno parágrafo ou frase com o **objetivo geral** do trabalho. 
-O objetivo deve ser bem direto, específico e definido com verbos de ação (elaborar, propor, avaliar, comparar, desenvolver, etc.). No caso específico deste projeto, o objetivo deste trabalho é desenvolver um sistema para automação de processos para um problema específico._
+Atualmente, muitos processos empresariais sofrem com a falta de otimização e de uma comunicação eficaz com o cliente. Essa deficiência pode gerar atrasos, falhas na entrega de informações e, consequentemente, prejudicar a experiência do usuário final.  
+
+Pensando nisso, este projeto tem como objetivo desenvolver um software de gerenciamento de processos que não apenas otimize o fluxo de trabalho, mas também aproxime o cliente de cada etapa, garantindo uma comunicação clara e eficiente.  
+
+Nosso sistema foi idealizado para simplificar rotinas, melhorar a organização interna e proporcionar um ambiente onde o cliente se sinta parte fundamental do processo, acompanhando e interagindo de forma prática e transparente. Assim, buscamos elevar a qualidade do atendimento e impulsionar a produtividade, assegurando resultados mais satisfatórios para todos os envolvidos.
+
 
 #### 1.3.1 Objetivos específicos
 
-_Apresente também alguns (pelo menos 2) **objetivos específicos** dependendo de onde você vai querer 
-concentrar sua prática investigativa, ou como você irá aprofundar seu trabalho._
+1. Automatizar o gerenciamento de ordens de serviço, permitindo o registro detalhado de cada solicitação de manutenção.
+2. Facilitar a comunicação entre técnicos e clientes, garantindo atualizações em tempo real sobre o status dos reparos.
+3. Fornecer um histórico detalhado de manutenções, permitindo consultas rápidas sobre serviços realizados anteriormente.
+4. Implementar notificações automatizadas, informando clientes e gestores sobre mudanças no status da manutenção.
+5. Gerar relatórios de desempenho da equipe técnica, auxiliando na tomada de decisões estratégicas.
+6. Disponibilizar um dashboard gerencial intuitivo, oferecendo uma visão completa das operações e produtividade da empresa.
+7. Reduzir o tempo de atendimento e minimizar erros de comunicação, otimizando o fluxo de trabalho da empresa.
+
 
 ### 1.4 Justificativas
 
-_Mostre também as **justificativas** para o 
-desenvolvimento do seu trabalho e, caso deseje, destaque alguma contribuição do trabalho._
+O software prevê solucionar problemas comuns enfrentados por empresas de manutenção de computadores, como *falta de organização, comunicação ineficiente com clientes, dificuldade no monitoramento da equipe técnica e ausência de histórico centralizado de reparos*.  
+
+Com funcionalidades como *cadastro e acompanhamento de ordens de serviço, notificações automáticas e dashboards gerenciais, o sistema **otimiza processos, aumenta a satisfação dos clientes, reduz erros e melhora o controle operacional*.  
+
+Essa solução estratégica *moderniza o fluxo de trabalho, fortalece a relação com os clientes e posiciona as empresas de forma competitiva* em um mercado cada vez mais exigente.
 
 ## 2. Participantes do processo
 
