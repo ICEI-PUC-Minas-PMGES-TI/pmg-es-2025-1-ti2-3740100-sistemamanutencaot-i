@@ -3,7 +3,7 @@
 ## Autores
 
 - **Felipe Augusto Mendes** - [felipepepe64@gmail.com](mailto:felipepepe64@gmail.com)
-- **Francisco Rafael Pereira** - [email do aluno 2](mailto:franciscocjn06@gmail.com)
+- **Francisco Rafael Pereira** - [franciscocjn06@gmail.com](mailto:franciscocjn06@gmail.com)
 - **Gabriel Victor Souza Lopes** - [gabrieelvictor26@gmail.com](mailto:gabrieelvictor26@gmail.com)
 - **Igor Rodrigo Costa** - [igorrcosta250705@gmail.com](mailto:igorrcosta250705@gmail.com)
 - **João Pedro Maciel de Oliveira** - [jpmaciel74@gmail.com](mailto:jpmaciel74@gmail.com)
