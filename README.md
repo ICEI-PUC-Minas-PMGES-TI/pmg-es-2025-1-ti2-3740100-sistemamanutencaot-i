@@ -1,6 +1,10 @@
-# Nome do projeto
+# Manager.io
+<p align="center">
+  <img src="docs/images/logo.png" alt="Logo do Manager.io" width="300">
+</p>
+O Manager.io é um sistema desenvolvido para otimizar a gestão e organização de processos empresariais, facilitando o controle de atividades, fluxo de trabalho e tomada de decisões. Com uma interface intuitiva e recursos de automação, a plataforma permite que gestores e equipes acompanhem seus processos de forma eficiente, garantindo maior produtividade e transparência nas operações.
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+O projeto tem como foco a implementação de uma solução escalável e acessível, utilizando boas práticas de desenvolvimento de software. Através de um ambiente colaborativo, o Manager.io busca integrar diferentes setores e facilitar a comunicação entre os envolvidos, promovendo uma gestão mais estratégica e orientada a dados.
 
 ## Integrantes
 
