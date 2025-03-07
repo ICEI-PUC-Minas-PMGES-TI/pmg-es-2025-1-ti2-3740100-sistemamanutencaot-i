@@ -96,11 +96,42 @@ Este software visa **solucionar problemas comuns** enfrentados por empresas do s
 
 ### 3.1. Análise da Situação Atual
 
-> _Apresente uma descrição textual de como os sistemas atuais resolvem o problema que se propõe a resolver.  Caso sua proposta seja inovadora e não existam processos claramente definidos, **apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente**, mesmo que não se utilize tecnologia computacional._
+#### 3.1.1. Problema ou Necessidade
+Atualmente, muitas empresas enfrentam dificuldades na gestão de reparos de computadores devido ao uso de processos manuais e desorganizados. Anotações em papel, planilhas ou sistemas genéricos não especializados tornam a comunicação entre clientes, técnicos e gerentes ineficaz. Isso resulta em atrasos, falta de transparência e problemas no controle do processo de reparo.
+
+#### 3.1.2. Soluções Existentes
+Embora algumas empresas recorram a sistemas genéricos de controle de ordens de serviço, esses sistemas muitas vezes carecem de uma interface intuitiva, o que dificulta o acompanhamento do status dos reparos pelos clientes. Outras empresas ainda dependem de ligações e mensagens para fornecer atualizações, uma prática que não só é ineficiente, mas também propensa a erros e retrabalho.
+
+#### 3.1.3. Público-Alvo
+- **Gerente:** Precisa de uma visão completa da operação da empresa, incluindo o status dos reparos, a produtividade dos técnicos e o controle das ordens de serviço.
+- **Técnico:** Responsável por registrar e atualizar o status dos reparos, além de diagnosticar e resolver problemas dos equipamentos.
+- **Cliente:** Deseja acompanhar de maneira prática e transparente o andamento do reparo de seu equipamento, semelhante ao rastreamento de uma entrega.
+
+#### 3.1.4. Requisitos e Restrições
+- O sistema deve permitir atualizações em tempo real sobre o status dos reparos.
+- Os clientes devem ter uma interface amigável para acompanhar o andamento do serviço.
+- O gerente deve ter acesso completo a todas as informações e relatórios da empresa.
+- O sistema deve ser seguro, garantindo que apenas usuários autorizados possam modificar ou visualizar dados sensíveis.
+
+---
 
 ### 3.2. Descrição Geral da Proposta de Solução
 
-> _Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias._
+A solução proposta visa otimizar a gestão da empresa de reparos de computadores, oferecendo uma plataforma centralizada para comunicação eficiente entre gerente, técnicos e clientes. Através desse sistema, cada usuário terá acesso às informações necessárias para realizar seu trabalho de forma mais transparente, eficiente e organizada.
+
+#### 3.2.1. Funcionalidades Principais
+- **Gerente:** Acesso completo ao sistema, podendo visualizar o status de todos os reparos, gerenciar técnicos, monitorar a produtividade e controlar as operações da empresa.
+- **Técnico:** Capacidade de registrar e atualizar em tempo real o status de cada reparo, fornecendo informações sobre diagnósticos, progresso e conclusão do serviço.
+- **Cliente:** Interface intuitiva para acompanhar o progresso do reparo de seu equipamento, com visualização detalhada de cada etapa do processo, de forma semelhante ao rastreamento de uma entrega.
+
+#### 3.2.2. Benefícios Esperados
+- **Transparência:** Acompanhamento em tempo real, reduzindo a necessidade de contato direto com a empresa.
+- **Eficiência:** Técnicos poderão atualizar o status dos serviços de forma ágil e organizada.
+- **Gestão aprimorada:** O gerente terá uma visão ampla e detalhada das operações, facilitando o controle e a tomada de decisões.
+- **Redução de erros:** Eliminando registros manuais e desorganizados, o sistema contribuirá para a redução de falhas e retrabalho.
+
+#### 3.2.3. Tecnologias e Implementação
+O sistema será desenvolvido com tecnologias modernas e seguras, garantindo uma experiência de uso fluida e acessível em diversos dispositivos. A interface será intuitiva, e o sistema será projetado para suportar futuras expansões, como integrações com notificações automáticas para clientes e geração de relatórios detalhados para a gestão.
 
 ### 3.3. Modelagem dos Processos
 
