@@ -1,4 +1,4 @@
-# 🖥️ Simple Tech - Tecnologia Descomplicada
+# 🖥️ Manager.io
 
 ## Autores
 
