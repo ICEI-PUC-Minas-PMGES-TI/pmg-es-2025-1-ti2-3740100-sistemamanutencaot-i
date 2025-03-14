@@ -172,7 +172,7 @@ Este software visa **solucionar problemas comuns** enfrentados por empresas do s
 
 O **Gerente** precisa de uma visão completa da operação da empresa, monitorando o status dos reparos, a produtividade dos técnicos e as ordens de serviço. Geralmente, possui entre 35 e 55 anos, com formação superior em áreas como Administração ou Tecnologia e experiência em gestão operacional. No sistema, ele acompanha os reparos em tempo real, gera relatórios estratégicos e supervisiona as atividades para garantir a eficiência do processo.  
 
-O **Técnico** é responsável por diagnosticar problemas, realizar os reparos e atualizar o sistema com o progresso das ordens de serviço. Normalmente, tem entre 25 e 45 anos, formação técnica ou superior em áreas como Eletrônica ou Mecânica, e experiência em manutenção de equipamentos. No sistema, ele registra cada etapa do reparo, informa a conclusão do serviço e garante a precisão dos dados para o gerente e o cliente.  
+O **Técnico** é responsável por diagnosticar problemas, realizar os reparos e atualizar o sistema com o progresso das ordens de serviço. Normalmente, tem entre 25 e 45 anos, formação técnica ou superior em áreas como informática e mecânica , e experiência em manutenção de equipamentos. No sistema, ele registra cada etapa do reparo, informa a conclusão do serviço e garante a precisão dos dados para o gerente e o cliente.  
 
 O **Cliente** deseja acompanhar o andamento do reparo de seu equipamento de forma simples e transparente. Pode ter entre 18 e 65 anos, com habilidades básicas de navegação digital. No sistema, ele consulta o status do reparo em tempo real, recebe notificações sobre atualizações e pode avaliar o serviço após a conclusão.
 
@@ -186,7 +186,8 @@ O **Cliente** deseja acompanhar o andamento do reparo de seu equipamento de form
 Atualmente, muitas empresas enfrentam dificuldades na gestão de reparos de computadores devido ao uso de processos manuais e desorganizados. Anotações em papel, planilhas ou sistemas genéricos não especializados tornam a comunicação entre clientes, técnicos e gerentes ineficaz. Isso resulta em atrasos, falta de transparência e problemas no controle do processo de reparo.
 
 #### 3.1.2. Soluções Existentes
-Embora algumas empresas recorram a sistemas genéricos de controle de ordens de serviço, esses sistemas muitas vezes carecem de uma interface intuitiva, o que dificulta o acompanhamento do status dos reparos pelos clientes. Outras empresas ainda dependem de ligações e mensagens para fornecer atualizações, uma prática que não só é ineficiente, mas também propensa a erros e retrabalho.
+Embora algumas empresas recorram a sistemas genéricos de controle de ordens de serviço, mas existam sistemas avançados como **Orderry**, **Produttivo**, **Fracttal One**, **Melvin** e **Engeman®** para gerenciar ordens de serviço, muitos deles focam na automação interna e na geração de relatórios. No entanto, esses sistemas geralmente não oferecem uma interface simples e intuitiva para que o cliente acompanhe o status do reparo em tempo real, tornando o processo menos transparente e eficiente.
+
 
 #### 3.1.3. Público-Alvo
 - **Gerente:** Precisa de uma visão completa da operação da empresa, incluindo o status dos reparos, a produtividade dos técnicos e o controle das ordens de serviço.
