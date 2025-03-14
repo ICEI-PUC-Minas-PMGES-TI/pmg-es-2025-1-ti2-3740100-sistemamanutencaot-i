@@ -159,8 +159,11 @@ Este software visa **solucionar problemas comuns** enfrentados por empresas do s
 
 ## 🏢 2. Participantes do Processo
 
-> _Apresente aqui os perfis dos usuários-chave do sistema. Diversas são as informações que podem ser relevantes para a definição dos perfis dos usuários, tais como idade, gênero, aspectos culturais, nível de educação, entre outros. A pesquisa de mercado pode ser uma ferramenta poderosa para se identificar e caracterizar os perfis de usuários. Apresente claramente o papel a ser desempenhado por cada usuário._
+O **Gerente** precisa de uma visão completa da operação da empresa, monitorando o status dos reparos, a produtividade dos técnicos e as ordens de serviço. Geralmente, possui entre 35 e 55 anos, com formação superior em áreas como Administração ou Tecnologia e experiência em gestão operacional. No sistema, ele acompanha os reparos em tempo real, gera relatórios estratégicos e supervisiona as atividades para garantir a eficiência do processo.  
 
+O **Técnico** é responsável por diagnosticar problemas, realizar os reparos e atualizar o sistema com o progresso das ordens de serviço. Normalmente, tem entre 25 e 45 anos, formação técnica ou superior em áreas como Eletrônica ou Mecânica, e experiência em manutenção de equipamentos. No sistema, ele registra cada etapa do reparo, informa a conclusão do serviço e garante a precisão dos dados para o gerente e o cliente.  
+
+O **Cliente** deseja acompanhar o andamento do reparo de seu equipamento de forma simples e transparente. Pode ter entre 18 e 65 anos, com habilidades básicas de navegação digital. No sistema, ele consulta o status do reparo em tempo real, recebe notificações sobre atualizações e pode avaliar o serviço após a conclusão.
 ---
 
 ## 🔄 3. Modelagem do Processo de Negócio
