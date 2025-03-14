@@ -4,7 +4,7 @@ O processo financeiro do aplicativo trata da finalização do pagamento após a 
 
 Oportunidades de melhoria incluem a automatização da confirmação do pagamento e a implementação de lembretes automáticos para clientes que não concluíram a transação.
 
-![Modelo BPMN do Processo Financeiro](/docs/images/images/processoFinanceiroBPMN.png "Modelo BPMN do Processo Financeiro.")
+![Modelo BPMN do Processo Financeiro](/docs/images/processos/processoFinanceiroBPMN.png "Modelo BPMN do Processo Financeiro.")
 
 #### Detalhamento das atividades
 
