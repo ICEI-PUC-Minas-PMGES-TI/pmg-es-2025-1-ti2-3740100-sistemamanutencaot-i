@@ -45,8 +45,9 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 **Verificar Registro do Cliente**
 
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| CPF do Cliente	| Caixa de Texto   | ###.###.###-## | ---               |
+| **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
+|-----------------|----------------|-------------------------|-------------------|
+| CPF            | Número         | Obrigatório, 11 dígitos | -                 |
 
 | **Comandos**         |  **Destino**                              | **Tipo** |
 | verificar            | Análise do Computador (se cliente existir)| default  |        
