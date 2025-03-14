@@ -55,12 +55,6 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | Conta não cadastrada |  Processo cadastro | Default   |
 
 
-| **Comandos**         |  **Destino**                              | **Tipo** |
-|             | | default  |        
-                       |     |          |
-|              | Fim do processo                           | cancel   |
-
-
 **Analisar Computador e Fazer Orçamento**
 
 |       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
@@ -72,6 +66,7 @@ _* **Tabela** - campo formado por uma matriz de valores_
 |                       |                  | |                   |                   
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
+|-----------------|----------------|-------------------------|-------------------|
 | Gerar Orçamento	     | Aprovação do Cliente	          | default           |
 | Cancelar             | Fim do processo                | cancel            |
 
