@@ -291,8 +291,12 @@ Experiência do Usuário: React.js, com sua abordagem baseada em componentes, pe
 📌 [PROCESSO 2 - Cadastro de Técnico](processo-2-cadastro-de-tecnico.md "Detalhamento do Processo 2.")  
 📌 [PROCESSO 3 - Nome do Processo](processo-3-nome-do-processo.md "Detalhamento do Processo 3.")  
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 📌 [PROCESSO 4 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo 4.") 
 📌 [PROCESSO 5 - Processo Financeiro](processo-5-processo-financeiro.md "Detalhamento do Processo 5.") 
+=======
+📌 [PROCESSO 4 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo 4.")  
+>>>>>>> Stashed changes
 =======
 📌 [PROCESSO 4 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo 4.")  
 >>>>>>> Stashed changes
