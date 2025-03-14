@@ -203,7 +203,6 @@ A solução proposta visa otimizar a gestão da empresa de reparos de computador
 O sistema será desenvolvido com tecnologias modernas, robustas e amplamente utilizadas no mercado, garantindo uma experiência de uso fluida, segura e escalável. Abaixo, detalhamos as tecnologias escolhidas, com justificativas para cada uma delas:
 
 📍 **Frontend (Interface do Usuário)**
-Tecnologias:
 
 - **React.js:** Uma biblioteca JavaScript para construção de interfaces de usuário interativas e responsivas.
 JavaScript: A linguagem base do React e essencial para criar funcionalidades dinâmicas e interativas no frontend.
@@ -219,7 +218,6 @@ Possui uma grande comunidade de desenvolvedores e suporte, o que garante acesso 
 Oferece flexibilidade para implementar funcionalidades personalizadas e dinâmicas.
 
 📍 **Backend (Lógica e Processamento)**
-Tecnologias:
 
 **Java:** Uma linguagem de programação robusta, versátil e amplamente utilizada no desenvolvimento de sistemas corporativos.
 Spring Boot: Um framework para Java que simplifica a criação de APIs RESTful e sistemas backend escaláveis.
@@ -247,7 +245,6 @@ Possui suporte nativo para integração com Java e Spring Boot, facilitando o de
 É uma solução econômica e fácil de escalar, ideal para sistemas que precisam crescer ao longo do tempo.
 
 📍 **Comunicação entre Frontend e Backend**
-Tecnologias:
 
 **APIs RESTful**: Criadas com Spring Boot para comunicação entre o frontend (React.js) e o backend (Java).
 Por que usar APIs RESTful?
@@ -257,7 +254,6 @@ Facilitam a separação entre frontend e backend, permitindo que ambas as partes
 São leves e eficientes, ideais para sistemas que exigem alta performance.
 
 📍 **Segurança**
-Tecnologias:
 
 - **Spring Security:** Para autenticação e controle de acesso no backend.
 JWT (JSON Web Tokens): Para autenticação baseada em tokens, garantindo segurança e escalabilidade.
@@ -271,7 +267,6 @@ Permite autenticação sem a necessidade de armazenar sessões no servidor, torn
 É amplamente utilizado e compatível com diferentes plataformas, garantindo segurança no acesso ao sistema.
 
 📍 **Relatórios e Análises**
-Tecnologias:
 
 Java com bibliotecas de geração de relatórios (como JasperReports): Para criação de relatórios gerenciais detalhados.
 Por que usar essas tecnologias?
