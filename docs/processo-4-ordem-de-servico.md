@@ -85,12 +85,14 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 **Registro do PC no Sistema**
 
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| Código do Computador  | Caixa de texto   | Gerado auto	  | ---               | 
-| Status                | Seleção múltipla | Obrigatório    |Aguardando Conserto|               
+| **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
+|------------|----------------|----------------------|-------------------|
+| Código do Computador      | Caixa de Texto | Gerado automaticamente         | -                 |
+| Status      | Seleção múltipla        | -     | |Aguardando Conserto|                 |
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| Registrar            | Execução do Serviço	          | default           |
+| **Comando**        | **Destino**                      | **Tipo**   |
+|-------------------|--------------------------------|-----------|
+| Registrar | Execução do Serviço  | Default   |
 
 
 **Execução do Serviço**
