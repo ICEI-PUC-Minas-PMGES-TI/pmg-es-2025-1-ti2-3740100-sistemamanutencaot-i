@@ -64,12 +64,12 @@ _* **Tabela** - campo formado por uma matriz de valores_
 **Analisar Computador e Fazer Orçamento**
 
 |       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+|-----------------|----------------|-------------------------|-------------------|
 | Descrição do Problema	| Área de Texto    | Obrigatório    | ---               |
 | Observações Técnicas  | Área de Texto	   | ---            | ---               |
-| Valor Estimado	      | Número           | Somente valores| ---               |
-|                                          | positivos      |                   |
-| Data do Orçamento	    | Data             | Formato        | Data atual        |
-|                       |                  | (dd-mm-aaaa)   |                   |                   
+| Valor Estimado	      | Número           | Somente valores positivos|         |
+| Data do Orçamento	    | Data             | Formato(dd-mm-aaaa)       | Data atual        |
+|                       |                  | |                   |                   
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | Gerar Orçamento	     | Aprovação do Cliente	          | default           |
