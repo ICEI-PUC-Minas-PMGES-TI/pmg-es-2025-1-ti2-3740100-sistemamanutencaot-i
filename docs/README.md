@@ -39,11 +39,7 @@ Este projeto visa desenvolver um **software de gerenciamento de processos** que 
 
 ### 1.1 Contextualização
 
-O sistema é voltado para **empresas de manutenção de computadores** e tem como principal objetivo:
-
-✔ **Facilitar a comunicação entre equipe técnica e clientes**.  
-✔ **Garantir um fluxo organizado e transparente** durante os reparos.  
-✔ **Permitir o acompanhamento do status dos serviços em tempo real**.  
+Com o avanço constante de hardware e software, inclusive com a computação quântica se tornando realidade, as lojas físicas de informática no Brasil ainda enfrentam problemas de otimização nos processos, especialmente no atendimento ao cliente. Muitos funcionários falham em explicar adequadamente os processos de manutenção, gerando confusão e prejudicando a aquisição de novos clientes. De acordo com a Accenture, clientes frustrados são três vezes mais propensos a abandonar uma marca, o que ressalta a necessidade de otimizar o atendimento. Nosso software visa facilitar o acompanhamento dos clientes e a gestão interna das lojas, tornando os processos mais eficientes. Além disso, uma pesquisa da Hibou com 2.600 pessoas revelou que apenas 11% dos consumidores brasileiros estão satisfeitos com o atendimento das lojas, evidenciando que, para se manterem competitivas, as lojas de informática precisam melhorar a experiência do cliente, diante do crescente mercado digital vindo à tona.
 
 ### 1.2 Problema
 
@@ -347,6 +343,10 @@ Experiência do Usuário: React.js, com sua abordagem baseada em componentes, pe
 **[1.4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
 
 **[1.5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
+
+**[1.6]** - MERCADO E CONSUMO. Atendimento é levado em conta para 94% dos brasileiros no momento da compra. 30 nov. 2020. Disponível em: https://mercadoeconsumo.com.br/30/11/2020/noticias-varejo/atendimento-e-levado-em-conta-para-94-dos-brasileiros-no-momento-da-compra/. Acesso em: 12 mar. 2025.
+
+**[1.7]** - ACCENTURE. Clientes frustrados estão 3 vezes mais propensos a abandonar relação com marca, aponta estudo da Accenture. 2019. Disponível em: https://newsroom.accenturebr.com/br/news/2019/clientes-frustrados-estao-3-vezes-mais-propensos-abandonar-relacao-com-marca-aponta-estudo-da-accenture?utm_source=chatgpt.com. Acesso em: 12 mar. 2025.
 
 ---
 
