@@ -43,86 +43,105 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Verificar Registro do Cliente**
-
-| **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
+## **1. Verificar Registro do Cliente**
+### **Campos**
+| **Campo**       | **Tipo**        | **Restrições**          | **Valor Default** |
 |-----------------|----------------|-------------------------|-------------------|
-| CPF            | Número         | Obrigatório, 11 dígitos | -                 |
+| CPF            | Número          | Obrigatório, 11 dígitos | ---               |
 
-| **Comando**     | **Destino**               | **Tipo**   |
-|---------------|--------------------------|-----------|
-| Verificar | Análise do Computador (se cliente existir)  | Default   |
-| Conta não cadastrada |  Processo cadastro | Default   |
+### **Comandos**
+| **Comando**            | **Destino**                                  | **Tipo**   |
+|------------------------|---------------------------------------------|-----------|
+| Verificar             | Análise do Computador (se cliente existir)  | Default   |
+| Conta não cadastrada  | Processo de Cadastro                        | Default   |
 
+---
 
-**Analisar Computador e Fazer Orçamento**
+## **2. Analisar Computador e Fazer Orçamento**
+### **Campos**
+| **Campo**               | **Tipo**         | **Restrições**               | **Valor Default** |
+|-------------------------|-----------------|------------------------------|-------------------|
+| Descrição do Problema   | Área de Texto   | Obrigatório                   | ---               |
+| Observações Técnicas    | Área de Texto   | ---                            | ---               |
+| Valor Estimado         | Número          | Somente valores positivos     | ---               |
+| Data do Orçamento      | Data            | Formato (dd-mm-aaaa)          | Data atual        |
 
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-|-----------------|----------------|-------------------------|-------------------|
-| Descrição do Problema	| Área de Texto    | Obrigatório    | ---               |
-| Observações Técnicas  | Área de Texto	   | ---            | ---               |
-| Valor Estimado	      | Número           | Somente valores positivos|         |
-| Data do Orçamento	    | Data             | Formato(dd-mm-aaaa)       | Data atual        |
-|                       |                  | |                   |                   
+### **Comandos**
+| **Comando**       | **Destino**             | **Tipo**   |
+|------------------|------------------------|-----------|
+| Gerar Orçamento | Aprovação do Cliente   | Default   |
+| Cancelar        | Fim do Processo        | Cancel    |
 
-| **Comando**     | **Destino**               | **Tipo**   |
-|---------------|--------------------------|-----------|
-| Gerar Orçamento | Aprovação do Cliente	  | Default   |
-| Cancelar   |   Fim do processo| Cancel   |
+---
 
+## **3. Aprovação do Orçamento**
+### **Campos**
+| **Campo**               | **Tipo**         | **Restrições**  | **Valor Default** |
+|-------------------------|-----------------|----------------|-------------------|
+| Aceitou Orçamento?      | Seleção Única   | Sim/Não        | ---               |
 
-**Aprovação do Orçamento**
+### **Comandos**
+| **Comando**   | **Destino**                   | **Tipo**   |
+|--------------|------------------------------|-----------|
+| Confirmar    | Registro do PC no Sistema   | Default   |
+| Recusar      | Fim do Processo              | Cancel    |
 
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-|-----------------|----------------|-------------------------|-------------------|
-| Aceitou Orçamento?	  | Seleção única    | Sim/Não        | ---               |          
+---
 
-| **Comando**        | **Destino**                      | **Tipo**   |
+## **4. Registro do PC no Sistema**
+### **Campos**
+| **Campo**             | **Tipo**          | **Restrições**                  | **Valor Default**        |
+|----------------------|------------------|---------------------------------|--------------------------|
+| Código do Computador | Caixa de Texto   | Gerado automaticamente         | ---                      |
+| Status              | Seleção Única    | -                               | Aguardando Conserto       |
+
+### **Comandos**
+| **Comando**   | **Destino**           | **Tipo**   |
+|--------------|----------------------|-----------|
+| Registrar   | Execução do Serviço   | Default   |
+
+---
+
+## **5. Execução do Serviço**
+### **Campos**
+| **Campo**                | **Tipo**         | **Restrições**               | **Valor Default**        |
+|--------------------------|-----------------|------------------------------|--------------------------|
+| Técnico Responsável      | Seleção Única   | Deve estar registrado         | ---                      |
+| Computador Selecionado   | Seleção Múltipla | Lista de PCs disponíveis      | ---                      |
+| Data de Início do Serviço | Data e Hora     | Formato (dd-mm-aaaa, hh:mm:ss) | Data e Hora atuais        |
+
+### **Comandos**
+| **Comando**       | **Destino**             | **Tipo**   |
+|------------------|------------------------|-----------|
+| Iniciar Serviço | Atualização de Status  | Default   |
+
+---
+
+## **6. Atualização de Status**
+### **Campos**
+| **Campo**        | **Tipo**        | **Restrições** | **Valor Default** |
+|------------------|----------------|---------------|-------------------|
+| Status Atual    | Seleção Única   | ---           | ---               |
+| Observações     | Área de Texto   | ---           | ---               |
+
+### **Comandos**
+| **Comando**        | **Destino**                    | **Tipo**   |
 |-------------------|--------------------------------|-----------|
-| Confirmar | Registro do PC no Sistema	  | Default   |
-| Recusar | Fim do processo 	  | Cancel   |
+| Atualizar Status | Verificação de Conclusão       | Default   |
 
+---
 
-**Registro do PC no Sistema**
+## **7. Verificação de Conclusão**
+### **Campos**
+| **Campo**          | **Tipo**         | **Restrições** | **Valor Default** |
+|-------------------|-----------------|--------------|-------------------|
+| Serviço Concluído? | Seleção Única   | Sim/Não      | ---               |
 
-| **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
-|------------|----------------|----------------------|-------------------|
-| Código do Computador      | Caixa de Texto | Gerado automaticamente         | -                 |
-| Status      | Seleção múltipla        | -     | |Aguardando Conserto|                 |
+### **Comandos**
+| **Comando** | **Destino**              | **Tipo**   |
+|------------|-------------------------|-----------|
+| Sim        | Processo Financeiro      | Default   |
+| Não        | Atualização de Status    | Cancel    |
 
-| **Comando**        | **Destino**                      | **Tipo**   |
-|-------------------|--------------------------------|-----------|
-| Registrar | Execução do Serviço  | Default   |
-
-
-**Execução do Serviço**
-
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| Técnico Responsável   | Seleção Única	   | Está registrado| ---               | 
-| Computador selecionado| Seleção múltipla | Lista de pcs   | ---               |
-|                       |                  |  disponíveis   |                   |    
-| Data de Início do     | Data e Hora      | (dd-mm-aaaa,   | Data e Hora atuais|         
-| Serviço	              |                  |  hh:mm:ss)     |                   |
-
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| Iniciar Serviço	     | Atualização de Status	        | default           |
-
-**Atualização de Status**
-
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| Status Atual          | Seleção Única	   | ---            | ---               | 
-| Observações           | Área de texto    | ---            | ---               |  
-
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| Atualizar Status     | Verificação de Conclusão		    | default           |
-
-
-**Verificação de Conclusão**
-
-|       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| Serviço Concluído?    | Seleção Única	   | Sim/Não        | ---               | 
-
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| Sim                  | Processo financeiro     		    | default           |
-| Não                  | Atualização de status          | cancel            |
+---
 
