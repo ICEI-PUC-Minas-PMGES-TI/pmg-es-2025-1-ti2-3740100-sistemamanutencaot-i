@@ -47,4 +47,3 @@ Oportunidades de melhoria incluem a automatização da confirmação do pagament
 | Pagamento confirmado       | Liberar equipamento para retirada | Default   |
 | Pagamento não confirmado   | Contato com cliente               | Default   |
 
-Esse processo garante a segurança financeira antes da liberação do equipamento, minimizando riscos de inadimplência e aumentando a eficiência do fluxo de pagamentos.
