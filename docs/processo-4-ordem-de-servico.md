@@ -9,7 +9,7 @@ Processo de ordem de serviço, algumas melhorias seriam:
 6. Criar um histórico digital para cada computador consertado, facilitando consultas futuras e melhorando a rastreabilidade dos serviços prestados.
 Em seguida, apresente o modelo do processo 3, descrito no padrão BPMN._
 
-![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](images/process.png "Modelo BPMN do Processo 3.")
+![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](images/processos/ordemDeServicoBPMN.png "Modelo BPMN do Processo de ordem de serviço.")
 
 
 #### Detalhamento das atividades
