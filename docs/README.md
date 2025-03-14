@@ -164,6 +164,7 @@ O **Gerente** precisa de uma visão completa da operação da empresa, monitoran
 O **Técnico** é responsável por diagnosticar problemas, realizar os reparos e atualizar o sistema com o progresso das ordens de serviço. Normalmente, tem entre 25 e 45 anos, formação técnica ou superior em áreas como Eletrônica ou Mecânica, e experiência em manutenção de equipamentos. No sistema, ele registra cada etapa do reparo, informa a conclusão do serviço e garante a precisão dos dados para o gerente e o cliente.  
 
 O **Cliente** deseja acompanhar o andamento do reparo de seu equipamento de forma simples e transparente. Pode ter entre 18 e 65 anos, com habilidades básicas de navegação digital. No sistema, ele consulta o status do reparo em tempo real, recebe notificações sobre atualizações e pode avaliar o serviço após a conclusão.
+
 ---
 
 ## 🔄 3. Modelagem do Processo de Negócio
