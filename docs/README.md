@@ -131,13 +131,24 @@ Desenvolver um **sistema de gerenciamento de processos** que **otimize fluxos de
 
 ### 🎯 1.3.1 Objetivos Específicos
 
-1️⃣ **Automatizar** o gerenciamento de ordens de serviço.  
-2️⃣ **Facilitar** a comunicação entre técnicos e clientes.  
-3️⃣ **Fornecer histórico** detalhado de manutenções.  
-4️⃣ **Implementar notificações** automáticas para atualizações de status.  
-5️⃣ **Gerar relatórios** de desempenho da equipe.  
-6️⃣ **Disponibilizar dashboards** intuitivos para análise gerencial.  
-7️⃣ **Reduzir tempo de atendimento** e minimizar erros de comunicação.  
+1️⃣ **Automatizar** o gerenciamento de ordens de serviço  
+   - Desenvolver um sistema que registre, acompanhe e atualize as ordens de serviço, reduzindo erros no cadastro, e melhorando o desempenho da equipe.  
+
+2️⃣ **Facilitar** a comunicação entre técnicos e clientes  
+   - Implementar um canal de comunicação eficiente dentro do sistema, permitindo que técnicos e clientes interajam de forma clara e objetiva sobre o status dos reparos.  
+
+3️⃣ **Fornecer histórico** detalhado de manutenções  
+   - Criar um banco de dados que armazene todas as ordens de serviço realizadas, permitindo consultas rápidas ao histórico de reparos e facilitando a tomada de decisões futuras.  
+
+4️⃣ **Gerar relatórios** de desempenho da equipe  
+   - Desenvolver ferramentas de análise que permitam monitorar métricas como tempo médio de atendimento, eficiência dos técnicos e quantidade de reparos realizados.  
+
+5️⃣ **Disponibilizar dashboards** intuitivos para análise gerencial  
+   - Criar painéis visuais com gráficos e indicadores que auxiliem gestores na análise do fluxo de trabalho e na identificação de possíveis melhorias no processo.  
+
+6️⃣ **Reduzir tempo de atendimento** e minimizar erros de comunicação  
+   - Otimizar o fluxo de trabalho dentro do sistema, reduzindo burocracias e melhorando a clareza das informações transmitidas entre técnicos e clientes.  
+  
 
 ### 1.4 Justificativa
 
