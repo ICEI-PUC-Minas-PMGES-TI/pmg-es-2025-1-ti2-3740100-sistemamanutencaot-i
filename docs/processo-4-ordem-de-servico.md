@@ -49,10 +49,16 @@ _* **Tabela** - campo formado por uma matriz de valores_
 |-----------------|----------------|-------------------------|-------------------|
 | CPF            | Número         | Obrigatório, 11 dígitos | -                 |
 
+| **Comando**     | **Destino**               | **Tipo**   |
+|---------------|--------------------------|-----------|
+| Verificar | Análise do Computador (se cliente existir)  | Default   |
+| Conta não cadastrada |  Processo cadastro | Default   |
+
+
 | **Comandos**         |  **Destino**                              | **Tipo** |
-| verificar            | Análise do Computador (se cliente existir)| default  |        
-                       | / Processo cadastro (se não existir)      |          |
-| cancelar             | Fim do processo                           | cancel   |
+|             | | default  |        
+                       |     |          |
+|              | Fim do processo                           | cancel   |
 
 
 **Analisar Computador e Fazer Orçamento**
