@@ -77,12 +77,13 @@ _* **Tabela** - campo formado por uma matriz de valores_
 |-----------------|----------------|-------------------------|-------------------|
 | Aceitou Orçamento?	  | Seleção única    | Sim/Não        | ---               |          
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| Confirmar            | Registro do PC no Sistema	    | default           |
-| Recusar              | Fim do processo                | cancel            |
+| **Comando**        | **Destino**                      | **Tipo**   |
+|-------------------|--------------------------------|-----------|
+| Confirmar | Registro do PC no Sistema	  | Default   |
+| Recusar | Fim do processo 	  | Cancel   |
 
 
-** Registro do PC no Sistema**
+**Registro do PC no Sistema**
 
 |       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | Código do Computador  | Caixa de texto   | Gerado auto	  | ---               | 
