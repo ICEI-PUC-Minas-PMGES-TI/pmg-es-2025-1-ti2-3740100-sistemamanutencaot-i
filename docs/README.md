@@ -234,7 +234,6 @@ Oferece suporte integrado para criação de APIs RESTful, autenticação e geren
 É altamente escalável, permitindo que o sistema cresça conforme a demanda.
 
 📍 **Banco de Dados**
-Tecnologia:
 
 - **MySQL:** Um sistema de gerenciamento de banco de dados relacional (RDBMS).
 Por que usar MySQL?
