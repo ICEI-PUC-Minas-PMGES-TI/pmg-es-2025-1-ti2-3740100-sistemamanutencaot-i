@@ -29,7 +29,7 @@
 
 ## 📌 Resumo
 
-> *O presente trabalho apresenta o Manager.io, um sistema desenvolvido para otimizar a gestão de processos empresariais, com foco em empresas de manutenção de computadores. A plataforma busca solucionar problemas comuns, como falta de organização das ordens de serviço, comunicação ineficiente entre técnicos e clientes, e dificuldade na análise gerencial. O objetivo principal é integrar fluxos de trabalho, automatizar tarefas e disponibilizar ferramentas intuitivas que aumentem a produtividade e transparência nas operações. Utilizando tecnologias modernas como React, Spring Boot, Java e MySQL, o sistema oferece dashboards gerenciais, notificações automáticas e controle em tempo real das atividades. Como resultado, espera-se maior eficiência operacional, redução de erros e atrasos, além de uma experiência mais satisfatória para os clientes.*  
+O presente trabalho apresenta o Manager.io, um sistema desenvolvido para otimizar a gestão de processos empresariais, com foco em empresas de manutenção de computadores. A plataforma busca solucionar problemas comuns, como falta de organização das ordens de serviço, comunicação ineficiente entre técnicos e clientes, e dificuldade na análise gerencial. O objetivo principal é integrar fluxos de trabalho, automatizar tarefas e disponibilizar ferramentas intuitivas que aumentem a produtividade e transparência nas operações. Utilizando tecnologias modernas como React, Spring Boot, Java e MySQL, o sistema oferece dashboards gerenciais, notificações automáticas e controle em tempo real das atividades. Como resultado, espera-se maior eficiência operacional, redução de erros e atrasos, além de uma experiência mais satisfatória para os clientes. 
 
 ---
 
@@ -287,10 +287,11 @@ Experiência do Usuário: React.js, com sua abordagem baseada em componentes, pe
 
 ### 3.3. Modelagem dos Processos
 
-📌 [PROCESSO 1 - Nome do Processo](processo-1-nome-do-processo.md "Detalhamento do Processo 1.")  
-📌 [PROCESSO 2 - Nome do Processo](processo-2-nome-do-processo.md "Detalhamento do Processo 2.")  
+📌 [PROCESSO 1 - Cadastro de Cliente](processo-1-cadastro-de-cliente.md "Detalhamento do Processo 1.")  
+📌 [PROCESSO 2 - Cadastro de Técnico](processo-2-cadastro-de-tecnico.md "Detalhamento do Processo 2.")  
 📌 [PROCESSO 3 - Nome do Processo](processo-3-nome-do-processo.md "Detalhamento do Processo 3.")  
-📌 [PROCESSO 4 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo4.")  
+📌 [PROCESSO 4 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo4.") 
+📌 [PROCESSO 5 - Processo Financeiro](processo-5-processo-financeiro.md "Detalhamento do Processo4.")
 
 ---
 
