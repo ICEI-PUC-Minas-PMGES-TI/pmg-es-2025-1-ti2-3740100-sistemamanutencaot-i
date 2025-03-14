@@ -107,12 +107,6 @@ Embora algumas empresas recorram a sistemas genéricos de controle de ordens de 
 - **Técnico:** Responsável por registrar e atualizar o status dos reparos, além de diagnosticar e resolver problemas dos equipamentos.
 - **Cliente:** Deseja acompanhar de maneira prática e transparente o andamento do reparo de seu equipamento, semelhante ao rastreamento de uma entrega.
 
-#### 3.1.4. Requisitos e Restrições
-- O sistema deve permitir atualizações em tempo real sobre o status dos reparos.
-- Os clientes devem ter uma interface amigável para acompanhar o andamento do serviço.
-- O gerente deve ter acesso completo a todas as informações e relatórios da empresa.
-- O sistema deve ser seguro, garantindo que apenas usuários autorizados possam modificar ou visualizar dados sensíveis.
-
 ---
 
 ### 3.2. Descrição Geral da Proposta de Solução
@@ -132,6 +126,16 @@ A solução proposta visa otimizar a gestão da empresa de reparos de computador
 
 #### 3.2.3. Tecnologias e Implementação
 O sistema será desenvolvido com tecnologias modernas e seguras, garantindo uma experiência de uso fluida e acessível em diversos dispositivos. A interface será intuitiva, e o sistema será projetado para suportar futuras expansões, como integrações com notificações automáticas para clientes e geração de relatórios detalhados para a gestão.
+
+#### 3.2.4. Requisitos e Restrições
+- Os técnicos devem poder registrar e atualizar o status de reparos de forma rápida e intuitiva, com um fluxo de trabalho eficiente que minimiza o tempo de interação e potencial de erro.
+- O sistema deve permitir que clientes, gerentes e técnicos visualizem o status dos reparos em tempo real, garantindo informações precisas e atualizadas.
+- O sistema deve proporcionar uma interface intuitiva, permitindo que os clientes acompanhem facilmente o andamento do serviço, enquanto oferece aos técnicos e gerentes uma visualização clara e acessível das máquinas em reparo.
+- O gerente deve ter acesso completo a todas as informações e relatórios da empresa.
+- O sistema deve ser seguro, garantindo que apenas usuários autorizados possam modificar ou visualizar dados sensíveis.
+- O sistema deve permitir que os técnicos cadastrem novas ordens de serviço, incluindo informações detalhadas sobre o problema reportado, a máquina em questão e o cliente responsável.
+- O sistema deve enviar notificações automáticas para os clientes e gerentes sempre que houver uma atualização no status de um reparo, como o início, progresso ou conclusão do serviço.
+- O sistema deve registrar o tempo gasto em cada reparo, permitindo que técnicos e gerentes acompanhem a eficiência e identifiquem possíveis gargalos no processo.
 
 ### 3.3. Modelagem dos Processos
 
