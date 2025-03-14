@@ -65,15 +65,16 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | Data do Orçamento	    | Data             | Formato(dd-mm-aaaa)       | Data atual        |
 |                       |                  | |                   |                   
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-|-----------------|----------------|-------------------------|-------------------|
-| Gerar Orçamento	     | Aprovação do Cliente	          | default           |
-| Cancelar             | Fim do processo                | cancel            |
+| **Comando**     | **Destino**               | **Tipo**   |
+|---------------|--------------------------|-----------|
+| Gerar Orçamento | Aprovação do Cliente	  | Default   |
+| Cancelar   |   Fim do processo| Cancel   |
 
 
 **Aprovação do Orçamento**
 
 |       **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+|-----------------|----------------|-------------------------|-------------------|
 | Aceitou Orçamento?	  | Seleção única    | Sim/Não        | ---               |          
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
