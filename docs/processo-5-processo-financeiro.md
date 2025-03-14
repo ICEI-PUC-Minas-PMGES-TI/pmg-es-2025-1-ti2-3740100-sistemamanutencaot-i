@@ -1,4 +1,4 @@
-### 3.3.1 Processo 5 – PROCESSO FINANCEIRO
+### Processo 5 – PROCESSO FINANCEIRO
 
 O processo financeiro do aplicativo trata da finalização do pagamento após a conclusão de uma manutenção. O fluxo envolve a geração de um boleto, seu pagamento pelo cliente e a confirmação antes da liberação do equipamento.
 
