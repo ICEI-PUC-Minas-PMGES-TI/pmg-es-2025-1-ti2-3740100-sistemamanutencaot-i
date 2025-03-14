@@ -189,11 +189,6 @@ Atualmente, muitas empresas enfrentam dificuldades na gestão de reparos de comp
 Embora algumas empresas recorram a sistemas genéricos de controle de ordens de serviço, mas existam sistemas avançados como **Orderry**, **Produttivo**, **Fracttal One**, **Melvin** e **Engeman®** para gerenciar ordens de serviço, muitos deles focam na automação interna e na geração de relatórios. No entanto, esses sistemas geralmente não oferecem uma interface simples e intuitiva para que o cliente acompanhe o status do reparo em tempo real, tornando o processo menos transparente e eficiente.
 
 
-#### 3.1.3. Público-Alvo
-- **Gerente:** Precisa de uma visão completa da operação da empresa, incluindo o status dos reparos, a produtividade dos técnicos e o controle das ordens de serviço.
-- **Técnico:** Responsável por registrar e atualizar o status dos reparos, além de diagnosticar e resolver problemas dos equipamentos.
-- **Cliente:** Deseja acompanhar de maneira prática e transparente o andamento do reparo de seu equipamento, semelhante ao rastreamento de uma entrega.
-
 ---
 
 ### 3.2. Descrição Geral da Proposta de Solução
