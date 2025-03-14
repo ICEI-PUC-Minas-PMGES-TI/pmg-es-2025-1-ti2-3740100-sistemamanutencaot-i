@@ -72,10 +72,85 @@ Desenvolver um **sistema de gerenciamento de processos** que **otimize fluxos de
 
 Este software visa **solucionar problemas comuns** enfrentados por empresas do setor, como:
 
-📌 *Falta de organização*  
-📌 *Comunicação ineficiente*  
-📌 *Dificuldade no monitoramento da equipe*  
-📌 *Ausência de histórico centralizado de reparos*  
+📌 **Falta de Organização das Ordens de Serviço**
+Esse é um problema muito comum nas empresas de manutenção. Quando as ordens de serviço não são bem organizadas, surgem situações como:
+
+Perda de informações importantes: Dados sobre o cliente, o problema relatado ou o status do reparo podem acabar se perdendo ou sendo mal registrados.
+Atrasos no atendimento: Sem um sistema eficiente, é fácil esquecer ou atrasar ordens de serviço.
+Dificuldade em priorizar tarefas: Sem controle, fica complicado saber quais reparos são mais urgentes.
+Isso tudo pode ser ainda pior quando a empresa não usa ferramentas tecnológicas, como softwares de gestão, para organizar as tarefas.
+
+📌 **Dificuldade na Comunicação com os Clientes**
+A comunicação com os clientes é essencial, mas muitas empresas enfrentam desafios nesse ponto, como:
+
+Falta de transparência: Os clientes querem saber o que está acontecendo com seus equipamentos, mas nem sempre são informados sobre o status do reparo ou custos adicionais.
+Demora nas respostas: Quando a empresa demora para responder mensagens ou atender ligações, isso gera frustração.
+Explicações complicadas: Muitas vezes, os técnicos explicam o problema de forma muito técnica, e o cliente não entende, o que pode gerar desconfiança.
+Manter os clientes bem informados, de forma clara e rápida, é fundamental para construir confiança.
+
+📌 **Gestão Ineficiente da Equipe Técnica**
+A equipe técnica é o coração do negócio, mas problemas de gestão podem comprometer o trabalho, como:
+
+Distribuição desigual de tarefas: Alguns técnicos ficam sobrecarregados, enquanto outros têm menos trabalho.
+Falta de treinamento: Sem atualização sobre novas tecnologias, os técnicos podem acabar entregando serviços de baixa qualidade.
+Falta de acompanhamento: Quando não há monitoramento do desempenho da equipe, fica difícil identificar problemas e melhorar a produtividade.
+Uma boa gestão da equipe garante que o trabalho seja bem feito e que todos estejam alinhados.
+
+📌 **Falta de Visão Gerencial sobre as Operações**
+Muitos gestores não têm uma visão clara do que está acontecendo na empresa. Isso pode incluir:
+
+Não acompanhar métricas importantes: Sem dados como tempo médio de reparo ou satisfação dos clientes, é difícil tomar decisões estratégicas.
+Gestão financeira desorganizada: Erros no controle financeiro podem gerar problemas de caixa, especialmente com custos inesperados.
+Falta de planejamento: Sem um plano claro, o crescimento da empresa pode ser prejudicado.
+Ter uma visão estratégica é essencial para garantir o sucesso e o crescimento do negócio.
+
+📌 **Problemas com Estoque e Suprimentos**
+Gerenciar peças e suprimentos é um desafio constante. Os problemas mais comuns incluem:
+
+Falta de peças em estoque: Isso pode atrasar reparos e deixar os clientes insatisfeitos.
+Excesso de peças desnecessárias: Manter um estoque cheio de itens que não são usados gera custos desnecessários.
+Erro no controle de inventário: Sem um sistema eficiente, é fácil perder o controle do que está disponível ou do que precisa ser comprado.
+Um estoque bem gerenciado ajuda a evitar atrasos e reduz custos desnecessários, além de melhorar a experiência do cliente.
+
+📌 **Concorrência e Pressão por Preços**
+O mercado de manutenção de computadores é extremamente competitivo, e as empresas enfrentam desafios como:
+
+Concorrência desleal: Técnicos informais ou empresas que cobram preços muito baixos podem dificultar a conquista de clientes.
+Dificuldade em justificar preços: Quando o cliente não entende o valor do serviço, ele pode optar por opções mais baratas.
+Pressão por descontos: Muitos clientes tentam negociar preços, o que pode reduzir os lucros da empresa.
+Para se destacar, é importante oferecer qualidade e mostrar ao cliente o valor do serviço prestado.
+
+📌 **Problemas com Garantia e Pós-Venda**
+O atendimento após o serviço também é um ponto crítico. Alguns problemas comuns incluem:
+
+Reparos mal feitos: Serviços de baixa qualidade podem gerar retrabalho e insatisfação.
+Falta de controle sobre garantias: Não gerenciar bem os prazos de garantia pode causar conflitos com os clientes.
+Pouco cuidado no pós-venda: Não entrar em contato com o cliente após o reparo pode ser uma oportunidade perdida de fidelização.
+Um bom acompanhamento após o serviço ajuda a construir uma relação de confiança com o cliente.
+
+📌 **Adaptação a Novas Tecnologias**
+A tecnologia muda rápido, e nem todas as empresas conseguem acompanhar. Os principais desafios são:
+
+Falta de conhecimento técnico: Novos dispositivos e sistemas exigem constante atualização dos técnicos.
+Mudança no perfil dos problemas: Com o aumento do uso de dispositivos móveis e computação em nuvem, os serviços precisam se adaptar.
+Investimentos em ferramentas modernas: Algumas empresas têm dificuldade em adquirir equipamentos e softwares necessários para reparos mais avançados.
+Manter a equipe atualizada e investir em tecnologia é essencial para continuar competitivo.
+
+📌 **Atendimento ao Cliente Deficiente**
+O atendimento ao cliente vai além da comunicação. Problemas comuns incluem:
+
+Despreparo no atendimento inicial: Um atendimento mal feito pode afastar o cliente logo no início.
+Falta de empatia: Clientes querem ser ouvidos e tratados com atenção, especialmente quando estão com problemas.
+Demora no atendimento presencial: Longas esperas podem gerar insatisfação e prejudicar a reputação da empresa.
+Um atendimento humanizado e ágil pode fazer toda a diferença na fidelização dos clientes.
+
+📌 **Problemas Legais e Regulatórios**
+Por fim, a falta de conformidade com leis e regulamentações pode trazer sérios problemas, como:
+
+Falta de emissão de notas fiscais: Isso pode gerar problemas fiscais e prejudicar a confiança do cliente.
+Desrespeito à LGPD: Não proteger os dados dos clientes pode resultar em multas e processos.
+Contratos mal elaborados: Sem contratos claros, podem surgir conflitos com clientes e fornecedores.
+Estar em dia com as obrigações legais protege a empresa e fortalece sua credibilidade.
 
 🔹 **Benefícios esperados:**
 
