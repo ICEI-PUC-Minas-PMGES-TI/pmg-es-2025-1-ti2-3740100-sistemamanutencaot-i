@@ -19,7 +19,7 @@ O projeto tem como foco a implementação de uma solução escalável e acessív
 
 * Michelle Hanna Soares de Andrade
 * Danilo de Quadros Maia Filho
-* Nome completo do professor 3
+* Joana Gabriela Ribeiro de Souza
 
 ## Instruções de utilização
 
