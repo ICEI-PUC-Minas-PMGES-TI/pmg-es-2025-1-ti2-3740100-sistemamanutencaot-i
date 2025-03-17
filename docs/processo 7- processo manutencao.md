@@ -12,31 +12,28 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 | **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
 |-----------------|----------------|-------------------------|-------------------|
-| CPF            | Número         | Obrigatório, 11 dígitos | -                 |
+| Máquinas        | Seleção múltipla| Obrigatório, selecionar ao menos uma | -                 |
 
 **Comandos:**
 
 | **Comando**     | **Destino**               | **Tipo**   |
 |---------------|--------------------------|-----------|
-| Conta cadastrada | Fim do Processo        | Default   |
-| Conta não cadastrada | Solicitar informações | Default   |
+| Selecionar máquina | Envio de notificações| Default   |
+| Cancelar | Fim do Processo| Cancel   |
 
-### Atividade 2 – Solicitar as informações do cliente
+### Atividade 2 – Envio de notificações
 
 | **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
 |------------|----------------|----------------------|-------------------|
-| Nome       | Caixa de Texto | Obrigatório         | -                 |
-| Idade      | Número        | Obrigatório, >18     | -                 |
-| CPF        | Número        | Obrigatório, 11 dígitos | -                 |
-| Endereço   | Área de Texto | Obrigatório         | -                 |
-| Contato    | Número        | Obrigatório         | -                 |
-| Email      | Caixa de Texto | Obrigatório, formato válido | -                 |
+| Status do serviço    | Seleção única | Obrigatório           | -       |
+| Status da notificação| Caixa de texto| -           | -                 |
+
 
 **Comandos:**
 
-| **Comando**        | **Destino**                      | **Tipo**   |
+| **Comando**        | **Destino**                   | **Tipo**  |
 |-------------------|--------------------------------|-----------|
-| Informações fornecidas | Validação das informações  | Default   |
+| Atualizar status | Analisar diagnóstico            | Default   |
 
 ### Atividade 3 – Validar informações
 
