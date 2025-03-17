@@ -2,7 +2,7 @@
 
 O processo de manutenção incluem a seleção e o concerto da máquina pelo técnico, também possui as notificações da etapa de manutenção.
 
-Oportunidades de melhoria incluem a automatização da validação de dados e a integração com bancos de dados externos para preenchimento automático de informações.
+Oportunidades de melhoria incluem relatórios sobre o processo.
 
 ![Modelo BPMN do Cadastro de Cliente](/docs/images/processos/manutencaoBPMN.png "Modelo BPMN do Cadastro de Cliente.")
 
@@ -33,16 +33,35 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 | **Comando**        | **Destino**                   | **Tipo**  |
 |-------------------|--------------------------------|-----------|
-| Atualizar status | Analisar diagnóstico            | Default   |
+| Inicio da manutenção| Analisar diagnóstico         | Default   |
+| Finalização da manutenção| Fim do processo         | Default   |
 
-### Atividade 3 – Validar informações
+
+
+### Atividade 3 - Analisar diagnóstico
 
 | **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
 |---------------------|-----------------|---------------------|-------------------|
-| Dados corretos     | Seleção única   | Sim / Não         | -                 |
+| Peça necessária     | Área de texto   | Obrigatório         | -                 |
+| Descrição do problema| Área de texto   | Obrigatório         | -                 |
 
 **Comandos:**
 
-| **Comando**        | **Destino**                          | **Tipo**   |
+| **Comando**        | **Destino**                      | **Tipo**  |
 |-------------------|-----------------------------------|-----------|
-| Sim              | Cadastro concluído                | Default   |
+| Peça no estoque   | Executar concerto                 | Default   |
+| Peça em falta     | Processo de requisição de peças   | Default   |
+
+
+### Atividade 4 - Executar concerto
+
+| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
+|---------------------|-----------------|---------------------|-------------------|
+| Computador concertado| Seleção Única   | Obrigatório         | -                 |
+
+**Comandos:**
+
+| **Comando**        | **Destino**                      | **Tipo**  |
+|-------------------|-----------------------------------|-----------|
+| Sim               | Envio de Notificações             | Default   |
+| Não               | Processo de diagnóstico           | Default   |
