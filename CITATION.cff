@@ -16,8 +16,8 @@ authors:
     given-names: João Ricardo 
   - name-suffix: Professora
     affiliation: PUC Minas
-    family-names: Michelle 
-    given-names: Hanna Soares de Andrade
+    family-names: Michelle Hanne 
+    given-names: Soares de Andrade
   - name-suffix: Professora
     affiliation: PUC Minas
     family-names: Joana Gabriela
@@ -27,9 +27,25 @@ authors:
     family-names: Danilo
     given-names: de Quadros Maia Filho
 keywords:
-  - 
-  - 
-repository-code: 
+  -Gerenciamento de processos
+  -Automação
+  -Software de gestão
+  -Sistema de ordens de serviço
+  -Dashboard gerencial
+  -Empresas de manutenção
+  -Fluxo de trabalho
+  -Eficiência operacional
+  -Monitoramento de desempenho
+  -Visão gerencial
+  -Comunicação eficiente
+  -Transparência
+  -Satisfação do cliente
+  -Notificações automáticas
+  -Acompanhamento de reparos
+  -Gestão de equipe
+  -Controle de estoque
+
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released:
