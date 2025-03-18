@@ -2,26 +2,30 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: sobrenome do aluno 1
-    given-names: Nome do aluno 1 
-  - family-names: sobrenome do aluno 2
-    given-names: Nome do aluno 2 
-  - family-names: sobrenome do aluno 3
-    given-names: Nome do aluno 3 
-  - family-names: sobrenome do aluno 4
-    given-names: Nome do aluno 4 
-  - family-names: sobrenome do aluno 5
-    given-names: Nome do aluno 5 
-  - family-names: sobrenome do aluno 6
-    given-names: Nome do aluno 6 
+  - family-names: Mendes
+    given-names: Felipe Augusto 
+  - family-names: Pereira Rodrigues
+    given-names: Francisco Rafael
+  - family-names: Souza Lopes
+    given-names: Gabriel Victor
+  - family-names: Maciel de Oliveira
+    given-names: João Pedro
+  - family-names: Costa
+    given-names: Igor Rodrigo 
+  - family-names: Fiuza
+    given-names: João Ricardo 
   - name-suffix: Professora
     affiliation: PUC Minas
-    family-names: Alonso Veloso
-    given-names: Eveline 
+    family-names: Michelle 
+    given-names: Hanna Soares de Andrade
   - name-suffix: Professora
     affiliation: PUC Minas
-    family-names: Baroni De Carvalho
-    given-names: Juliana Amaral 
+    family-names: Joana Gabriela
+    given-names: Ribeiro de Souza
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Danilo
+    given-names: de Quadros Maia Filho
 keywords:
   - 
   - 
