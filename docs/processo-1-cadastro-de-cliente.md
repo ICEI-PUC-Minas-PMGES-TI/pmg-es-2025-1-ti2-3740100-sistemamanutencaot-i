@@ -10,43 +10,113 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 ### Atividade 1 – Verificar a existência de um cadastro
 
-| **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
-|-----------------|----------------|-------------------------|-------------------|
-| CPF            | Número         | Obrigatório, 11 dígitos | -                 |
+| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
+|------------|----------|----------------|-------------------|
+| CPF        | Número   | Obrigatório, 11 dígitos | - |
 
 **Comandos:**
 
-| **Comando**     | **Destino**               | **Tipo**   |
-|---------------|--------------------------|-----------|
-| Conta cadastrada | Fim do Processo        | Default   |
-| Conta não cadastrada | Solicitar informações | Default   |
+| **Comando**           | **Destino**                 | **Tipo**   |
+|----------------------|---------------------------|-----------|
+| Conta cadastrada    | Fim do Processo            | Default   |
+| Conta não cadastrada | Solicitar CPF do cliente  | Default   |
 
-### Atividade 2 – Solicitar as informações do cliente
+---
 
-| **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
-|------------|----------------|----------------------|-------------------|
-| Nome       | Caixa de Texto | Obrigatório         | -                 |
-| Idade      | Número        | Obrigatório, >18     | -                 |
-| CPF        | Número        | Obrigatório, 11 dígitos | -                 |
-| Endereço   | Área de Texto | Obrigatório         | -                 |
-| Contato    | Número        | Obrigatório         | -                 |
-| Email      | Caixa de Texto | Obrigatório, formato válido | -                 |
+### Atividade 2 – Solicitar CPF do cliente
+
+| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
+|------------|----------|----------------|-------------------|
+| CPF        | Número   | Obrigatório, 11 dígitos | - |
 
 **Comandos:**
 
-| **Comando**        | **Destino**                      | **Tipo**   |
-|-------------------|--------------------------------|-----------|
-| Informações fornecidas | Validação das informações  | Default   |
+| **Comando**      | **Destino**     | **Tipo**   |
+|-----------------|----------------|-----------|
+| Informar CPF    | Validar CPF     | Default   |
 
-### Atividade 3 – Validar informações
+---
 
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Dados corretos     | Seleção única   | Sim / Não         | -                 |
+### Atividade 3 – Validar CPF
+
+| **Campo**       | **Tipo**        | **Restrições**  | **Valor default**  |
+|----------------|----------------|----------------|-------------------|
+| CPF válido     | Seleção única   | Sim / Não     | - |
 
 **Comandos:**
 
-| **Comando**        | **Destino**                          | **Tipo**   |
-|-------------------|-----------------------------------|-----------|
-| Sim              | Cadastro concluído                | Default   |
-| Não             | Solicitar novas informações       | Default   |
+| **Comando** | **Destino**                  | **Tipo**   |
+|------------|------------------------------|-----------|
+| Sim        | Solicitar Nome do cliente    | Default   |
+| Não        | Solicitar CPF novamente      | Default   |
+
+---
+
+### Atividade 4 – Solicitar Nome do cliente
+
+| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------|----------------|----------------|-------------------|
+| Nome       | Caixa de Texto | Obrigatório    | - |
+
+**Comandos:**
+
+| **Comando**     | **Destino**                  | **Tipo**   |
+|----------------|----------------------------|-----------|
+| Informar Nome  | Cadastrar Nome do cliente  | Default   |
+
+---
+
+### Atividade 5 – Cadastrar Nome do cliente
+
+| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------------|----------------|----------------|-------------------|
+| Nome cadastrado | Seleção única   | Sim / Não     | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**                    | **Tipo**   |
+|------------|--------------------------------|-----------|
+| Sim        | Solicitar telefone do cliente  | Default   |
+
+---
+
+### Atividade 6 – Solicitar telefone do cliente
+
+| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
+|------------|----------|----------------|-------------------|
+| Telefone   | Número   | Obrigatório    | - |
+
+**Comandos:**
+
+| **Comando**       | **Destino**           | **Tipo**   |
+|------------------|----------------------|-----------|
+| Informar Telefone | Validar telefone     | Default   |
+
+---
+
+### Atividade 7 – Validar telefone
+
+| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------------|----------------|----------------|-------------------|
+| Telefone válido | Seleção única   | Sim / Não     | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**              | **Tipo**   |
+|------------|--------------------------|-----------|
+| Sim        | Confirmar cadastro        | Default   |
+| Não        | Solicitar telefone novamente | Default   |
+
+---
+
+### Atividade 8 – Confirmar cadastro
+
+| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------|----------------|----------------|-------------------|
+| Cadastro concluído | Seleção única | Sim | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**        | **Tipo**   |
+|------------|--------------------|-----------|
+| Sim        | Fim do Processo    | Default   |
