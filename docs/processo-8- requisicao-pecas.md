@@ -1,4 +1,4 @@
-### Processo 7 – Manutenção
+### Processo 8 – Requisição de peças
 
 O processo de manutenção incluem a seleção e o concerto da máquina pelo técnico, também possui as notificações da etapa de manutenção.
 
@@ -20,50 +20,49 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 
 | **Comando**     | **Destino**               | **Tipo**   |
 |---------------|--------------------------|-----------|
-| Selecionar máquina | Envio de notificações| Default   |
-| Cancelar | Fim do Processo| Cancel   |
+| Enviar requisição | Aprovar requisição| Default   |
 
-### Atividade 2 – Envio de notificações
+### Atividade 2 - Aprovar requisição
 
 | **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
 |------------|----------------|----------------------|-------------------|
-| Status do serviço    | Seleção única | Obrigatório           | -       |
-| Status da notificação| Caixa de texto| -           | -                 |
-
+| Status da requisição| Seleção única | Obrigatório  | -       |
 
 **Comandos:**
 
 | **Comando**        | **Destino**                   | **Tipo**  |
 |-------------------|--------------------------------|-----------|
-| Inicio da manutenção| Analisar diagnóstico         | Default   |
-| Finalização da manutenção| Fim do processo         | Default   |
+| Sim               | Solicitar compra                | Default   |
+| Não               | Fim do processo                | Default   |
 
 
 
-### Atividade 3 - Analisar diagnóstico
+### Atividade 3 - Solicitar compra
 
 | **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
 |---------------------|-----------------|---------------------|-------------------|
-| Peça necessária     | Área de texto   | Obrigatório         | -                 |
-| Descrição do problema| Área de texto   | Obrigatório         | -                 |
+| Status da compra    | Seleção Única   | Obrigatório         | -                 |
+| Peça                | Área de texto   | Obrigatório         | -                 |
+| Quantidade          | Número          | Obrigatório, positivo| -                |
 
 **Comandos:**
 
 | **Comando**        | **Destino**                      | **Tipo**  |
 |-------------------|-----------------------------------|-----------|
-| Peça no estoque   | Executar concerto                 | Default   |
-| Peça em falta     | Processo de requisição de peças   | Default   |
+| Compra feita      | Registrar no estoque              | Default   |
+| Cancelar          | Fim do processo                   | Cancel    |
 
 
-### Atividade 4 - Executar concerto
+### Atividade 4 - Registrar no estoque
 
 | **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
 |---------------------|-----------------|---------------------|-------------------|
-| Computador concertado| Seleção Única   | Obrigatório         | -                 |
+| Peça                | Seleção Única   | Obrigatório         | -                 |
+| Número do pedido    | Número          | Obrigatório         | -                 |
+| Quantidade          | Número          | Obrigatorio, positivo| -                |
 
 **Comandos:**
 
 | **Comando**        | **Destino**                      | **Tipo**  |
 |-------------------|-----------------------------------|-----------|
-| Sim               | Envio de Notificações             | Default   |
-| Não               | Processo de diagnóstico           | Default   |
+| Registrar peça    | Envio de Notificações             | Default   |
