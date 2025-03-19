@@ -6,53 +6,115 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 #### Detalhamento das atividades
 
-**Solicitação de Informações do Técnico**
 
-| **Campo**      | **Tipo**         | **Restrições**                | **Valor default** |
-|---------------|-----------------|--------------------------------|-------------------|
-| Nome         | Caixa de Texto   | Obrigatório                    |                   |
-| CPF          | Caixa de Texto   | Formato numérico (###.###.###-##) |                   |
-| Email        | Caixa de Texto   | Formato de e-mail              |                   |
+### Atividade 1 – Solicitar CPF do técnico
 
-| **Comandos**  | **Destino**                   | **Tipo** |
-|--------------|------------------------------|---------|
-| Enviar       | Validação das Informações    | default |
+| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
+|------------|----------|----------------|-------------------|
+| CPF        | Número   | Obrigatório, 11 dígitos | - |
 
----
+**Comandos:**
 
-**Validação das Informações**
-
-| **Campo**      | **Tipo**       | **Restrições**         | **Valor default** |
-|---------------|---------------|-----------------------|-------------------|
-| Status       | Seleção única  | Aprovado/Reprovado   |                   |
-| Motivo       | Área de texto  | Obrigatório se reprovado |                   |
-
-| **Comandos**  | **Destino**                      | **Tipo**   |
-|--------------|---------------------------------|-----------|
-| Aprovar      | Cadastro do Técnico             | default   |
-| Reprovar     | Solicitação de Correção        | cancel    |
+| **Comando**      | **Destino**     | **Tipo**   |
+|-----------------|----------------|-----------|
+| Informar CPF    | Validar CPF     | Default   |
 
 ---
 
-**Cadastro do Técnico**
+### Atividade 2 – Validar CPF
 
-| **Campo**      | **Tipo**         | **Restrições**              | **Valor default** |
-|---------------|-----------------|----------------------------|-------------------|
-| ID Técnico   | Número          | Gerado automaticamente     |                   |
-| Data Cadastro | Data e Hora    | Automático                 |                   |
+| **Campo**       | **Tipo**        | **Restrições**  | **Valor default**  |
+|----------------|----------------|----------------|-------------------|
+| CPF válido     | Seleção única   | Sim / Não     | - |
 
-| **Comandos**  | **Destino**                   | **Tipo** |
-|--------------|------------------------------|---------|
-| Cadastrar    | Dar Acesso ao Quadro de Concerto | default |
+**Comandos:**
+
+| **Comando** | **Destino**                  | **Tipo**   |
+|------------|------------------------------|-----------|
+| Sim        | Solicitar Nome do técnico    | Default   |
+| Não        | Solicitar CPF novamente      | Default   |
 
 ---
 
-**Dar Acesso ao Quadro de Concerto**
+### Atividade 3 – Solicitar Nome do técnico
 
-| **Campo**      | **Tipo**         | **Restrições**              | **Valor default** |
-|---------------|-----------------|----------------------------|-------------------|
-| Acesso Concedido | Seleção única  | Sim/Não                    |                   |
+| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------|----------------|----------------|-------------------|
+| Nome       | Caixa de Texto | Obrigatório    | - |
 
-| **Comandos**  | **Destino**      | **Tipo** |
-|--------------|-----------------|---------|
-| Finalizar    | Fim do Processo | default |
+**Comandos:**
+
+| **Comando**     | **Destino**                  | **Tipo**   |
+|----------------|----------------------------|-----------|
+| Informar Nome  | Cadastrar Nome do técnico  | Default   |
+
+---
+
+### Atividade 4 – Cadastrar Nome do cliente
+
+| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------------|----------------|----------------|-------------------|
+| Nome cadastrado | Seleção única   | Sim / Não     | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**                    | **Tipo**   |
+|------------|--------------------------------|-----------|
+| Sim        | Solicitar telefone do técnico  | Default   |
+
+---
+
+### Atividade 5 – Solicitar telefone do técnico
+
+| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
+|------------|----------|----------------|-------------------|
+| Telefone   | Número   | Obrigatório    | - |
+
+**Comandos:**
+
+| **Comando**       | **Destino**           | **Tipo**   |
+|------------------|----------------------|-----------|
+| Informar Telefone | Validar telefone     | Default   |
+
+---
+
+### Atividade 6 – Validar telefone
+
+| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------------|----------------|----------------|-------------------|
+| Telefone válido | Seleção única   | Sim / Não     | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**              | **Tipo**   |
+|------------|--------------------------|-----------|
+| Sim        | Cadastrar Cargo do técnico       | Default   |
+| Não        | Solicitar telefone novamente | Default   |
+
+---
+
+### Atividade 7 – Cadastrar Cargo do técnico
+
+| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------------|----------------|----------------|-------------------|
+| Cargo cadastrado | Seleção única   | Sim / Não     | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**                    | **Tipo**   |
+|------------|--------------------------------|-----------|
+| Sim        | Confirmar Cadastro  | Default   | 
+
+---
+
+### Atividade 8 – Confirmar cadastro
+
+| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
+|------------|----------------|----------------|-------------------|
+| Cadastro concluído | Seleção única | Sim | - |
+
+**Comandos:**
+
+| **Comando** | **Destino**        | **Tipo**   |
+|------------|--------------------|-----------|
+| Sim        | Fim do Processo    | Default   |
