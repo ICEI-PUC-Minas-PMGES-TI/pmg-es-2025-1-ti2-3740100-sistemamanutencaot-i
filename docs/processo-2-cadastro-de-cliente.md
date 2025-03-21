@@ -1,4 +1,4 @@
-### Processo 1 – CADASTRO DE CLIENTE
+### Processo 2 – CADASTRO DE CLIENTE
 
 O processo de cadastro de cliente verifica se o cliente já possui um cadastro. Caso contrário, solicita as informações necessárias e realiza o registro no sistema.
 
