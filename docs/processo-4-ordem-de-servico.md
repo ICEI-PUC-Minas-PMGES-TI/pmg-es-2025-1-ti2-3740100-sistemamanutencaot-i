@@ -1,13 +1,6 @@
 ### Processo 4 - ORDEM DE SERVIÇO
 
-Processo de ordem de serviço, algumas melhorias seriam:
-1. Atualmente, a verificação do cliente é manual. Poderia ser automatizada com integração a um banco de dados para agilizar o processo e evitar erros de digitação.
-2. Envio de notificações via e-mail ou SMS sobre orçamento, status do serviço e retirada do computador, reduzindo a necessidade de contato manual.
-3. Criar modelos padronizados de orçamento para evitar inconsistências entre técnicos e melhorar a transparência para o cliente.
-4. Possibilitar a aprovação do orçamento pelo cliente de forma online, sem necessidade de visita presencial, acelerando o processo.
-5. Implementar um sistema integrado para verificar se há peças disponíveis antes de iniciar o conserto, evitando atrasos inesperados.
-6. Criar um histórico digital para cada computador consertado, facilitando consultas futuras e melhorando a rastreabilidade dos serviços prestados.
-Em seguida, apresente o modelo do processo 3, descrito no padrão BPMN._
+Este processo representa o fluxo de cadastro de um novo ordem de serviço na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
 ![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](/docs/images/processos/ordemDeServicoBPMN.png "Modelo BPMN do Processo de ordem de serviço.")
 
@@ -57,91 +50,71 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 ---
 
-## **2. Analisar Computador e Fazer Orçamento**
+## **2. Descrever sintomas da máquina**
 ### **Campos**
 | **Campo**               | **Tipo**         | **Restrições**               | **Valor Default** |
 |-------------------------|-----------------|------------------------------|-------------------|
 | Descrição do Problema   | Área de Texto   | Obrigatório                   | ---               |
-| Observações Técnicas    | Área de Texto   | ---                            | ---               |
-| Valor Estimado         | Número          | Somente valores positivos     | ---               |
-| Data do Orçamento      | Data            | Formato (dd-mm-aaaa)          | Data atual        |
 
 ### **Comandos**
-| **Comando**       | **Destino**             | **Tipo**   |
-|------------------|------------------------|-----------|
-| Gerar Orçamento | Aprovação do Cliente   | Default   |
-| Cancelar        | Fim do Processo        | Cancel    |
+| **Comando**                    | **Destino**            | **Tipo**   |
+|--------------------------------|------------------------|-----------|
+| Documentar na Ordem de Serviço | Ordem de Serviço       | Default   |
+
 
 ---
 
-## **3. Aprovação do Orçamento**
+## **3. Informar observações técnicas sobre a maquina **
 ### **Campos**
 | **Campo**               | **Tipo**         | **Restrições**  | **Valor Default** |
-|-------------------------|-----------------|----------------|-------------------|
-| Aceitou Orçamento?      | Seleção Única   | Sim/Não        | ---               |
+|-------------------------|----------------- |---------------- |-------------------|
+| Descrição da maquina    | Área de texto    | Obrigatório     | ---               |
 
 ### **Comandos**
-| **Comando**   | **Destino**                   | **Tipo**   |
-|--------------|------------------------------|-----------|
-| Confirmar    | Registro do PC no Sistema   | Default   |
-| Recusar      | Fim do Processo              | Cancel    |
+| **Comando**                     | **Destino**                    | **Tipo**   |
+|---------------------------------|--------------------------------|----------- |
+| Documentar na Ordem de Serviço  | Ordem de Serviço               | Default    |
+
 
 ---
 
-## **4. Registro do PC no Sistema**
+## **4. Informar regras de negocios para cliente**
 ### **Campos**
 | **Campo**             | **Tipo**          | **Restrições**                  | **Valor Default**        |
-|----------------------|------------------|---------------------------------|--------------------------|
-| Código do Computador | Caixa de Texto   | Gerado automaticamente         | ---                      |
-| Status              | Seleção Única    | -                               | Aguardando Conserto       |
+|---------------------- |-------------------|---------------------------------  |--------------------------|
+| Prazo Inicial da Loja | Numerico          | Obrigatório                       | ---                      |
+| Valor Inicial da Loja | Numerico          | Obrigatório                       | ---                      |
 
 ### **Comandos**
-| **Comando**   | **Destino**           | **Tipo**   |
-|--------------|----------------------|-----------|
-| Registrar   | Execução do Serviço   | Default   |
+| **Comando**  | **Destino**            | **Tipo**  |
+|--------------|------------------------|-----------|
+| Sim          | Continuar do processo  | Default   |
+| Não          | Finalizar processo     | Default   |
 
 ---
 
-## **5. Execução do Serviço**
-### **Campos**
-| **Campo**                | **Tipo**         | **Restrições**               | **Valor Default**        |
-|--------------------------|-----------------|------------------------------|--------------------------|
-| Técnico Responsável      | Seleção Única   | Deve estar registrado         | ---                      |
-| Computador Selecionado   | Seleção Múltipla | Lista de PCs disponíveis      | ---                      |
-| Data de Início do Serviço | Data e Hora     | Formato (dd-mm-aaaa, hh:mm:ss) | Data e Hora atuais        |
+## 5. Instanciar uma Nova Ordem de Serviço
 
-### **Comandos**
-| **Comando**       | **Destino**             | **Tipo**   |
-|------------------|------------------------|-----------|
-| Iniciar Serviço | Atualização de Status  | Default   |
+### Campos
 
+| **Campo**               | **Tipo**        | **Restrições**                     | **Valor Default**         |
+|-------------------------|-----------------|------------------------------------|---------------------------|
+| ID da OS                | Numérico       | Obrigatório, Único                  | Gerado automaticamente    |
+| Data de Criação         | Data/Hora      | Obrigatório                         | Data atual do sistema     |
+| Cliente                 | Texto          | Obrigatório                         | ---                       |
+| Descrição do Problema   | Texto          | Obrigatório, Mínimo: 10 caracteres  | ---                       |
+| Descrição da Maquima    | Texto          | Obrigatório, Mínimo: 10 caracteres  | ---                       |
+| Técnico Responsável     | Texto          | Opcional                            | ---                       |
+| Prazo para Conclusão    | Data           | Opcional                            | Regra de Negocio          |
+| Valor Estimado          | Numérico       | Opcional                            | Regra de Negocio          |
+
+### Comandos
+
+| **Comando**    | **Destino**                  | **Tipo**   |
+|----------------|------------------------------|------------|
+| Confirmar      | Gerar a OS e prosseguir      | Default    |
+| Imprimir       | Gerar versão para imprimir   | Opcional   |
+| Assinatura     | Coletar assinatura do cliente| Manual     |
 ---
 
-## **6. Atualização de Status**
-### **Campos**
-| **Campo**        | **Tipo**        | **Restrições** | **Valor Default** |
-|------------------|----------------|---------------|-------------------|
-| Status Atual    | Seleção Única   | ---           | ---               |
-| Observações     | Área de Texto   | ---           | ---               |
-
-### **Comandos**
-| **Comando**        | **Destino**                    | **Tipo**   |
-|-------------------|--------------------------------|-----------|
-| Atualizar Status | Verificação de Conclusão       | Default   |
-
----
-
-## **7. Verificação de Conclusão**
-### **Campos**
-| **Campo**          | **Tipo**         | **Restrições** | **Valor Default** |
-|-------------------|-----------------|--------------|-------------------|
-| Serviço Concluído? | Seleção Única   | Sim/Não      | ---               |
-
-### **Comandos**
-| **Comando** | **Destino**              | **Tipo**   |
-|------------|-------------------------|-----------|
-| Sim        | Processo Financeiro      | Default   |
-| Não        | Atualização de Status    | Cancel    |
-
----
 
