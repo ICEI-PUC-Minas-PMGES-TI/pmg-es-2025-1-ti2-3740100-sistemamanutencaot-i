@@ -1,4 +1,4 @@
-### Processo 0 – CADASTRO DE LOJA
+### Processo 1 – CADASTRO DE LOJA
 
 Este processo representa o fluxo de cadastro de um novo técnico na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
