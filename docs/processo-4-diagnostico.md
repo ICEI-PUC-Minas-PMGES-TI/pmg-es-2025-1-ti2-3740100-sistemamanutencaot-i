@@ -1,4 +1,4 @@
-### Processo 3 – Diagnostico
+### Processo 4 – Diagnostico
 
 Este processo representa o fluxo de gestão de manutenção na empresa. As oportunidades de melhoria incluem a automação do registro de solicitações, a integração com um sistema de monitoramento e a notificação automática de status para os clientes.
 
