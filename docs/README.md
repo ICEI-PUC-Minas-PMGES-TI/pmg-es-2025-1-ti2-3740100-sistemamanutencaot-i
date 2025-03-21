@@ -298,12 +298,12 @@ Experiência do Usuário: React.js, com sua abordagem baseada em componentes, pe
 
 ### 3.3. Modelagem dos Processos
 
-📌 [Processo 1 - Cadastro de Loja](processo-0-cadastro-de-loja.md "Detalhamento do Processo 1.")  
-📌 [Processo 2 - Cadastro de Cliente](processo-1-cadastro-de-cliente.md "Detalhamento do Processo 2.")  
-📌 [Processo 3 - Cadastro de Técnico](processo-2-cadastro-de-tecnico.md "Detalhamento do Processo 3.")  
-📌 [Processo 4 - Gestão da Manutenção](processo-3-gestao-manutencao.md "Detalhamento do Processo 4.")  
-📌 [Processo 5 - Ordem de Serviço](processo-4-ordem-de-servico.md "Detalhamento do Processo 5.")  
-📌 [Processo 6 - Processo Financeiro](processo-5-processo-financeiro.md "Detalhamento do Processo 6.")  
+📌 [Processo 1 - Cadastro de Loja](processo-1-cadastro-de-loja.md "Detalhamento do Processo 1.")  
+📌 [Processo 2 - Cadastro de Cliente](processo-2-cadastro-de-cliente.md "Detalhamento do Processo 2.")  
+📌 [Processo 3 - Cadastro de Técnico](processo-3-cadastro-de-tecnico.md "Detalhamento do Processo 3.")  
+📌 [Processo 4 - Diagnóstico](processo-4-diagnostico.md "Detalhamento do Processo 4.")  
+📌 [Processo 5 - Ordem de Serviço](processo-5-ordem-de-servico.md "Detalhamento do Processo 5.")  
+📌 [Processo 6 - Processo Financeiro](processo-6-processo-financeiro.md "Detalhamento do Processo 6.")  
 📌 [Processo 7 - Manutenção](processo-7-manutencao.md "Detalhamento do Processo 7.")  
 📌 [Processo 8 - Requisição de Peças](processo-8-requisicao-pecas.md "Detalhamento do Processo 8.") 
 
