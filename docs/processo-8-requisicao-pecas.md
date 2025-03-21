@@ -66,3 +66,17 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 | **Comando**        | **Destino**                      | **Tipo**  |
 |-------------------|-----------------------------------|-----------|
 | Registrar peça    | Envio de Notificações             | Default   |
+
+
+### Atividade 5 - Envio de Notificações
+
+| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
+|---------------------|-----------------|---------------------|-------------------|
+| Mensagem            | Área de texto   | Obrigatório         | -                 |
+| Status              | Seleção Única   | Obrigatório         | -                 |
+
+**Comandos:**
+
+| **Comando**        | **Destino**                      | **Tipo**  |
+|-------------------|-----------------------------------|-----------|
+| Enviar notificação de entrega| Fim do processo        | Default   |
