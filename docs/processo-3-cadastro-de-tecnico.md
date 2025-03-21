@@ -1,4 +1,4 @@
-### Processo 2 – CADASTRO DE TÉCNICO
+### Processo 3 – CADASTRO DE TÉCNICO
 
 Este processo representa o fluxo de cadastro de um novo técnico na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
