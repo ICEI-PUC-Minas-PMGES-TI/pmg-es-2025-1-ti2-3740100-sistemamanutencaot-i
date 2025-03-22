@@ -2,7 +2,7 @@
 
 Este processo representa o fluxo de cadastro de um novo técnico na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
-![Modelo BPMN do Processo 0](/docs/images/processos/cadastroDeLojaBPMN.png "Modelo BPMN do Processo 0.")
+![Modelo BPMN do Processo 0](/docs/images/processos/novo/cadastroDeLojaBPMN.png "Modelo BPMN do Processo 0.")
 
 #### Detalhamento das atividades
 
