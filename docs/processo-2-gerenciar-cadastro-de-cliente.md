@@ -4,7 +4,7 @@ O processo de cadastro de cliente verifica se o cliente já possui um cadastro. 
 
 Oportunidades de melhoria incluem a automatização da validação de dados e a integração com bancos de dados externos para preenchimento automático de informações.
 
-![Modelo BPMN do Cadastro de Cliente](/docs/images/processos/novo/cadastroDeClienteBPMN.png "Modelo BPMN do Cadastro de Cliente.")
+![Modelo BPMN do Cadastro de Cliente](/docs/images/processos/novo/gerenciarCadastroDeClienteBPMN.png "Modelo BPMN do Cadastro de Cliente.")
 
 #### Detalhamento das atividades
 
