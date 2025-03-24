@@ -4,7 +4,7 @@ O processo de manutenção incluem a seleção e o concerto da máquina pelo té
 
 Oportunidades de melhoria incluem relatórios sobre o processo.
 
-![Modelo BPMN do Cadastro de Cliente](/docs/images/processos/requisicaoPecaBPMN.png "Modelo BPMN do Cadastro de Cliente.")
+![Modelo BPMN do Cadastro de Cliente](/docs/images/processos/novo/requisicaoPecasBPMN.png "Modelo BPMN do Cadastro de Cliente.")
 
 #### Detalhamento das atividades
 
