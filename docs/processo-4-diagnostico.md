@@ -87,4 +87,80 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | Mensagem confirmada | Fim do Processo     | Default   |
 
 ---
+# Processo 4 – Diagnóstico
+
+Este processo representa o fluxo de gestão de manutenção na empresa.  
+As oportunidades de melhoria incluem:
+- Automação do registro de solicitações.
+- Integração com um sistema de monitoramento.
+- Notificação automática de status para os clientes.
+
+---
+
+## Atividade 1 – Identificar o Problema
+
+### Campos:
+- **Descrição do problema**  
+  - Tipo: Texto  
+  - Restrições: Obrigatório  
+  - Valor default: -
+
+### Comandos:
+- **Problema identificado**  
+  - Destino: Listar peças necessárias para manutenção  
+  - Tipo: Default
+
+---
+
+## Atividade 2 – Listar Peças Necessárias para Manutenção
+
+### Campos:
+- **Peças necessárias**  
+  - Tipo: Lista  
+  - Restrições: Obrigatório  
+  - Valor default: -
+
+### Comandos:
+- **Lista concluída**  
+  - Destino: Definir prazo para a manutenção  
+  - Tipo: Default
+
+---
+
+## Atividade 3 – Definir Prazo para a Manutenção
+
+### Campos:
+- **Prazo estimado**  
+  - Tipo: Data  
+  - Restrições: Obrigatório  
+  - Valor default: -
+
+### Comandos:
+- **Prazo definido**  
+  - Destino: Enviar mensagem ao cliente com status  
+  - Tipo: Default
+
+---
+
+## Atividade 4 – Enviar Mensagem ao Cliente com Status
+
+### Campos:
+- **Mensagem enviada**  
+  - Tipo: Texto  
+  - Restrições: Obrigatório  
+  - Valor default: -
+
+### Comandos:
+- **Mensagem confirmada**  
+  - Destino: Fim do Processo  
+  - Tipo: Default
+
+---
+
+## Fluxo Resumido:
+
+1. **Identificar o problema** → Listar peças necessárias para manutenção.
+2. **Listar peças necessárias** → Definir prazo para a manutenção.
+3. **Definir prazo** → Enviar mensagem ao cliente com status.
+4. **Enviar mensagem** → Fim do processo.
 
