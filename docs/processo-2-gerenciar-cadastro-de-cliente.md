@@ -38,6 +38,8 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 | **Comando**  | **Destino**            | **Tipo**   |
 |--------------|------------------------|-----------|
 | Salvar       | Confirmar Salvamento   | Default   |
+| Editar       | Abre a pocibilidade de edição | Default   |
+| Confirmar       | Confirmar edição  | Default   |
 
 ---
 
