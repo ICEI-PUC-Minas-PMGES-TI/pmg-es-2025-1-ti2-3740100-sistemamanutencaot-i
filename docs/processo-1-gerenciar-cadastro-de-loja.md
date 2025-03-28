@@ -1,114 +1,84 @@
+---
+
 ### Processo 1 – GERENCIAR CADASTRO DE LOJA
 
 Este processo representa o fluxo de cadastro de um novo técnico na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
-![Modelo BPMN do Processo 0](/docs/images/processos/novo/gerenciarCadastroDeLojaBPMN.png "Modelo BPMN do Processo 0.")
+![Modelo BPMN do Processo 1](docs/images/processos/novo/gerenciarCadastroDeLojaBPMN.png "Modelo BPMN do Processo 1.")
 
-#### Detalhamento das atividades
-
-### Atividade 1 – Cadastrar CNPJ da Loja
-
-| **Campo**       | **Tipo**        | **Restrições**              | **Valor default** |
-|-----------------|----------------|-----------------------------|-------------------|
-| CNPJ           | Número         | Obrigatório, 14 dígitos    | -                 |
-
-**Comandos:**
-
-| **Comando**         | **Destino**               | **Tipo**   |
-|--------------------|--------------------------|-----------|
-| CNPJ cadastrado   | Validar CNPJ              | Default   |
+#### Detalhamento das Atividades
 
 ---
 
-### Atividade 2 – Validar CNPJ
+### **Atividade 1 – Consultar Cadastro**
 
-| **Campo**       | **Tipo**        | **Restrições**                 | **Valor default** |
-|-----------------|----------------|---------------------------------|-------------------|
-| CNPJ           | Número         | Deve ser válido conforme Receita Federal | - |
+| **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
+|-----------|-----------------|-------------------------|-------------------|
+| CPF       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| Nome      | Caixa de texto  | Somente letras          | -                 |
 
 **Comandos:**
 
-| **Comando**        | **Destino**                      | **Tipo**   |
-|-------------------|---------------------------------|-----------|
-| CNPJ válido      | Cadastrar nome da loja         | Default   |
-| CNPJ inválido    | Retornar para cadastro de CNPJ | Default   |
+| **Comando**     | **Destino**                | **Tipo**   |
+|-----------------|----------------------------|-----------|
+| Botão Consultar | Tela consulta de cliente    | Default   |
+| Botão Pesquisar | Mostrar resultado da consulta| Default   |
 
 ---
 
-### Atividade 3 – Cadastrar Nome da Loja
+### **Atividade 2 – Atualizar Informações**
 
-| **Campo**    | **Tipo**        | **Restrições**       | **Valor default** |
-|-------------|----------------|---------------------|-------------------|
-| Nome da Loja | Caixa de Texto | Obrigatório        | -                 |
+| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
+|------------|-----------------|------------------------------|-------------------|
+| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
+| Nome       | Caixa de texto  | Não possui restrição         | -                 |
+| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
 
 **Comandos:**
 
-| **Comando**         | **Destino**               | **Tipo**   |
-|--------------------|--------------------------|-----------|
-| Nome cadastrado   | Criar senha Master        | Default   |
+| **Comando**  | **Destino**            | **Tipo**   |
+|--------------|------------------------|-----------|
+| Salvar       | Confirmar Salvamento   | Default   |
 
 ---
 
-### Atividade 4 – Criar Senha Master
-
-| **Campo**    | **Tipo**        | **Restrições**         | **Valor default** |
-|-------------|----------------|-----------------------|-------------------|
-| Senha       | Senha          | Obrigatório, mínimo 8 caracteres | - |
+### **Atividade 3 – Excluir Cadastro**
 
 **Comandos:**
 
-| **Comando**         | **Destino**               | **Tipo**   |
-|--------------------|--------------------------|-----------|
-| Senha cadastrada  | Confirmar cadastro       | Default   |
+| **Comando**     | **Destino**             | **Tipo**   |
+|-----------------|-------------------------|-----------|
+| Botão Excluir   | Confirmar exclusão      | Default   |
 
 ---
 
-### Atividade 5 – Confirmar Cadastro
+### **Atividade 4 – Cadastrar Informações**
+
+| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
+|------------|-----------------|------------------------------|-------------------|
+| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
+| Nome       | Caixa de texto  | Somente letras               | -                 |
+| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
 
 **Comandos:**
 
-| **Comando**         | **Destino**                      | **Tipo**   |
-|--------------------|---------------------------------|-----------|
-| Cadastro confirmado | Registrar informações no banco de dados | Default   |
+| **Comando**      | **Destino**             | **Tipo**   |
+|------------------|-------------------------|-----------|
+| Botão Cadastrar  | Confirmar cadastro      | Default   |
 
 ---
 
-### Atividade 6 – Registrar Informações no Banco de Dados
+### **Atividade 5 – Criar Senha Master**
 
-| **Campo**       | **Tipo**        | **Restrições**    | **Valor default** |
-|-----------------|----------------|------------------|-------------------|
-| Dados da Loja  | Conjunto de dados | Obrigatório    | -                 |
+| **Campo**  | **Tipo**        | **Restrições**                                                                 | **Valor Default** |
+|------------|-----------------|-------------------------------------------------------------------------------|-------------------|
+| Login      | Caixa de texto  | Formato de e-mail                                                             | -                 |
+| Senha      | Caixa de texto  | Mínimo 8 caracteres, pelo menos 1 caractere especial, pelo menos 1 letra maiúscula, pelo menos 1 número | - |
 
 **Comandos:**
 
-| **Comando**           | **Destino**                     | **Tipo**   |
-|----------------------|------------------------------|-----------|
-| Informações registradas | Liberar acesso ao sistema | Default   |
+| **Comando**                | **Destino**            | **Tipo**   |
+|----------------------------|------------------------|-----------|
+| Criar Login Administrador   | Confirmar cadastro     | Default   |
 
 ---
-
-### Atividade 7 – Liberar Acesso ao Sistema
-
-| **Campo**       | **Tipo**        | **Restrições**    | **Valor default** |
-|-----------------|----------------|------------------|-------------------|
-| Acesso          | Boolean        | Obrigatório      | -                 |
-
-**Comandos:**
-
-| **Comando**         | **Destino**                    | **Tipo**   |
-|--------------------|------------------------------|-----------|
-| Acesso liberado   | Notificar gerente
-
----
-
-### Atividade 8 – Notificar o gerente sobre o acesso
-
-| **Campo**       | **Tipo**        | **Restrições**    | **Valor default** |
-|-----------------|----------------|------------------|-------------------|
-| Notificação     | Mensagem      | Obrigatório      | -                 |
-
-**Comandos:**
-
-| **Comando**         | **Destino**                    | **Tipo**   |
-|--------------------|------------------------------|-----------|
-| Notificação enviada   | Fim do processo           | Default   |
