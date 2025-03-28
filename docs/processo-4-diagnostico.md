@@ -36,13 +36,13 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Campo**             | **Tipo** | **Restrições** | **Valor default** |
 |----------------------|---------|--------------|----------------|
-| Descrição do problema | Texto   | Obrigatório  | -              |
+| Descrição do problema | Área de Texto   | Obrigatório  | -              |
 
 **Comandos:**
 
 | **Comando**            | **Destino**                                | **Tipo**  |
 |------------------------|-------------------------------------------|-----------|
-| Problema identificado | Listar peças necessárias para manutenção | Default   |
+| Confirmar | Confirmar problema da máquina | Default   |
 
 ---
 
@@ -51,12 +51,13 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | **Campo**            | **Tipo** | **Restrições** | **Valor default** |
 |---------------------|---------|--------------|----------------|
 | Peças necessárias  | Lista   | Obrigatório  | -              |
+| Quantidade         | Número  | Obrigatório  | -              |
 
 **Comandos:**
 
 | **Comando**        | **Destino**                         | **Tipo**  |
 |-------------------|------------------------------------|-----------|
-| Lista concluída  | Definir prazo para a manutenção   | Default   |
+| Confirmar         | Confirmar listagem   | Default   |
 
 ---
 
@@ -70,7 +71,7 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Comando**      | **Destino**                           | **Tipo**  |
 |-----------------|--------------------------------------|-----------|
-| Prazo definido | Enviar mensagem ao cliente com status | Default   |
+| Prazo definido | Confirma o prazo e enviar mensagem ao cliente com status | Default   |
 
 ---
 
