@@ -8,75 +8,86 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 
 #### Detalhamento das atividades
 
-### Atividade 1 – Preencher formulário 
+## Atividade 1 – Preencher Formulário  
+### Campos:
+| **Campo**        | **Tipo**        | **Restrições**          |
+|-----------------|----------------|-------------------------|
+| Peça necessária | Área de texto   | Obrigatório             |
+| Quantidade      | Número          | Obrigatório, Positivo   |
+| Técnico         | Área de texto   | Obrigatório             |
 
-| **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
-|-----------------|----------------|-------------------------|-------------------|
-| Peça necessária | Área de texto  | Obrigatório             | -                 |
-| Quantidade      | Número         | Obrigatório, Positivo   | -                 |
-| Técnico         | Área de texto  | Obrigatório             | -                 |
+### Comandos:
+| **Comando**        | **Destino**             |
+|-------------------|------------------------|
+| Enviar requisição | Validação dos dados |
 
-**Comandos:**
+---
 
-| **Comando**     | **Destino**               | **Tipo**   |
-|---------------|--------------------------|-----------|
-| Enviar requisição | Aprovar requisição| Default   |
+## Atividade 2 - Validação dos Dados  
+### Campos:
+| **Campo**       | **Tipo**        | **Restrições**       |
+|-----------------|----------------|----------------------|
+| Dados válidos?  | Seleção única   | Obrigatório         |
 
-### Atividade 2 - Aprovar requisição
+### Comandos:
+| **Comando**   | **Destino**        |
+|--------------|-------------------|
+| Sim          | Analisar pedido   |
+| Não          | Fim do processo   |
 
-| **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
-|------------|----------------|----------------------|-------------------|
-| Status da requisição| Seleção única | Obrigatório  | -       |
+---
 
-**Comandos:**
+## Atividade 3 - Analisar Pedido  
+### Campos:
+| **Campo**          | **Tipo**        | **Restrições**    |
+|-------------------|----------------|------------------|
+| Pedido aprovado?  | Seleção única   | Obrigatório     |
 
-| **Comando**        | **Destino**                   | **Tipo**  |
-|-------------------|--------------------------------|-----------|
-| Sim               | Solicitar compra                | Default   |
-| Não               | Fim do processo                | Default   |
+### Comandos:
+| **Comando**   | **Destino**        |
+|--------------|-------------------|
+| Sim          | Confirmar compra  |
+| Não          | Fim do processo   |
 
+---
 
+## Atividade 4 - Confirmar Compra  
+### Campos:
+| **Campo**     | **Tipo**       | **Restrições**         |
+|--------------|--------------|------------------------|
+| Peça         | Área de texto | Obrigatório           |
+| Quantidade   | Número        | Obrigatório, Positivo |
 
-### Atividade 3 - Solicitar compra
+### Comandos:
+| **Comando**     | **Destino**       |
+|---------------|------------------|
+| Compra feita  | Produto entregue |
 
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Status da compra    | Seleção Única   | Obrigatório         | -                 |
-| Peça                | Área de texto   | Obrigatório         | -                 |
-| Quantidade          | Número          | Obrigatório, positivo| -                |
+---
 
-**Comandos:**
+## Atividade 5 - Produto Entregue  
+### Campos:
+| **Campo**          | **Tipo**        | **Restrições**    |
+|-------------------|----------------|------------------|
+| Produto recebido? | Seleção única   | Obrigatório     |
 
-| **Comando**        | **Destino**                      | **Tipo**  |
-|-------------------|-----------------------------------|-----------|
-| Compra feita      | Registrar no estoque              | Default   |
-| Cancelar          | Fim do processo                   | Cancel    |
+### Comandos:
+| **Comando**  | **Destino**                              |
+|-------------|----------------------------------------|
+| Sim         | Registrar no estoque e arquivar pedido |
 
+---
 
-### Atividade 4 - Registrar no estoque
+## Atividade 6 - Registrar no Estoque e Arquivar Pedido  
+### Campos:
+| **Campo**         | **Tipo**       | **Restrições**         |
+|------------------|--------------|------------------------|
+| Peça            | Seleção Única | Obrigatório           |
+| Número do pedido | Número       | Obrigatório           |
+| Quantidade      | Número       | Obrigatório, Positivo |
 
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Peça                | Seleção Única   | Obrigatório         | -                 |
-| Número do pedido    | Número          | Obrigatório         | -                 |
-| Quantidade          | Número          | Obrigatorio, positivo| -                |
+### Comandos:
+| **Comando**     | **Destino**         |
+|---------------|--------------------|
+| Registro feito | Fim do processo    |
 
-**Comandos:**
-
-| **Comando**        | **Destino**                      | **Tipo**  |
-|-------------------|-----------------------------------|-----------|
-| Registrar peça    | Envio de Notificações             | Default   |
-
-
-### Atividade 5 - Envio de Notificações
-
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Mensagem            | Área de texto   | Obrigatório         | -                 |
-| Status              | Seleção Única   | Obrigatório         | -                 |
-
-**Comandos:**
-
-| **Comando**        | **Destino**                      | **Tipo**  |
-|-------------------|-----------------------------------|-----------|
-| Enviar notificação de entrega| Fim do processo        | Default   |
