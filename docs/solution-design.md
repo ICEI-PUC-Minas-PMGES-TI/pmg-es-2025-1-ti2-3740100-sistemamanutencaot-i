@@ -110,4 +110,23 @@ O sistema será desenvolvido com tecnologias modernas, robustas e amplamente uti
 | SGBD           | MySQL           |
 | Front end      | React + JS      |
 | Back end       | Java SpringBoot |
-| Deploy         | Github Pages    |
+| Deploy         | Vercel          |
+
+---
+
+### Ferramentas, Frameworks, Bibliotecas, IDEs e Serviços Web
+
+#### **🛠 Ferramentas e IDEs**
+- **VS Code**: Ambiente de desenvolvimento para frontend com React e JavaScript, oferecendo suporte completo para desenvolvimento, depuração e controle de versões.
+- **IntelliJ IDEA**: IDE para o desenvolvimento backend com Java e Spring Boot, oferecendo ferramentas avançadas de refatoração e depuração.
+- **Postman**: Ferramenta essencial para testar APIs RESTful, permitindo a simulação de requisições e análise de respostas.
+
+#### **⚙️ Frameworks e Bibliotecas**
+- **React.js**: Biblioteca JavaScript para a criação da interface do usuário, altamente eficiente para construção de interfaces dinâmicas e responsivas.
+- **Spring Boot**: Framework para o desenvolvimento de backend com Java, simplificando a criação de APIs RESTful e sistemas escaláveis.
+- **Spring Security**: Framework para a implementação de segurança, oferecendo soluções robustas para autenticação e autorização no backend.
+- **JasperReports**: Biblioteca para a criação de relatórios gerenciais personalizados, com suporte para exportação e personalização visual.
+
+#### **🌐 Serviços Web**
+- **Vercel**: Plataforma de deployment para o frontend (React.js), com integração contínua e escalabilidade automática, ideal para aplicações modernas.
+- **GitHub**: Plataforma de controle de versão e integração contínua (CI/CD), proporcionando colaboração eficiente e automatização de processos de deploy.
