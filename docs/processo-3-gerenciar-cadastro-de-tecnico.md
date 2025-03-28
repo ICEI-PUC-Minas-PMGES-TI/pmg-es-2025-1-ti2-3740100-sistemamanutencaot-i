@@ -4,117 +4,64 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 ![Modelo BPMN do Processo 2](/docs/images/processos/novo/gerenciarCadastroDeTecnicoBPMN.png "Modelo BPMN do Processo 2.")
 
-#### Detalhamento das atividades
-
-
-### Atividade 1 – Solicitar CPF do técnico
-
-| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
-|------------|----------|----------------|-------------------|
-| CPF        | Número   | Obrigatório, 11 dígitos | - |
-
-**Comandos:**
-
-| **Comando**      | **Destino**     | **Tipo**   |
-|-----------------|----------------|-----------|
-| Informar CPF    | Validar CPF     | Default   |
+#### Detalhamento das Atividades
 
 ---
 
-### Atividade 2 – Validar CPF
+### **Atividade 1 – Consultar Cadastro**
 
-| **Campo**       | **Tipo**        | **Restrições**  | **Valor default**  |
-|----------------|----------------|----------------|-------------------|
-| CPF válido     | Seleção única   | Sim / Não     | - |
+| **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
+|-----------|-----------------|-------------------------|-------------------|
+| CPF       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| Nome      | Caixa de texto  | Somente letras          | -                 |
 
 **Comandos:**
 
-| **Comando** | **Destino**                  | **Tipo**   |
-|------------|------------------------------|-----------|
-| Sim        | Solicitar Nome do técnico    | Default   |
-| Não        | Solicitar CPF novamente      | Default   |
+| **Comando**     | **Destino**                | **Tipo**   |
+|-----------------|----------------------------|-----------|
+| Botão Consultar | Tela consulta de cliente    | Default   |
+| Botão Pesquisar | Mostrar resultado da consulta| Default   |
 
 ---
 
-### Atividade 3 – Solicitar Nome do técnico
+### **Atividade 2 – Atualizar Informações**
 
-| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
-|------------|----------------|----------------|-------------------|
-| Nome       | Caixa de Texto | Obrigatório    | - |
+| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
+|------------|-----------------|------------------------------|-------------------|
+| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
+| Nome       | Caixa de texto  | Não possui restrição         | -                 |
+| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
 
 **Comandos:**
 
-| **Comando**     | **Destino**                  | **Tipo**   |
-|----------------|----------------------------|-----------|
-| Informar Nome  | Cadastrar Nome do técnico  | Default   |
+| **Comando**  | **Destino**            | **Tipo**   |
+|--------------|------------------------|-----------|
+| Salvar       | Confirmar Salvamento   | Default   |
 
 ---
 
-### Atividade 4 – Cadastrar Nome do cliente
-
-| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
-|------------------|----------------|----------------|-------------------|
-| Nome cadastrado | Seleção única   | Sim / Não     | - |
+### **Atividade 3 – Excluir Cadastro**
 
 **Comandos:**
 
-| **Comando** | **Destino**                    | **Tipo**   |
-|------------|--------------------------------|-----------|
-| Sim        | Solicitar telefone do técnico  | Default   |
+| **Comando**     | **Destino**             | **Tipo**   |
+|-----------------|-------------------------|-----------|
+| Botão Excluir   | Confirmar exclusão      | Default   |
 
 ---
 
-### Atividade 5 – Solicitar telefone do técnico
+### **Atividade 4 – Cadastrar Informações**
 
-| **Campo**  | **Tipo**  | **Restrições**  | **Valor default**  |
-|------------|----------|----------------|-------------------|
-| Telefone   | Número   | Obrigatório    | - |
+| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
+|------------|-----------------|------------------------------|-------------------|
+| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
+| Nome       | Caixa de texto  | Somente letras               | -                 |
+| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
 
 **Comandos:**
 
-| **Comando**       | **Destino**           | **Tipo**   |
-|------------------|----------------------|-----------|
-| Informar Telefone | Validar telefone     | Default   |
+| **Comando**      | **Destino**             | **Tipo**   |
+|------------------|-------------------------|-----------|
+| Botão Cadastrar  | Confirmar cadastro      | Default   |
 
 ---
-
-### Atividade 6 – Validar telefone
-
-| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
-|------------------|----------------|----------------|-------------------|
-| Telefone válido | Seleção única   | Sim / Não     | - |
-
-**Comandos:**
-
-| **Comando** | **Destino**              | **Tipo**   |
-|------------|--------------------------|-----------|
-| Sim        | Cadastrar Cargo do técnico       | Default   |
-| Não        | Solicitar telefone novamente | Default   |
-
----
-
-### Atividade 7 – Cadastrar Cargo do técnico
-
-| **Campo**         | **Tipo**        | **Restrições**  | **Valor default**  |
-|------------------|----------------|----------------|-------------------|
-| Cargo cadastrado | Seleção única   | Sim / Não     | - |
-
-**Comandos:**
-
-| **Comando** | **Destino**                    | **Tipo**   |
-|------------|--------------------------------|-----------|
-| Sim        | Confirmar Cadastro  | Default   | 
-
----
-
-### Atividade 8 – Confirmar cadastro
-
-| **Campo**  | **Tipo**        | **Restrições**  | **Valor default**  |
-|------------|----------------|----------------|-------------------|
-| Cadastro concluído | Seleção única | Sim | - |
-
-**Comandos:**
-
-| **Comando** | **Destino**        | **Tipo**   |
-|------------|--------------------|-----------|
-| Sim        | Fim do Processo    | Default   |
