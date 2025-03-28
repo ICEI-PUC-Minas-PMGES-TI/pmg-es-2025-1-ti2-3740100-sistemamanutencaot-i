@@ -2,7 +2,7 @@
 
 Este processo representa o fluxo de gestão de manutenção na empresa. As oportunidades de melhoria incluem a automação do registro de solicitações, a integração com um sistema de monitoramento e a notificação automática de status para os clientes.
 
-![Modelo BPMN do Processo](/docs/images/processos/antigo/DiagnosticoBPMN.png)
+![Modelo BPMN do Processo](/docs/images/processos/novo/DiagnosticoBPMN.png)
 #### Detalhamento das atividades
 
 _Os tipos de dados a serem utilizados são:_
