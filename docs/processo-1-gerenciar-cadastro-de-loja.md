@@ -14,8 +14,9 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 | **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
 |-----------|-----------------|-------------------------|-------------------|
-| CPF       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
 | Nome      | Caixa de texto  | Somente letras          | -                 |
+| Endereço      | Caixa de texto  |          | -                 |
 
 **Comandos:**
 
@@ -28,11 +29,11 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 ### **Atividade 2 – Atualizar Informações**
 
-| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
-|------------|-----------------|------------------------------|-------------------|
-| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
-| Nome       | Caixa de texto  | Não possui restrição         | -                 |
-| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
+| **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
+|-----------|-----------------|-------------------------|-------------------|
+| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| Nome      | Caixa de texto  | Somente letras          | -                 |
+| Endereço      | Caixa de texto  |          | -                 |
 
 **Comandos:**
 
@@ -54,11 +55,11 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 ### **Atividade 4 – Cadastrar Informações**
 
-| **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
-|------------|-----------------|------------------------------|-------------------|
-| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
-| Nome       | Caixa de texto  | Somente letras               | -                 |
-| Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
+| **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
+|-----------|-----------------|-------------------------|-------------------|
+| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| Nome      | Caixa de texto  | Somente letras          | -                 |
+| Endereço      | Caixa de texto  |          | -                 |
 
 **Comandos:**
 
