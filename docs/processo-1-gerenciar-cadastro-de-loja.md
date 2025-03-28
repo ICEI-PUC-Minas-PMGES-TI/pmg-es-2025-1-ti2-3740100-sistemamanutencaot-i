@@ -40,7 +40,8 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 | **Comando**  | **Destino**            | **Tipo**   |
 |--------------|------------------------|-----------|
 | Salvar       | Confirmar Salvamento   | Default   |
-
+| Editar       | Abre a pocibilidade de edição | Default   |
+| Confirmar       | Confirmar edição  | Default   |
 ---
 
 ### **Atividade 3 – Excluir Cadastro**
