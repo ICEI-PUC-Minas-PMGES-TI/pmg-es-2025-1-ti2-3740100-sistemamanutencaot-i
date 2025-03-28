@@ -8,60 +8,68 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 
 #### Detalhamento das atividades
 
-### Atividade 1 – Selecionar a máquina 
+## Atividade 1 – Selecionar a O.S para manutenção  
+### Campos:
+| **Campo**         | **Tipo**        | **Restrições**          |
+|------------------|----------------|-------------------------|
+| Ordem de Serviço | Seleção Única   | Obrigatório             |
 
-| **Campo**       | **Tipo**        | **Restrições**          | **Valor default** |
-|-----------------|----------------|-------------------------|-------------------|
-| Máquinas        | Seleção múltipla| Obrigatório, selecionar ao menos uma | -                 |
+### Comandos:
+| **Comando**        | **Destino**             |
+|-------------------|------------------------|
+| Iniciar manutenção | Tempo da manutenção |
 
-**Comandos:**
+---
 
-| **Comando**     | **Destino**               | **Tipo**   |
-|---------------|--------------------------|-----------|
-| Selecionar máquina | Envio de notificações| Default   |
-| Cancelar | Fim do Processo| Cancel   |
+## Atividade 2 - Tempo da Manutenção  
+### Campos:
+| **Campo**       | **Tipo**        | **Restrições**       |
+|-----------------|----------------|----------------------|
+| Tempo estimado  | Número          | Obrigatório, Positivo |
 
-### Atividade 2 – Envio de notificações
+### Comandos:
+| **Comando**   | **Destino**          |
+|--------------|---------------------|
+| Concluir manutenção | Manutenção bem sucedida? |
 
-| **Campo**   | **Tipo**        | **Restrições**         | **Valor default** |
-|------------|----------------|----------------------|-------------------|
-| Status do serviço    | Seleção única | Obrigatório           | -       |
-| Status da notificação| Caixa de texto| -           | -                 |
+---
 
+## Atividade 3 - Manutenção Bem Sucedida?  
+### Campos:
+| **Campo**                | **Tipo**        | **Restrições**       |
+|--------------------------|----------------|----------------------|
+| Manutenção bem-sucedida? | Seleção única   | Obrigatório         |
 
-**Comandos:**
+### Comandos:
+| **Comando**   | **Destino**                  |
+|--------------|-----------------------------|
+| Sim          | Alterar status no sistema   |
+| Não          | Executar diagnóstico        |
 
-| **Comando**        | **Destino**                   | **Tipo**  |
-|-------------------|--------------------------------|-----------|
-| Inicio da manutenção| Analisar diagnóstico         | Default   |
-| Finalização da manutenção| Fim do processo         | Default   |
+---
 
+## Atividade 4 - Executar Diagnóstico  
+### Campos:
+| **Campo**          | **Tipo**        | **Restrições**    |
+|-------------------|----------------|------------------|
+| Diagnóstico realizado?  | Seleção única   | Obrigatório     |
 
+### Comandos:
+| **Comando**   | **Destino**             |
+|--------------|------------------------|
+| Repetir manutenção | Selecionar a O.S para manutenção |
 
-### Atividade 3 - Analisar diagnóstico
+---
 
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Peça necessária     | Área de texto   | Obrigatório         | -                 |
-| Descrição do problema| Área de texto   | Obrigatório         | -                 |
+## Atividade 5 - Alterar Status no Sistema  
+### Campos:
+| **Campo**       | **Tipo**        | **Restrições**       |
+|-----------------|----------------|----------------------|
+| Status atualizado?  | Seleção única   | Obrigatório         |
 
-**Comandos:**
+### Comandos:
+| **Comando**   | **Destino**      |
+|--------------|----------------|
+| Finalizar    | Fim do processo |
 
-| **Comando**        | **Destino**                      | **Tipo**  |
-|-------------------|-----------------------------------|-----------|
-| Peça no estoque   | Executar concerto                 | Default   |
-| Peça em falta     | Processo de requisição de peças   | Default   |
-
-
-### Atividade 4 - Executar concerto
-
-| **Campo**            | **Tipo**         | **Restrições**      | **Valor default** |
-|---------------------|-----------------|---------------------|-------------------|
-| Computador concertado| Seleção Única   | Obrigatório         | -                 |
-
-**Comandos:**
-
-| **Comando**        | **Destino**                      | **Tipo**  |
-|-------------------|-----------------------------------|-----------|
-| Sim               | Envio de Notificações             | Default   |
-| Não               | Processo de diagnóstico           | Default   |
+---
