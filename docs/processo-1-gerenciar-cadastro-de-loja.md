@@ -10,67 +10,56 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 ---
 
-### **Atividade 1 – Consultar Cadastro**
+### **Atividade 1 – Atualizar Informações**
 
 | **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
 |-----------|-----------------|-------------------------|-------------------|
-| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| CNPJ      | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
 | Nome      | Caixa de texto  | Somente letras          | -                 |
-| Endereço      | Caixa de texto  |          | -                 |
+| Endereço  | Caixa de texto  | Formato de endereço     | -                 |
+| Gerente   | Caixa de texto  | Formato de nome         | -                 |
 
 **Comandos:**
 
-| **Comando**     | **Destino**                | **Tipo**   |
-|-----------------|----------------------------|-----------|
-| Botão Consultar | Tela consulta de cliente    | Default   |
-| Botão Pesquisar | Mostrar resultado da consulta| Default   |
-
----
-
-### **Atividade 2 – Atualizar Informações**
-
-| **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
-|-----------|-----------------|-------------------------|-------------------|
-| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
-| Nome      | Caixa de texto  | Somente letras          | -                 |
-| Endereço      | Caixa de texto  |          | -                 |
-
-**Comandos:**
-
-| **Comando**  | **Destino**            | **Tipo**   |
+| **Comando**  | **Destino**            | **Tipo**  |
 |--------------|------------------------|-----------|
 | Salvar       | Confirmar Salvamento   | Default   |
 | Editar       | Abre a pocibilidade de edição | Default   |
-| Confirmar       | Confirmar edição  | Default   |
+| Confirmar    | Confirmar edição       | Default   |
+| Cancelar     | Cancelar edição        | Cancel    |
+| Sair         | Sair da tela de edição | Cancel    |
 ---
 
-### **Atividade 3 – Excluir Cadastro**
+### **Atividade 2 – Excluir Cadastro**
 
 **Comandos:**
 
 | **Comando**     | **Destino**             | **Tipo**   |
 |-----------------|-------------------------|-----------|
 | Botão Excluir   | Confirmar exclusão      | Default   |
+| Cancelar        | Cancelar  exclusão      | Cancel    |
 
 ---
 
-### **Atividade 4 – Cadastrar Informações**
+### **Atividade 3 – Cadastrar Informações**
 
 | **Campo** | **Tipo**        | **Restrições**          | **Valor Default** |
 |-----------|-----------------|-------------------------|-------------------|
-| CNPJ       | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
+| CNPJ      | Caixa de texto  | Obrigatório, 14 dígitos | -                 |
 | Nome      | Caixa de texto  | Somente letras          | -                 |
-| Endereço      | Caixa de texto  |          | -                 |
+| Endereço  | Caixa de texto  | Formato de endereço     | -                 |
+| Gerente   | Caixa de texto  | Formato de nome         | -                 |
 
 **Comandos:**
 
-| **Comando**      | **Destino**             | **Tipo**   |
+| **Comando**      | **Destino**             | **Tipo**  |
 |------------------|-------------------------|-----------|
 | Botão Cadastrar  | Confirmar cadastro      | Default   |
+| Cancelar         | Cancelar  cadastro      | Cancel    |
 
 ---
 
-### **Atividade 5 – Criar Senha Master**
+### **Atividade 4 – Criar Senha Master**
 
 | **Campo**  | **Tipo**        | **Restrições**                                                                 | **Valor Default** |
 |------------|-----------------|-------------------------------------------------------------------------------|-------------------|
@@ -79,8 +68,9 @@ Este processo representa o fluxo de cadastro de um novo técnico na empresa. As 
 
 **Comandos:**
 
-| **Comando**                | **Destino**            | **Tipo**   |
+| **Comando**                | **Destino**            | **Tipo**  |
 |----------------------------|------------------------|-----------|
-| Criar Login Administrador   | Confirmar cadastro     | Default   |
+| Criar Login Administrador  | Confirmar cadastro     | Default   |
+| Cancelar                   | Cancelar  cadastro     | Cancel    |
 
 ---
