@@ -18,10 +18,11 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 **Comandos:**
 
-| **Comando**     | **Destino**                | **Tipo**   |
-|-----------------|----------------------------|-----------|
-| Botão Consultar | Tela consulta de cliente    | Default   |
+| **Comando**     | **Destino**                  | **Tipo**  |
+|-----------------|------------------------------|-----------|
+| Botão Consultar | Tela consulta de cliente     | Default   |
 | Botão Pesquisar | Mostrar resultado da consulta| Default   |
+| Botão Sair      | Sair da tela de consulta     | Cancel    |
 
 ---
 
@@ -35,11 +36,13 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 **Comandos:**
 
-| **Comando**  | **Destino**            | **Tipo**   |
+| **Comando**  | **Destino**            | **Tipo**  |
 |--------------|------------------------|-----------|
 | Salvar       | Confirmar Salvamento   | Default   |
-| Editar       | Abre a pocibilidade de edição | Default   |
-| Confirmar       | Confirmar edição  | Default   |
+| Editar       | Abre a possibilidade de edição | Default   |
+| Confirmar    | Confirmar edição       | Default   |
+| Cancelar     | Cancelar edição        | Cancel    |
+| Sair         | Sair da tela de edição | Cancel    |
 
 ---
 
@@ -47,9 +50,10 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 **Comandos:**
 
-| **Comando**     | **Destino**             | **Tipo**   |
+| **Comando**     | **Destino**             | **Tipo**  |
 |-----------------|-------------------------|-----------|
 | Botão Excluir   | Confirmar exclusão      | Default   |
+| Cancelar        | Cancelar  exclusão      | Cancel    |
 
 ---
 
@@ -57,12 +61,13 @@ Oportunidades de melhoria incluem a automatização da validação de dados e a 
 
 | **Campo**  | **Tipo**        | **Restrições**               | **Valor Default** |
 |------------|-----------------|------------------------------|-------------------|
-| CPF        | Caixa de texto  | Obrigatório, 14 dígitos      | -                 |
+| CPF        | Caixa de texto  | Obrigatório, 11 dígitos      | -                 |
 | Nome       | Caixa de texto  | Somente letras               | -                 |
 | Telefone   | Caixa de texto  | Entre 8 e 14 dígitos         | -                 |
 
 **Comandos:**
 
-| **Comando**      | **Destino**             | **Tipo**   |
+| **Comando**      | **Destino**             | **Tipo**  |
 |------------------|-------------------------|-----------|
 | Botão Cadastrar  | Confirmar cadastro      | Default   |
+| Cancelar         | Cancelar  cadastro      | Cancel    |
