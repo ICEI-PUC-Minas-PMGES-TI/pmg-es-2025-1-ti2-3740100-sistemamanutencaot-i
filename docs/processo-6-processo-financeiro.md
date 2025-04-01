@@ -12,26 +12,38 @@ Oportunidades de melhoria incluem a automatização da confirmação do pagament
 
 ### **Atividade 1 – Enviar Orçamento ao Cliente**
 
+
 | **Campo**   | **Tipo**   | **Restrições**  | **Valor Default** |
 |-------------|------------|-----------------|-------------------|
-| Orçamento  | Arquivo    | -               | -                 |
+| Peças necessarias| Caixa de texto | -      | -                 |
+| Quantidade de peças| Número | -         | -                 |
+| Valor       | Número     | -               | -                 |
+| Orçamento   | Arquivo    | -               | -                 |
 
 **Comandos:**
 
-| **Comando**         | **Destino**                    | **Tipo**   |
+| **Comando**         | **Destino**                    | **Tipo**  |
 |---------------------|--------------------------------|-----------|
-| Enviar             | Enviar Orçamento ao Cliente     | Default   |
-| Selecionar Arquivo | Explorador de Arquivos         | Default   |
+| Enviar              | Enviar Orçamento ao Cliente e atualiza valor da OS no sistema     | Default   |
+| Selecionar Arquivo  | Explorador de Arquivos          | Default   |
+| Cancelar            | Cancela o envio do orçamento    | Cancel    |
 
 ---
 
 ### **Atividade 2 – Processo de Requisição de Peças**
 
+| **Campo**   | **Tipo**   | **Restrições**  | **Valor Default** |
+|-------------|------------|-----------------|-------------------|
+| Peças necessarias| Caixa de texto | -      | -                 |
+| Quantidade de peças| Número | -            | -                 |
+
+
 **Comandos:**
 
 | **Comando**         | **Destino**                           | **Tipo**   |
-|---------------------|--------------------------------------|-----------|
-| Enviar             | Iniciar Processo de Requisição de Peças | Default   |
+|---------------------|---------------------------------------|------------|
+| Enviar             | Iniciar Processo de Requisição de Peças| Default    |
+| Cancelar           | cancela o inicio do processo           | Cancel     |
 
 ---
 
@@ -40,18 +52,26 @@ Oportunidades de melhoria incluem a automatização da confirmação do pagament
 **Comandos:**
 
 | **Comando**         | **Destino**                       | **Tipo**   |
-|---------------------|-----------------------------------|-----------|
-| Enviar             | Iniciar Processo de Manutenção    | Default   |
+|---------------------|-----------------------------------|------------|
+| Iniciar             | Inicia processo de manutenção e manda solicitação automatica para o cliente   | Default   |
+| Cancelar            | Cancela o inicio do processo      | Cancel     |
+
 
 ---
 
 ### **Atividade 4 – Gerar Boleto**
 
+| **Campo**   | **Tipo**   | **Restrições**  | **Valor Default** |
+|-------------|------------|-----------------|-------------------|
+| Valor total | Número     | -               | -                 |
+
 **Comandos:**
 
 | **Comando**         | **Destino**                      | **Tipo**   |
-|---------------------|----------------------------------|-----------|
-| Gerar              | Gerar o Boleto do Cliente        | Default   |
+|---------------------|----------------------------------|------------|
+| Gerar               | Gerar o Boleto do Cliente        | Default     |
+| Confirmar informações| confirma as informaçôes do boleto | Default     |
+| Cancelar             | Cancela a criação do boleto        | Cancel    |
 
 ---
 
@@ -61,4 +81,5 @@ Oportunidades de melhoria incluem a automatização da confirmação do pagament
 
 | **Comando**         | **Destino**                                              | **Tipo**   |
 |---------------------|---------------------------------------------------------|-----------|
-| Finalizar          | Fecha a ordem de orçamento e envia uma mensagem automática para o cliente | Default   |
+| Finalizar           | Fecha a ordem de orçamento e envia uma mensagem automática para o cliente | Default   |
+| Cancelar             | Cancela a finzalização da OS       | Cancel    |
