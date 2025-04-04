@@ -88,80 +88,58 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | Mensagem confirmada | Fim do Processo     | Default   |
 
 ---
-# Processo 4 – Diagnóstico
+# Processo 4 - DIAGNÓSTICO
 
-Este processo representa o fluxo de gestão de manutenção na empresa.  
-As oportunidades de melhoria incluem:
-- Automação do registro de solicitações.
-- Integração com um sistema de monitoramento.
-- Notificação automática de status para os clientes.
+Este processo descreve o fluxo de diagnóstico técnico para identificar as peças necessárias para manutenção e a aprovação da compra dessas peças.
 
 ---
 
-## Atividade 1 – Identificar o Problema
+## Detalhamento das Atividades
 
-### Campos:
-- **Descrição do problema**  
-  - Tipo: Texto  
-  - Restrições: Obrigatório  
-  - Valor default: -
+### 1. Início do Diagnóstico
+#### Descrição
+Inicia o processo de diagnóstico técnico.
 
-### Comandos:
-- **Problema identificado**  
-  - Destino: Listar peças necessárias para manutenção  
-  - Tipo: Default
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                  |
+|-------------------------|-----------------|-----------------------------------------------|------------------------------|
+| Iniciar Diagnóstico     | Botão Primário  | Inicia o processo de diagnóstico             | Listar Peças Necessárias     |
 
 ---
 
-## Atividade 2 – Listar Peças Necessárias para Manutenção
+### 2. Listar Peças Necessárias para Manutenção
+#### Descrição
+O técnico identifica e lista as peças necessárias para a manutenção.
 
-### Campos:
-- **Peças necessárias**  
-  - Tipo: Lista  
-  - Restrições: Obrigatório  
-  - Valor default: -
-
-### Comandos:
-- **Lista concluída**  
-  - Destino: Definir prazo para a manutenção  
-  - Tipo: Default
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                  |
+|-------------------------|-----------------|-----------------------------------------------|------------------------------|
+| Listar Peças            | Botão Primário  | Salva a lista de peças necessárias           | Aprovar Compra das Peças     |
 
 ---
 
-## Atividade 3 – Definir Prazo para a Manutenção
+### 3. Aprovar Compra das Peças
+#### Descrição
+O gestor avalia e aprova a compra das peças listadas.
 
-### Campos:
-- **Prazo estimado**  
-  - Tipo: Data  
-  - Restrições: Obrigatório  
-  - Valor default: -
-
-### Comandos:
-- **Prazo definido**  
-  - Destino: Enviar mensagem ao cliente com status  
-  - Tipo: Default
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                  |
+|-------------------------|-----------------|-----------------------------------------------|------------------------------|
+| Aprovar Compra          | Botão Primário  | Aprova a compra das peças                     | Fim                          |
+| Rejeitar Compra         | Botão Secundário| Rejeita a compra das peças                    | Fim                          |
 
 ---
 
-## Atividade 4 – Enviar Mensagem ao Cliente com Status
+### 4. Fim do Processo
+#### Descrição
+Finaliza o processo de diagnóstico e aprovação de compra.
 
-### Campos:
-- **Mensagem enviada**  
-  - Tipo: Texto  
-  - Restrições: Obrigatório  
-  - Valor default: -
-
-### Comandos:
-- **Mensagem confirmada**  
-  - Destino: Fim do Processo  
-  - Tipo: Default
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                  |
+|-------------------------|-----------------|-----------------------------------------------|------------------------------|
+| Finalizar               | Botão Primário  | Encerra o processo                            | ---                          |
 
 ---
 
-## Fluxo Resumido:
-
-1. **Identificar o problema** → Listar peças necessárias para manutenção.
-2. **Listar peças necessárias** → Definir prazo para a manutenção.
-3. **Definir prazo** → Enviar mensagem ao cliente com status.
-4. **Enviar mensagem** → Fim do processo.
-
+## Considerações Finais
+Este processo visa garantir a eficiência na identificação e aprovação das peças necessárias para manutenção, promovendo a transparência e a agilidade na execução das atividades. A melhoria nos tipos de botões de entrada e saída facilita a navegação e a execução das etapas, proporcionando uma experiência mais intuitiva ao usuário.
