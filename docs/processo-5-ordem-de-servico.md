@@ -125,8 +125,6 @@ As oportunidades de melhoria incluem:
 - Automação da validação das informações.
 - Integração com um sistema de gerenciamento de acessos.
 
-![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](/docs/images/processos/antigo/OrdemDeServicoBPMN.png "Modelo BPMN do Processo de ordem de serviço.")
-
 ---
 
 ## Detalhamento das Atividades
