@@ -2,7 +2,8 @@
 
 Este processo representa o fluxo de cadastro de um novo ordem de serviço na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
-![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](/docs/images/processos/antigo/OrdemDeServicoBPMN.png "Modelo BPMN do Processo de ordem de serviço.")
+![Modelo BPMN do PROCESSO ORDEM DE SERVIÇO](/docs/images/processos/novo/Ordem%20de%20Serviço%20BPMN.png)
+
 
 
 #### Detalhamento das atividades
