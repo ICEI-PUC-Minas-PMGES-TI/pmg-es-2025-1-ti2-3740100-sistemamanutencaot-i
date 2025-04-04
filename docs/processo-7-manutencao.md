@@ -57,7 +57,7 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 ### Campos:
 | **Campo**               | **Tipo**        | **Restrições**    |
 |------------------------|----------------|-------------------|
-| Diagnóstico realizado? | Seleção única   | Obrigatório       |
+| Diagnóstico realizado | Seleção única   | Obrigatório       |
 
 ### Comandos:
 | **Comando**           | **Destino**                         |
