@@ -19,75 +19,85 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 ### Comandos:
 | **Comando**        | **Destino**             |
 |-------------------|------------------------|
-| Enviar requisição | Validação dos dados |
+| Enviar requisição | Validação dos dados    |
+| Cancelar          | Fim do processo        |
 
 ---
 
-## Atividade 2 - Validação dos Dados  
+## Atividade 2 – Validação dos Dados  
 ### Campos:
 | **Campo**       | **Tipo**        | **Restrições**       |
 |-----------------|----------------|----------------------|
-| Dados válidos?  | Seleção única   | Obrigatório         |
+| Dados válidos   | Seleção única   | Obrigatório         |
 
 ### Comandos:
-| **Comando**   | **Destino**        |
-|--------------|-------------------|
-| Sim          | Analisar pedido   |
-| Não          | Fim do processo   |
+| **Comando**   | **Destino**         |
+|--------------|---------------------|
+| Sim          | Analisar pedido     |
+| Não          | Fim do processo     |
+| Voltar       | Preencher Formulário |
+| Cancelar     | Fim do processo     |
 
 ---
 
-## Atividade 3 - Analisar Pedido  
+## Atividade 3 – Analisar Pedido  
 ### Campos:
-| **Campo**          | **Tipo**        | **Restrições**    |
-|-------------------|----------------|------------------|
-| Pedido aprovado?  | Seleção única   | Obrigatório     |
+| **Campo**        | **Tipo**        | **Restrições**    |
+|------------------|----------------|-------------------|
+| Pedido aprovado  | Seleção única   | Obrigatório       |
 
 ### Comandos:
-| **Comando**   | **Destino**        |
-|--------------|-------------------|
-| Sim          | Confirmar compra  |
-| Não          | Fim do processo   |
+| **Comando**   | **Destino**         |
+|--------------|---------------------|
+| Sim          | Confirmar compra    |
+| Não          | Fim do processo     |
+| Voltar       | Validação dos dados |
+| Cancelar     | Fim do processo     |
 
 ---
 
-## Atividade 4 - Confirmar Compra  
+## Atividade 4 – Confirmar Compra  
 ### Campos:
 | **Campo**     | **Tipo**       | **Restrições**         |
-|--------------|--------------|------------------------|
-| Peça         | Área de texto | Obrigatório           |
-| Quantidade   | Número        | Obrigatório, Positivo |
+|--------------|---------------|------------------------|
+| Peça         | Área de texto  | Obrigatório           |
+| Quantidade   | Número         | Obrigatório, Positivo |
 
 ### Comandos:
-| **Comando**     | **Destino**       |
-|---------------|------------------|
-| Compra feita  | Produto entregue |
+| **Comando**     | **Destino**        |
+|----------------|--------------------|
+| Compra feita   | Produto entregue   |
+| Voltar         | Analisar pedido    |
+| Cancelar       | Fim do processo    |
 
 ---
 
-## Atividade 5 - Produto Entregue  
+## Atividade 5 – Produto Entregue  
 ### Campos:
-| **Campo**          | **Tipo**        | **Restrições**    |
-|-------------------|----------------|------------------|
-| Produto recebido? | Seleção única   | Obrigatório     |
+| **Campo**         | **Tipo**        | **Restrições**    |
+|------------------|----------------|-------------------|
+| Produto recebido | Seleção única   | Obrigatório       |
 
 ### Comandos:
 | **Comando**  | **Destino**                              |
-|-------------|----------------------------------------|
-| Sim         | Registrar no estoque e arquivar pedido |
+|-------------|------------------------------------------|
+| Sim         | Registrar no estoque e arquivar pedido   |
+| Voltar      | Confirmar compra                         |
+| Cancelar    | Fim do processo                          |
 
 ---
 
-## Atividade 6 - Registrar no Estoque e Arquivar Pedido  
+## Atividade 6 – Registrar no Estoque e Arquivar Pedido  
 ### Campos:
 | **Campo**         | **Tipo**       | **Restrições**         |
-|------------------|--------------|------------------------|
-| Peça            | Seleção Única | Obrigatório           |
-| Número do pedido | Número       | Obrigatório           |
-| Quantidade      | Número       | Obrigatório, Positivo |
+|------------------|----------------|------------------------|
+| Peça             | Seleção Única  | Obrigatório            |
+| Número do pedido | Número         | Obrigatório            |
+| Quantidade       | Número         | Obrigatório, Positivo  |
 
 ### Comandos:
-| **Comando**     | **Destino**         |
-|---------------|--------------------|
-| Registro feito | Fim do processo    |
-
+| **Comando**      | **Destino**        |
+|------------------|--------------------|
+| Registro feito   | Fim do processo    |
+| Voltar           | Produto entregue   |
+| Cancelar         | Fim do processo    |
