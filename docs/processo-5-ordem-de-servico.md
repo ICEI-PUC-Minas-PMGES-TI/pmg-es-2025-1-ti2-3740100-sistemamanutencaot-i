@@ -118,116 +118,93 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | Assinatura     | Coletar assinatura do cliente| Manual     |
 ---
 
-# Processo 5 – Ordem de Serviço
+# Processo 5 - ORDEM DE SERVIÇO
 
-Este processo representa o fluxo de cadastro de uma nova ordem de serviço na empresa.  
-As oportunidades de melhoria incluem:
-- Automação da validação das informações.
-- Integração com um sistema de gerenciamento de acessos.
+Este processo representa o fluxo de cadastro de uma nova ordem de serviço na empresa. As oportunidades de melhoria incluem a automação da validação das informações e a integração com um sistema de gerenciamento de acessos.
 
 ---
 
 ## Detalhamento das Atividades
 
-Os tipos de dados a serem utilizados são:
-
-- **Área de texto**: campo texto de múltiplas linhas  
-- **Caixa de texto**: campo texto de uma linha  
-- **Número**: campo numérico  
-- **Data**: campo do tipo data (dd-mm-aaaa)  
-- **Hora**: campo do tipo hora (hh:mm:ss)  
-- **Data e Hora**: campo do tipo data e hora (dd-mm-aaaa, hh:mm:ss)  
-- **Imagem**: campo contendo uma imagem  
-- **Seleção única**: campo com várias opções de valores que são mutuamente exclusivas (radio button ou combobox)  
-- **Seleção múltipla**: campo com várias opções que podem ser selecionadas mutuamente (checkbox ou listbox)  
-- **Arquivo**: campo de upload de documento  
-- **Link**: campo que armazena uma URL  
-- **Tabela**: campo formado por uma matriz de valores  
-
----
-
-## **1. Verificar Registro do Cliente**
-
-### **Campos**
+### 1. Verificar Registro do Cliente
+#### Campos
 | **Campo**       | **Tipo**        | **Restrições**          | **Valor Default** |
 |-----------------|----------------|-------------------------|-------------------|
 | CPF            | Número          | Obrigatório, 11 dígitos | ---               |
 
-### **Comandos**
-| **Comando**            | **Destino**                                  | **Tipo**   |
-|------------------------|---------------------------------------------|-----------|
-| Verificar             | Análise do Computador (se cliente existir)  | Default   |
-| Conta não cadastrada  | Processo de Cadastro                        | Default   |
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                                  |
+|-------------------------|-----------------|-----------------------------------------------|---------------------------------------------|
+| Verificar Cliente       | Botão Primário  | Verifica se o cliente está cadastrado         | Análise do Computador (se cliente existir)  |
+| Cadastrar Cliente       | Botão Secundário| Redireciona para o processo de cadastro       | Processo de Cadastro                        |
 
 ---
 
-## **2. Descrever sintomas da máquina**
-
-### **Campos**
+### 2. Descrever Sintomas da Máquina
+#### Campos
 | **Campo**               | **Tipo**         | **Restrições**               | **Valor Default** |
 |-------------------------|-----------------|------------------------------|-------------------|
 | Descrição do Problema   | Área de Texto   | Obrigatório                   | ---               |
 
-### **Comandos**
-| **Comando**                    | **Destino**            | **Tipo**   |
-|--------------------------------|------------------------|-----------|
-| Documentar na Ordem de Serviço | Ordem de Serviço       | Default   |
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**            |
+|-------------------------|-----------------|-----------------------------------------------|------------------------|
+| Salvar Descrição        | Botão Primário  | Salva a descrição do problema                | Ordem de Serviço       |
+| Voltar                  | Botão Secundário| Retorna à etapa anterior                     | Verificar Registro     |
 
 ---
 
-## **3. Informar observações técnicas sobre a máquina**
-
-### **Campos**
+### 3. Informar Observações Técnicas sobre a Máquina
+#### Campos
 | **Campo**               | **Tipo**         | **Restrições**  | **Valor Default** |
 |-------------------------|----------------- |---------------- |-------------------|
-| Descrição da máquina    | Área de texto    | Obrigatório     | ---               |
+| Descrição da Máquina    | Área de Texto    | Obrigatório     | ---               |
 
-### **Comandos**
-| **Comando**                     | **Destino**                    | **Tipo**   |
-|---------------------------------|--------------------------------|----------- |
-| Documentar na Ordem de Serviço  | Ordem de Serviço               | Default    |
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                    |
+|-------------------------|-----------------|-----------------------------------------------|--------------------------------|
+| Salvar Observações      | Botão Primário  | Salva as observações técnicas                | Ordem de Serviço               |
+| Voltar                  | Botão Secundário| Retorna à etapa anterior                     | Descrever Sintomas             |
 
 ---
 
-## **4. Informar regras de negócios para cliente**
-
-### **Campos**
+### 4. Informar Regras de Negócios para Cliente
+#### Campos
 | **Campo**             | **Tipo**          | **Restrições**                  | **Valor Default**        |
 |---------------------- |-------------------|---------------------------------  |--------------------------|
-| Prazo Inicial da Loja | Número            | Obrigatório                       | ---                      |
-| Valor Inicial da Loja | Número            | Obrigatório                       | ---                      |
+| Prazo Inicial da Loja | Numérico          | Obrigatório                       | ---                      |
+| Valor Inicial da Loja | Numérico          | Obrigatório                       | ---                      |
 
-### **Comandos**
-| **Comando**  | **Destino**            | **Tipo**  |
-|--------------|------------------------|-----------|
-| Sim          | Continuar do processo  | Default   |
-| Não          | Finalizar processo     | Default   |
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**            |
+|-------------------------|-----------------|-----------------------------------------------|------------------------|
+| Confirmar Regras        | Botão Primário  | Confirma as regras de negócio                 | Continuar do Processo  |
+| Cancelar                | Botão Secundário| Finaliza o processo sem salvar                | Finalizar Processo     |
 
 ---
 
-## **5. Instanciar uma Nova Ordem de Serviço**
-
-### **Campos**
+### 5. Instanciar uma Nova Ordem de Serviço
+#### Campos
 | **Campo**               | **Tipo**        | **Restrições**                     | **Valor Default**         |
 |-------------------------|-----------------|------------------------------------|---------------------------|
-| ID da OS                | Número          | Obrigatório, Único                  | Gerado automaticamente    |
-| Data de Criação         | Data e Hora     | Obrigatório                         | Data atual do sistema     |
-| Cliente                 | Texto           | Obrigatório                         | ---                       |
-| Descrição do Problema   | Texto           | Obrigatório, Mínimo: 10 caracteres  | ---                       |
-| Descrição da Máquina    | Texto           | Obrigatório, Mínimo: 10 caracteres  | ---                       |
-| Técnico Responsável     | Texto           | Opcional                            | ---                       |
-| Prazo para Conclusão    | Data            | Opcional                            | Regra de Negócio          |
-| Valor Estimado          | Número          | Opcional                            | Regra de Negócio          |
+| ID da OS                | Numérico       | Obrigatório, Único                  | Gerado automaticamente    |
+| Data de Criação         | Data/Hora      | Obrigatório                         | Data atual do sistema     |
+| Cliente                 | Texto          | Obrigatório                         | ---                       |
+| Descrição do Problema   | Texto          | Obrigatório, Mínimo: 10 caracteres  | ---                       |
+| Descrição da Máquina    | Texto          | Obrigatório, Mínimo: 10 caracteres  | ---                       |
+| Técnico Responsável     | Texto          | Opcional                            | ---                       |
+| Prazo para Conclusão    | Data           | Opcional                            | Regra de Negócio          |
+| Valor Estimado          | Numérico       | Opcional                            | Regra de Negócio          |
 
-### **Comandos**
-| **Comando**    | **Destino**                  | **Tipo**   |
-|----------------|------------------------------|------------|
-| Confirmar      | Gerar a OS e prosseguir      | Default    |
-| Imprimir       | Gerar versão para imprimir   | Opcional   |
-| Assinatura     | Coletar assinatura do cliente| Manual     |
+#### Botões de Entrada e Saída
+| **Botão**               | **Tipo**        | **Ação**                                      | **Destino**                  |
+|-------------------------|-----------------|-----------------------------------------------|------------------------------|
+| Confirmar OS            | Botão Primário  | Confirma e gera a ordem de serviço            | Gerar a OS e prosseguir      |
+| Imprimir OS             | Botão Secundário| Gera uma versão imprimível da OS              | Gerar versão para imprimir   |
+| Coletar Assinatura      | Botão Terciário | Coleta a assinatura do cliente                | Coletar assinatura do cliente|
 
 ---
 
-
-
+## Considerações Finais
+Este processo visa garantir a eficiência e a organização na criação de ordens de serviço, promovendo a transparência e a qualidade no atendimento ao cliente. A automação e a integração com outros sistemas podem trazer ganhos significativos em produtividade e precisão. A melhoria nos tipos de botões de entrada e saída facilita a navegação e a execução das etapas, proporcionando uma experiência mais intuitiva ao usuário.
 
