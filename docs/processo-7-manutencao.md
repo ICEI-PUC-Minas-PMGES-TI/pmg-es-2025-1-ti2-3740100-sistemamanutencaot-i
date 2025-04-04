@@ -31,17 +31,17 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 ### Comandos:
 | **Comando**             | **Destino**                  |
 |------------------------|------------------------------|
-| Concluir manutenção     | Manutenção bem sucedida?     |
+| Concluir manutenção     | Manutenção bem sucedida    |
 | Voltar                  | Selecionar a O.S para manutenção |
 | Cancelar                | Fim do processo              |
 
 ---
 
-## Atividade 3 – Manutenção Bem Sucedida?  
+## Atividade 3 – Manutenção Bem Sucedida 
 ### Campos:
 | **Campo**                | **Tipo**        | **Restrições**    |
 |--------------------------|----------------|-------------------|
-| Manutenção bem-sucedida? | Seleção única   | Obrigatório       |
+| Manutenção bem-sucedida | Seleção única   | Obrigatório       |
 
 ### Comandos:
 | **Comando**   | **Destino**                  |
@@ -63,7 +63,7 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 | **Comando**           | **Destino**                         |
 |----------------------|--------------------------------------|
 | Repetir manutenção    | Selecionar a O.S para manutenção     |
-| Voltar                | Manutenção bem sucedida?            |
+| Voltar                | Manutenção bem sucedida            |
 | Cancelar              | Fim do processo                     |
 
 ---
@@ -72,11 +72,11 @@ Oportunidades de melhoria incluem relatórios sobre o processo.
 ### Campos:
 | **Campo**           | **Tipo**        | **Restrições**    |
 |---------------------|----------------|-------------------|
-| Status atualizado?  | Seleção única   | Obrigatório       |
+| Status atualizado  | Seleção única   | Obrigatório       |
 
 ### Comandos:
 | **Comando**   | **Destino**      |
 |--------------|------------------|
 | Finalizar    | Fim do processo  |
-| Voltar       | Manutenção bem sucedida? |
+| Voltar       | Manutenção bem sucedida |
 | Cancelar     | Fim do processo  |
