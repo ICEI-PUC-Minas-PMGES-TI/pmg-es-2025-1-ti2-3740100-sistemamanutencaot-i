@@ -14,6 +14,8 @@ body {
   justify-content: center;
   text-align: center;
   background-color: #000842; /* Cor de fundo */
+  width: 735px;
+  height: 859px;
 }
 
 .title {
@@ -24,7 +26,7 @@ body {
   letter-spacing: -0.5px;
   line-height: 1.2;
   max-width: 500px;
-  text-align: justify;
+  text-align: left;
 }
 
 .highlight-text {
@@ -40,7 +42,7 @@ body {
 
 .banner-image {
   max-width: 100%;
-  height: 400px;
+  height: 512px;
 }
 
 
