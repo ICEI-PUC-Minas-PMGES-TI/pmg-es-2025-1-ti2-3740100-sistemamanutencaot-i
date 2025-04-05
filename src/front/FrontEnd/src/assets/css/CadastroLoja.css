@@ -5,6 +5,20 @@ body {
 }
 .container-lado-a-lado {
   display: flex;
-  align-items: center; /* Alinhamento vertical */
-  justify-content: center; /* Alinhamento horizontal */
+  align-items: center;
+  justify-content: flex-end; /* Alinha à direita */
+  gap: 40px; /* Espaço entre os elementos */
+  padding-right: 40px; /* Espaço da borda direita */
+  position: relative;
+}
+
+.elemento-esquerda {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto; /* Centraliza dentro do espaço disponível */
+}
+
+.elemento-direita {
+  margin-left: auto; /* Empurra para a direita */
+  transform: translateX(-30px); /* Ajuste fino da posição */
 }

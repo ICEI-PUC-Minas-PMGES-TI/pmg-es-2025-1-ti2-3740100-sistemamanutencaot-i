@@ -7,8 +7,12 @@ import "../assets/css/CadastroLoja.css"; // Importe o arquivo CSS
 function CadastroLoja() {
   return (
     <div className="container-lado-a-lado">
-      <FormularioLoja />
-      <BannerLoja />
+      <div className="elemento-esquerda">
+        <FormularioLoja />
+      </div>
+      <div className="elemento-direita">
+        <BannerLoja />
+      </div>
     </div>
   );
 }

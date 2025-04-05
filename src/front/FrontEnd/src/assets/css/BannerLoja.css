@@ -25,19 +25,18 @@ body {
   font-weight: 900;
   letter-spacing: -0.5px;
   line-height: 1.2;
-  max-width: 500px;
+  max-width: 564px;
   text-align: left;
 }
 
 .highlight-text {
-  color: #4a5568;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  max-width: 600px;
+  color: white;
+  font-size: 20px;
+  line-height: 23px;
+  max-width: 564px;
   margin: 0 auto;
-  
   border-radius: 12px;
-
+  text-align: left;
 }
 
 .banner-image {
