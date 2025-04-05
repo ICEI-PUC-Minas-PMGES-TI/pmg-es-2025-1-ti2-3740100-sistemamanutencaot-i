@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 
 
-function CadastroLojo() {
+function CadastroLoja() {
   const [age, setAge] = useState(28); 
 
   return (
@@ -14,4 +14,4 @@ function CadastroLojo() {
 
 
 
-export default CadastroLojo
+export default CadastroLoja;
