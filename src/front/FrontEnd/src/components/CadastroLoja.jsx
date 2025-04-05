@@ -1,17 +1,15 @@
-import React from 'react'
-import { useState } from 'react';
-
+import React from "react";
+import { useState } from "react";
 
 function CadastroLoja() {
-  const [age, setAge] = useState(28); 
+  const [age, setAge] = useState(28);
 
   return (
     <>
-    <button>{}</button>
+      <h1>Cadastro Loja</h1>
+      
     </>
-  )
+  );
 }
-
-
 
 export default CadastroLoja;
