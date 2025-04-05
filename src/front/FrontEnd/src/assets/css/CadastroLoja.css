@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+body {
+    background-color: #F1EFEC; /* Cor de fundo */
+    font-family: 'Work Sans', sans-serif;
+}
+.container-lado-a-lado {
+  display: flex;
+  align-items: center; /* Alinhamento vertical */
+  justify-content: center; /* Alinhamento horizontal */
+}
