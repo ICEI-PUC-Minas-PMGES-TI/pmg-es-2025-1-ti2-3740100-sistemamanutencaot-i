@@ -1,14 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import FormularioLoja from "./FormularioLoja.jsx";
+import BannerLoja from "./BannerLoja.jsx"
+import "../assets/css/CadastroLoja.css"; // Importe o arquivo CSS
 
 function CadastroLoja() {
-  const [age, setAge] = useState(28);
-
   return (
-    <>
-      <h1>Cadastro Loja</h1>
-      
-    </>
+    <div className="container-lado-a-lado">
+      <FormularioLoja />
+      <BannerLoja />
+    </div>
   );
 }
 

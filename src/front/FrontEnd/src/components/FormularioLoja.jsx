@@ -29,7 +29,7 @@ const CadastroLoja = () => {
         <p className="form-description">
           Se você já possui uma loja cadastrada
           <br />
-          Você pode realizar o acesso aqui !
+          Você pode realizar o acesso <span className="text-blue">aqui!</span>
         </p>
 
         <div className="form-fields">
