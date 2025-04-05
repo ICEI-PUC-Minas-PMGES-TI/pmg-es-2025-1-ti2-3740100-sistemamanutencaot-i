@@ -3,46 +3,50 @@
 /* Estilos base */
 .form-container {
     min-height: 100vh;
-    background-color: #f9fafb;
+    background-color: #F1EFEC;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 0, 0, 1rem, 1rem;
     font-family: 'Work Sans', sans-serif;
 }
 
 .form-wrapper {
-    background-color: white;
-    padding: 2rem;
+    background-color: #F1EFEC;
+    padding: 1rem;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 28rem;
 }
 
 .form-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     line-height: 2rem;
-    font-weight: 700;
-    color: #1f2937;
+    font-weight: 900;
+    color: #0C21C1;
     margin-bottom: 1rem;
 }
 
 .form-description {
     color: #4b5563;
     margin-bottom: 1.5rem;
-    line-height: 1.5;
+    line-height: 1.1;
+    font-weight: 700;
 }
 
+.text-blue {
+    color: #0C21C1;
+}
 .form-label {
     display: block;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #374151;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0C21C1;
     margin-bottom: 0.5rem;
 }
 
 .form-input {
+    max-width: 420px;
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #d1d5db;
@@ -59,12 +63,12 @@
 
 .form-button {
     width: 100%;
-    background-color: #2563eb;
+    background-color: #0C21C1;
     color: white;
     padding: 0.75rem 1rem;
     border: none;
-    border-radius: 0.375rem;
-    font-weight: 500;
+    border-radius: 2rem;
+    font-weight: 900;
     font-size: 1.125rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -76,5 +80,5 @@
 
 /* Espaçamento entre os campos */
 .form-field-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
