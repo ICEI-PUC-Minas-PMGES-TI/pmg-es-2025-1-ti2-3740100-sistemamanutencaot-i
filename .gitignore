@@ -1,0 +1,49 @@
+# Dependências
+/node_modules
+/.pnp
+.pnp.js
+
+# Testes
+/coverage
+
+# Produção
+/build
+/dist
+
+# Arquivos de ambiente
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor/IDE
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Cache
+.eslintcache
+.npm
+.yarn-integrity
+
+# Bower
+bower_components
+
+# Outros
+*.log
+.cache/
+.sass-cache/
+.parcel-cache/
