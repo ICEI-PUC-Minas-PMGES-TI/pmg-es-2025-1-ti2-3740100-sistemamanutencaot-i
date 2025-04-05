@@ -22,3 +22,21 @@ body {
   margin-left: auto; /* Empurra para a direita */
   transform: translateX(-30px); /* Ajuste fino da posição */
 }
+.logo-topo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 250px; /* Ajuste conforme necessário */
+  height: auto;
+  z-index: 10;
+}
+
+/* Mantenha o container principal como relativo */
+.container-lado-a-lado {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin: 0 auto; 
+}

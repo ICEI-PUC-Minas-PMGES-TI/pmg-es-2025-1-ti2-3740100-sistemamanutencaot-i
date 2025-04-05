@@ -42,7 +42,7 @@
     font-size: 1.8rem;
     font-weight: 900;
     color: #0C21C1;
-    margin-bottom: 1.5rem;
+    
 }
 
 .form-input {
@@ -54,7 +54,7 @@
     border: none; /* Removemos todas as bordas */
     border-bottom: 2px solid #000842; /* Adicionamos apenas a linha inferior */
     border-radius: 0; /* Removemos o border-radius */
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     transition: all 0.3s ease;
     background-color: #F1EFEC;
 }
@@ -74,7 +74,7 @@
     font-size: 1.125rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .form-button:hover {
