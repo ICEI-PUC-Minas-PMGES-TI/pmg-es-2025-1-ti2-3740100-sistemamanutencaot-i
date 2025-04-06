@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Cores */
+  --azul-escuro: #000842;
+  --azul-claro: #528FF4;
+  --branco: #F1EFEC;
+  
+  /* Tamanhos base (desktop) */
+  --borda-arredondada: 1.25rem;
+  --padding-base: 1rem;
+  --padding-grande: 1.5rem;
+  --tamanho-logo: 3.125rem;
+  --espacamento-logo: 2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+    background-color: var(--branco);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Estrutura Principal - Desktop */
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: calc(var(--tamanho-logo) + var(--espacamento-logo)) var(--espacamento-logo) var(--espacamento-logo);
+}
+
+.logo-topo {
+    position: absolute;
+    top: var(--espacamento-logo);
+    left: var(--espacamento-logo);
+    height: var(--tamanho-logo);
+    width: auto;
+    z-index: 100;
+}
+
+.container-lado-a-lado {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    border-radius: var(--borda-arredondada);
+    overflow: hidden;
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
+}
+
+/* MOBILE FIRST - Ajustes para telas pequenas */
+@media (max-width: 768px) {
+    :root {
+        --borda-arredondada: 0.75rem;
+        --padding-base: 0.75rem;
+        --padding-grande: 1rem;
+        --tamanho-logo: 2.5rem;
+        --espacamento-logo: 1rem;
+    }
+
+    .container-principal {
+        padding: calc(var(--tamanho-logo) + var(--espacamento-logo)) var(--padding-base) var(--padding-base);
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .logo-topo {
+        position: static;
+        margin: var(--espacamento-logo) auto;
+        display: block;
+    }
+
+    .container-lado-a-lado {
+        flex-direction: column;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .elemento-esquerda, .elemento-direita {
+        border-radius: 0 !important;
+        padding: var(--padding-grande);
+    }
+
+    .elemento-esquerda {
+        border-top-left-radius: var(--borda-arredondada) !important;
+        border-top-right-radius: var(--borda-arredondada) !important;
+    }
+
+    .elemento-direita {
+        border-bottom-left-radius: var(--borda-arredondada) !important;
+        border-bottom-right-radius: var(--borda-arredondada) !important;
+    }
+}
+
+/* Ajustes para tablets em modo retrato */
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --padding-base: 0.875rem;
+        --tamanho-logo: 2.75rem;
+    }
+
+    .container-principal {
+        padding: calc(var(--tamanho-logo) + 1rem) 1.5rem 1.5rem;
+    }
+}
+
+/* Elementos comuns */
+.elemento-esquerda {
+    flex: 1;
+    padding: var(--padding-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul-escuro);
+    border-top-left-radius: var(--borda-arredondada);
+    border-bottom-left-radius: var(--borda-arredondada);
+}
+
+.elemento-direita {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul-claro);
+    border-top-right-radius: var(--borda-arredondada);
+    border-bottom-right-radius: var(--borda-arredondada);
+}

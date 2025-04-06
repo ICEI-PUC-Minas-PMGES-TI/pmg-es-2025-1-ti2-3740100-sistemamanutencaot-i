@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&display=swap');
+
+.banner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+    padding: var(--padding-grande);
+    position: relative;
+}
+
+.banner-background {
+    padding: 0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-image {
+    width: 100%;
+    max-width: 35rem;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.2));
+}
+
+.banner-text {
+    text-align: left;
+    color: white;
+    width: 100%;
+    padding: 0 var(--padding-base);
+}
+
+.banner-text h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.banner-text p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.5;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .banner-container {
+        padding: var(--padding-base);
+    }
+    
+    .banner-image {
+        max-width: 18.75rem;
+        margin-bottom: 1rem;
+    }
+}

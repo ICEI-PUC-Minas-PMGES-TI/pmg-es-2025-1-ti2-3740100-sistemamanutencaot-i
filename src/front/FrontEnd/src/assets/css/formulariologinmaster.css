@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&display=swap');
+
+:root {
+  --tamanho-fonte-titulo: 2rem;
+  --tamanho-fonte-texto: 1rem;
+  --tamanho-fonte-pequeno: 0.875rem;
+  --tamanho-icone: 1.25rem;
+}
+
+.form-container {
+    min-height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-base);
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 25rem; /* 400px */
+}
+
+.form-title {
+    font-size: clamp(1.5rem, 4vw, var(--tamanho-fonte-titulo));
+    line-height: 1.2;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-label {
+    display: block;
+    font-size: var(--tamanho-fonte-texto);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.input-icon {
+    width: var(--tamanho-icone);
+    height: var(--tamanho-icone);
+    margin-right: 0.625rem;
+}
+
+.form-input {
+    flex: 1;
+    padding: 0.5rem 0;
+    font-size: var(--tamanho-fonte-texto);
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: var(--tamanho-fonte-pequeno);
+}
+
+.toggle-password {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5rem;
+}
+
+.toggle-password img {
+    width: var(--tamanho-icone);
+    height: var(--tamanho-icone);
+    filter: brightness(0) invert(1);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.form-button {
+    background-color: white;
+    color: var(--azul-escuro);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 1.5625rem;
+    font-weight: 900;
+    font-size: var(--tamanho-fonte-texto);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+}
+
+.form-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.form-field-group {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 576px) {
+    .form-title {
+        margin-bottom: 1rem;
+    }
+    
+    .form-button {
+        padding: 0.5rem 1.5rem;
+    }
+}
