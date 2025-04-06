@@ -7,10 +7,10 @@ import "../assets/css/CadastroLoginMaster.css";
 function CadastroLoginMaster() {
   return (
     <>
-      {/* Logo posicionada absolutamente no canto superior esquerdo, essa porcaria tava bugando toda hora */}
+      {/* Logo posicionada absolutamente no canto superior esquerdo */}
       <img src={Logo} alt="Logo da empresa" className="logo-topo" />
       
-      {/* Container principal pra logo */}
+      {/* Container principal que dá espaço para a logo */}
       <div className="container-principal">
         {/* Container dos blocos de formulário e banner */}
         <div className="container-lado-a-lado">

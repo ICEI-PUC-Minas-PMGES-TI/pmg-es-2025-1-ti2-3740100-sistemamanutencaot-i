@@ -6,32 +6,31 @@ body {
 .container-lado-a-lado {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Alinha à direita */
-  gap: 40px; /* Espaço entre os elementos */
-  padding-right: 40px; /* Espaço da borda direita */
+  justify-content: flex-end; 
+  gap: 40px; 
+  padding-right: 40px; 
   position: relative;
 }
 
 .elemento-esquerda {
   flex: 1;
   max-width: 600px;
-  margin: 0 auto; /* Centraliza dentro do espaço disponível */
+  margin: 0 auto;
 }
 
 .elemento-direita {
-  margin-left: auto; /* Empurra para a direita */
-  transform: translateX(-30px); /* Ajuste fino da posição */
+  margin-left: auto; 
+  transform: translateX(-30px); 
 }
 .logo-topo {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 250px; /* Ajuste conforme necessário */
+  width: 250px; 
   height: auto;
   z-index: 10;
 }
 
-/* Mantenha o container principal como relativo */
 .container-lado-a-lado {
   position: relative;
   display: flex;

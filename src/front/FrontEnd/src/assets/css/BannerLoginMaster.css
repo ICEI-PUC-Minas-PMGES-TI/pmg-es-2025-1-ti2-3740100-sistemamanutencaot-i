@@ -21,7 +21,7 @@
 
 .banner-image {
     width: 100%;
-    max-width: 35rem;
+    max-width: 300px;
     height: auto;
     display: block;
     object-fit: contain;
@@ -36,14 +36,13 @@
 }
 
 .banner-text h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 1rem;
+    font-size: 1.75rem;
     font-weight: 700;
     line-height: 1.2;
 }
 
 .banner-text p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 1.1rem;
     line-height: 1.5;
     font-weight: 500;
     opacity: 0.9;
