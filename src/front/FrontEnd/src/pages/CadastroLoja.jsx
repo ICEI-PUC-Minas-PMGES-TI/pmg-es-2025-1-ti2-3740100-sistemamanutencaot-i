@@ -1,7 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import FormularioLoja from "./FormularioLoja.jsx";
-import BannerLoja from "./BannerLoja.jsx";
+import FormularioLoja from "../components/FormularioLoja.jsx";
+import BannerLoja from "../components/BannerLoja.jsx";
 import Logo from "../assets/images/logo.png";
 import "../assets/css/CadastroLoja.css";
 
