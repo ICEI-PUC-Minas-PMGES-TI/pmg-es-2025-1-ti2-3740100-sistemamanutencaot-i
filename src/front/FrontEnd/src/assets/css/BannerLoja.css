@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
 
-body {
-    
+body {    
     font-family: 'Work Sans', sans-serif;
 }
 
-.container {
+.conteiner-principal {
   border-radius: 20px;
   padding: 40px 40px;
   display: flex;
@@ -13,12 +12,12 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #000842; /* Cor de fundo */
+  background-color: #000842;
   width: 735px;
   height: 810px;
 }
 
-.title {
+.titulo-destaque {
   color: white;
   font-size: 2.5rem;
   margin-bottom: 30px;
@@ -29,7 +28,7 @@ body {
   text-align: left;
 }
 
-.highlight-text {
+.texto-destaque {
   color: white;
   font-size: 20px;
   line-height: 23px;
@@ -39,10 +38,7 @@ body {
   text-align: left;
 }
 
-.banner-image {
+.imagem-banner {
   max-width: 100%;
   height: 512px;
 }
-
-
-

@@ -1,41 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
 body {
-    background-color: #F1EFEC; /* Cor de fundo */
+    background-color: #F1EFEC;
     font-family: 'Work Sans', sans-serif;
 }
-.container-lado-a-lado {
+
+/* Container principal lado a lado */
+.container-horizontal {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
-  gap: 40px; 
-  padding-right: 40px; 
+  justify-content: flex-end;
+  gap: 40px;
+  padding-right: 40px;
   position: relative;
 }
 
-.elemento-esquerda {
+/* Elemento da esquerda */
+.elemento-esquerdo {
   flex: 1;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.elemento-direita {
-  margin-left: auto; 
-  transform: translateX(-30px); 
+/* Elemento da direita */
+.elemento-direito {
+  margin-left: auto;
+  transform: translateX(-30px);
 }
+
+/* Logo no topo */
 .logo-topo {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 250px; 
+  width: 250px;
   height: auto;
   z-index: 10;
 }
 
-.container-lado-a-lado {
+/* Container horizontal (redundante - pode ser removido se já definido acima) */
+.container-horizontal {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }

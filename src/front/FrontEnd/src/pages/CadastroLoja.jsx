@@ -6,13 +6,13 @@ import "../assets/css/CadastroLoja.css";
 
 function CadastroLoja() {
   return (
-    <div className="container-lado-a-lado">
+    <div className="container-horizontal">
       <img src={Logo} alt="Logo da empresa" className="logo-topo" />
 
-      <div className="elemento-esquerda">
+      <div className="elemento-esquerdo">
         <FormularioLoja />
       </div>
-      <div className="elemento-direita">
+      <div className="elemento-direito">
         <BannerLoja />
       </div>
     </div>

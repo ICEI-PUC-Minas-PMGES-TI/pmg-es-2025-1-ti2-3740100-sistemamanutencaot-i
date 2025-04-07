@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
 
 /* Estilos base */
-.form-container {
+.container-formulario {
     min-height: 100vh;
     background-color: #F1EFEC;
     display: flex;
@@ -11,14 +11,14 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-.form-wrapper {
+.envoltorio-formulario {
     background-color: #F1EFEC;
     padding: 1rem;
     border-radius: 0.5rem;
     width: 100%;
 }
 
-.form-title {
+.titulo-formulario {
     font-size: 3rem;
     line-height: 2.5rem;
     font-weight: 900;
@@ -26,7 +26,7 @@
     margin-bottom: 3.5rem;
 }
 
-.form-description {
+.descricao-formulario {
     color: black;
     margin-bottom: 5.5rem;
     line-height: 1.1;
@@ -34,36 +34,36 @@
     font-size: 1.4rem;
 }
 
-.text-blue {
+.texto-azul {
     color: #0C21C1;
 }
-.form-label {
+
+.rotulo-formulario {
     display: block;
     font-size: 1.8rem;
     font-weight: 900;
     color: #0C21C1;
-    
 }
 
-.form-input {
+.entrada-formulario {
     max-width: 540px;
     width: 100%;
     height: 30px;
     font-size: 18px;
     padding: 0.75rem;
-    border: none; /* Removemos todas as bordas */
-    border-bottom: 2px solid #000842; /* Adicionamos apenas a linha inferior */
-    border-radius: 0; /* Removemos o border-radius */
+    border: none;
+    border-bottom: 2px solid #000842;
+    border-radius: 0;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
     background-color: #F1EFEC;
 }
 
-.form-input:focus {
+.entrada-formulario:focus {
     outline: none;
 }
 
-.form-button {
+.botao-formulario {
     width: 100%;
     background-color: #0C21C1;
     color: white;
@@ -77,11 +77,10 @@
     margin-top: 1.5rem;
 }
 
-.form-button:hover {
+.botao-formulario:hover {
     background-color: #000842;
 }
 
-/* Espaçamento entre os campos */
-.form-field-group {
+.grupo-campo-formulario {
     margin-bottom: 0.5rem;
 }

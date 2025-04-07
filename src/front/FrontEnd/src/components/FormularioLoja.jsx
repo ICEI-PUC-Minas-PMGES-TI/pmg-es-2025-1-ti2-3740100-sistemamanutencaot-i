@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../assets/css/FormularioLoja.css";
+import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
 
 const CadastroLoja = () => {
+  const navigate = useNavigate(); // Inicialize o hook
   const [formData, setFormData] = useState({
     nomeLoja: "",
     cnpj: "",
@@ -20,60 +22,62 @@ const CadastroLoja = () => {
     e.preventDefault();
     // Lógica para enviar os dados
     console.log(formData);
+
+    // Redirecionamento após o submit
+    navigate("/cadastro-gerente"); // Altere para usar o hook de navegação
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} className="form-wrapper">
-        <h1 className="form-title">Cadastre sua Loja aqui!</h1>
-        <p className="form-description">
+    <div className="container-formulario">
+      <form onSubmit={handleSubmit} className="envoltorio-formulario">
+        <h1 className="titulo-formulario">Cadastre sua Loja aqui!</h1>
+        <p className="descricao-formulario">
           Se você já possui uma loja cadastrada
           <br />
-          Você pode realizar o acesso <span className="text-blue">aqui!</span>
+          Você pode realizar o acesso <span className="texto-azul">aqui!</span>
         </p>
 
         <div className="form-fields">
-          {/* Nome da Loja */}
-          <div className="form-field-group">
-            <label className="form-label">Nome da Loja</label>
+          {/* Campos do formulário (mantidos iguais) */}
+          <div className="grupo-campo-formulario">
+            <label className="rotulo-formulario">Nome da Loja</label>
             <input
               type="text"
               name="nomeLoja"
               value={formData.nomeLoja}
               onChange={handleChange}
               placeholder="Coloque o nome da sua Loja"
-              className="form-input"
+              className="entrada-formulario"
             />
           </div>
 
-          {/* CNPJ */}
-          <div className="form-field-group">
-            <label className="form-label">CNPJ</label>
+          <div className="grupo-campo-formulario">
+            <label className="rotulo-formulario">CNPJ</label>
             <input
               type="text"
               name="cnpj"
               value={formData.cnpj}
               onChange={handleChange}
               placeholder="Coloque o CNPJ da Loja"
-              className="form-input"
+              className="entrada-formulario"
             />
           </div>
 
-          {/* Endereço */}
-          <div className="form-field-group">
-            <label className="form-label">Endereço</label>
+          <div className="grupo-campo-formulario">
+            <label className="rotulo-formulario">Endereço</label>
             <input
               type="text"
               name="endereco"
               value={formData.endereco}
               onChange={handleChange}
               placeholder="Coloque o endereço da sua Loja"
-              className="form-input"
+              className="entrada-formulario"
             />
           </div>
         </div>
 
-        <button type="submit" className="form-button">
+        {/* Botão modificado */}
+        <button type="submit" className="botao-formulario">
           Avançar
         </button>
       </form>
