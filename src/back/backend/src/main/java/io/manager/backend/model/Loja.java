@@ -11,7 +11,6 @@ public class Loja {
     private String cnpj;
     private String nome;
     private String endereco;
-    private Long gerenteId;
 
     public Long getId() {
         return id;
@@ -36,12 +35,6 @@ public class Loja {
     }
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-    public Long getGerenteId() {
-        return gerenteId;
-    }
-    public void setGerenteId(Long gerenteId) {
-        this.gerenteId = gerenteId;
     }
     
 }
