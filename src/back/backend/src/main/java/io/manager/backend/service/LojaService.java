@@ -1,34 +1,34 @@
-package io.manager.backend;
+package io.manager.backend.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import io.manager.backend.model.Loja;
+import io.manager.backend.repository.LojaRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping("/lojas")
-public class LojaController {
+@Service
+public class LojaService {
 
-    @Autowired
-    private LojaRepository lojaRepository;
+    private final LojaRepository lojaRepository;
 
-    @GetMapping
+    public LojaService(LojaRepository lojaRepository) {
+        this.lojaRepository = lojaRepository;
+    }
+
     public List<Loja> listar() {
         return lojaRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Loja> buscarPorId(@PathVariable Long id) {
+    public Optional<Loja> buscarPorId(Long id) {
         return lojaRepository.findById(id);
     }
 
-    @PostMapping
-    public Loja criar(@RequestBody Loja loja) {
+    public Loja criar(Loja loja) {
         return lojaRepository.save(loja);
     }
 
-    @PutMapping("/{id}")
-    public Loja atualizar(@PathVariable Long id, @RequestBody Loja lojaAtualizada) {
+    public Loja atualizar(Long id, Loja lojaAtualizada) {
         return lojaRepository.findById(id).map(loja -> {
             loja.setNome(lojaAtualizada.getNome());
             loja.setCnpj(lojaAtualizada.getCnpj());
@@ -38,8 +38,7 @@ public class LojaController {
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }
 
-    @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
+    public void deletar(Long id) {
         lojaRepository.deleteById(id);
     }
 }

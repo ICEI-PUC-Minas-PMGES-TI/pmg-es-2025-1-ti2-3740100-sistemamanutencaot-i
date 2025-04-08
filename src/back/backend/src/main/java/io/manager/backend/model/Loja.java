@@ -1,4 +1,4 @@
-package io.manager.backend;
+package io.manager.backend.model;
 
 import jakarta.persistence.*;
 
