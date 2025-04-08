@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/FormularioLoja.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CadastroLoja = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,8 @@ const CadastroLoja = () => {
 
   const [mensagem, setMensagem] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +30,6 @@ const CadastroLoja = () => {
       nome: formData.nomeLoja,
       cnpj: formData.cnpj,
       endereco: formData.endereco,
-      gerenteId: 1, // Valor de teste enquanto não implementa gerente
     };
 
     try {
@@ -35,6 +37,7 @@ const CadastroLoja = () => {
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
+      navigate("/cadastro-gerente");
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
