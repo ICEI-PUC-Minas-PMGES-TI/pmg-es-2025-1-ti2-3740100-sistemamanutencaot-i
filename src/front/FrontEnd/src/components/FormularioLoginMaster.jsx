@@ -32,7 +32,6 @@ function FormularioLoginMaster() {
       navigate("/");
     } catch (error) {
       console.error("Erro ao cadastrar gerente:", error);
-      alert("Erro ao cadastrar gerente.");
     }
   };
 
