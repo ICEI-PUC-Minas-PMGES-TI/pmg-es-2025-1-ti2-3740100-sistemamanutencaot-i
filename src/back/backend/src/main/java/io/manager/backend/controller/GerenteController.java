@@ -11,7 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/gerentes")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
+})
 public class GerenteController {
 
     @Autowired
