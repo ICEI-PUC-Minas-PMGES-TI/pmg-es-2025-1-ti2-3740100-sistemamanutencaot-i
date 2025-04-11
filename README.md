@@ -8,7 +8,7 @@ O projeto tem como foco a implementação de uma solução escalável e acessív
 
 ## Integrantes
 
-* Felipe Augusto Mendes
+* Felipe Augusto Mendes Pereira
 * Francisco Rafael Pereira 
 * Gabriel Victor Souza Lopes
 * Igor Rodrigo Costa
