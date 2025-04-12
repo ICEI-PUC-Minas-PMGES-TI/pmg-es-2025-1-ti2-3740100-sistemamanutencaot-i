@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/css/FormularioLoja.css";
+import "../assets/css/formularioLoja.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const CadastroLoja = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8080/lojas", novaLoja);
+      const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas", novaLoja);
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
@@ -102,4 +102,3 @@ const CadastroLoja = () => {
 };
 
 export default CadastroLoja;
-
