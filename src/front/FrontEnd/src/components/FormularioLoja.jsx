@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/css/formularioLoja.css";
+import "../assets/css/FormularioLoja.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
