@@ -1,14 +1,22 @@
+package io.manager.backend.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Gerente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private int id;
     private String nome;
     private String email;
     private String senha;
 
-    // Construtor Gerente
     public Gerente() {
     }
 
-    // Construtor com parâmetros
     public Gerente(int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
@@ -16,7 +24,7 @@ public class Gerente {
         this.senha = senha;
     }
 
-    // Gett e Set
+    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -49,7 +57,7 @@ public class Gerente {
         this.senha = senha;
     }
 
-    // Método para exibir informações do gerente, @francisco isso tá certo mano eu vi no chat mais não tenho certeza ainda
+    // Método para exibir informações do gerente
     @Override
     public String toString() {
         return "Gerente {" +

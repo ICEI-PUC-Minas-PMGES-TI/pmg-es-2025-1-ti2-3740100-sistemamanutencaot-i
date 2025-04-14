@@ -1,6 +1,6 @@
 import React from "react";
 import BannerImage from "../assets/images/Imagem3DCentral.png";
-import "../assets/css/bannerLoginMaster.css";
+import "../assets/css/BannerLoginMaster.css";
 
 function BannerLoginMaster() {
   return (

@@ -33,7 +33,6 @@ public class LojaService {
             loja.setNome(lojaAtualizada.getNome());
             loja.setCnpj(lojaAtualizada.getCnpj());
             loja.setEndereco(lojaAtualizada.getEndereco());
-            loja.setGerenteId(lojaAtualizada.getGerenteId());
             return lojaRepository.save(loja);
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }

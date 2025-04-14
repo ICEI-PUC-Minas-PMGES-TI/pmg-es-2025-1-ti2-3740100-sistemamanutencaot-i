@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "../assets/css/formulariologinmaster.css";
+import "../assets/css/Formulariologinmaster.css";
 import VectorIcon from "../assets/images/VectorIcon.png";
 import PadlockIcon from "../assets/images/PadlockIcon.png";
 import EyeIcon from "../assets/images/EyeIcon.png";
+import axios from "axios";
 
 function FormularioLoginMaster() {
   const [email, setEmail] = useState("");
@@ -11,14 +12,27 @@ function FormularioLoginMaster() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (senha !== confirmarSenha) {
       alert("As senhas não coincidem!");
       return;
     }
-    console.log({ email, senha });
-    alert("Cadastro realizado com sucesso!");
+
+    const novoGerente = {
+      nome: "Master",
+      email,
+      senha,
+    };
+
+    try {
+      await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/gerentes", novoGerente);
+      alert("Cadastro de gerente realizado com sucesso!");
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao cadastrar gerente:", error);
+    }
   };
 
   return (

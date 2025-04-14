@@ -1,11 +1,20 @@
+package io.manager.backend.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import io.manager.backend.repository.GerenteRepository;
+import io.manager.backend.model.Gerente;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/gerentes")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
+})
 public class GerenteController {
 
     @Autowired
