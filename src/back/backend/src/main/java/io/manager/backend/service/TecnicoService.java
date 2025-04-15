@@ -38,7 +38,7 @@ public class TecnicoService {
         existente.setCargo(dadosAtualizados.getCargo());
         existente.setEmail(dadosAtualizados.getEmail());
         existente.setSenha(dadosAtualizados.getSenha());
-        existente.setLoja(dadosAtualizados.getLoja());
+        existente.setLoja(dadosAtualizados.getloja());
         return tecnicoRepository.save(existente);
     }
 

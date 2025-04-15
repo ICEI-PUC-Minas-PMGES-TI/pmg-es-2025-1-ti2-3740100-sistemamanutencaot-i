@@ -7,5 +7,4 @@ import io.manager.backend.model.Cliente;
 @Repository
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-List<Cliente> factoryByNome(String nome);
 }   

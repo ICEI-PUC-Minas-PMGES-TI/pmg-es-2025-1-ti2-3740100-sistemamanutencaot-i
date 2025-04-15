@@ -5,8 +5,7 @@ import io.manager.backend.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/clientes")
@@ -27,21 +26,33 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable Integer id) {
-        Cliente cliente = clienteService.getClienteById(id);
-        return ResponseEntity.ok(cliente);
+    public Optional<Cliente> getClienteById(@PathVariable Integer id) {
+        return clienteService.getClienteById(id);
     }
 
     @PostMapping
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-        Cliente createdCliente = clienteService.createCliente(cliente);
+        Cliente createdCliente = clienteService.saveCliente(cliente);
         return ResponseEntity.status(201).body(createdCliente);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente) {
-        Cliente updatedCliente = clienteService.updateCliente(id, cliente);
-        return ResponseEntity.ok(updatedCliente);
+        Optional<Cliente> existingCliente = clienteService.getClienteById(id);
+
+        if (existingCliente.isPresent()) {
+            Cliente updatedCliente = existingCliente.get();
+            
+            updatedCliente.setNome(cliente.getNome());
+            updatedCliente.setCpf(cliente.getCpf());
+            updatedCliente.setTelefone(cliente.getTelefone());
+
+            Cliente savedCliente = clienteService.saveCliente(updatedCliente);
+    
+            return ResponseEntity.ok(savedCliente);
+        }
+
+        return ResponseEntity.status(404).build();
     }
 
     @DeleteMapping("/{id}")

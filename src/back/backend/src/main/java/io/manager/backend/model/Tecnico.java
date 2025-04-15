@@ -1,3 +1,5 @@
+package io.manager.backend.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -95,7 +97,7 @@ public class Tecnico {
                 "IdTecnico=" + IdTecnico +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", Cargo='" + Cargo + '\'' +
+                ", Cargo='" + cargo + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", loja=" + loja +
