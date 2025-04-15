@@ -20,7 +20,7 @@ public class LojaService {
         return lojaRepository.findAll();
     }
 
-    public Optional<Loja> buscarPorId(Long id) {
+    public Optional<Loja> buscarPorId(Integer id) {
         return lojaRepository.findById(id);
     }
 
@@ -28,7 +28,7 @@ public class LojaService {
         return lojaRepository.save(loja);
     }
 
-    public Loja atualizar(Long id, Loja lojaAtualizada) {
+    public Loja atualizar(Integer id, Loja lojaAtualizada) {
         return lojaRepository.findById(id).map(loja -> {
             loja.setNome(lojaAtualizada.getNome());
             loja.setCnpj(lojaAtualizada.getCnpj());
@@ -37,7 +37,7 @@ public class LojaService {
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         lojaRepository.deleteById(id);
     }
 }
