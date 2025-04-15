@@ -7,5 +7,6 @@ import io.manager.backend.model.Loja;
 
 
 @Repository
-public interface LojaRepository extends JpaRepository<Loja, Long> {
+public interface LojaRepository extends JpaRepository<Loja, Integer> {
+
 }
