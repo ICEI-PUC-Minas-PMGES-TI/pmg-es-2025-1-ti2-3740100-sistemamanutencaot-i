@@ -9,6 +9,7 @@
     width: 90%;
     padding: var(--padding-grande);
     position: relative;
+
 }
 
 .banner-background {
@@ -52,7 +53,7 @@
     .banner-container {
         padding: var(--padding-base);
     }
-    
+
     .banner-image {
         max-width: 18.75rem;
         margin-bottom: 1rem;
