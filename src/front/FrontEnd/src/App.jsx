@@ -14,7 +14,7 @@ function App() {
         <Route path="/cadastro-loja" element={<CadastroLoja />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<CadastroLoja />} />
+        <Route path="/" element={<CadastroLoginMaster />} />
       </Routes>
     </Router>
   );
