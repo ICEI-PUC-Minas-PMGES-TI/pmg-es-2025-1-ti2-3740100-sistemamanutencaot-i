@@ -31,8 +31,8 @@ public class LojaController {
     }
 
     @PostMapping
-    public Loja criar(@RequestBody Loja loja, @RequestParam Integer idGerente) {
-        return lojaService.criar(loja, idGerente);
+    public Loja criar(@RequestBody Loja loja) {
+        return lojaService.criar(loja);
     }
 
     @PutMapping("/{id}")

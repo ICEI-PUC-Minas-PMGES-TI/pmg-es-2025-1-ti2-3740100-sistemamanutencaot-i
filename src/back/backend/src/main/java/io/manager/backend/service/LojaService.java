@@ -28,9 +28,8 @@ public class LojaService {
         return lojaRepository.findById(id);
     }
 
-    public Loja criar(Loja loja, Integer idGerente) {
-        Gerente gerente = gerenteRepository.findById(idGerente).orElseThrow(() -> new RuntimeException("Gerente não encontrado"));
-        loja.setIdGerente(gerente.getId());
+    public Loja criar(Loja loja) {
+        Gerente gerente = gerenteRepository.findById(loja.getIdGerente()).orElseThrow(() -> new RuntimeException("Gerente não encontrado"));
         return lojaRepository.save(loja);
     }
 
