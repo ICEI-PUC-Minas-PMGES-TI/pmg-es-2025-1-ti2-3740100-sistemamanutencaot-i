@@ -7,11 +7,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Rota para o cadastro da loja */}
-        <Route path="/cadastro-loja" element={<CadastroLoja />} />
-
         {/* Rota para o cadastro do gerente */}
         <Route path="/cadastro-gerente" element={<CadastroLoginMaster />} />
+        
+        {/* Rota para o cadastro da loja */}
+        <Route path="/cadastro-loja" element={<CadastroLoja />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<CadastroLoja />} />

@@ -4,6 +4,7 @@ import VectorIcon from "../assets/images/VectorIcon.png";
 import PadlockIcon from "../assets/images/PadlockIcon.png";
 import EyeIcon from "../assets/images/EyeIcon.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function FormularioLoginMaster() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function FormularioLoginMaster() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ function FormularioLoginMaster() {
     try {
       await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/gerentes", novoGerente);
       alert("Cadastro de gerente realizado com sucesso!");
-      navigate("/");
+      navigate("/cadastro-loja");
     } catch (error) {
       console.error("Erro ao cadastrar gerente:", error);
     }

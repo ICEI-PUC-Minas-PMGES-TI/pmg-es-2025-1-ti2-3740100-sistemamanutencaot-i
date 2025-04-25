@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../assets/css/FormularioLoja.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const CadastroLoja = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +18,17 @@ const CadastroLoja = () => {
   };
 
   const [mensagem, setMensagem] = useState("");
-  const navigate = useNavigate();
+  const cnpjRegex = /^\d{14}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const cnpjLimpo = formData.cnpj.replace(/[^\d]/g, "");
+
+    if (!cnpjRegex.test(cnpjLimpo)) {
+      setMensagem("CNPJ inválido. Por favor, insira um CNPJ válido.");
+      return;
+    }
 
     const novaLoja = {
       nome: formData.nomeLoja,
@@ -35,7 +41,6 @@ const CadastroLoja = () => {
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
-      navigate("/cadastro-gerente");
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
@@ -63,6 +68,7 @@ const CadastroLoja = () => {
               onChange={handleChange}
               placeholder="Coloque o nome da sua Loja"
               className="entrada-formulario"
+              required
             />
           </div>
 
@@ -76,6 +82,7 @@ const CadastroLoja = () => {
               onChange={handleChange}
               placeholder="Coloque o CNPJ da Loja"
               className="entrada-formulario"
+              required
             />
           </div>
 
@@ -89,6 +96,7 @@ const CadastroLoja = () => {
               onChange={handleChange}
               placeholder="Coloque o endereço da sua Loja"
               className="entrada-formulario"
+              required
             />
           </div>
         </div>
