@@ -31,7 +31,7 @@ function FormularioLoginMaster() {
     try {
       await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/gerentes", novoGerente);
       alert("Cadastro de gerente realizado com sucesso!");
-      navigate("/cadastro-loja");
+      navigate("/cadastro-loja", { state: { idGerente: response.data.id } });
     } catch (error) {
       console.error("Erro ao cadastrar gerente:", error);
     }

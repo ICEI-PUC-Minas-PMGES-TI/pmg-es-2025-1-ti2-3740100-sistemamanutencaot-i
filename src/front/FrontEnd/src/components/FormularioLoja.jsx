@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "../assets/css/FormularioLoja.css";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const CadastroLoja = () => {
+  const location = useLocation();
+  const { idGerente } = location.state || {};
+
   const [formData, setFormData] = useState({
     nomeLoja: "",
     cnpj: "",
@@ -34,6 +38,7 @@ const CadastroLoja = () => {
       nome: formData.nomeLoja,
       cnpj: formData.cnpj,
       endereco: formData.endereco,
+      idGerente: idGerente,
     };
 
     try {
