@@ -22,21 +22,13 @@ const CadastroLoja = () => {
   };
 
   const [mensagem, setMensagem] = useState("");
-  const cnpjRegex = /^\d{14}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cnpjLimpo = formData.cnpj.replace(/[^\d]/g, "");
-
-    if (!cnpjRegex.test(cnpjLimpo)) {
-      setMensagem("CNPJ inválido. Por favor, insira um CNPJ válido.");
-      return;
-    }
-
     const novaLoja = {
       nome: formData.nomeLoja,
-      cnpj: cnpjLimpo,
+      cnpj: formData.cnpj,
       endereco: formData.endereco,
       idGerente: idGerente,
     };
