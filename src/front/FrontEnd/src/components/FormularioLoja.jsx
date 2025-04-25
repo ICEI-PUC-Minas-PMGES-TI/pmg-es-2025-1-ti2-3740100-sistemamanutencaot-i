@@ -36,7 +36,7 @@ const CadastroLoja = () => {
 
     const novaLoja = {
       nome: formData.nomeLoja,
-      cnpj: formData.cnpj,
+      cnpj: cnpjLimpo,
       endereco: formData.endereco,
       idGerente: idGerente,
     };
