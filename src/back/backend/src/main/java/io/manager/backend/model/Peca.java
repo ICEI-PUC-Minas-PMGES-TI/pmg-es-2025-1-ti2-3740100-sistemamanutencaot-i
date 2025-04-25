@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 
-public class peca{
+public class Peca{
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -16,13 +16,13 @@ private String nome;
 private String tipo;
 private String marca;
 private Integer quantidade;
-private Dooble preco;
+private Double preco;
 private Integer quantidade_estoque;
 
-public peca() {
+public Peca() {
 }
 
-public peca(int id, String nome, String tipo, String marca, Integer quantidade, String preco, Integer quantidade_estoque) {
+public Peca(int id, String nome, String tipo, String marca, Integer quantidade, Double preco, Integer quantidade_estoque) {
     this.id = id;
     this.nome = nome;
     this.tipo = tipo;
@@ -73,11 +73,11 @@ public void setQuantidade(Integer quantidade) {
     this.quantidade = quantidade;
 }
 
-public String getPreco() {
+public Double getPreco() {
     return preco;
 }
 
-public void setPreco(String preco) {
+public void setPreco(Double preco) {
     this.preco = preco;
 }
 

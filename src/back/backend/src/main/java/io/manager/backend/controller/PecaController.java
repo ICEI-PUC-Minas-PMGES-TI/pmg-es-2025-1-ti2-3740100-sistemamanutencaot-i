@@ -1,7 +1,7 @@
 package io.manager.backend.controller;
 
 import io.manager.backend.model.Peca;
-import io.manager.backend.service.PecaServise;
+import io.manager.backend.service.PecaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -14,35 +14,35 @@ import java.util.*;
 })
 
 public class PecaController {
-    private final PecaServise pecaServise;
+    private final PecaService PecaService;
 
-    public PecaController(PecaServise pecaServise) {
-        this.pecaServise = pecaServise;
+    public PecaController(PecaService PecaService) {
+        this.PecaService = PecaService;
     }
 
     @GetMapping("/all")
     public List<Peca> getAllPecas() {
-        return pecaServise.getAllPecas();
+        return PecaService.getAllPecas();
     }
 
     @GetMapping("/{id}")
-    public Optional<Peca> getPecaById(@PathVariable Long id) {
-        return pecaServise.getPecaById(id);
+    public Optional<Peca> getPecaById(@PathVariable Integer id) {
+        return PecaService.getPecaById(id);
     }
 
     @PostMapping("/add")
     public Peca addPeca(@RequestBody Peca peca) {
-        return pecaServise.addPeca(peca);
+        return PecaService.savePeca(peca);
     }
 
     @PutMapping("/update/{id}")
-    public Peca updatePeca(@PathVariable Long id, @RequestBody Peca peca) {
-        return pecaServise.updatePeca(id, peca);
+    public Peca updatePeca(@PathVariable Integer id, @RequestBody Peca peca) {
+        return PecaService.updatePeca(id, peca);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deletePeca(@PathVariable Long id) {
-        pecaServise.deletePeca(id);
+    public void deletePeca(@PathVariable Integer id) {
+        PecaService.deletePeca(id);
     }
 
 }

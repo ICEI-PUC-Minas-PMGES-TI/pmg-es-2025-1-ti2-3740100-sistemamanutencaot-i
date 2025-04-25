@@ -26,7 +26,7 @@ public class LojaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Loja> buscarPorId(@PathVariable Long id) {
+    public Optional<Loja> buscarPorId(@PathVariable Integer id) {
         return lojaService.buscarPorId(id);
     }
 
@@ -36,12 +36,12 @@ public class LojaController {
     }
 
     @PutMapping("/{id}")
-    public Loja atualizar(@PathVariable Long id, @RequestBody Loja lojaAtualizada) {
+    public Loja atualizar(@PathVariable Integer id, @RequestBody Loja lojaAtualizada) {
         return lojaService.atualizar(id, lojaAtualizada);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
+    public void deletar(@PathVariable Integer id) {
         lojaService.deletar(id);
     }
 }

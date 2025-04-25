@@ -9,33 +9,33 @@ import java.util.Optional;
 
 @Service
 public class PecaService {
-    private final PecaRepository pecaRepository;
+    private final PecaRepository PecaRepository;
 
-    public PecaService(PecaRepository pecaRepository) {
-        this.pecaRepository = pecaRepository;
+    public PecaService(PecaRepository PecaRepository) {
+        this.PecaRepository = PecaRepository;
     }
 
     public List<Peca> getAllPecas() {
-        return pecaRepository.findAll();
+        return PecaRepository.findAll();
     }
 
     public Optional<Peca> getPecaById(Integer id) {
-        return pecaRepository.findById(id);
+        return PecaRepository.findById(id);
     }
 
     public Peca savePeca(Peca peca) {
-        return pecaRepository.save(peca);
+        return PecaRepository.save(peca);
     }
 
     public Peca updatePeca(Integer id, Peca peca) {
-        if (!pecaRepository.existsById(id)) {
+        if (!PecaRepository.existsById(id)) {
             return null; 
         }
         peca.setId(id);
-        return pecaRepository.save(peca);
+        return PecaRepository.save(peca);
     }
 
     public void deletePeca(Integer id) {
-        pecaRepository.deleteById(id);
+        PecaRepository.deleteById(id);
     }
 }
