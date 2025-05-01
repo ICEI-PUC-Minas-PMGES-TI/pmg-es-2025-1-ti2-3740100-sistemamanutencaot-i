@@ -25,6 +25,6 @@ body {
 
 /* Elemento da direita */
 .elementoDireito {
-  margin-left: auto;
+  margin-left: 100px;
   transform: translateX(50px);
 }
