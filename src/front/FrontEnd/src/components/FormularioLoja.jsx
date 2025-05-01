@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "../assets/css/FormularioLoja.css";
+import styles from "../assets/css/FormularioLoja.module.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const CadastroLoja = () => {
+const FormularioLoja = () => {
   const location = useLocation();
   const { idGerente } = location.state || {};
 
@@ -34,73 +34,74 @@ const CadastroLoja = () => {
     };
 
     try {
-      const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas", novaLoja);
+      const response = await axios.post(
+        "https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas",
+        novaLoja
+      );
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
-      alert("Loja cadastrada com sucesso!"); // Alerta de sucesso
+      alert("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
-      alert("Erro ao cadastrar loja. Por favor, tente novamente."); // Alerta de erro
+      alert("Erro ao cadastrar loja. Por favor, tente novamente.");
     }
   };
 
   return (
-    <div className="container-formulario">
-      <form onSubmit={handleSubmit} className="envoltorio-formulario">
-        <h1 className="titulo-formulario">Cadastre sua Loja aqui!</h1>
-        <p className="descricao-formulario">
+    <div className={styles.containerFormulario}>
+      <form onSubmit={handleSubmit} className={styles.envoltorioFormulario}>
+        <h1 className={styles.tituloFormulario}>Cadastre sua Loja aqui!</h1>
+        <p className={styles.descricaoFormulario}>
           Se você já possui uma loja cadastrada
           <br />
-          Você pode realizar o acesso <span className="texto-azul">aqui!</span>
+          Você pode realizar o acesso{" "}
+          <span className={styles.textoAzul}>aqui!</span>
         </p>
 
         <div>
-          {/* Nome da Loja */}
-          <div className="grupo-campo-formulario">
-            <label className="rotulo-formulario">Nome da Loja</label>
+          <div className={styles.grupoCampoFormulario}>
+            <label className={styles.rotuloFormulario}>Nome da Loja</label>
             <input
               type="text"
               name="nomeLoja"
               value={formData.nomeLoja}
               onChange={handleChange}
               placeholder="Coloque o nome da sua Loja"
-              className="entrada-formulario"
+              className={styles.entradaFormulario}
               required
             />
           </div>
 
-          {/* CNPJ */}
-          <div className="grupo-campo-formulario">
-            <label className="rotulo-formulario">CNPJ</label>
+          <div className={styles.grupoCampoFormulario}>
+            <label className={styles.rotuloFormulario}>CNPJ</label>
             <input
               type="text"
               name="cnpj"
               value={formData.cnpj}
               onChange={handleChange}
               placeholder="Coloque o CNPJ da Loja"
-              className="entrada-formulario"
+              className={styles.entradaFormulario}
               required
             />
           </div>
 
-          {/* Endereço */}
-          <div className="grupo-campo-formulario">
-            <label className="rotulo-formulario">Endereço</label>
+          <div className={styles.grupoCampoFormulario}>
+            <label className={styles.rotuloFormulario}>Endereço</label>
             <input
               type="text"
               name="endereco"
               value={formData.endereco}
               onChange={handleChange}
               placeholder="Coloque o endereço da sua Loja"
-              className="entrada-formulario"
+              className={styles.entradaFormulario}
               required
             />
           </div>
         </div>
 
-        <button type="submit" className="botao-formulario">
+        <button type="submit" className={styles.botaoFormulario}>
           Avançar
         </button>
       </form>
@@ -108,4 +109,4 @@ const CadastroLoja = () => {
   );
 };
 
-export default CadastroLoja;
+export default FormularioLoja;

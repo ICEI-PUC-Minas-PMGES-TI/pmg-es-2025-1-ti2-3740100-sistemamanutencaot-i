@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
 
 /* Estilos base */
-.container-formulario {
+.containerFormulario {
     min-height: 100vh;
     background-color: #F1EFEC;
     display: flex;
@@ -11,14 +11,14 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-.envoltorio-formulario {
+.envoltorioFormulario {
     background-color: #F1EFEC;
     padding: 1rem;
     border-radius: 0.5rem;
     width: 100%;
 }
 
-.titulo-formulario {
+.tituloFormulario {
     font-size: 3rem;
     line-height: 2.5rem;
     font-weight: 900;
@@ -26,7 +26,7 @@
     margin-bottom: 3.5rem;
 }
 
-.descricao-formulario {
+.descricaoFormulario {
     color: black;
     margin-bottom: 5.5rem;
     line-height: 1.1;
@@ -34,18 +34,18 @@
     font-size: 1.4rem;
 }
 
-.texto-azul {
+.textoAzul {
     color: #0C21C1;
 }
 
-.rotulo-formulario {
+.rotuloFormulario {
     display: block;
     font-size: 1.8rem;
     font-weight: 900;
     color: #0C21C1;
 }
 
-.entrada-formulario {
+.entradaFormulario {
     max-width: 540px;
     width: 100%;
     height: 30px;
@@ -59,11 +59,11 @@
     background-color: #F1EFEC;
 }
 
-.entrada-formulario:focus {
+.entradaFormulario:focus {
     outline: none;
 }
 
-.botao-formulario {
+.botaoFormulario {
     width: 100%;
     background-color: #0C21C1;
     color: white;
@@ -77,10 +77,10 @@
     margin-top: 1.5rem;
 }
 
-.botao-formulario:hover {
+.botaoFormulario:hover {
     background-color: #000842;
 }
 
-.grupo-campo-formulario {
+.grupoCampoFormulario {
     margin-bottom: 0.5rem;
 }
