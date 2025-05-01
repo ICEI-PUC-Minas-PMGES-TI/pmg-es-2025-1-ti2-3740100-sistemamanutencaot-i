@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/* Estilos base */
+.container-formulario {
+    min-height: 100vh;
+    background-color: #F1EFEC;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem 1rem 1rem; /* Ajuste as margens conforme necessário */
+    font-family: 'Work Sans', sans-serif;
+    
+    
+}
+
+.container-formulario *{
+    margin-left: auto;
+}
+
+.envoltorio-formulario {
+    background-color: #F1EFEC;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-formulario {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #0C21C1;
+    margin-bottom: 2rem;
+}
+
+.descricao-formulario {
+    color: #333;
+    margin-bottom: 3rem;
+    line-height: 1.4;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.texto-azul {
+    color: #0C21C1;
+}
+
+.grupo-campo-formulario {
+    margin-bottom: 1.5rem;
+}
+
+.rotulo-formulario {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0C21C1;
+    margin-bottom: 0.5rem;
+}
+
+.entrada-formulario {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: none;
+    border-bottom: 2px solid #000842;
+    background-color: transparent;
+    transition: border-color 0.3s ease;
+}
+
+.entrada-formulario:focus {
+    outline: none;
+    border-color: #0C21C1;
+}
+
+.botao-formulario {
+    width: 100%;
+    background-color: #0C21C1;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 2rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-formulario:hover {
+    background-color: #000842;
+}
