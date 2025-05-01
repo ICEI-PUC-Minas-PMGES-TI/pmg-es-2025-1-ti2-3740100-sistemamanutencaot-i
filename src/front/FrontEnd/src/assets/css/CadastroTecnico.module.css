@@ -7,7 +7,7 @@ body {
 
 /* Container principal lado a lado */
 .containerHorizontal {
-  background-color: #FFFFFF;
+  background-color: #F1EFEC;
   display: flex;
   align-items: center;
   justify-content: flex-end;
