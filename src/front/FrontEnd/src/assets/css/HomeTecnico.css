@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+body {    
+   
+  font-family: 'Work Sans', sans-serif;
+  background-color: #e9ebe4;
+  color: #0a1446;
+}
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+}
