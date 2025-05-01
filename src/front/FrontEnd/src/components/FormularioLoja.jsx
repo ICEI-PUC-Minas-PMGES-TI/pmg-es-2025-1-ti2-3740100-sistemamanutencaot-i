@@ -37,10 +37,12 @@ const CadastroLoja = () => {
       const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas", novaLoja);
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
+      alert("Loja cadastrada com sucesso!"); // Alerta de sucesso
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
+      alert("Erro ao cadastrar loja. Por favor, tente novamente."); // Alerta de erro
     }
   };
 
