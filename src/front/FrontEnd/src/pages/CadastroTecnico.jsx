@@ -1,16 +1,15 @@
 import React from "react";
 import FormularioTecnico from "../components/FomularioTecnico.jsx";
 import BannerTecnico from "../components/BannerTecnico.jsx";
-import "../assets/css/CadastroTecnico.css";
+import styles from "../assets/css/CadastroTecnico.module.css";
 
 function CadastroTecnico() {
   return (
-    <div className="container-lado-a-lado">
-
-      <div className="elemento-esquerda">
+    <div className={styles.containerHorizontal}>
+      <div className={styles.elementoEsquerdo}>
         <BannerTecnico />
       </div>
-      <div className="elemento-direita">
+      <div className={styles.elementoDireito}>
         <FormularioTecnico />
       </div>
     </div>

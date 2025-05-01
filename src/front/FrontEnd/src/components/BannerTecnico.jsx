@@ -1,13 +1,13 @@
 import React from "react";
-import "../assets/css/BannerTecnico.css";
+import styles from "../assets/css/BannerTecnico.module.css"; // <- CSS como módulo
 import ImagemBanner from "../assets/images/Group 4.png";
 
 const CadastroTecnico = () => {
   return (
-    <div className="conteiner-principal">
+    <div className={styles.containerPrincipal}>
       <img
         src={ImagemBanner}
-        alt="Banner Tecnico"
+        alt="Banner Técnico"
       />
     </div>
   );

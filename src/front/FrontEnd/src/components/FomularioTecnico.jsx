@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "../assets/css/FormularioTecnico.css";
+import styles from "../assets/css/FormularioTecnico.module.css"; // <- Importando como módulo
 import axios from "axios";
 
 const FormularioTecnico = () => {
-
   const [formData, setFormData] = useState({
     nomeTecnico: "",
     telefone: "",
@@ -47,60 +46,60 @@ const FormularioTecnico = () => {
   };
 
   return (
-    <div className="container-formulario">
-      <form onSubmit={handleSubmit} className="envoltorio-formulario">
-        <h1 className="titulo-formulario">Cadastrar novo Técnico</h1>
-        <p className="descricao-formulario">
+    <div className={styles.containerFormulario}>
+      <form onSubmit={handleSubmit} className={styles.envoltorioFormulario}>
+        <h1 className={styles.tituloFormulario}>Cadastrar novo Técnico</h1>
+        <p className={styles.descricaoFormulario}>
           Adicione um novo técnico à equipe e permita que ele acompanhe e{" "}
-          <span className="texto-azul">atualize</span> os{" "}
-          <span className="texto-azul">reparos</span>.
+          <span className={styles.textoAzul}>atualize</span> os{" "}
+          <span className={styles.textoAzul}>reparos</span>.
         </p>
 
-        <div className="grupo-campo-formulario">
-          <label className="rotulo-formulario">Nome</label>
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Nome</label>
           <input
             type="text"
             name="nomeTecnico"
             value={formData.nomeTecnico}
             onChange={handleChange}
             placeholder="Coloque o nome do técnico"
-            className="entrada-formulario"
+            className={styles.entradaFormulario}
             required
           />
         </div>
 
-        <div className="grupo-campo-formulario">
-          <label className="rotulo-formulario">Telefone</label>
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Telefone</label>
           <input
             type="text"
             name="telefone"
             value={formData.telefone}
             onChange={handleChange}
             placeholder="Coloque o telefone do técnico"
-            className="entrada-formulario"
+            className={styles.entradaFormulario}
             required
           />
         </div>
 
-        <div className="grupo-campo-formulario">
-          <label className="rotulo-formulario">Email</label>
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Email</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="Coloque o email do técnico"
-            className="entrada-formulario"
+            className={styles.entradaFormulario}
             required
           />
         </div>
 
-        <div className="grupo-campo-formulario">
-          <label className="rotulo-formulario">Cargo</label>
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Cargo</label>
           <select
             value={opcaoSelecionada}
             onChange={(e) => setOpcaoSelecionada(e.target.value)}
-            className="entrada-formulario"
+            className={styles.entradaFormulario}
             required
           >
             <option value="" disabled>Selecione um cargo</option>
@@ -110,7 +109,7 @@ const FormularioTecnico = () => {
           </select>
         </div>
 
-        <button type="submit" className="botao-formulario">
+        <button type="submit" className={styles.botaoFormulario}>
           Cadastrar
         </button>
 
