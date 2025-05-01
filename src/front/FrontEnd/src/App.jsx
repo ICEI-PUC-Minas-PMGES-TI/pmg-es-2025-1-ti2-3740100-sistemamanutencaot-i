@@ -12,7 +12,7 @@ function App() {
         {/* Rota para o cadastro da loja */}
         <Route path="/cadastro-loja" element={<CadastroLoja />} />
         
-        {/* Rota para o cadastro do gerente */}
+        {/* Rota para o cadastro de técnico */}
         <Route path="/cadastro-tecnico" element={<CadastroTecnico />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}

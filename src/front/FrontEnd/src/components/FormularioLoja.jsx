@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "../assets/css/FormularioLoja.module.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FormularioLoja = () => {
   const location = useLocation();
   const { idGerente } = location.state || {};
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     nomeLoja: "",
@@ -42,6 +44,7 @@ const FormularioLoja = () => {
       setMensagem("Loja cadastrada com sucesso!");
       alert("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
+      navigate("/cadastro-tecnico")
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
