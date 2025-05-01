@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../assets/css/FormularioTecnico.module.css"; // <- Importando como módulo
+import styles from "../assets/css/FormularioTecnico.module.css"; 
 import axios from "axios";
 
 const FormularioTecnico = () => {

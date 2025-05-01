@@ -2,17 +2,17 @@ import React from "react";
 import FormularioLoja from "../components/FormularioLoja.jsx";
 import BannerLoja from "../components/BannerLoja.jsx";
 import Logo from "../assets/images/logo.png";
-import "../assets/css/CadastroLoja.css";
+import styles from "../assets/css/CadastroLoja.module.css";
 
 function CadastroLoja() {
   return (
-    <div className="container-horizontal">
-      <img src={Logo} alt="Logo da empresa" className="logo-topo" />
+    <div className={styles.containerHorizontal}>
+      <img src={Logo} alt="Logo da empresa" className={styles.logoTopo} />
 
-      <div className="elemento-esquerdo">
+      <div className={styles.elementoEsquerdo}>
         <FormularioLoja />
       </div>
-      <div className="elemento-direito">
+      <div className={styles.elementoDireito}>
         <BannerLoja />
       </div>
     </div>

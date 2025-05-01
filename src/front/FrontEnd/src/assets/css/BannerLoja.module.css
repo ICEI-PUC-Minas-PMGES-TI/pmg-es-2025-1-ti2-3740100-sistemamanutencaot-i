@@ -4,7 +4,7 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
-.conteiner-principal {
+.conteinerPrincipal {
   border-radius: 20px;
   padding: 40px 40px;
   display: flex;
@@ -17,7 +17,7 @@ body {
   height: 810px;
 }
 
-.titulo-destaque {
+.tituloDestaque {
   color: white;
   font-size: 2.5rem;
   margin-bottom: 30px;
@@ -28,7 +28,7 @@ body {
   text-align: left;
 }
 
-.texto-destaque {
+.textoDestaque {
   color: white;
   font-size: 20px;
   line-height: 23px;
@@ -38,7 +38,7 @@ body {
   text-align: left;
 }
 
-.imagem-banner {
+.imagemBanner {
   max-width: 100%;
   height: 512px;
 }
