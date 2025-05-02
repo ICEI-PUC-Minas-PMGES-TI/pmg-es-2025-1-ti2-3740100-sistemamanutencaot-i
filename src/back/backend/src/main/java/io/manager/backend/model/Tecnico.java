@@ -17,12 +17,11 @@ public class Tecnico {
     private String cargo;
     private String email;
     private String senha;
-    private int loja;
 
     public Tecnico() {
    }
 
-    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha, int loja)
+    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha)
     {
         this.IdTecnico = IdTecnico;
         this.nome = nome;
@@ -30,7 +29,6 @@ public class Tecnico {
         this.cargo = cargo;
         this.email = email;
         this.senha = senha;
-        this.loja = loja; 
     }
 
     // Getters e Setters
@@ -82,13 +80,6 @@ public class Tecnico {
         this.senha = senha;
     }
 
-    public int getloja() {
-        return loja;
-    }
-
-    public void setLoja(int loja) {
-        this.loja = loja;
-    }
 
     //metodos para exibir os dados do tecnico
     @Override
@@ -100,7 +91,6 @@ public class Tecnico {
                 ", Cargo='" + cargo + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", loja=" + loja +
                 '}';
     }
 
