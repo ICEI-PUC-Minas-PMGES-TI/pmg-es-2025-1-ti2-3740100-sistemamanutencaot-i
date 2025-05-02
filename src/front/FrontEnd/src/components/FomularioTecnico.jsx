@@ -26,9 +26,10 @@ const FormularioTecnico = () => {
     const novoTecnico = {
       nome: formData.nomeTecnico,
       telefone: formData.telefone,
-      cpf: 12345678912345,
+      cpf: "12345678912",
       email: formData.email,
       cargo: opcaoSelecionada,
+      senha: "senhaPadrao" 
     };
 
     try {
@@ -104,9 +105,9 @@ const FormularioTecnico = () => {
             required
           >
             <option value="" disabled>Selecione um cargo</option>
-            <option value="0">Estagiário</option>
-            <option value="1">Técnico de PC</option>
-            <option value="2">Técnico de Notebook</option>
+            <option value="Estagiário">Estagiário</option>
+            <option value="Técnico de PC">Técnico de PC</option>
+            <option value="Técnico de Notebook">Técnico de Notebook</option>
           </select>
         </div>
 
