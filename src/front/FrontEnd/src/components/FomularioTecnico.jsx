@@ -25,11 +25,11 @@ const FormularioTecnico = () => {
 
     const novoTecnico = {
       nome: formData.nomeTecnico,
-      telefone: formData.telefone,
+      loja: formData.telefone,
       cpf: "12345678912",
       email: formData.email,
       cargo: opcaoSelecionada,
-      senha: "senhaPadrao" 
+      senha: "senhaPadrao"
     };
 
     try {
@@ -73,7 +73,7 @@ const FormularioTecnico = () => {
         <div className={styles.grupoCampoFormulario}>
           <label className={styles.rotuloFormulario}>Telefone</label>
           <input
-            type="text"
+            type="number"
             name="telefone"
             value={formData.telefone}
             onChange={handleChange}

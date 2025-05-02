@@ -16,18 +16,18 @@ public class Tecnico {
     private String cargo;
     private String email;
     private String senha;
-    private String telefone; // <-- ADICIONAR ESTE CAMPO
+    private String loja; // <-- Campo atualizado
 
     public Tecnico() {}
 
-    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha, String telefone) {
+    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha, String loja) {
         this.IdTecnico = IdTecnico;
         this.nome = nome;
         this.cpf = cpf;
         this.cargo = cargo;
         this.email = email;
         this.senha = senha;
-        this.telefone = telefone; // <-- ADICIONAR AQUI
+        this.loja = loja;
     }
 
     public int getIdTecnico() {
@@ -78,12 +78,12 @@ public class Tecnico {
         this.senha = senha;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getLoja() {
+        return loja;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setLoja(String loja) {
+        this.loja = loja;
     }
 
     @Override
@@ -92,10 +92,10 @@ public class Tecnico {
                 "IdTecnico=" + IdTecnico +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", Cargo='" + cargo + '\'' +
+                ", cargo='" + cargo + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", telefone='" + telefone + '\'' + // <-- EXIBIR NO toString
+                ", loja='" + loja + '\'' +
                 '}';
     }
 }
