@@ -16,7 +16,7 @@ function App() {
         <Route path="/cadastro-tecnico" element={<CadastroTecnico />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<CadastroLoginMaster />} />
+        <Route path="/" element={<CadastroTecnico />} />
       </Routes>
     </Router>
   );

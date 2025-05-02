@@ -9,6 +9,7 @@ const CadastroTecnico = () => {
         src={ImagemBanner}
         alt="Banner Técnico"
       />
+
     </div>
   );
 };
