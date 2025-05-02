@@ -41,7 +41,7 @@ const FormularioTecnico = () => {
       setFormData({ nomeTecnico: "", telefone: "", email: "" });
       setOpcaoSelecionada("");
     } catch (error) {
-      console.error("Erro ao cadastrar técnico:", error);
+      console.error("Erro ao cadastrar técnico:", error.response?.data || error.message);
       setMensagem("Erro ao cadastrar técnico.");
     }
   };
