@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/peca")
+@RequestMapping("/pecas")
 @CrossOrigin(origins = {
     "http://localhost:5173",
     "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
