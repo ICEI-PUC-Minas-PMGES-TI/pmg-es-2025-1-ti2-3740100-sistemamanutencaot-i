@@ -40,8 +40,11 @@ function FormularioLoginMaster() {
   return (
     <div className="form-container">
       <div className="form-wrapper">
-        <h1 className="form-title">Cadastrar login Master para a loja</h1>
-        
+        <h1 className="form-title">Cadastrar Gerente aqui!</h1>
+        <p className="form-subtitle">
+          Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="#">aqui</a>!
+        </p>
+
         <form onSubmit={handleSubmit}>
           <div className="form-field-group">
             <label htmlFor="email" className="form-label">Email</label>
@@ -51,7 +54,7 @@ function FormularioLoginMaster() {
                 type="email"
                 id="email"
                 className="form-input"
-                placeholder="Coloque seu Email"
+                placeholder="Coloque o Email da sua Loja"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -67,7 +70,7 @@ function FormularioLoginMaster() {
                 type={showPassword ? "text" : "password"}
                 id="senha"
                 className="form-input"
-                placeholder="Coloque sua senha"
+                placeholder="Coloque o CNPJ da Loja"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 required
@@ -90,7 +93,7 @@ function FormularioLoginMaster() {
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmarSenha"
                 className="form-input"
-                placeholder="Confirme sua senha"
+                placeholder="Coloque o endereço da sua Loja"
                 value={confirmarSenha}
                 onChange={(e) => setConfirmarSenha(e.target.value)}
                 required
@@ -106,7 +109,7 @@ function FormularioLoginMaster() {
           </div>
           
           <div className="button-container">
-            <button type="submit" className="form-button">Finalizar</button>
+            <button type="submit" className="form-button">Avançar</button>
           </div>
         </form>
       </div>

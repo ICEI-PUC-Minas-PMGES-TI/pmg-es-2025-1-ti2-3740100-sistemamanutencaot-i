@@ -3,6 +3,7 @@ import "./App.css";
 import CadastroLoja from "./pages/CadastroLoja.jsx";
 import CadastroLoginMaster from "./pages/CadastroLoginMaster.jsx";
 import CadastroTecnico from "./pages/CadastroTecnico.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
