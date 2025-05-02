@@ -26,6 +26,7 @@ const FormularioTecnico = () => {
     const novoTecnico = {
       nome: formData.nomeTecnico,
       telefone: formData.telefone,
+      cpf: 12345678912345,
       email: formData.email,
       cargo: opcaoSelecionada,
     };
