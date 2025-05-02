@@ -28,7 +28,8 @@ const FormularioTecnico = () => {
       cpf: "12345678912",
       email: formData.email,
       cargo: opcaoSelecionada,
-      senha: "senhaPadrao" 
+      senha: "senhaPadrao",
+      loja: 1
     };
 
     try {
