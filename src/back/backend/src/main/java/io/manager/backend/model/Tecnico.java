@@ -6,33 +6,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-
 public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int IdTecnico;
+
     private String nome;
     private String cpf;
     private String cargo;
     private String email;
     private String senha;
+    private String telefone; // <-- ADICIONAR ESTE CAMPO
 
-    public Tecnico() {
-   }
+    public Tecnico() {}
 
-    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha)
-    {
+    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha, String telefone) {
         this.IdTecnico = IdTecnico;
         this.nome = nome;
         this.cpf = cpf;
         this.cargo = cargo;
         this.email = email;
         this.senha = senha;
+        this.telefone = telefone; // <-- ADICIONAR AQUI
     }
 
-    // Getters e Setters
-    public int getIdTecnico(){
+    public int getIdTecnico() {
         return IdTecnico;
     }
 
@@ -80,8 +78,14 @@ public class Tecnico {
         this.senha = senha;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
 
-    //metodos para exibir os dados do tecnico
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     @Override
     public String toString() {
         return "Tecnico{" +
@@ -91,7 +95,7 @@ public class Tecnico {
                 ", Cargo='" + cargo + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
+                ", telefone='" + telefone + '\'' + // <-- EXIBIR NO toString
                 '}';
     }
-
 }

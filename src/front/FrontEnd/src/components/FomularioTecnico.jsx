@@ -25,10 +25,11 @@ const FormularioTecnico = () => {
 
     const novoTecnico = {
       nome: formData.nomeTecnico,
+      telefone: formData.telefone,
       cpf: "12345678912",
       email: formData.email,
       cargo: opcaoSelecionada,
-      senha: "senhaPadrao"
+      senha: "senhaPadrao" 
     };
 
     try {
@@ -41,7 +42,7 @@ const FormularioTecnico = () => {
       setFormData({ nomeTecnico: "", telefone: "", email: "" });
       setOpcaoSelecionada("");
     } catch (error) {
-      console.error("Erro ao cadastrar técnico:", error.response?.data || error.message);
+      console.error("Erro ao cadastrar técnico:", error);
       setMensagem("Erro ao cadastrar técnico.");
     }
   };
