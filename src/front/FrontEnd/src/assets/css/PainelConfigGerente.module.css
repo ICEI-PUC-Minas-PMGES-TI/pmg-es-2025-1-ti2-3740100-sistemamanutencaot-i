@@ -1,0 +1,58 @@
+.conteinerPrincipal {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 746px;
+  
+    padding: 0 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  .field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    
+  }
+  
+  .fieldText {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fieldLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 2px;
+  }
+  
+  .fieldValue {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .editButton {
+    background-color: #0029ff;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .iconEdit {
+    width: 16px;
+    height: 16px;
+    background-image: url('/images/edit.svg'); /* Supondo que esteja em /public/images/ */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  
