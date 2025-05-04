@@ -298,9 +298,9 @@ Experiência do Usuário: React.js, com sua abordagem baseada em componentes, pe
 
 ### 3.3. Modelagem dos Processos
 
-📌 [Processo 1 - Cadastro de Loja](processo-1-cadastro-de-loja.md "Detalhamento do Processo 1.")  
-📌 [Processo 2 - Cadastro de Cliente](processo-2-cadastro-de-cliente.md "Detalhamento do Processo 2.")  
-📌 [Processo 3 - Cadastro de Técnico](processo-3-cadastro-de-tecnico.md "Detalhamento do Processo 3.")  
+📌 [Processo 1 - Cadastro de Loja](processo-1-gerenciar-cadastro-de-loja.md "Detalhamento do Processo 1.")  
+📌 [Processo 2 - Cadastro de Cliente](processo-2-gerenciar-cadastro-de-cliente.md "Detalhamento do Processo 2.")  
+📌 [Processo 3 - Cadastro de Técnico](processo-3-gerenciar-cadastro-de-tecnico.md "Detalhamento do Processo 3.")  
 📌 [Processo 4 - Diagnóstico](processo-4-diagnostico.md "Detalhamento do Processo 4.")  
 📌 [Processo 5 - Ordem de Serviço](processo-5-ordem-de-servico.md "Detalhamento do Processo 5.")  
 📌 [Processo 6 - Processo Financeiro](processo-6-processo-financeiro.md "Detalhamento do Processo 6.")  
