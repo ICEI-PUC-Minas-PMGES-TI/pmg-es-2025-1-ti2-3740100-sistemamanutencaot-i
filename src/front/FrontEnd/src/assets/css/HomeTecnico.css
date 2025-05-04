@@ -1,12 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap');
 
-body {    
-   
+body {
+  margin: 0;
   font-family: 'Work Sans', sans-serif;
   background-color: #e9ebe4;
   color: #0a1446;
 }
 
 h1, h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Lateral */
+.sidebar {
+  background-color: #0a1446;
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 2rem;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.logout {
+  margin-top: auto;
+  transform: rotate(180deg);
+}
+
+/* Conteúdo */
+.conteudo {
+  flex: 1;
+  padding: 2rem 3rem;
+}
+
+.cabecalho h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.subtitulo {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: -6px;
+}
+
+.busca-container {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  margin: 2rem 0;
+}
+
+.campo-busca {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  font-size: 0.9rem;
+  color: #0a1446;
+}
+
+.botao-busca,
+.botao-filtro {
+  background-color: #0a1446;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.botao-busca {
+  border-radius: 0 6px 6px 0;
+}
+
+.botao-filtro {
+  margin-left: 0.5rem;
+  border-radius: 6px;
+}
+
+/* Cards */
+.titulo-reparos {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #0a1446;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.device-icon {
+  font-size: 1rem;
+}
+
+.nome {
+  font-weight: 700;
+}
+
+.servico {
+  font-size: 0.625rem;
+}
+
+.status-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+}
+
+.card-body {
+  padding: 1rem;
+  font-size: 0.75rem;
+}
+
+.sintomas-titulo {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.sintomas-texto {
+  background-color: #e9ebe4;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
 }
