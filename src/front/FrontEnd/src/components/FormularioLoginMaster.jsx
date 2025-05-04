@@ -42,8 +42,8 @@ function FormularioLoginMaster() {
       <div className="form-wrapper">
         <h1 className="form-title">Cadastrar Gerente aqui!</h1>
         <p className="form-subtitle">
-          Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="#">aqui</a>!
-        </p>
+  Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="" onClick={() => navigate("/login")}>aqui</a>!
+</p>
 
         <form onSubmit={handleSubmit}>
           <div className="form-field-group">

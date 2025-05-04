@@ -3,6 +3,7 @@ import "./App.css";
 import CadastroLoja from "./pages/CadastroLoja.jsx";
 import CadastroLoginMaster from "./pages/CadastroLoginMaster.jsx";
 import CadastroTecnico from "./pages/CadastroTecnico.jsx";
+import TelaLogin from "./components/TelaLogin.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
         
         {/* Rota para o cadastro de técnico */}
         <Route path="/cadastro-tecnico" element={<CadastroTecnico />} />
+
+        {/* Rota para o login */}
+        <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<CadastroLoginMaster />} />
