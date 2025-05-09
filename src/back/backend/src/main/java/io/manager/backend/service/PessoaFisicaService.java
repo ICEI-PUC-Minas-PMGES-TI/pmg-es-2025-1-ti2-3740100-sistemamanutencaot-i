@@ -28,8 +28,8 @@ public class PessoaFisicaService {
 
     public Optional<PessoaFisica> atualizar(int id, PessoaFisica pessoaFisicaAtualizada) {
         return pessoaFisicaRepository.findById(id).map(pessoaFisica -> {
+            pessoaFisica.setNome(pessoaFisicaAtualizada.getNome());
             pessoaFisica.setCpf(pessoaFisicaAtualizada.getCpf());
-            pessoaFisica.setPessoa(pessoaFisicaAtualizada.getPessoa());
             return pessoaFisicaRepository.save(pessoaFisica);
         });
     }

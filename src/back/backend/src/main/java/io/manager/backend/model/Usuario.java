@@ -7,7 +7,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String login;
@@ -38,11 +38,11 @@ public class Usuario {
 
     // Getters e Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -84,5 +84,9 @@ public class Usuario {
 
     public void setLoja(Loja loja) {
         this.loja = loja;
+    }
+
+    public enum TipoUsuario {
+        LOGINMASTER, TECNICO
     }
 }

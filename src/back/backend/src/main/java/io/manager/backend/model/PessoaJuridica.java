@@ -3,27 +3,15 @@ package io.manager.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-public class PessoaJuridica {
-
-    @Id
-    private int pessoaId;
+public class PessoaJuridica extends Pessoa {
 
     private String cnpj;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
-
     public PessoaJuridica() {}
 
-    public PessoaJuridica(Pessoa pessoa, String cnpj) {
-        this.pessoa = pessoa;
+    public PessoaJuridica(String nome, String cnpj) {
+        super(null, nome);
         this.cnpj = cnpj;
-    }
-
-    public int getPessoaId() {
-        return pessoaId;
     }
 
     public String getCnpj() {
@@ -33,12 +21,5 @@ public class PessoaJuridica {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 }
+

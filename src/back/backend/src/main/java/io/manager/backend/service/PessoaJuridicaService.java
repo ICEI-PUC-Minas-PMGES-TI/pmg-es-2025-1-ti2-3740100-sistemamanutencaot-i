@@ -26,7 +26,12 @@ public class PessoaJuridicaService {
         return pessoaJuridicaRepository.save(pessoaJuridica);
     }
 
-    public void deleteById(Integer id) {
-        pessoaJuridicaRepository.deleteById(id);
+    public boolean deleteById(Integer id) {
+        Optional<PessoaJuridica> pessoaJuridica = pessoaJuridicaRepository.findById(id);
+        if (pessoaJuridica.isPresent()) {
+            pessoaJuridicaRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
