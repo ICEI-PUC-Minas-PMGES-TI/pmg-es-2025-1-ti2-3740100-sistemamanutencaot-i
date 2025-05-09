@@ -14,6 +14,7 @@ function FormularioLoginMaster() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
+  // Função para cadastrar o usuário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,18 +23,18 @@ function FormularioLoginMaster() {
       return;
     }
 
-    const novoGerente = {
-      nome: "Master",
+    const novoUsuario = {
       email,
       senha,
     };
 
     try {
-      const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/gerentes", novoGerente);
-      alert("Cadastro de gerente realizado com sucesso!");
-      navigate("/cadastro-loja", { state: { idGerente: response.data.id } });
+      // Enviar os dados para criar o novo usuário (login)
+      const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/usuarios", novoUsuario);
+      alert("Cadastro de login master realizado com sucesso!");
+      navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
     } catch (error) {
-      console.error("Erro ao cadastrar gerente:", error);
+      console.error("Erro ao cadastrar login master:", error);
     }
   };
 
@@ -42,8 +43,8 @@ function FormularioLoginMaster() {
       <div className="form-wrapper">
         <h1 className="form-title">Cadastrar Gerente aqui!</h1>
         <p className="form-subtitle">
-  Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="" onClick={() => navigate("/login")}>aqui</a>!
-</p>
+          Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="" onClick={() => navigate("/login")}>aqui</a>!
+        </p>
 
         <form onSubmit={handleSubmit}>
           <div className="form-field-group">
@@ -54,7 +55,7 @@ function FormularioLoginMaster() {
                 type="email"
                 id="email"
                 className="form-input"
-                placeholder="Coloque o Email da sua Loja"
+                placeholder="Coloque o login da sua Loja"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -70,7 +71,7 @@ function FormularioLoginMaster() {
                 type={showPassword ? "text" : "password"}
                 id="senha"
                 className="form-input"
-                placeholder="Coloque o CNPJ da Loja"
+                placeholder="Coloque a Senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 required
@@ -93,7 +94,7 @@ function FormularioLoginMaster() {
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmarSenha"
                 className="form-input"
-                placeholder="Coloque o endereço da sua Loja"
+                placeholder="Confirme a Senha"
                 value={confirmarSenha}
                 onChange={(e) => setConfirmarSenha(e.target.value)}
                 required

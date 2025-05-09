@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const FormularioLoja = () => {
   const location = useLocation();
-  const { idGerente } = location.state || {};
+  const { idUsuario } = location.state || {};
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ const FormularioLoja = () => {
       nome: formData.nomeLoja,
       cnpj: formData.cnpj,
       endereco: formData.endereco,
-      idGerente: idGerente,
+      usuario: { id: idUsuario },
     };
 
     try {
