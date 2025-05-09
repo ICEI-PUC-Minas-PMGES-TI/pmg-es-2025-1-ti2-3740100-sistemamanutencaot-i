@@ -44,7 +44,7 @@ const FormularioLoja = () => {
       setMensagem("Loja cadastrada com sucesso!");
       alert("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
-      navigate("/cadastro-tecnico")
+      navigate("/cadastrar-tecnico", { state: { idLoja: loja.id } });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");

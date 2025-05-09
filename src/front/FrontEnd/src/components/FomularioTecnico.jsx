@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../assets/css/FormularioTecnico.module.css"; 
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const FormularioTecnico = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const FormularioTecnico = () => {
 
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const location = useLocation();
+  const { idLoja } = location.state || {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,11 +28,13 @@ const FormularioTecnico = () => {
 
     const novoTecnico = {
       nome: formData.nomeTecnico,
-      loja: formData.telefone,
       cpf: "12345678912",
       email: formData.email,
       cargo: opcaoSelecionada,
-      senha: "senhaPadrao"
+      senha: "senhaPadrao",
+      loja: {
+        id: parseInt(idLoja),
+      },
     };
 
     try {
