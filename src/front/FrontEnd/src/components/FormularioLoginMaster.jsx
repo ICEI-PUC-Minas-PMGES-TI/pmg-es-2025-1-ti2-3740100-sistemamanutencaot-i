@@ -29,19 +29,27 @@ function FormularioLoginMaster() {
     };
 
     try {
-      // Enviar os dados para criar o novo usuário (login)
-      const response = await axios.post("https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/usuarios", novoUsuario);
-      alert("Cadastro de login master realizado com sucesso!");
-      navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
-    } catch (error) {
-      console.error("Erro ao cadastrar login master:", error);
+    // Enviar os dados para criar o novo usuário (login)
+    const response = await axios.post("http://localhost:8080/usuarios", novoUsuario);
+    alert("Cadastro de login master realizado com sucesso!");
+    navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
+  } catch (error) {
+    console.error("Erro ao cadastrar login master:", error);
+
+    if (error.response && error.response.data && error.response.data.message) {
+      // Se o backend retornar uma mensagem de erro
+      alert(`Erro ao cadastrar: ${error.response.data.message}`);
+    } else {
+      // Erro genérico
+      alert("Erro ao cadastrar login master. Tente novamente mais tarde.");
     }
+}
   };
 
   return (
     <div className="form-container">
       <div className="form-wrapper">
-        <h1 className="form-title">Cadastrar Gerente aqui!</h1>
+        <h1 className="form-title">Cadastrar o Login aqui!</h1>
         <p className="form-subtitle">
           Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="" onClick={() => navigate("/login")}>aqui</a>!
         </p>
