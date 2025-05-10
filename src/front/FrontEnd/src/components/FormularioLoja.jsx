@@ -37,7 +37,7 @@ const FormularioLoja = () => {
 
     try {
       const response = await axios.post(
-        "https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas",
+        "http://localhost:8080/lojas",
         novaLoja
       );
       console.log("Loja cadastrada com sucesso:", response.data);
