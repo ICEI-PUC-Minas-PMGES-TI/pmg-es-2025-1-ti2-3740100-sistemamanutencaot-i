@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function FormularioLoginMaster() {
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -24,26 +24,27 @@ function FormularioLoginMaster() {
     }
 
     const novoUsuario = {
-      email,
+      login,
       senha,
+      tipo: "LOGINMASTER"
     };
 
     try {
-    // Enviar os dados para criar o novo usuário (login)
-    const response = await axios.post("http://localhost:8080/usuarios", novoUsuario);
-    alert("Cadastro de login master realizado com sucesso!");
-    navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
-  } catch (error) {
-    console.error("Erro ao cadastrar login master:", error);
+      // Enviar os dados para criar o novo usuário (login)
+      const response = await axios.post("http://localhost:8080/usuarios", novoUsuario);
+      alert("Cadastro de login master realizado com sucesso!");
+      navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
+    } catch (error) {
+      console.error("Erro ao cadastrar login master:", error);
 
-    if (error.response && error.response.data && error.response.data.message) {
-      // Se o backend retornar uma mensagem de erro
-      alert(`Erro ao cadastrar: ${error.response.data.message}`);
-    } else {
-      // Erro genérico
-      alert("Erro ao cadastrar login master. Tente novamente mais tarde.");
+      if (error.response && error.response.data && error.response.data.message) {
+        // Se o backend retornar uma mensagem de erro
+        alert(`Erro ao cadastrar: ${error.response.data.message}`);
+      } else {
+        // Erro genérico
+        alert("Erro ao cadastrar login master. Tente novamente mais tarde.");
+      }
     }
-}
   };
 
   return (
@@ -64,8 +65,8 @@ function FormularioLoginMaster() {
                 id="email"
                 className="form-input"
                 placeholder="Coloque o login da sua Loja"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
                 required
               />
             </div>

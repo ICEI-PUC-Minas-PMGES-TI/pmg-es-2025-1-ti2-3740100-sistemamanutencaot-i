@@ -15,8 +15,14 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario salvar(Usuario usuario) {
+    try {
         return usuarioRepository.save(usuario);
+    } catch (Exception e) {
+        System.err.println("Erro ao salvar usuário: " + e.getMessage());
+        e.printStackTrace();
+        throw e;
     }
+}
 
     public Usuario buscarPorId(Integer id) {
         return usuarioRepository.findById(id)
