@@ -18,22 +18,13 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tecnico_id")
-    private Tecnico tecnico;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "loja_id")
-    private Loja loja;
 
     public Usuario() {}
 
-    public Usuario(String login, String senha, TipoUsuario tipo, Tecnico tecnico, Loja loja) {
+    public Usuario(String login, String senha, TipoUsuario tipo) {
         this.login = login;
         this.senha = senha;
         this.tipo = tipo;
-        this.tecnico = tecnico;
-        this.loja = loja;
     }
 
     // Getters e Setters
@@ -69,23 +60,6 @@ public class Usuario {
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
-
-    public Tecnico getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(Tecnico tecnico) {
-        this.tecnico = tecnico;
-    }
-
-    public Loja getLoja() {
-        return loja;
-    }
-
-    public void setLoja(Loja loja) {
-        this.loja = loja;
-    }
-
     public enum TipoUsuario {
         LOGINMASTER, TECNICO
     }

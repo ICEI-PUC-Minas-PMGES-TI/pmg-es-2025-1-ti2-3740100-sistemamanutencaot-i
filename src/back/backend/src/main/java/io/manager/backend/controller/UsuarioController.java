@@ -1,6 +1,7 @@
 package io.manager.backend.controller;
 
 import io.manager.backend.model.Usuario;
+import io.manager.backend.repository.UsuarioRepository;
 import io.manager.backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @PostMapping
     public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.salvar(usuario));
@@ -32,5 +36,10 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<Usuario>> listarTodos() {
         return ResponseEntity.ok(usuarioService.listarTodos());
+    }
+
+    @PostMapping("/adicionar")
+    public Usuario adicionarUsuario(@RequestBody Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 }

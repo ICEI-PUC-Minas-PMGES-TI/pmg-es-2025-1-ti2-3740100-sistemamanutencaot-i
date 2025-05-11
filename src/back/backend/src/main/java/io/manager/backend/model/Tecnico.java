@@ -13,6 +13,10 @@ public class Tecnico extends PessoaFisica {
     @JoinColumn(name = "loja_id")
     private Loja loja;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Tecnico() {}
 
     public Tecnico(String nome, String cpf, String cargo, String email, String senha, Loja loja) {

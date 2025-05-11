@@ -39,7 +39,7 @@ const FormularioTecnico = () => {
 
     try {
       const response = await axios.post(
-        "https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/tecnicos",
+        "http://localhost:8080/tecnicos",
         novoTecnico
       );
       console.log("Técnico cadastrado com sucesso:", response.data);

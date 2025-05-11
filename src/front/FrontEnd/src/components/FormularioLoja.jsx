@@ -36,15 +36,13 @@ const FormularioLoja = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/lojas",
-        novaLoja
-      );
+      const response = await axios.post("http://localhost:8080/lojas", novaLoja);
+      const loja = response.data;
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
       alert("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
-      navigate("/cadastrar-tecnico", { state: { idLoja: loja.id } });
+      navigate("/cadastro-tecnico", { state: { idLoja: loja.id } });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
