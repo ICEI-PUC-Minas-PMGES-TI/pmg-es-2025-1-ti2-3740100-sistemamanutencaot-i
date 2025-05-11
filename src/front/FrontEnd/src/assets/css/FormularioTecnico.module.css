@@ -79,3 +79,17 @@
 .botaoFormulario:hover {
   background-color: #000842;
 }
+
+.botaoMostrar{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: blue;
+  margin-top: 50px;
+}
+
