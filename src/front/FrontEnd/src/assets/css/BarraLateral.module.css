@@ -1,0 +1,9 @@
+.containerPrincipal {
+   display: flex;
+   justify-content: flex-start;
+   background-color: white;
+}
+
+.logo {
+   background-color: white;
+}
