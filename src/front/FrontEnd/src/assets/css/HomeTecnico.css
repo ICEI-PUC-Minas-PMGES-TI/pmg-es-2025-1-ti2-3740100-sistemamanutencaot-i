@@ -4,7 +4,6 @@ body {
   margin: 0;
   font-family: 'Work Sans', sans-serif;
   background-color: #e9ebe4;
-  color: #0a1446;
 }
 
 h1, h2 {
@@ -64,7 +63,7 @@ h1, h2 {
 }
 
 .subtitulo {
-  font-size: 0.75rem;
+  font-size: 1 rem;
   font-weight: 600;
   margin-top: -6px;
 }
@@ -114,59 +113,74 @@ h1, h2 {
 
 .grid-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
 }
 
 .card {
-  background: white;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .card-header {
-  background-color: #0a1446;
-  color: white;
+  background-color: #000842 !important;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  font-size: 0.75rem;
+  justify-content: space-between;
 }
 
 .card-title {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .device-icon {
-  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
 }
 
 .nome {
-  font-weight: 700;
+  font-weight: 600;
+  margin: 0;
+  color: white;
 }
 
 .servico {
-  font-size: 0.625rem;
+  margin: 0;
+  font-size: 0.9em;
+  color: white;
 }
 
 .status-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 }
 
 .card-body {
-  padding: 1rem;
-  font-size: 0.75rem;
+  background-color: #fff; /* Garante fundo branco */
+  padding: 16px;
+  font-size: 0.95em;
+  color: #333;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .sintomas-titulo {
-  font-weight: bold;
-  margin-top: 0.5rem;
+  margin-top: 8px;
+  font-weight: 600;
 }
 
 .sintomas-texto {
@@ -176,3 +190,19 @@ h1, h2 {
   margin-top: 0.25rem;
   font-size: 0.7rem;
 }
+
+.scroll-cards {
+  max-height: calc(100vh - 250px); 
+  overflow-y: auto;
+  padding-right: 8px; 
+}
+
+/* Deixa a barra de rolagem mais suave*/
+.scroll-cards::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-cards::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+

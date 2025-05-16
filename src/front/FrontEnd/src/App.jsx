@@ -1,3 +1,4 @@
+import HomeTecnico from "./pages/HomeTecnico.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import CadastroLoja from "./pages/CadastroLoja.jsx";
@@ -22,7 +23,8 @@ function App() {
         <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<BarraLateral />} />
+        <Route path="/" element={<HomeTecnico />} />
+
       </Routes>
     </Router>
   );
