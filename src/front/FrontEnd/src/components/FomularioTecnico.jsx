@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import styles from "../assets/css/FormularioTecnico.module.css"; 
+import styles from "../assets/css/FormularioTecnico.module.css";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const FormularioTecnico = () => {
   const [formData, setFormData] = useState({
     nomeTecnico: "",
-    telefone: "",
+    cpf: "",
     email: "",
+    senha: "",
   });
 
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const { idLoja } = location.state || {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,31 +28,39 @@ const FormularioTecnico = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
+  const novoUsuario = {
+    login: formData.email,
+    senha: formData.senha,
+    tipo: "TECNICO"
+  };
+
+  try {
+    const usuarioResponse = await axios.post("http://localhost:8080/usuarios", novoUsuario);
+    const usuarioId = usuarioResponse.data.id; // Aqui você pega o ID retornado da API
 
     const novoTecnico = {
       nome: formData.nomeTecnico,
-      loja: formData.telefone,
-      cpf: "12345678912",
+      cpf: formData.cpf,
       email: formData.email,
       cargo: opcaoSelecionada,
-      senha: "senhaPadrao"
+      loja: {
+        id: parseInt(idLoja),
+      },
+      usuario: { id: usuarioId }, // Agora você usa o ID do usuário
     };
 
-    try {
-      const response = await axios.post(
-        "https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/tecnicos",
-        novoTecnico
-      );
-      console.log("Técnico cadastrado com sucesso:", response.data);
-      setMensagem("Técnico cadastrado com sucesso!");
-      setFormData({ nomeTecnico: "", telefone: "", email: "" });
-      setOpcaoSelecionada("");
-    } catch (error) {
-      console.error("Erro ao cadastrar técnico:", error);
-      setMensagem("Erro ao cadastrar técnico.");
-    }
-  };
+    const tecnicoResponse = await axios.post("http://localhost:8080/tecnicos", novoTecnico);
+    console.log("Técnico cadastrado com sucesso:", tecnicoResponse.data);
+    setMensagem("Técnico cadastrado com sucesso!");
+    setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
+    setOpcaoSelecionada("");
+  } catch (error) {
+    console.error("Erro ao cadastrar técnico:", error);
+    setMensagem(`Erro ao cadastrar técnico: ${error.response?.data?.message || error.message}`);
+  }
+};
 
   return (
     <div className={styles.containerFormulario}>
@@ -71,13 +86,13 @@ const FormularioTecnico = () => {
         </div>
 
         <div className={styles.grupoCampoFormulario}>
-          <label className={styles.rotuloFormulario}>Telefone</label>
+          <label className={styles.rotuloFormulario}>CPF</label>
           <input
-            type="number"
-            name="telefone"
-            value={formData.telefone}
+            type="text"
+            name="cpf"
+            value={formData.cpf}
             onChange={handleChange}
-            placeholder="Coloque o telefone do técnico"
+            placeholder="Coloque o cpf do técnico"
             className={styles.entradaFormulario}
             required
           />
@@ -94,6 +109,29 @@ const FormularioTecnico = () => {
             className={styles.entradaFormulario}
             required
           />
+        </div>
+
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Senha de login</label>
+          <div style={{ position: "relative" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
+              placeholder="Coloque a senha do técnico"
+              className={styles.entradaFormulario}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className={styles.botaoMostrar}
+              aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
         </div>
 
         <div className={styles.grupoCampoFormulario}>

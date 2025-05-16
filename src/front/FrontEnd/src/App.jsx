@@ -4,6 +4,7 @@ import CadastroLoja from "./pages/CadastroLoja.jsx";
 import CadastroLoginMaster from "./pages/CadastroLoginMaster.jsx";
 import CadastroTecnico from "./pages/CadastroTecnico.jsx";
 import TelaLogin from "./components/TelaLogin.jsx";
+import BarraLateral from "./components/BarraLateral.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<CadastroLoginMaster />} />
+        <Route path="/" element={<BarraLateral />} />
       </Routes>
     </Router>
   );

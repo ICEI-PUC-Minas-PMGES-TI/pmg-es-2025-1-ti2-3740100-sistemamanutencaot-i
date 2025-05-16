@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const FormularioLoja = () => {
   const location = useLocation();
-  const { idGerente } = location.state || {};
+  const { idUsuario } = location.state || {};
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -32,19 +32,17 @@ const FormularioLoja = () => {
       nome: formData.nomeLoja,
       cnpj: formData.cnpj,
       endereco: formData.endereco,
-      idGerente: idGerente,
+      usuario: { id: idUsuario },
     };
 
     try {
-      const response = await axios.post(
-        "https://pmg-es-2025-1-ti2-3740100-znbi.onrender.com/lojas",
-        novaLoja
-      );
+      const response = await axios.post("http://localhost:8080/lojas", novaLoja);
+      const loja = response.data;
       console.log("Loja cadastrada com sucesso:", response.data);
       setMensagem("Loja cadastrada com sucesso!");
       alert("Loja cadastrada com sucesso!");
       setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
-      navigate("/cadastro-tecnico")
+      navigate("/cadastro-tecnico", { state: { idLoja: loja.id } });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");

@@ -1,9 +1,7 @@
 package io.manager.backend.service;
 
 import io.manager.backend.model.Loja;
-import io.manager.backend.model.Gerente;
 import io.manager.backend.repository.LojaRepository;
-import io.manager.backend.repository.GerenteRepository; 
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +11,9 @@ import java.util.Optional;
 public class LojaService {
 
     private final LojaRepository lojaRepository;
-    private final GerenteRepository gerenteRepository;
 
-    public LojaService(LojaRepository lojaRepository, GerenteRepository gerenteRepository) {
+    public LojaService(LojaRepository lojaRepository) {
         this.lojaRepository = lojaRepository;
-        this.gerenteRepository = gerenteRepository;
     }
 
     public List<Loja> listar() {
@@ -29,7 +25,6 @@ public class LojaService {
     }
 
     public Loja criar(Loja loja) {
-        Gerente gerente = gerenteRepository.findById(loja.getIdGerente()).orElseThrow(() -> new RuntimeException("Gerente não encontrado"));
         return lojaRepository.save(loja);
     }
 

@@ -1,57 +1,29 @@
 package io.manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Tecnico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IdTecnico;
+public class Tecnico extends PessoaFisica {
 
-    private String nome;
-    private String cpf;
     private String cargo;
     private String email;
-    private String senha;
-    private String loja; // <-- Campo atualizado
+
+    @ManyToOne
+    @JoinColumn(name = "loja_id")
+    private Loja loja;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Tecnico() {}
 
-    public Tecnico(int IdTecnico, String nome, String cpf, String cargo, String email, String senha, String loja) {
-        this.IdTecnico = IdTecnico;
-        this.nome = nome;
-        this.cpf = cpf;
+    public Tecnico(String nome, String cpf, String cargo, String email, Loja loja, Usuario usuario) {
+        super(nome, cpf);
         this.cargo = cargo;
         this.email = email;
-        this.senha = senha;
         this.loja = loja;
-    }
-
-    public int getIdTecnico() {
-        return IdTecnico;
-    }
-
-    public void setIdTecnico(int idTecnico) {
-        this.IdTecnico = idTecnico;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.usuario = usuario;
     }
 
     public String getCargo() {
@@ -62,40 +34,27 @@ public class Tecnico {
         this.cargo = cargo;
     }
 
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getLoja() {
-        return loja;
-    }
-
-    public void setLoja(String loja) {
-        this.loja = loja;
-    }
-
-    @Override
-    public String toString() {
-        return "Tecnico{" +
-                "IdTecnico=" + IdTecnico +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", cargo='" + cargo + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", loja='" + loja + '\'' +
-                '}';
     }
 }
