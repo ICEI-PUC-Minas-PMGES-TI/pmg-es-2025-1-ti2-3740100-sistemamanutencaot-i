@@ -23,7 +23,7 @@ const TelaLogin = () => {
       // Simulação de autenticação
       if (formData.email === "admin@admin.com" && formData.senha === "123456") {
         alert("Login realizado com sucesso!");
-        navigate("/HomeTecnico"); // Redireciona para o dashboard
+        navigate("home-tecnico"); // Redireciona para o dashboard
       } else {
         alert("Credenciais inválidas. Tente novamente.");
       }

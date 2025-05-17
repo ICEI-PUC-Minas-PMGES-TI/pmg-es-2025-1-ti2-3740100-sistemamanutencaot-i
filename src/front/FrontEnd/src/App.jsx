@@ -6,6 +6,7 @@ import CadastroLoginMaster from "./pages/CadastroLoginMaster.jsx";
 import CadastroTecnico from "./pages/CadastroTecnico.jsx";
 import TelaLogin from "./components/TelaLogin.jsx";
 import BarraLateral from "./components/BarraLateral.jsx";
+import ConfigGerente from "./pages/ConfiguracoesGerente.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
         <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<HomeTecnico />} />
+        <Route path="/home-tecnico" element={<HomeTecnico/>} />
+
+        {/* Rota raiz (opcional - pode redirecionar) */}
+        <Route path="/" element={<HomeTecnico/>} />
 
       </Routes>
     </Router>
