@@ -2,13 +2,6 @@
 
 ### 4.1. Modelo de dados
 
-| Tabela de Relacionamento | Entidade 1              | Relacionamento       | Entidade 2              | Tipo de Relacionamento   |
-|--------------------------|-------------------------|----------------------|-------------------------|--------------------------|
-| Relacionamento 1         | Clientes                | (1) → (N)            | Computadores            | 1 para N                 |
-| Relacionamento 2         | Computadores            | (1) → (N)            | Ordens de Serviço       | 1 para N                 |
-| Relacionamento 3         | Ordens de Serviço       | (N) → (1)            | Técnicos                | N para 1                 |
-| Relacionamento 4         | Ordens de Serviço       | (N) ↔ (N)            | Peças (via pecas_ordem_servico) | N para N (via tabela de junção) |
-
 ![Modelo de dados](images/modeloDados.png "Modelo de dados.")
 
 ---
