@@ -9,7 +9,7 @@
 | Relacionamento 3         | Ordens de Serviço       | (N) → (1)            | Técnicos                | N para 1                 |
 | Relacionamento 4         | Ordens de Serviço       | (N) ↔ (N)            | Peças (via pecas_ordem_servico) | N para N (via tabela de junção) |
 
-![Modelo de dados](images/modeloDeDados.png "Modelo de dados.")
+![Modelo de dados](images/modeloDados.png "Modelo de dados.")
 
 ---
 
