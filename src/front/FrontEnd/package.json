@@ -17,6 +17,7 @@
     "bootstrap": "^5.3.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-fontawesome": "^1.7.1",
     "react-router-dom": "^7.5.3"
   },
   "devDependencies": {
