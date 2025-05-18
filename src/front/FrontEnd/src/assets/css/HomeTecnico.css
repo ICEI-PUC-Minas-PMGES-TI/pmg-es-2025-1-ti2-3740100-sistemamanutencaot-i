@@ -216,12 +216,7 @@ body {
   opacity: var(--opacity, 0); /* Controlado via JavaScript */
 }
 
-.sidebar {
-  position: fixed;
-  left: 0;
-  height: 100vh;
-  z-index: 1000;
-}
+
 
 .scroll-cards {
   padding-right: 8px;

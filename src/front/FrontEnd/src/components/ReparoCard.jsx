@@ -40,7 +40,10 @@ const ReparoCard = ({ nome, id, prazo, status, cor, index }) => {
           <strong>Sintomas:</strong>
         </p>
 
-        <p className="sintomas-texto">Nada encontrado...</p>
+        <p className="sintomas-texto">
+          {" "}
+          Nada encontrado...
+        </p>
       </div>
     </article>
   );

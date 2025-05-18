@@ -13,10 +13,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        
         {/* Rota para o cadastro da loja */}
         <Route path="/cadastro-loja" element={<CadastroLoja />} />
-        
+
         {/* Rota para o cadastro de técnico */}
         <Route path="/cadastro-tecnico" element={<CadastroTecnico />} />
 
@@ -24,11 +23,12 @@ function App() {
         <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/home-tecnico" element={<HomeTecnico/>} />
+        <Route path="/home-tecnico" element={<HomeTecnico />} />
+
+        <Route path="/config-gerente" element={<ConfigGerente />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<HomeTecnico/>} />
-
+        <Route path="/" element={<HomeTecnico />} />
       </Routes>
     </Router>
   );

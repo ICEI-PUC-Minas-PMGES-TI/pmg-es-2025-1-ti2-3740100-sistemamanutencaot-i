@@ -1,0 +1,107 @@
+/* BarraLateral.css */
+.sidebar {
+  background-color: #000842;
+  width: 50px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 2rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar:hover {
+  width: 250px;
+  align-items: flex-start;
+  padding-left: 1rem;
+}
+
+/* Logo Section */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+  padding: 0 0 0 7.5rem;
+}
+
+.sidebar-logo img {
+  width: 35px;
+  min-width: 35px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo-text {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 1000;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  padding-left: 0.7rem;
+}
+
+.sidebar:hover .sidebar-logo-text {
+  opacity: 1;
+}
+.sidebar:hover .sidebar-logo {
+  padding: 0 0 0 0;
+}
+
+/* Menu Items */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 0.7rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  width: calc(100% - 1rem);
+}
+
+.sidebar:hover .sidebar-item {
+  justify-content: flex-start;
+  font-weight: 550;
+}
+
+.sidebar-item img {
+  width: 24px;
+  min-width: 24px;
+}
+
+.sidebar-tooltip {
+  opacity: 0;
+  white-space: nowrap;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar:hover .sidebar-tooltip {
+  opacity: 1;
+}
+
+.sidebar-item:hover {
+  background-color: #0C21C1;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  width: 100%;
+}
