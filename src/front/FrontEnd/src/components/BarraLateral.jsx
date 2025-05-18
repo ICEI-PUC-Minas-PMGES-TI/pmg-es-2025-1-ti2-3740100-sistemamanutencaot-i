@@ -19,13 +19,13 @@ const BarraLateral = () => {
     { icon: User, text: "Usuários", path: "/perfil" },
     { icon: Folder, text: "Ordem de Serviço", path: "/documentos" },
     { icon: Chave, text: "Reparos", path: "/ferramentas" },
-    { icon: Configuracoes, text: "Configurações", path: "/configuracoes" },
+    { icon: Configuracoes, text: "Configurações", path: "/configuracoes-gerente" },
     { icon: Historico, text: "Historico de Reparos", path: "/ferramentas" },
   ];
 
   return (
     <nav className="sidebar">
-      <Link to="/" className="sidebar-logo">
+      <Link to="/home-tecnico" className="sidebar-logo">
         <img src={Logo} alt="Logo" />
         <span className="sidebar-logo-text">Manager.io</span>
       </Link>
