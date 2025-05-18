@@ -123,10 +123,6 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.card-body {
-  color: red;
-}
-
 .card-header {
   background-color: #000842 !important;
   padding: 10px;
@@ -170,25 +166,55 @@ body {
   background-color: #fff; /* Garante fundo branco */
   padding: 16px;
   font-size: 0.95em;
-  color: #333;
+  color: #000842 !important;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
 
+.card-body p{
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+.card-body strong{
+  font-weight: 950;
+}
 .sintomas-titulo {
   margin-top: 8px;
   font-weight: 600;
 }
 
 .sintomas-texto {
+  text-overflow: ellipsis;
+  text-align: center;
   background-color: #e9ebe4;
   border-radius: 6px;
   padding: 0.5rem;
   margin-top: 0.25rem;
   font-size: 0.7rem;
+  height: 80px;
+  max-height: 10rem;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.055rem;
+  margin-inline-end: auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  
 }
 
-/* HomeTecnico.css */
+.sintomas-texto::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.2em;
+  background: linear-gradient(to bottom, rgba(233,235,228,0), rgba(233,235,228,1) 80%);
+  pointer-events: none;
+  opacity: var(--opacity, 0); /* Controlado via JavaScript */
+}
 
 .sidebar {
   position: fixed;
@@ -197,9 +223,6 @@ body {
   z-index: 1000;
 }
 
-
-
-/* Remova todas as outras regras de scroll */
 .scroll-cards {
   padding-right: 8px;
 }

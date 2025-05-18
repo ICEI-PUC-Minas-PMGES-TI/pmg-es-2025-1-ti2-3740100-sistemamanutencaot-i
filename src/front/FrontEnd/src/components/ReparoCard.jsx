@@ -36,13 +36,11 @@ const ReparoCard = ({ nome, id, prazo, status, cor, index }) => {
         <p>
           Status: <strong>{status}</strong>
         </p>
-        <p className="sintomas-titulo">Sintomas:</p>
-        <p className="sintomas-texto">
-          Notebook não liga após cair Coca-Cola Notebook não liga após cair
-          Coca-Cola Notebook não liga após cair Coca-Cola Notebook não liga após
-          cair Coca-Cola Notebook não liga após cair Coca-Cola Notebook não liga
-          após cair Coca-Cola
-          Notebook não liga após cair Coca-Cola</p>
+        <p className="sintomas-titulo">
+          <strong>Sintomas:</strong>
+        </p>
+
+        <p className="sintomas-texto">Nada encontrado...</p>
       </div>
     </article>
   );
