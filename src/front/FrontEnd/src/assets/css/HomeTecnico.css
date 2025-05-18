@@ -1,71 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap");
 
 body {
   margin: 0;
-  font-family: 'Work Sans', sans-serif;
-  background-color: #e9ebe4;
-}
-
-h1, h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Work Sans", sans-serif;
+  background-color: #f1efec;
 }
 
 .container {
   display: flex;
   min-height: 100vh;
+  min-width: 100%;
 }
-
-/* Lateral */
-.sidebar {
-  background-color: #0a1446;
-  width: 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-  gap: 2rem;
-  justify-content: space-between;
-}
-
-.sidebar .icon-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.sidebar img {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.sidebar img:hover {
-  transform: scale(1.15);
-}
-
-.logout {
-  transform: rotate(180deg);
-  margin-bottom: 1rem;
+.conteudo {
+  flex: 1;
+  padding: 2rem 10rem;
+  width: calc(100% - 56px);
+  overflow-y: auto;
+  height: 100vh;
 }
 
 /* Conteúdo */
-.conteudo {
-  flex: 1;
-  padding: 2rem 3rem;
-}
+
 
 .cabecalho h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 0.25rem;
+  font-size: 60px;
+  font-weight: 1000;
+  margin: 0;
+  letter-spacing: -2px;
+  color: #000842;
 }
 
 .subtitulo {
-  font-size: 1 rem;
-  font-weight: 600;
-  margin-top: -6px;
+  font-size: 22px;
+  letter-spacing: -1px;
+  font-weight: 450;
+  margin-top: -10px;
+  color: #000842;
+}
+
+.busca-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.busca-form {
+  display: flex;
+  align-items: center;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+}
+
+.campo-busca {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  font-size: 1rem;
+  height: 40px;
+  color: #0a1446;
+  background-color: #d9d9d9;
+}
+
+.botao-busca-icone {
+  position: absolute;
+  right: 65px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.botao-filtro {
+  background-color: #000842 !important;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-left: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao-filtro img {
+  width: 20px;
+  height: 20px;
 }
 
 .busca-container {
@@ -75,40 +95,12 @@ h1, h2 {
   margin: 2rem 0;
 }
 
-.campo-busca {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-right: none;
-  border-radius: 6px 0 0 6px;
-  font-size: 0.9rem;
-  color: #0a1446;
-}
-
-.botao-busca,
-.botao-filtro {
-  background-color: #0a1446;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.botao-busca {
-  border-radius: 0 6px 6px 0;
-}
-
-.botao-filtro {
-  margin-left: 0.5rem;
-  border-radius: 6px;
-}
-
 /* Cards */
 .titulo-reparos {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
+  font-size: 45px;
+  font-weight: 1000;
+  margin: 1.5rem, 0;
+  color: #000842;
 }
 
 .grid-cards {
@@ -123,11 +115,16 @@ h1, h2 {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  color: red;
 }
 
 .card-header {
@@ -164,8 +161,8 @@ h1, h2 {
 }
 
 .status-dot {
-  width: 12px;
-  height: 12px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
 }
 
@@ -191,18 +188,20 @@ h1, h2 {
   font-size: 0.7rem;
 }
 
-.scroll-cards {
-  max-height: calc(100vh - 250px); 
-  overflow-y: auto;
-  padding-right: 8px; 
+/* HomeTecnico.css */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
 }
 
-/* Deixa a barra de rolagem mais suave*/
-.scroll-cards::-webkit-scrollbar {
-  width: 6px;
+
+
+/* Remova todas as outras regras de scroll */
+.scroll-cards {
+  padding-right: 8px;
 }
-.scroll-cards::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
+
 

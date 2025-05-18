@@ -8,7 +8,7 @@ import Chave from "../assets/images/Chave.png"
 import Saida from "../assets/images/Log out.png"
 const BarraLateral = () => {
   return (
-    <div className="mainContent">
+    <div className="sidebar">
       <div className={styles.containerPrincipal}>
         {/* Barra lateral */}
         <div className={styles.logo}>
@@ -27,9 +27,6 @@ const BarraLateral = () => {
         </div>
       </div>
 
-      <div className="contentArea">
-        {/* Conteúdo principal aqui */}
-      </div>
     </div>
   );
 };
