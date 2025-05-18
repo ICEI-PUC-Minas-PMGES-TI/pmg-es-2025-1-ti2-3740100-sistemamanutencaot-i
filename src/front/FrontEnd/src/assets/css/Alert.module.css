@@ -1,0 +1,75 @@
+/* Alert.module.css */
+.alertOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .alertContent {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alertContent h3 {
+    color: #000842;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+  
+  .cancelButton {
+    background: #f0f0f0;
+    color: #333;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .confirmButton {
+    background: #0029ff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .cancelButton:hover,
+  .confirmButton:hover {
+    transform: translateY(-1px);
+  }

@@ -1,85 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&display=swap");
 body {
-    font-family: 'Work Sans', sans-serif;
-    margin-left: 40px;
-    background-color: white;
-  }
-  .titulo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-family: sans-serif;
-  }
-  .titulo h1 {
-    font-size: 60px;
-    font-weight: 900;
-    margin: 0;
-    color: #000842; /* tom escuro de azul */
-  }
-  
-  .titulo span {
-    font-size: 25px;
-    color: #000842;
-    font-weight: 500px;
+  font-family: "Work Sans", sans-serif;
+  margin-left: 40px;
+  background-color: #F1EFEC;
+}
+/* ConfiguracoesGerente.module.css */
+.containerGeral {
+  display: flex;
+  min-height: 80vh;
+  background-color: #F1EFEC;
+}
 
-  }
+.conteudoPrincipal {
+  flex: 1;
+  margin-left: 50px; /* Largura da sidebar */
+  padding: 2rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  .container {
-    width: 791px;
-    height: 78px;
-    background-color: #0C21C1;
-    border-radius: 10px;
-    margin-left: 29%;
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .container h2{
-    color: #FFFFFF;
-    font-size: 45px;
-    margin: 0;
-  }
-  .painel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: 18px;
-    
-  }
-  .painel h2 {
-    font-size: 30px;
-    font-weight: 600;
-    color: #000842; /* tom escuro de azul */
-    margin: 0;
-  }
-  .containerBttons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    
-  }
-  .bttSalvar{
-    width: 262px;
-    height: 58px;
-    background-color: #19a22d;
-    font-size: 20px;
-    color: #FFFFFF;
-    font-weight: 800;
-    margin-right: 20px;
-    border-radius: 10px;
-  }
-  .bttExcluir{
-    width: 262px;
-    height: 58px;
-    background-color: #a21919;
-    font-size: 20px;
-    color: #FFFFFF;
-    font-weight: 800;
-    margin-left: 20px;
-    border-radius: 10px;
-  }
-  
+.cabecalho {
+  margin-bottom: 2rem;
+}
+
+.cabecalho h1 {
+  font-size: 3.5rem;
+  color: #000842;
+  font-weight: 1000;
+  letter-spacing: -1px;
+
+}
+
+.cabecalho p {
+  font-size: 1.2rem;
+  color: #000842;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-top: -13px;
+}
+
+.painelContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.tituloPainel {
+  background: #000842;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px 12px 0 0;
+}
+
+.tituloPainel h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.containerBotoes {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.botaoSalvar {
+  background-color: #19A22D;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 1000;
+  transition: all 0.2s ease;
+}
+
+.botaoSalvar:hover {
+  background-color: #001fcc;
+  transform: translateY(-1px);
+}
+
+.botaoExcluir {
+  background-color: #A21919;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 1000;
+  transition: all 0.2s ease;
+}
+
+.botaoExcluir:hover {
+  background-color: #bb2d3b;
+  transform: translateY(-1px);
+}

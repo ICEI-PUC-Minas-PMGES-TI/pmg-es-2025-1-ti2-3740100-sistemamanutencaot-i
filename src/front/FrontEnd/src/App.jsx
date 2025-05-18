@@ -28,7 +28,7 @@ function App() {
         <Route path="/config-gerente" element={<ConfigGerente />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<HomeTecnico />} />
+        <Route path="/" element={<ConfigGerente />} />
       </Routes>
     </Router>
   );
