@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import styles from "../assets/css/PainelConfigGerente.module.css";
 import edit from "../assets/images/edit.png";
 import AlterarSenhaAlert from "./AlterarSenhaAlert";
+import AlterarEmailAlert from "./AlterarEmailAlert";
+import AlterarEnderecoAlert from "./AlterarEnderecoAlert";
+import AlterarNomeLojaAlert from "./AlterarNomeLojaAlert";
 
 function PainelConfigGerente() {
   const [showAlert, setShowAlert] = useState(false);
@@ -11,6 +14,21 @@ function PainelConfigGerente() {
   const handleEditClick = (fieldName) => {
     setSelectedField(fieldName);
     setShowAlert(true);
+  };
+
+  const renderAlert = () => {
+    switch (selectedField) {
+      case "Senha":
+        return <AlterarSenhaAlert onClose={() => setShowAlert(false)} />;
+      case "Email":
+        return <AlterarEmailAlert onClose={() => setShowAlert(false)} />;
+      case "Endereço":
+        return <AlterarEnderecoAlert onClose={() => setShowAlert(false)} />;
+      case "Nome da Loja":
+        return <AlterarNomeLojaAlert onClose={() => setShowAlert(false)} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -85,12 +103,7 @@ function PainelConfigGerente() {
         </div>
       </form>
 
-      {showAlert && (
-        <AlterarSenhaAlert
-          field={selectedField}
-          onClose={() => setShowAlert(false)}
-        />
-      )}
+      {showAlert && renderAlert()}
     </>
   );
 }
