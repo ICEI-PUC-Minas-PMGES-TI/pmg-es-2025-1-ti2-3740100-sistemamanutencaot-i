@@ -7,6 +7,7 @@ import CadastroTecnico from "./pages/CadastroTecnico.jsx";
 import TelaLogin from "./components/TelaLogin.jsx";
 import BarraLateral from "./components/BarraLateral.jsx";
 import ConfigGerente from "./pages/ConfiguracoesGerente.jsx"
+import Alert from "./components/AlterarSenhaAlert.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 
         <Route path="/configuracoes-gerente" element={<ConfigGerente />} />
 
+        <Route path="/alert" element={<Alert />} />
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<ConfigGerente />} />
       </Routes>

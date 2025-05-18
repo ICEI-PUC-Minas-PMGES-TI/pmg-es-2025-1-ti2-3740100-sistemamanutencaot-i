@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "../assets/css/PainelConfigGerente.module.css";
 import edit from "../assets/images/edit.png";
-import Alert from "./Alert";
+import AlterarSenhaAlert from "./AlterarSenhaAlert";
 
 function PainelConfigGerente() {
   const [showAlert, setShowAlert] = useState(false);
@@ -86,7 +86,10 @@ function PainelConfigGerente() {
       </form>
 
       {showAlert && (
-        <Alert field={selectedField} onClose={() => setShowAlert(false)} />
+        <AlterarSenhaAlert
+          field={selectedField}
+          onClose={() => setShowAlert(false)}
+        />
       )}
     </>
   );

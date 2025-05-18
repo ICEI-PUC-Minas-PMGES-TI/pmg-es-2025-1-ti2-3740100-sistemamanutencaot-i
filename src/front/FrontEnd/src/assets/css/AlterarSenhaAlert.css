@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&display=swap');
+
+body {    
+    font-family: 'Work Sans', sans-serif;
+    margin: 0;
+}
+
+.alertOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.alertContent {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.container-alterar-senha {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Card principal */
+.card-alterar-senha {
+  max-width: 28rem;
+  width: 28rem;
+  background-color: white;
+  border-radius: 12px;
+  
+  padding: 1.5rem;
+}
+
+/* Tipografia */
+.titulo-alterar-senha {
+  color: #1a2abf;
+  font-size: 2.5rem;
+  font-weight: 1000;
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.descricao-alterar-senha {
+  color: black;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+/* Campos de entrada */
+.campo-senha {
+  margin-bottom: 1.5rem;
+}
+
+.label-senha {
+  color: #000842;
+  font-size: 1.125rem;
+  font-weight: 1000;
+  display: block;
+  
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-senha {
+  width: 100%;
+  border: none; /* Remove todas as bordas */
+  border-bottom: 2px solid #0a1a5f; /* Adiciona só a borda inferior */
+  color: #0a1a5f;
+  font-size: 1.125rem;
+  font-weight: 900;
+  padding-bottom: 0;
+  padding-right: 2.5rem;
+  outline: none;
+}
+
+.icone-olho {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 18px;
+  height: 15,49px
+}
+
+/* Botões */
+.botoes-alterar-senha {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.botao-cancelar,
+.botao-confirmar {
+  flex: 1;
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 900;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.botao-cancelar:hover,
+.botao-confirmar:hover {
+  transform: scale(1.05);
+}
+
+.botao-cancelar {
+  background-color: #9b1c1c;
+}
+
+.botao-confirmar {
+  background-color: #239b2a;
+}
