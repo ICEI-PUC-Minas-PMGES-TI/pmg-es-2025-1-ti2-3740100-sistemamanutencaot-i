@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
-body{
-  font-family: 'Work Sans', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+body {
+  font-family: "Work Sans", sans-serif;
 }
 .containerFormulario {
-  background-color: #F1EFEC;
+  background-color: #f1efec;
   display: flex;
   align-items: center;
-  padding: 0 2rem 1rem 1rem;
+  padding: 0 2rem 1rem 1rem 0;
   padding-right: 50px;
 }
 
@@ -20,8 +20,8 @@ body{
 .tituloFormulario {
   font-size: 2.5rem;
   font-weight: 1000;
-  color: #0C21C1;
-  margin-bottom: 1.20rem;
+  color: #0c21c1;
+  margin-bottom: 1.2rem;
 }
 
 .descricaoFormulario {
@@ -33,7 +33,7 @@ body{
 }
 
 .textoAzul {
-  color: #0C21C1;
+  color: #0c21c1;
 }
 
 .grupoCampoFormulario {
@@ -44,7 +44,7 @@ body{
   display: block;
   font-size: 1.1rem;
   font-weight: 1000;
-  color: #0C21C1;
+  color: #0c21c1;
   margin-bottom: -0.5rem;
 }
 
@@ -60,12 +60,12 @@ body{
 
 .entradaFormulario:focus {
   outline: none;
-  border-color: #0C21C1;
+  border-color: #0c21c1;
 }
 
 .botaoFormulario {
   width: 100%;
-  background-color: #0C21C1;
+  background-color: #0c21c1;
   color: white;
   padding: 0.75rem;
   border: none;
@@ -80,7 +80,7 @@ body{
   background-color: #000842;
 }
 
-.botaoMostrar{
+.botaoMostrar {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -90,6 +90,4 @@ body{
   cursor: pointer;
   font-size: 1rem;
   color: blue;
-  
 }
-
