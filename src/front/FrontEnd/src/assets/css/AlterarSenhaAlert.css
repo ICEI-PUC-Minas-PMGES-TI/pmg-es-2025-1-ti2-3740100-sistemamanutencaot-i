@@ -120,6 +120,7 @@ body {
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
+  height: 60px;
 }
 
 .botao-cancelar:hover,

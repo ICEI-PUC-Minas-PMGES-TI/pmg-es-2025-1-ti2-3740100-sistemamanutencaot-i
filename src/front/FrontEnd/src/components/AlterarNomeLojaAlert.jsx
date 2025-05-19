@@ -28,7 +28,7 @@ const AlterarNomeLojaAlert = ({ onClose }) => {
             </div>
 
             <div className="campo-senha">
-              <label className="label-senha">Senha Atual:</label>
+              <label className="label-senha">Senha:</label>
               <div className="input-container">
                 <input
                   type={mostrarSenha ? "text" : "password"}
