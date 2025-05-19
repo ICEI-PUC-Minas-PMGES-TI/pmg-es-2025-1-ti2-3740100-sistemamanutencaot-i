@@ -4,11 +4,6 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
-.containerPrincipal {
-  /* Banner Técnico */
-  position: absolute;
-  width: 508px;
-  height: 672.94px;
-  left: 200px;
-  top: 141px;
+.containerPrincipal img{
+  width: 500px;
 }

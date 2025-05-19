@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
-
+body{
+  font-family: 'Work Sans', sans-serif;
+}
 .containerFormulario {
-  min-height: 100vh;
   background-color: #F1EFEC;
   display: flex;
   align-items: center;
   padding: 0 2rem 1rem 1rem;
-  font-family: 'Work Sans', sans-serif;
-  padding-right: 200px;
+  padding-right: 50px;
 }
 
 .envoltorioFormulario {
@@ -19,15 +19,15 @@
 
 .tituloFormulario {
   font-size: 2.5rem;
-  font-weight: 900;
+  font-weight: 1000;
   color: #0C21C1;
-  margin-bottom: 2rem;
+  margin-bottom: 1.20rem;
 }
 
 .descricaoFormulario {
-  color: #333;
-  margin-bottom: 3rem;
-  line-height: 1.4;
+  color: black;
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
   font-weight: 600;
   font-size: 1.2rem;
 }
@@ -37,21 +37,21 @@
 }
 
 .grupoCampoFormulario {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .rotuloFormulario {
   display: block;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 1000;
   color: #0C21C1;
-  margin-bottom: 0.5rem;
+  margin-bottom: -0.5rem;
 }
 
 .entradaFormulario {
   width: 100%;
-  font-size: 1rem;
-  padding: 0.75rem;
+  font-size: 0.9rem;
+  padding: 0.75rem 0 0.5rem 0.5rem;
   border: none;
   border-bottom: 2px solid #000842;
   background-color: transparent;
@@ -90,6 +90,6 @@
   cursor: pointer;
   font-size: 1rem;
   color: blue;
-  margin-top: 50px;
+  
 }
 
