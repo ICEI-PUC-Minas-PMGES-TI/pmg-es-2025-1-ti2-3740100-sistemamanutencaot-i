@@ -9,23 +9,56 @@
 }
 
 .section-header {
-  display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #0B1E8A;
-  font-weight: 800;
+  color: #0b1e8a;
+  font-weight: 1000 !important;
   font-size: 1.125rem;
-  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  gap: 0.5rem;
+  color: #0b1e8a;
+  font-weight: 1000;
+  font-size: 2rem;
+}
+
+.section-header img {
+  display: block;
+  width: 250px;
+  height: 35px;
+  margin: -10px 0 0 40px;
+}
+
+.bottom {
+  display: flex;
+}
+.bottom h2 {
+  font-weight: 10 !important;
+  line-height: 0.5;
+  color: black;
+}
+
+.bottom img {
+  display: block;
+  width: 250px;
+  height: 35px;
+  margin: -10px 0 0 40px;
 }
 
 .image-container {
   position: relative;
-  border-radius: 50px 20px 50px 20px;
+  border-radius: 100px 200px 100px 200px;
   overflow: hidden;
-  width: 280px;
-  height: 280px;
-  background: #8B8FE3;
-  margin: 1.5rem 0;
+  width: 450px !important;
+  height: 450px !important;
+  background: #8b8fe3;
+  margin: 5rem 0;
+}
+
+.image-container img {
+  margin: 40px 0 0 12px;
+  height: 350px;
 }
 
 .intro-image {
@@ -34,28 +67,60 @@
   object-fit: cover;
 }
 
+.bottom-bottom {
+  display: flex;
+}
+.bottom-bottom h2 {
+  font-weight: 10 !important;
+  line-height: 0.5;
+  color: black;
+}
+
+.bottom-bottom img {
+  display: block;
+  width: 250px;
+  height: 35px;
+  margin: -10px 0 0 40px;
+}
 .introduction-right {
   font-size: 0.75rem;
-  color: #4B4B4B;
+  color: black;
   line-height: 1.6;
 }
 
 .subtitle-blue {
-  color: #0B1E8A;
-  font-weight: 800;
-  font-size: 0.875rem;
+  color: #0b1e8a;
+  font-weight: 1000;
+  font-size: 1.7rem;
   margin-bottom: 0.5rem;
+  margin-top: 5rem;
 }
 
 .subtitle-purple {
-  color: #8B8FE3;
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
+  line-height: 0.5;
+  color: #8b8fe3;
+  font-weight: 500 !important;
+  font-size: 1.7rem;
+  margin-bottom: 3rem;
+}
+.button {
+  margin: 10px 0 128px 0;
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  background: #0b1e8a;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  border: none;
 }
 
 .content-block {
-  margin: 2rem 0;
+  margin: -1.3rem 0;
+}
+
+.ladebaixo {
+  display: flex;
 }
 
 @media (min-width: 640px) {

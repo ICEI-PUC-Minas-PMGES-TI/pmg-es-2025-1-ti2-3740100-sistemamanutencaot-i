@@ -6,49 +6,54 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
+  place-items: center
 }
 
 .team-card {
   background: #0B1E8A;
-  border-radius: 1rem;
-  padding: 1.25rem;
+  border-radius: 2rem;
+  padding: 3.25rem;
   text-align: center;
   color: white;
 }
 
 .member-photo {
-  width: 7rem;
-  height: 7rem;
+  width: 9em;
+  height: 9rem;
   border-radius: 9999px;
   object-fit: cover;
   margin: 0 auto 1rem;
 }
 
 .member-name {
-  font-weight: 800;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
+  font-weight: 1000;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .member-bio {
-  font-size: 0.5rem;
-  opacity: 0.8;
-  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  margin-bottom: 0.9rem;
   line-height: 1.4;
 }
 
 .card-cta {
   background: white;
-  color: #0B1E8A;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.75rem;
-  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.card-cta:hover {
-  background: #e0e0e0;
+.card-cta img{
+  height: 25px;
+}
+.card-cta img:hover {
+  cursor: pointer;
+  scale: 1.05;
+  transition: 0.5s;
 }
 
 @media (min-width: 640px) {

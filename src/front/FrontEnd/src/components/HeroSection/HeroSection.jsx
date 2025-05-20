@@ -18,7 +18,7 @@ const HeroSection = () => {
           erros e tem total controle.
         </p>
         <div className="hero-cta">
-          <button className="cta-button">COMECE AGORA</button>
+          <button className="cta-button">ENTRAR</button>
           <svg
             className="arrow-icon"
             aria-hidden="true"
