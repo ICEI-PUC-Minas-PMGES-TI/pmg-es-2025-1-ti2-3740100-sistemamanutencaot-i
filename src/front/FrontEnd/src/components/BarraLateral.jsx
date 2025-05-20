@@ -40,7 +40,7 @@ const BarraLateral = () => {
       </div>
 
       <div className="sidebar-footer">
-        <Link to="/logout" className="sidebar-item">
+        <Link to="/landing-page" className="sidebar-item">
           <img src={Saida} alt="Sair" />
           <span className="sidebar-tooltip">Sair</span>
         </Link>

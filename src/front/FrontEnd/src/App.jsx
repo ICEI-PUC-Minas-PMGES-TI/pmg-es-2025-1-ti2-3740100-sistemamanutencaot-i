@@ -31,7 +31,7 @@ function App() {
         <Route path="/landing-page" element={<LandingPage />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<HomeTecnico />} />
       </Routes>
     </Router>
   );
