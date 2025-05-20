@@ -1,0 +1,73 @@
+/* Features.css */
+.features-container {
+  background: #0B1E8A;
+  border-radius: 9999px;
+  max-width: 1150px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #2A2E6B;
+}
+
+.feature-item:not(:first-child) {
+  border-top: none;
+}
+
+.feature-item i {
+  font-size: 1.125rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.feature-title {
+  font-weight: 1000;
+  font-size: 1.4rem !important;
+  text-align: justify;
+}
+
+.feature-info {
+  font-size: 0.8rem !important;
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .features-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .feature-item {
+    flex: 1;
+    flex-direction: column;
+    text-align: center;
+    border-top: none;
+    border-left: 1px solid #2A2E6B;
+    border-right: 1px solid #2A2E6B;
+    padding: 1.5rem 2.5rem;
+  }
+
+  .feature-item:first-child {
+    border-left: none;
+  }
+
+  .feature-item:last-child {
+    border-right: none;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+  }
+
+  .feature-info {
+    font-size: 0.6rem;
+  }
+}
