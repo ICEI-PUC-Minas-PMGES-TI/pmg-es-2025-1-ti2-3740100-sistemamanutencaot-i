@@ -17,7 +17,7 @@ const BarraLateral = () => {
   const menuItems = [
     { icon: Box, text: "Estoque", path: "/inventario" },
     { icon: User, text: "Usuários", path: "/cadastro-tecnico" },
-    { icon: Folder, text: "Ordem de Serviço", path: "/documentos" },
+    { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
     { icon: Chave, text: "Reparos", path: "/ferramentas" },
     { icon: Configuracoes, text: "Configurações", path: "/configuracoes-gerente"},
     { icon: Historico, text: "Historico de Reparos", path: "/ferramentas" },

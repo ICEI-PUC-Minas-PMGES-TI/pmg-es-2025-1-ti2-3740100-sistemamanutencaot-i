@@ -7,6 +7,7 @@ import CadastroTecnico from "./pages/CadastroTecnico.jsx";
 import TelaLogin from "./components/TelaLogin.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import ConfigGerente from "./pages/ConfiguracoesGerente.jsx";
+import NovaOrdemServico from "./pages/OrdemServico.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -30,8 +31,10 @@ function App() {
 
         <Route path="/landing-page" element={<LandingPage />} />
 
+        <Route path="/nova-ordem-servico" element={<NovaOrdemServico />} />
+
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<HomeTecnico />} />
+        <Route path="/" element={<NovaOrdemServico />} />
       </Routes>
     </Router>
   );

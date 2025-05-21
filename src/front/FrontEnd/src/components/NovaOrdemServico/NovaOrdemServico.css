@@ -1,0 +1,174 @@
+/* Estilos base */
+.container {
+  background-color: #f0eee9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 32px;
+  width: 100%;
+  max-width: 512px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-title {
+  color: #0b1dbf;
+  font-size: 2rem;
+  font-weight: 1000;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+.form-divider {
+  border: 1px solid #7a8a9e;
+  background-color: #7a8a9e;
+  border-radius: 9999px;
+  margin-bottom: 32px;
+  width: 350px;
+  margin: 1px auto 32px auto;
+  height: 4px;
+}
+
+/* Grupos de formulário */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    flex-direction: row;
+  }
+}
+
+/* Elementos do formulário */
+.input-label {
+  display: block;
+  color: #0b1dbf;
+  font-weight: 950;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+
+.text-input,
+.select-input,
+.date-input,
+.textarea-input {
+  width: 100%;
+  color: #7a7a7a;
+  font-size: 0.75rem;
+  border: none;
+  border-bottom: 1px solid #050a4a;
+  background-color: transparent;
+  padding: 8px 0;
+}
+
+.text-input:focus,
+.select-input:focus,
+.date-input:focus,
+.textarea-input:focus {
+  outline: none;
+  border-bottom-color: #050a4a;
+}
+
+/* Select personalizado */
+.select-container {
+  position: relative;
+}
+
+.select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 24px;
+}
+
+.select-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23050a4a"><path d="M7 10l5 5 5-5z"/></svg>');
+  pointer-events: none;
+}
+
+/* Date input */
+.date-input {
+  padding-right: 28px;
+}
+
+.date-container {
+  position: relative;
+}
+
+.date-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23050a4a"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>');
+  pointer-events: none;
+}
+
+/* Textarea */
+.textarea-input {
+  background-color: #e1e3eb;
+  border-radius: 8px;
+  padding: 12px;
+  resize: none;
+  border: none;
+}
+
+/* Botões */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.cancel-button,
+.submit-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1.125rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #a31b1b;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #8a1717;
+}
+
+.submit-button {
+  background-color: #1e9b1e;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #178a17;
+}

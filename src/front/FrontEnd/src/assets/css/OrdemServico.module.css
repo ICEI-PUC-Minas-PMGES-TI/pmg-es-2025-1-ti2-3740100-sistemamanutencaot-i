@@ -1,0 +1,13 @@
+/* NovaOrdemServicoPage.module.css */
+.containerGeral {
+    display: flex;
+    background-color: #f0eee9
+  }
+  
+  .conteudoPrincipal {
+    flex-grow: 1;
+    margin-left: 80px; /* Largura da barra lateral */
+  }
+  
+  
+  
