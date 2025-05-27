@@ -1,4 +1,4 @@
-package io.manager.backend.service;
+/*package io.manager.backend.service;
 
 import io.manager.backend.model.*;
 import io.manager.backend.repository.*;
@@ -54,3 +54,4 @@ public class RequisicaoPecaService {
         return requisicaoRepo.save(req);
     }
 }
+*/

@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 public class Cliente{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
+    
     private String nome;
     private String cpf;
     private String telefone;

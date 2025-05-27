@@ -1,4 +1,4 @@
-package io.manager.backend.controller;
+/*package io.manager.backend.controller;
 
 import io.manager.backend.model.RequisicaoPeca;
 import io.manager.backend.service.RequisicaoPecaService;
@@ -68,3 +68,4 @@ public class RequisicaoPecaController {
         }
     }
 }
+*/

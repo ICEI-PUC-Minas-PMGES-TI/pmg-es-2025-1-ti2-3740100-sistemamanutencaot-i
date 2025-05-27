@@ -60,6 +60,11 @@ public class ClienteController {
         clienteService.deleteCliente(id);
         return ResponseEntity.noContent().build();
     }
-
+    
+    @GetMapping("/clientes")
+    public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam String nome) {
+        List<Cliente> clientes = clienteService.buscarPorNome(nome);
+        return ResponseEntity.ok(clientes);
+    }
 
 }
