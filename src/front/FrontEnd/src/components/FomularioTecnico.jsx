@@ -73,7 +73,7 @@ const FormularioTecnico = () => {
         <p className={styles.descricaoFormulario}>
           Adicione um novo técnico à equipe e permita que ele acompanhe e{" "}
           <span className={styles.textoAzul}>atualize</span> os{" "}
-          <span className={styles.textoAzul}>reparos</span>.
+          <span className={styles.textoAzul}>reparos</span> com facilidade!
         </p>
 
         <div className={styles.grupoCampoFormulario}>
