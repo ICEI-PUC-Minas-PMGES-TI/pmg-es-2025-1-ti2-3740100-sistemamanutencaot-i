@@ -10,18 +10,17 @@ public class Computador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private int computadorId;
-    private int tecnicoId;
+    private int clienteId;
     private String tipo;
+    private String marca;
     private String modelo;
     private String descricaoProblema;
 
-    public Computador(int id, int computadorId, int tecnicoId, String tipo, String modelo, String descricaoProblema) {
+    public Computador(int id, int clienteId, String tipo, String marca, String modelo, String descricaoProblema) {
         this.id = id;
-        this.computadorId = computadorId;
-        this.tecnicoId = tecnicoId;
+        this.clienteId = clienteId;
         this.tipo = tipo;
+        this.marca = marca;
         this.modelo = modelo;
         this.descricaoProblema = descricaoProblema;
     }
@@ -34,20 +33,12 @@ public class Computador {
         this.id = id;
     }
 
-    public int getComputadorId() {
-        return computadorId;
+    public int getClienteId() {
+        return clienteId;
     }
 
-    public void setComputadorId(int computadorId) {
-        this.computadorId = computadorId;
-    }
-
-    public int getTecnicoId() {
-        return tecnicoId;
-    }
-
-    public void setTecnicoId(int tecnicoId) {
-        this.tecnicoId = tecnicoId;
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
     }
 
     public String getTipo() {
@@ -56,6 +47,14 @@ public class Computador {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getModelo() {
@@ -76,7 +75,7 @@ public class Computador {
 
     @Override
     public String toString() {
-        return "Computador [id=" + id + ", computadorId=" + computadorId + ", tecnicoId=" + tecnicoId + ", tipo=" + tipo
-                + ", modelo=" + modelo + ", descricaoProblema=" + descricaoProblema + "]";
+        return "Computador [id=" + id + ", clienteId=" + clienteId + ", tipo=" + tipo + ", marca=" + marca + ", modelo="
+                + modelo + ", descricaoProblema=" + descricaoProblema + "]";
     }
 }

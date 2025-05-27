@@ -35,7 +35,6 @@ const NovaOrdemServico = () => {
     return () => clearTimeout(delayDebounce);
   }, [termoBusca]);
 
-  // Função para quando clicar numa sugestão do cliente
   const selecionarCliente = (cliente) => {
     setClienteSelecionado(cliente);
     setTermoBusca(cliente.nome);
@@ -64,20 +63,33 @@ const NovaOrdemServico = () => {
       alert("Por favor, descreva o problema.");
       return;
     }
-
-    const novaOS = {
+    
+    const novoComputador = {
       clienteId: clienteSelecionado.id,
       tipoMaquina,
-      prazoDiagnostico,
-      dataCriacao: dataHoje,
-      descricaoProblema,
+      marca: null, //Precisa colocar a opção no Front
+      modelo: null, // Precisa colocara a opção no Front
+      descricaoProblema
     };
 
     try {
-      // Ajuste a URL para seu endpoint real que cria O.S
+      // Envia o POST para criar o computador
+      const response = await axios.post("http://localhost:8080/computadores", novoComputador);
+      const computadorCriado = response.data;
+
+      // 2. Usa o ID do computador retornado
+      const novaOS = {
+        computadorId: computadorCriado.id,
+        tecnicoId: null, // Precisa definir o Id ainda
+        status: "Cadastrado O.S",
+        dataCriacao: dataHoje,
+        prazoDiagnostico,
+        valorTotal: 0.00
+      };
+
       await axios.post("http://localhost:8080/ordem-servico", novaOS);
       alert("Ordem de Serviço criada com sucesso!");
-      // Limpar formulário (opcional)
+
       setTipoMaquina("");
       setPrazoDiagnostico("");
       setDescricaoProblema("");
@@ -113,7 +125,7 @@ const NovaOrdemServico = () => {
             value={termoBusca}
             onChange={(e) => {
               setTermoBusca(e.target.value);
-              setClienteSelecionado(null); // limpar cliente selecionado ao digitar
+              setClienteSelecionado(null);
             }}
             autoComplete="off"
           />

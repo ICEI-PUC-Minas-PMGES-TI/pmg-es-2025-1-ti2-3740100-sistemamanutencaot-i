@@ -30,9 +30,9 @@ public class ComputadorService {
         Optional<Computador> existente = computadorRepository.findById(id);
         if (existente.isPresent()) {
             Computador c = existente.get();
-            c.setComputadorId(computadorAtualizado.getComputadorId());
-            c.setTecnicoId(computadorAtualizado.getTecnicoId());
+            c.setClienteId(computadorAtualizado.getClienteId());
             c.setTipo(computadorAtualizado.getTipo());
+            c.setMarca(computadorAtualizado.getMarca());
             c.setModelo(computadorAtualizado.getModelo());
             c.setDescricaoProblema(computadorAtualizado.getDescricaoProblema());
             return computadorRepository.save(c);
