@@ -8,12 +8,13 @@ body {
   align-items: center;
   padding: 0 2rem 1rem 1rem 0;
   padding-right: 50px;
+  height: 100%;
 }
 
 .envoltorioFormulario {
   padding: 2rem;
   border-radius: 1rem;
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
 }
 
@@ -21,7 +22,7 @@ body {
   font-size: 2.5rem;
   font-weight: 1000;
   color: #0c21c1;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .descricaoFormulario {
@@ -29,7 +30,8 @@ body {
   margin-bottom: 1.2rem;
   line-height: 1.1;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin-right: 100px;
 }
 
 .textoAzul {
@@ -42,7 +44,7 @@ body {
 
 .rotuloFormulario {
   display: block;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 1000;
   color: #0c21c1;
   margin-bottom: -0.5rem;
@@ -50,7 +52,7 @@ body {
 
 .entradaFormulario {
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   padding: 0.75rem 0 0.5rem 0.5rem;
   border: none;
   border-bottom: 2px solid #000842;
@@ -61,6 +63,14 @@ body {
 .entradaFormulario:focus {
   outline: none;
   border-color: #0c21c1;
+}
+
+.entradaFormulario option {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
 }
 
 .botaoFormulario {
@@ -74,6 +84,7 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 25px;
 }
 
 .botaoFormulario:hover {

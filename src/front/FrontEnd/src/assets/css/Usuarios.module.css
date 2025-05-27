@@ -1,0 +1,12 @@
+
+.containerGeral {
+    display: flex;
+    min-height: 100vh;
+    background-color: #F5F5F5;
+  }
+  
+  .conteudoPrincipal {
+    flex: 1;
+    padding: 2rem;
+    margin: 10px 50px 10px 100px;
+  }

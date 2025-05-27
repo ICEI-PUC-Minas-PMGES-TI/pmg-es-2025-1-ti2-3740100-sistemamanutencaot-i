@@ -8,6 +8,8 @@ import TelaLogin from "./components/TelaLogin.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import ConfigGerente from "./pages/ConfiguracoesGerente.jsx";
 import NovaOrdemServico from "./pages/OrdemServico.jsx";
+import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
+import Usuarios from "./pages/Usuarios.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -32,6 +34,10 @@ function App() {
         <Route path="/landing-page" element={<LandingPage />} />
 
         <Route path="/nova-ordem-servico" element={<NovaOrdemServico />} />
+
+        <Route path="/requisicao-peca" element={<RequisicaoPecas />} />
+
+        <Route path="/usuarios" element={<Usuarios />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<NovaOrdemServico />} />

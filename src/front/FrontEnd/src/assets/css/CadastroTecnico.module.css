@@ -5,6 +5,12 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+.containerHorizontal {
+  height: 40.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Container principal lado a lado */
 .containerHorizontal {
   background-color: #f1efec;
