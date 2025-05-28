@@ -15,7 +15,7 @@ import Historico from "../assets/images/historico.png";
 
 const BarraLateral = () => {
   const menuItems = [
-    { icon: Box, text: "Estoque", path: "/inventario" },
+    { icon: Box, text: "Estoque", path: "/estoque" },
     { icon: User, text: "Usuários", path: "/usuarios" },
     { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
     { icon: Chave, text: "Reparos", path: "/ferramentas" },
