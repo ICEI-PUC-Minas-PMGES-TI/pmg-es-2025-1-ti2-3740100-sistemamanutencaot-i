@@ -10,6 +10,8 @@ import ConfigGerente from "./pages/ConfiguracoesGerente.jsx";
 import NovaOrdemServico from "./pages/OrdemServico.jsx";
 import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
+import Estoque from "./pages/Estoque.jsx"
+import Alert from "./components/Estoque/AdicionarAlert.jsx"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -39,8 +41,12 @@ function App() {
 
         <Route path="/usuarios" element={<Usuarios />} />
 
+        <Route path="/estoque" element={<Estoque />} />
+
+        <Route path="/alert" element={<Alert />} />
+
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<NovaOrdemServico />} />
+        <Route path="/" element={<Estoque />} />
       </Routes>
     </Router>
   );
