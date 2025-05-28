@@ -2,8 +2,11 @@ package io.manager.backend.service;
 
 import io.manager.backend.model.OrdemServico;
 import io.manager.backend.repository.OrdemServicoRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class OrdemServicoService {
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
+
+    // Mapa de peças por ordem de serviço
+    private static final Map<Integer, List<Map<String, Object>>> pecasPorOrdem = new ConcurrentHashMap<>();
 
     public List<OrdemServico> listarTodas() {
         return ordemServicoRepository.findAll();
@@ -43,6 +49,37 @@ public class OrdemServicoService {
 
     public void deletar(int id) {
         ordemServicoRepository.deleteById(id);
+    }
+
+    // Lista peças da ordem
+    public List<Map<String, Object>> listarPecas(int ordemId) {
+        if (!ordemServicoRepository.existsById(ordemId)) return null;
+        return pecasPorOrdem.getOrDefault(ordemId, new ArrayList<>());
+    }
+
+    // Adiciona peça à ordem
+    public List<Map<String, Object>> adicionarPeca(int ordemId, Map<String, Object> peca) {
+        if (!ordemServicoRepository.existsById(ordemId)) return null;
+        pecasPorOrdem.putIfAbsent(ordemId, new ArrayList<>());
+        pecasPorOrdem.get(ordemId).add(peca);
+        return pecasPorOrdem.get(ordemId);
+    }
+
+    // Remove peça da ordem (por índice)
+    public List<Map<String, Object>> removerPeca(int ordemId, int index) {
+        if (!ordemServicoRepository.existsById(ordemId)) return null;
+        List<Map<String, Object>> lista = pecasPorOrdem.get(ordemId);
+        if (lista != null && index >= 0 && index < lista.size()) {
+            lista.remove(index);
+        }
+        return lista;
+    }
+
+    // Simula envio de solicitação de peças
+    public boolean enviarSolicitacaoPecas(int ordemId) {
+        if (!ordemServicoRepository.existsById(ordemId)) return false;
+        // Aqui poderia enviar email, notificação, etc.
+        return true;
     }
 }
 
