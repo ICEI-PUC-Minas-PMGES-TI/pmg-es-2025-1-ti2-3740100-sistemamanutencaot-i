@@ -11,7 +11,7 @@ import NovaOrdemServico from "./pages/OrdemServico.jsx";
 import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
 import Estoque from "./pages/Estoque.jsx"
-import Alert from "./components/Estoque/AdicionarAlert.jsx"
+import Reparos from "./pages/Reparos.jsx"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -43,7 +43,7 @@ function App() {
 
         <Route path="/estoque" element={<Estoque />} />
 
-        <Route path="/alert" element={<Alert />} />
+        <Route path="/reparos" element={<Reparos />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<Estoque />} />

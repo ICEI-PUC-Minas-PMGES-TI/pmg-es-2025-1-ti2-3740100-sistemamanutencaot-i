@@ -13,10 +13,8 @@ body {
 }
 .conteudo {
   flex: 1;
-  padding: 2rem 10rem;
-  width: calc(100% - 56px);
-  overflow-y: auto;
-  height: 100vh;
+  padding: 2rem 4rem 2rem 8rem;
+  height: 100%;
 }
 
 /* Conteúdo */

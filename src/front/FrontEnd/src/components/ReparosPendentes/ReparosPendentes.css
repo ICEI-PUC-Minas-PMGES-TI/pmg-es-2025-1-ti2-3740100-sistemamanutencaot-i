@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap");
+
+.container-reparos {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: "Work Sans", sans-serif;
+}
+
+.titulo-pagina {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0b1e8a;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.descricao-pagina {
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+  max-width: 750px;
+  margin-bottom: 1rem;
+}
+
+.divisor {
+  border-top: 2px solid #9EABB8;
+  margin: 1.5rem 0;
+}
+
+.grid-reparos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.8rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .grid-reparos {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-reparos {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+  }
+  
+  .titulo-pagina {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-reparos {
+    padding: 1rem;
+  }
+  
+  .titulo-pagina {
+    font-size: 1.5rem;
+  }
+  
+  .divisor {
+    margin: 1rem 0;
+  }
+}

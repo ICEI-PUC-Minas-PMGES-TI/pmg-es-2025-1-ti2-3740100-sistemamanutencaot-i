@@ -15,19 +15,19 @@ body {
 
 .form-title {
   font-size: 1.5rem;
-  color: #3b82f6;
+  color: #0C21C1;
   margin-bottom: 0.75rem;
 }
 
 .form-divider {
-  border-top: 1px solid #93c5fd;
+  border-top: 1px solid #9EABB8;
   margin-bottom: 1.25rem;
   width: 300px;
 }
 
 .input-label {
   display: block;
-  color: #1e40af;
+  color: #0C21C1;
   font-weight: 1000;
   font-size: 0.875rem;
   margin-bottom: 0.25rem;
@@ -38,7 +38,7 @@ body {
   width: 100%;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #1e40af;
+  border-bottom: 2px solid #0C21C1;
   color: #9ca3af;
   font-size: 0.75rem;
   padding-bottom: 0.25rem;
@@ -51,7 +51,7 @@ body {
 }
 
 .radio-label {
-  color: #1e40af;
+  color: #0C21C1;
   font-weight: 1000;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
@@ -63,7 +63,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
-  color: #1e40af;
+  color: #0C21C1;
   font-size: 0.75rem;
   user-select: none;
 }
@@ -83,7 +83,7 @@ body {
 }
 
 .radio-input.accent {
-  accent-color: #1e40af;
+  accent-color: #0C21C1;
 }
 
 .button-group {
@@ -103,21 +103,21 @@ body {
 }
 
 .cancel-button {
-  background-color: #991b1b;
+  background-color: #A21919;
   color: white;
 }
 
 .cancel-button:hover {
-  background-color: #7f1d1d;
+  background-color: #861414;
 }
 
 .submit-button {
-  background-color: #047857;
+  background-color: #19A22D;
   color: white;
 }
 
 .submit-button:hover {
-  background-color: #065f46;
+  background-color: #047817;
 }
 
 /* Adicionar ao AdicionarAlert.css */

@@ -1,13 +1,34 @@
-
-import React from "react";
+import React, { useState } from "react";
 import "./Usuarios.css";
-import editar from "../../assets/images/edit.png"
-import filtrar from "../../assets/images/Filtro1.png"
-import adicionar from "../../assets/images/adicionar.png"
+import editar from "../../assets/images/edit.png";
+import filtrar from "../../assets/images/Filtro1.png";
+import adicionar from "../../assets/images/adicionar.png";
 import excluir from "../../assets/images/lixo.png";
-import pesquisar from "../../assets/images/search.png"
+import pesquisar from "../../assets/images/search.png";
+import AdicionarAlert from "./AdicionarAlert"; // Importe o componente
 
 const UserManagement = () => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [showAddUserForm, setShowAddUserForm] = useState(false);
+  const [showAddTechnicalForm, setShowAddTechnicalForm] = useState(false);
+
+  const openAddModal = () => setIsAddModalOpen(true);
+  const closeAddModal = () => setIsAddModalOpen(false);
+
+  const handleAddUser = () => {
+    closeAddModal();
+    setShowAddUserForm(true);
+    // Aqui você implementaria a lógica para mostrar o formulário de adicionar usuário
+    console.log("Adicionar usuário selecionado");
+  };
+
+  const handleAddTechnical = () => {
+    closeAddModal();
+    setShowAddTechnicalForm(true);
+    // Aqui você implementaria a lógica para mostrar o formulário de adicionar técnico
+    console.log("Adicionar técnico selecionado");
+  };
+
   const users = Array(8).fill({
     name: "Juliana Ribeiro da Silva",
     cpf: "123.456.789-12",
@@ -25,11 +46,14 @@ const UserManagement = () => {
         <form className="search-form">
           <input type="search" placeholder="Buscar..." aria-label="Buscar" />
           <button type="submit" aria-label="Buscar">
-            <img src={pesquisar} alt="" />
+            <img src={pesquisar} alt="Pesquisar" />
           </button>
         </form>
         <div className="button-section">
-          <button className="animated-button">
+          <button
+            className="animated-button"
+            onClick={openAddModal} // Abre o modal
+          >
             <span className="button-icon">
               <img src={adicionar} alt="Adicionar" />
             </span>
@@ -71,10 +95,10 @@ const UserManagement = () => {
                 <td className="acoes">
                   <div className="actions">
                     <button className="edit-button">
-                      <img src={editar} alt="" />
+                      <img src={editar} alt="Editar" />
                     </button>
                     <button className="delete-button">
-                      <img src={excluir} alt="" />
+                      <img src={excluir} alt="Excluir" />
                     </button>
                   </div>
                 </td>
@@ -95,6 +119,15 @@ const UserManagement = () => {
           <button>›</button>
         </div>
       </nav>
+
+      {/* Modal de Adicionar */}
+      {isAddModalOpen && (
+        <AdicionarAlert
+          onClose={closeAddModal}
+          onAddUser={handleAddUser}
+          onAddTechnical={handleAddTechnical}
+        />
+      )}
     </main>
   );
 };
