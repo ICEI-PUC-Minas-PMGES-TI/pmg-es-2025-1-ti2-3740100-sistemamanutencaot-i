@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdicionarAlert.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,6 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const AdicionarAlert = ({ onClose, onAddUser, onAddTechnical }) => {
+  const [hoveredButton, setHoveredButton] = useState(null);
+
   return (
     <div className="adicionar-alert-container">
       <div className="adicionar-alert-content">
@@ -25,19 +27,49 @@ const AdicionarAlert = ({ onClose, onAddUser, onAddTechnical }) => {
           <button
             className="adicionar-alert-btn"
             onClick={onAddUser}
+            onMouseEnter={() => setHoveredButton("user")}
+            onMouseLeave={() => setHoveredButton(null)}
             aria-label="Adicionar Usuário"
           >
-            <FontAwesomeIcon icon={faUser} className="adicionar-alert-icon" />
+            <div className="button-content">
+              <FontAwesomeIcon
+                icon={faUser}
+                className={`adicionar-alert-icon ${
+                  hoveredButton === "user" ? "hovered" : ""
+                }`}
+              />
+              <span
+                className={`button-label ${
+                  hoveredButton === "user" ? "visible" : ""
+                }`}
+              >
+                Usuário
+              </span>
+            </div>
           </button>
+
           <button
             className="adicionar-alert-btn"
             onClick={onAddTechnical}
+            onMouseEnter={() => setHoveredButton("technical")}
+            onMouseLeave={() => setHoveredButton(null)}
             aria-label="Adicionar Técnico"
           >
-            <FontAwesomeIcon
-              icon={faScrewdriver}
-              className="adicionar-alert-icon"
-            />
+            <div className="button-content">
+              <FontAwesomeIcon
+                icon={faScrewdriver}
+                className={`adicionar-alert-icon ${
+                  hoveredButton === "technical" ? "hovered" : ""
+                }`}
+              />
+              <span
+                className={`button-label ${
+                  hoveredButton === "technical" ? "visible" : ""
+                }`}
+              >
+                Técnico
+              </span>
+            </div>
           </button>
         </div>
       </div>

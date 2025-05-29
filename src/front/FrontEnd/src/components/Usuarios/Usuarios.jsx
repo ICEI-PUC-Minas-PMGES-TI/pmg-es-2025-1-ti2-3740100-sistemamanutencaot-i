@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
 import "./Usuarios.css";
 import editar from "../../assets/images/edit.png";
 import filtrar from "../../assets/images/Filtro1.png";
@@ -9,24 +10,19 @@ import AdicionarAlert from "./AdicionarAlert"; // Importe o componente
 
 const UserManagement = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [showAddUserForm, setShowAddUserForm] = useState(false);
-  const [showAddTechnicalForm, setShowAddTechnicalForm] = useState(false);
+  const navigate = useNavigate(); // Hook para navegação
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
 
   const handleAddUser = () => {
     closeAddModal();
-    setShowAddUserForm(true);
-    // Aqui você implementaria a lógica para mostrar o formulário de adicionar usuário
-    console.log("Adicionar usuário selecionado");
+    navigate("/cadastro"); // Navega para a tela de adicionar usuário
   };
 
   const handleAddTechnical = () => {
     closeAddModal();
-    setShowAddTechnicalForm(true);
-    // Aqui você implementaria a lógica para mostrar o formulário de adicionar técnico
-    console.log("Adicionar técnico selecionado");
+    navigate("/cadastro-tecnico"); // Navega para a tela de adicionar técnico
   };
 
   const users = Array(8).fill({
