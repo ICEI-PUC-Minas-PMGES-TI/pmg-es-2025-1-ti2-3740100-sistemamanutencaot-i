@@ -185,6 +185,7 @@ body {
   text-overflow: ellipsis;
   text-align: center;
   background-color: #e9ebe4;
+  width: 330px;
   border-radius: 6px;
   padding: 0.5rem;
   margin-top: 0.25rem;
