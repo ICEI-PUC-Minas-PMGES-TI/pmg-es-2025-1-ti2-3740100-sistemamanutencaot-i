@@ -176,6 +176,7 @@ body {
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;
+    transition: 0.5s;
   }
   
   .delete-button {
@@ -185,6 +186,12 @@ body {
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .delete-button:hover,
+  .edit-button:hover {
+    scale: 1.05;
   }
   
   .pagination {
