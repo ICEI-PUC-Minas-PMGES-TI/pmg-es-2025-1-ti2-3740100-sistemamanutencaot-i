@@ -41,6 +41,7 @@ public class PessoaJuridicaController {
                 .map(pessoa -> {
                     pessoa.setNome(pessoaJuridicaAtualizada.getNome());
                     pessoa.setCnpj(pessoaJuridicaAtualizada.getCnpj());
+                    pessoa.setInscricaoJudicial(pessoaJuridicaAtualizada.getInscricaoJudicial());
                     PessoaJuridica pessoaJuridicaSalva = pessoaJuridicaRepository.save(pessoa);
                     return ResponseEntity.ok(pessoaJuridicaSalva);
                 })

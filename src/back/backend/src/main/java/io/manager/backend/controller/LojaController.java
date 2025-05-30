@@ -1,12 +1,11 @@
 package io.manager.backend.controller;
 
 import io.manager.backend.model.Loja;
-import io.manager.backend.model.Usuario;
-import io.manager.backend.repository.UsuarioRepository;
 import io.manager.backend.service.LojaService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/lojas")
@@ -17,12 +16,9 @@ import java.util.*;
 public class LojaController {
 
     private final LojaService lojaService;
-    private final UsuarioRepository usuarioRepository; // Adicionando o repository
 
-    // Injetando o repository através do construtor
-    public LojaController(LojaService lojaService, UsuarioRepository usuarioRepository) {
+    public LojaController(LojaService lojaService) {
         this.lojaService = lojaService;
-        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping
@@ -37,10 +33,7 @@ public class LojaController {
 
     @PostMapping
     public Loja criar(@RequestBody Loja loja) {
-        Usuario usuario = usuarioRepository.findById(loja.getUsuario().getId())
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        loja.setUsuario(usuario); // Associa o usuário à loja
-        return lojaService.criar(loja);  // Cria a loja
+        return lojaService.criar(loja);
     }
 
     @PutMapping("/{id}")

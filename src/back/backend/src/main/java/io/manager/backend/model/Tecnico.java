@@ -7,23 +7,20 @@ public class Tecnico extends PessoaFisica {
 
     private String cargo;
     private String email;
+    private String senha;
 
     @ManyToOne
-    @JoinColumn(name = "loja_id")
+    @JoinColumn(name = "loja_id", nullable = false)
     private Loja loja;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
 
     public Tecnico() {}
 
-    public Tecnico(String nome, String cpf, String cargo, String email, Loja loja, Usuario usuario) {
+    public Tecnico(String nome, String cpf, String cargo, String email, String senha, Loja loja) {
         super(nome, cpf);
         this.cargo = cargo;
         this.email = email;
+        this.senha = senha;
         this.loja = loja;
-        this.usuario = usuario;
     }
 
     public String getCargo() {
@@ -34,27 +31,27 @@ public class Tecnico extends PessoaFisica {
         this.cargo = cargo;
     }
 
-    public Loja getLoja() {
-        return loja;
-    }
-
-    public void setLoja(Loja loja) {
-        this.loja = loja;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
     }
 }

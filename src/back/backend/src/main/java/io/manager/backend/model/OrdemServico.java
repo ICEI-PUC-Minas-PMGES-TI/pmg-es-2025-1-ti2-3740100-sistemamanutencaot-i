@@ -1,53 +1,57 @@
 package io.manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
 public class OrdemServico {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private int computadorId;
-    private int tecnicoId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "computador_id")
+    private Computador computador;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "tecnico_id")
+    private Tecnico tecnico;
+
     private String status;
-    private Date data_entrada; 
-    private Date prazoEstimado;
-    private double valorTotal;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataEntrada;
 
-    public OrdemServico(){}
+    @Temporal(TemporalType.DATE)
+    private Date prazo;
 
-    public OrdemServico(int computadorId, int tecnicoId, String status, Date dataEntrada, Date prazoEstimado){
+    private Double valorTotal;
 
-    }
+    private String descricaoOs;
 
-    public int getid() {
+    private String solucaoOs;
+
+    public OrdemServico() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setid(int id) {
-        this.id = id;
+    public Computador getComputador() {
+        return computador;
     }
 
-    public int getComputadorId() {
-        return computadorId;
+    public void setComputador(Computador computador) {
+        this.computador = computador;
     }
 
-    public void setComputadorId(int computadorId) {
-        this.computadorId = computadorId;
+    public Tecnico getTecnico() {
+        return tecnico;
     }
 
-    public int getTecnicoId() {
-        return tecnicoId;
-    }
-
-    public void setTecnicoId(int tecnicoId) {
-        this.tecnicoId = tecnicoId;
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
     }
 
     public String getStatus() {
@@ -58,35 +62,50 @@ public class OrdemServico {
         this.status = status;
     }
 
-    public Date getData_entrada() {
-        return data_entrada;
+    public Date getDataEntrada() {
+        return dataEntrada;
     }
 
-    public void setData_entrada(Date data_entrada) {
-        this.data_entrada = data_entrada;
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
     }
 
-    public Date getPrazoEstimado() {
-        return prazoEstimado;
+    public Date getPrazo() {
+        return prazo;
     }
 
-    public void setPrazoEstimado(Date prazoEstimado) {
-        this.prazoEstimado = prazoEstimado;
+    public void setPrazo(Date prazo) {
+        this.prazo = prazo;
     }
 
-    public double getValorTotal() {
+    public Double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public String getDescricaoOs() {
+        return descricaoOs;
+    }
+
+    public void setDescricaoOs(String descricaoOs) {
+        this.descricaoOs = descricaoOs;
+    }
+
+    public String getSolucaoOs() {
+        return solucaoOs;
+    }
+
+    public void setSolucaoOs(String solucaoOs) {
+        this.solucaoOs = solucaoOs;
     }
 
     @Override
     public String toString() {
-        return "OrdemServico [id=" + id + ", computadorId=" + computadorId + ", tecnicoId=" + tecnicoId
-                + ", status=" + status + ", data_entrada=" + data_entrada + ", prazoEstimado=" + prazoEstimado
-                + ", valorTotal=" + valorTotal + "]";
+        return "OrdemServico{id=" + id + ", computador=" + computador + ", tecnico=" + tecnico +
+                ", status='" + status + "', dataEntrada=" + dataEntrada + ", prazo=" + prazo +
+                ", valorTotal=" + valorTotal + ", descricaoOs='" + descricaoOs + "', solucaoOs='" + solucaoOs + "'}";
     }
-
 }
