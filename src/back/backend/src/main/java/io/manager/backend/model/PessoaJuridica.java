@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 public class PessoaJuridica extends Pessoa {
 
     private String cnpj;
+    private String inscricaoJudicial;
 
     public PessoaJuridica() {}
 
-    public PessoaJuridica(String nome, String cnpj) {
+    public PessoaJuridica(String nome, String cnpj, String inscricaoJudicial) {
         super(null, nome);
         this.cnpj = cnpj;
+        this.inscricaoJudicial = inscricaoJudicial;
     }
 
     public String getCnpj() {
@@ -20,6 +22,14 @@ public class PessoaJuridica extends Pessoa {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getInscricaoJudicial() {
+        return inscricaoJudicial;
+    }
+
+    public void setInscricaoJudicial(String inscricaoJudicial) {
+        this.inscricaoJudicial = inscricaoJudicial;
     }
 }
 

@@ -30,9 +30,13 @@ public class LojaService {
 
     public Loja atualizar(Integer id, Loja lojaAtualizada) {
         return lojaRepository.findById(id).map(loja -> {
-            loja.setNome(lojaAtualizada.getNome());
-            loja.setCnpj(lojaAtualizada.getCnpj());
+            loja.setNome(lojaAtualizada.getNome()); // herdado de Pessoa
+            loja.setCnpj(lojaAtualizada.getCnpj()); // herdado de PessoaJuridica
+            loja.setInscricaoJudicial(lojaAtualizada.getInscricaoJudicial()); // herdado de PessoaJuridica
             loja.setEndereco(lojaAtualizada.getEndereco());
+            loja.setTelefone(lojaAtualizada.getTelefone());
+            loja.setEmail(lojaAtualizada.getEmail());
+            loja.setSenha(lojaAtualizada.getSenha());
             return lojaRepository.save(loja);
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }

@@ -2,7 +2,7 @@
 
 ### 4.1. Modelo de dados
 
-![Modelo de dados](images/modeloDados.png "Modelo de dados.")
+![Modelo de dados](images/modeloDados.jpg "Modelo de dados.")
 
 ---
 

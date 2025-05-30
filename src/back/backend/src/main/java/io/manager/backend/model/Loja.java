@@ -1,60 +1,67 @@
 package io.manager.backend.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-public class Loja {
+public class Loja extends PessoaJuridica{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; // mesmo ID da PessoaJuridica
 
-    private String nome;
-    private String cnpj;
+    @OneToOne
+    @JsonIgnore
+    @MapsId
+    @JoinColumn(name = "pessoa_juridica_id")
+    private PessoaJuridica pessoaJuridica;
+
+    @Column(nullable = false)
     private String endereco;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @Column(nullable = false)
+    private String telefone;
+
+    private String email;
+    private String senha;
 
     // Getters e Setters
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public String getNome() {
-        return nome;
+    public PessoaJuridica getPessoaJuridica() {
+        return pessoaJuridica;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
+        this.pessoaJuridica = pessoaJuridica;
     }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getEndereco() {
         return endereco;
     }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
-    public Usuario getUsuario() {
-        return usuario;
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    
 }

@@ -64,3 +64,9 @@
 .button:hover {
   background-color: #000842;
 }
+
+.secondaryButton {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-top: 10px;
+}

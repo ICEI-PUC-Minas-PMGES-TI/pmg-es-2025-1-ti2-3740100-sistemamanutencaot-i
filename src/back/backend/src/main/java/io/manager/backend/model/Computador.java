@@ -1,44 +1,45 @@
 package io.manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Computador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int clienteId;
-    private String tipo;
-    private String marca;
-    private String modelo;
-    private String descricaoProblema;
+    private Integer id;
 
-    public Computador(int id, int clienteId, String tipo, String marca, String modelo, String descricaoProblema) {
-        this.id = id;
-        this.clienteId = clienteId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    private String tipo;
+
+    @Column(length = 30)
+    private String marca;
+
+    @Column(length = 50)
+    private String modelo;
+
+    public Computador() {}
+
+    public Computador(Cliente cliente, String tipo, String marca, String modelo) {
+        this.cliente = cliente;
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
-        this.descricaoProblema = descricaoProblema;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public int getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(int clienteId) {
-        this.clienteId = clienteId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getTipo() {
@@ -65,17 +66,8 @@ public class Computador {
         this.modelo = modelo;
     }
 
-    public String getDescricaoProblema() {
-        return descricaoProblema;
-    }
-
-    public void setDescricaoProblema(String descricaoProblema) {
-        this.descricaoProblema = descricaoProblema;
-    }
-
     @Override
     public String toString() {
-        return "Computador [id=" + id + ", clienteId=" + clienteId + ", tipo=" + tipo + ", marca=" + marca + ", modelo="
-                + modelo + ", descricaoProblema=" + descricaoProblema + "]";
+        return "Computador{id=" + id + ", cliente=" + cliente + ", tipo='" + tipo + "', marca='" + marca + "', modelo='" + modelo + "'}";
     }
 }

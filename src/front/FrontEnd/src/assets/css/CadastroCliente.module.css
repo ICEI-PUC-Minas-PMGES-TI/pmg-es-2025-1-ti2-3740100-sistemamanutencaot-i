@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+
+body {
+  background-color: #f1efec;
+  font-family: "Work Sans", sans-serif;
+}
+
+.containerHorizontal {
+  height: 40.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Container principal lado a lado */
+.containerHorizontal {
+  background-color: #f1efec;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* Elemento da esquerda */
+.elementoEsquerdo {
+  flex: 1;
+  margin: 0 0 0 125px;
+}
+
+/* Elemento da direita */

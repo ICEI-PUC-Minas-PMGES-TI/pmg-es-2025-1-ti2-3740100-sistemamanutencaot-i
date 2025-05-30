@@ -36,7 +36,6 @@ public class TecnicoService {
         existente.setNome(dadosAtualizados.getNome());
         existente.setCpf(dadosAtualizados.getCpf());
         existente.setCargo(dadosAtualizados.getCargo());
-        existente.setUsuario(dadosAtualizados.getUsuario());
         return tecnicoRepository.save(existente);
     }
 

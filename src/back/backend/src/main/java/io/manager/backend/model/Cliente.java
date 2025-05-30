@@ -1,53 +1,39 @@
 package io.manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+public class Cliente extends PessoaFisica{
 
-public class Cliente{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
-    private String nome;
-    private String cpf;
+    @Column(name = "pessoa_id")
+    private Integer id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+    @Column(length = 20)
     private String telefone;
 
-    public Cliente() {
-    }
+    public Cliente() {}
 
-    public Cliente(int id, String nome, String cpf, String telefone) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
+    public Cliente(Pessoa pessoa, String telefone) {
+        this.pessoa = pessoa;
         this.telefone = telefone;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public String getTelefone() {
@@ -59,14 +45,7 @@ public class Cliente{
     }
 
     @Override
-
     public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", telefone='" + telefone + '\'' +
-                '}';
+        return "Cliente{id=" + id + ", pessoa=" + pessoa + ", telefone='" + telefone + "'}";
     }
-
 }
