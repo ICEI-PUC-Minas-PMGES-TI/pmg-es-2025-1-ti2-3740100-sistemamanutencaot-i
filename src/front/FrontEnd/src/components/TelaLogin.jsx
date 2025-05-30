@@ -20,15 +20,26 @@ const TelaLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Simulação de autenticação
-      if (formData.email === "admin@admin.com" && formData.senha === "123456") {
+      const response = await fetch("http://localhost:8080/tecnicos/login-tecnico", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const tecnico = await response.json();
         alert("Login realizado com sucesso!");
-        navigate("home-tecnico"); // Redireciona para o dashboard
+        navigate("/home-tecnico");
+        // localStorage.setItem("tecnico", JSON.stringify(tecnico));
       } else {
-        alert("Credenciais inválidas. Tente novamente.");
+        const msg = await response.text();
+        alert("Erro ao fazer login: " + msg);
       }
     } catch (error) {
       console.error("Erro ao realizar login:", error);
+      alert("Erro de rede ou no servidor.");
     }
   };
 
@@ -36,10 +47,9 @@ const TelaLogin = () => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h1 className={styles.title}>Login</h1>
+
         <div className={styles.inputGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
+          <label htmlFor="email" className={styles.label}>Email</label>
           <input
             type="email"
             id="email"
@@ -51,10 +61,9 @@ const TelaLogin = () => {
             required
           />
         </div>
+
         <div className={styles.inputGroup}>
-          <label htmlFor="senha" className={styles.label}>
-            Senha
-          </label>
+          <label htmlFor="senha" className={styles.label}>Senha</label>
           <input
             type="password"
             id="senha"
@@ -66,8 +75,15 @@ const TelaLogin = () => {
             required
           />
         </div>
-        <button type="submit" className={styles.button}>
-          Entrar
+
+        <button type="submit" className={styles.button}>Entrar</button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/cadastro-tecnico")}
+          className={styles.button + " " + styles.secondaryButton}
+        >
+          Cadastrar-se
         </button>
       </form>
     </div>

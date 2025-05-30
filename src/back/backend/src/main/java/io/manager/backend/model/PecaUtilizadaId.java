@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class PecaUtilizadaId implements Serializable {
-    private Integer ordemId;
-    private Integer pecaId;
+    private OrdemServico ordemServico;
+    private Peca peca;
 
     public PecaUtilizadaId() {}
 
-    public PecaUtilizadaId(Integer ordemId, Integer pecaId) {
-        this.ordemId = ordemId;
-        this.pecaId = pecaId;
+    public PecaUtilizadaId(OrdemServico ordemServico, Peca peca) {
+        this.ordemServico = ordemServico;
+        this.peca = peca;
     }
 
     @Override
@@ -19,11 +19,12 @@ public class PecaUtilizadaId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PecaUtilizadaId)) return false;
         PecaUtilizadaId that = (PecaUtilizadaId) o;
-        return Objects.equals(ordemId, that.ordemId) && Objects.equals(pecaId, that.pecaId);
+        return Objects.equals(ordemServico, that.ordemServico) &&
+               Objects.equals(peca, that.peca);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ordemId, pecaId);
+        return Objects.hash(ordemServico, peca);
     }
 }

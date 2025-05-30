@@ -5,6 +5,8 @@ import io.manager.backend.service.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.manager.backend.dto.LoginRequest;
+
 
 import java.util.List;
 
@@ -50,5 +52,23 @@ public class TecnicoController {
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         tecnicoService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login-tecnico")
+    public ResponseEntity<?> loginTecnico(@RequestBody LoginRequest loginRequest) {
+        try {
+            Tecnico tecnico = tecnicoService.buscarPorEmail(loginRequest.getEmail());
+            
+            // Aqui você deve comparar a senha, idealmente com hash
+            if (tecnico.getSenha().equals(loginRequest.getSenha())) {
+                // Remove a senha antes de enviar a resposta para segurança
+                tecnico.setSenha(null);
+                return ResponseEntity.ok(tecnico);
+            } else {
+                return ResponseEntity.status(401).body("Senha incorreta");
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body("Usuário não encontrado");
+        }
     }
 }

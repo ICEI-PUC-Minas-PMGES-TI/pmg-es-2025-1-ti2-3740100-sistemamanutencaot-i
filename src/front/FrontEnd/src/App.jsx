@@ -29,7 +29,7 @@ function App() {
         <Route path="/cadastro-cliente" element={<CadastroCliente />} />
 
         {/* Rota para o login */}
-        <Route path="/login" element={<TelaLogin />} />
+        <Route path="/login-tecnico" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/home-tecnico" element={<HomeTecnico />} />
@@ -49,7 +49,7 @@ function App() {
         <Route path="/reparos" element={<Reparos />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<Estoque />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </Router>
   );

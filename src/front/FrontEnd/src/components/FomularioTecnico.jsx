@@ -33,37 +33,30 @@ const FormularioTecnico = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const novoUsuario = {
-    login: formData.email,
-    senha: formData.senha,
-    tipo: "TECNICO"
-  };
-
-  try {
-    const usuarioResponse = await axios.post("http://localhost:8080/usuarios", novoUsuario);
-    const usuarioId = usuarioResponse.data.id; // Aqui você pega o ID retornado da API
-
     const novoTecnico = {
       nome: formData.nomeTecnico,
       cpf: formData.cpf,
       email: formData.email,
+      senha: formData.senha,
       cargo: opcaoSelecionada,
       loja: {
         id: parseInt(idLoja),
       },
-      usuario: { id: usuarioId }, // Agora você usa o ID do usuário
     };
 
-    const tecnicoResponse = await axios.post("http://localhost:8080/tecnicos", novoTecnico);
-    console.log("Técnico cadastrado com sucesso:", tecnicoResponse.data);
-    setMensagem("Técnico cadastrado com sucesso!");
-    setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
-    setOpcaoSelecionada("");
-    navigate("login")
-  } catch (error) {
-    console.error("Erro ao cadastrar técnico:", error);
-    setMensagem(`Erro ao cadastrar técnico: ${error.response?.data?.message || error.message}`);
-  }
+    try {
+      const tecnicoResponse = await axios.post("http://localhost:8080/tecnicos", novoTecnico);
+      console.log("Técnico cadastrado com sucesso:", tecnicoResponse.data);
+      setMensagem("Técnico cadastrado com sucesso!");
+      setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
+      setOpcaoSelecionada("");
+      navigate("/login-tecnico");
+    } catch (error) {
+      console.error("Erro ao cadastrar técnico:", error);
+      setMensagem(`Erro ao cadastrar técnico: ${error.response?.data?.message || error.message}`);
+    }
+
+  
 };
 
   return (

@@ -31,7 +31,5 @@ public class PessoaJuridica extends Pessoa {
     public void setInscricaoJudicial(String inscricaoJudicial) {
         this.inscricaoJudicial = inscricaoJudicial;
     }
-
-    
 }
 
