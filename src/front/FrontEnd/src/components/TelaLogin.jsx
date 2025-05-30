@@ -31,8 +31,8 @@ const TelaLogin = () => {
       if (response.ok) {
         const tecnico = await response.json();
         alert("Login realizado com sucesso!");
-        navigate("/home-tecnico");
         localStorage.setItem("tecnico", JSON.stringify(tecnico));
+        navigate("/home-tecnico");
       } else {
         const msg = await response.text();
         alert("Erro ao fazer login: " + msg);

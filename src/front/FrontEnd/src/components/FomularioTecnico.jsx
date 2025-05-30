@@ -50,7 +50,9 @@ const FormularioTecnico = () => {
       setMensagem("Técnico cadastrado com sucesso!");
       setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
       setOpcaoSelecionada("");
-      navigate("/login-tecnico");
+      setTimeout(() => {
+        navigate("/login-tecnico");
+      }, 3000);
     } catch (error) {
       console.error("Erro ao cadastrar técnico:", error);
       setMensagem(`Erro ao cadastrar técnico: ${error.response?.data?.message || error.message}`);

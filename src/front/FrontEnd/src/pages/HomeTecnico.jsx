@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/HomeTecnico.css";
 import BarraLateral from "../components/BarraLateral.jsx";
 import ReparoCard from "../components/ReparoCard.jsx";
@@ -53,13 +53,22 @@ const reparos = [
   },
 ];
 
-const HomeTecnico = () => {
+const HomeTecnico = ()=> {
+  const [nomeTecnico, setNomeTecnico] = useState("");
+  useEffect(() => {
+    const tecnicoStr = localStorage.getItem("tecnico");
+    if (tecnicoStr) {
+      const tecnicoObj = JSON.parse(tecnicoStr);
+      setNomeTecnico(tecnicoObj.nome); // Aqui pega o nome do técnico
+    }
+  }, []);
+  
   return (
     <div className="container">
       <BarraLateral />
       <main className="conteudo">
         <header className="cabecalho">
-          <h1>Olá, Ana Paula</h1>
+          <h1>Olá, {nomeTecnico || "Usuário"}</h1>
           <p className="subtitulo">Técnico de Campo</p>
         </header>
 
