@@ -32,7 +32,7 @@ const TelaLogin = () => {
         const tecnico = await response.json();
         alert("Login realizado com sucesso!");
         navigate("/home-tecnico");
-        // localStorage.setItem("tecnico", JSON.stringify(tecnico));
+        localStorage.setItem("tecnico", JSON.stringify(tecnico));
       } else {
         const msg = await response.text();
         alert("Erro ao fazer login: " + msg);

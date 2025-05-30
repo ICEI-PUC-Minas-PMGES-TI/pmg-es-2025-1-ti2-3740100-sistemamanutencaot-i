@@ -3,18 +3,18 @@ package io.manager.backend.controller;
 import io.manager.backend.model.Tecnico;
 import io.manager.backend.service.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.manager.backend.dto.LoginRequest;
-
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/tecnicos")
-@CrossOrigin (origins = {
-    "http://localhost:5173",
-    "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
 })
 public class TecnicoController {
 
@@ -42,6 +42,51 @@ public class TecnicoController {
         return ResponseEntity.ok(novo);
     }
 
+    // Adiciona @CrossOrigin específico aqui também e responde OPTIONS para preflight
+    @CrossOrigin(origins = {
+            "http://localhost:5173",
+            "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
+    })
+    @RequestMapping(value = "/login-tecnico", method = {RequestMethod.POST, RequestMethod.OPTIONS})
+    public ResponseEntity<?> loginTecnico(@RequestBody(required = false) LoginRequest loginRequest) {
+        // Se for requisição OPTIONS, retorna cabeçalhos CORS e sucesso
+        if (loginRequest == null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Allow-Origin", "http://localhost:5173");
+            headers.add("Access-Control-Allow-Methods", "POST, OPTIONS");
+            headers.add("Access-Control-Allow-Headers", "Content-Type");
+            return ResponseEntity.ok().headers(headers).build();
+        }
+
+        System.out.println("LoginRequest recebido: " + loginRequest);
+
+        if (loginRequest.getEmail() == null || loginRequest.getSenha() == null) {
+            return ResponseEntity.badRequest().body("Dados de login incompletos");
+        }
+
+        try {
+            Tecnico tecnico = tecnicoService.buscarPorEmail(loginRequest.getEmail());
+
+            if (tecnico.getSenha() == null) {
+                return ResponseEntity.status(401).body("Senha não cadastrada");
+            }
+
+            if (!tecnico.getSenha().equals(loginRequest.getSenha())) {
+                return ResponseEntity.status(401).body("Senha incorreta");
+            }
+
+            tecnico.setSenha(null);
+            return ResponseEntity.ok(tecnico);
+
+        } catch (RuntimeException e) {
+            System.out.println("Erro: " + e.getMessage());
+            return ResponseEntity.status(401).body("Usuário não encontrado");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erro interno do servidor: " + e.getMessage());
+        }
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Tecnico> atualizar(@PathVariable Integer id, @RequestBody Tecnico tecnico) {
         Tecnico atualizado = tecnicoService.atualizar(id, tecnico);
@@ -54,21 +99,4 @@ public class TecnicoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/login-tecnico")
-    public ResponseEntity<?> loginTecnico(@RequestBody LoginRequest loginRequest) {
-        try {
-            Tecnico tecnico = tecnicoService.buscarPorEmail(loginRequest.getEmail());
-            
-            // Aqui você deve comparar a senha, idealmente com hash
-            if (tecnico.getSenha().equals(loginRequest.getSenha())) {
-                // Remove a senha antes de enviar a resposta para segurança
-                tecnico.setSenha(null);
-                return ResponseEntity.ok(tecnico);
-            } else {
-                return ResponseEntity.status(401).body("Senha incorreta");
-            }
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(401).body("Usuário não encontrado");
-        }
-    }
 }

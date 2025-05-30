@@ -40,7 +40,7 @@ const FormularioTecnico = () => {
       senha: formData.senha,
       cargo: opcaoSelecionada,
       loja: {
-        id: parseInt(idLoja),
+        id: 1,
       },
     };
 

@@ -1,6 +1,8 @@
 package io.manager.backend.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Loja extends PessoaJuridica{
@@ -9,6 +11,7 @@ public class Loja extends PessoaJuridica{
     private Integer id; // mesmo ID da PessoaJuridica
 
     @OneToOne
+    @JsonIgnore
     @MapsId
     @JoinColumn(name = "pessoa_juridica_id")
     private PessoaJuridica pessoaJuridica;
