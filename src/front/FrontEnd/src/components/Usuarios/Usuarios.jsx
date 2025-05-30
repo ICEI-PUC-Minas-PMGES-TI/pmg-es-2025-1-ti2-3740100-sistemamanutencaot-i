@@ -17,7 +17,7 @@ const UserManagement = () => {
 
   const handleAddUser = () => {
     closeAddModal();
-    navigate("/cadastro"); // Navega para a tela de adicionar usuário
+    navigate("/cadastro-cliente"); // Navega para a tela de adicionar usuário
   };
 
   const handleAddTechnical = () => {

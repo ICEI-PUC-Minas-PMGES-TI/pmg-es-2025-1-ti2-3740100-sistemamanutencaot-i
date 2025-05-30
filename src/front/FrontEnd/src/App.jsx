@@ -12,6 +12,7 @@ import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
 import Estoque from "./pages/Estoque.jsx"
 import Reparos from "./pages/Reparos.jsx"
+import CadastroCliente from "./pages/CadastroCliente.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -24,6 +25,8 @@ function App() {
 
         {/* Rota para o cadastro de técnico */}
         <Route path="/cadastro-tecnico" element={<CadastroTecnico />} />
+
+        <Route path="/cadastro-cliente" element={<CadastroCliente />} />
 
         {/* Rota para o login */}
         <Route path="/login" element={<TelaLogin />} />
