@@ -33,7 +33,7 @@ const FormularioCliente = () => {
         cpf: formData.cpf,
         telefone: formData.telefone,
         loja: {
-          id: parseInt(idLoja),
+          id: 1,
         },
       };
 
