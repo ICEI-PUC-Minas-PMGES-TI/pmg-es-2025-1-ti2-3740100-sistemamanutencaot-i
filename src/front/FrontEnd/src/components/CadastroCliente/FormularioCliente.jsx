@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import styles from "./FormularioCliente.module.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FormularioCliente = () => {
   const [formData, setFormData] = useState({
     nomeCliente: "",
-    cpf: "",
+    documento: "",
     telefone: "",
   });
 
+  const [tipoDocumento, setTipoDocumento] = useState("CPF");
   const [mensagem, setMensagem] = useState("");
+
   const location = useLocation();
   const { idLoja } = location.state || {};
   const navigate = useNavigate();
@@ -30,20 +31,17 @@ const FormularioCliente = () => {
     try {
       const novoCliente = {
         nome: formData.nomeCliente,
-        cpf: formData.cpf,
+        tipoPessoa: tipoDocumento === "CPF" ? "PF" : "PJ",
+        [tipoDocumento.toLowerCase()]: formData.documento,
         telefone: formData.telefone,
-        loja: {
-          id: parseInt(idLoja),
-        },
       };
 
       await axios.post("http://localhost:8080/clientes", novoCliente);
       setMensagem("Cliente cadastrado com sucesso!");
-      setFormData({ nomeCliente: "", cpf: "", telefone: "" });
+      setFormData({ nomeCliente: "", documento: "", telefone: "" });
 
-      // Redireciona após 2 segundos
       setTimeout(() => {
-        navigate(-1); // Volta para a página anterior
+        navigate(-1); // Volta para a tela anterior
       }, 2000);
     } catch (error) {
       console.error("Erro ao cadastrar cliente:", error);
@@ -76,13 +74,45 @@ const FormularioCliente = () => {
         </div>
 
         <div className={styles.grupoCampoFormulario}>
-          <label className={styles.rotuloFormulario}>CPF</label>
+          <label className={styles.rotuloFormulario}>Tipo de Documento</label>
+          <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+            <button
+              type="button"
+              className={`${styles.botaoOpcao} ${
+                tipoDocumento === "CPF" ? styles.selecionado : ""
+              }`}
+              onClick={() => {
+                setTipoDocumento("CPF");
+                setFormData((prev) => ({ ...prev, documento: "" }));
+              }}
+            >
+              CPF
+            </button>
+            <button
+              type="button"
+              className={`${styles.botaoOpcao} ${
+                tipoDocumento === "CNPJ" ? styles.selecionado : ""
+              }`}
+              onClick={() => {
+                setTipoDocumento("CNPJ");
+                setFormData((prev) => ({ ...prev, documento: "" }));
+              }}
+            >
+              CNPJ
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>
+            {tipoDocumento === "CPF" ? "CPF" : "CNPJ"}
+          </label>
           <input
             type="text"
-            name="cpf"
-            value={formData.cpf}
+            name="documento"
+            value={formData.documento}
             onChange={handleChange}
-            placeholder="CPF do cliente"
+            placeholder={`Digite o ${tipoDocumento}`}
             className={styles.entradaFormulario}
             required
           />

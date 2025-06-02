@@ -2,6 +2,7 @@ package io.manager.backend.controller;
 
 import io.manager.backend.model.Cliente;
 import io.manager.backend.service.ClienteService;
+import io.manager.backend.dto.ClienteRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,50 +10,37 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin (origins = {
+@CrossOrigin(origins = {
     "http://localhost:5173",
     "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
 })
-
 public class ClienteController {
-    
+
     @Autowired
     private ClienteService clienteService;
 
     @GetMapping
     public ResponseEntity<List<Cliente>> getAllClientes() {
-        List<Cliente> clientes = clienteService.getAllClientes();
-        return ResponseEntity.ok(clientes);
+        return ResponseEntity.ok(clienteService.getAllClientes());
     }
 
     @GetMapping("/{id}")
-    public Optional<Cliente> getClienteById(@PathVariable Integer id) {
-        return clienteService.getClienteById(id);
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Integer id) {
+        return clienteService.getClienteById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-        Cliente createdCliente = clienteService.saveCliente(cliente);
-        return ResponseEntity.status(201).body(createdCliente);
+    public ResponseEntity<Cliente> createCliente(@RequestBody ClienteRequest dto) {
+        Cliente cliente = clienteService.criarCliente(dto);
+        return ResponseEntity.status(201).body(cliente);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente) {
-        Optional<Cliente> existingCliente = clienteService.getClienteById(id);
-
-        if (existingCliente.isPresent()) {
-            Cliente updatedCliente = existingCliente.get();
-            
-            updatedCliente.setNome(cliente.getNome());
-            updatedCliente.setCpf(cliente.getCpf());
-            updatedCliente.setTelefone(cliente.getTelefone());
-
-            Cliente savedCliente = clienteService.saveCliente(updatedCliente);
-    
-            return ResponseEntity.ok(savedCliente);
-        }
-
-        return ResponseEntity.status(404).build();
+    public ResponseEntity<Cliente> updateCliente(@PathVariable Integer id, @RequestBody ClienteRequest dto) {
+        Optional<Cliente> updated = clienteService.atualizarCliente(id, dto);
+        return updated.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
@@ -60,11 +48,9 @@ public class ClienteController {
         clienteService.deleteCliente(id);
         return ResponseEntity.noContent().build();
     }
-    
-    @GetMapping("/clientes")
-    public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam String nome) {
-        List<Cliente> clientes = clienteService.buscarPorNome(nome);
-        return ResponseEntity.ok(clientes);
-    }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(clienteService.buscarPorNome(nome));
+    }
 }

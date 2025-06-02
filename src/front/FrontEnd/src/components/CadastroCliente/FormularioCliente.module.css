@@ -102,3 +102,22 @@ body {
   font-size: 1rem;
   color: blue;
 }
+
+.botaoOpcao {
+  width: 80px;
+  height: 35px;
+  padding: 0.3rem 1rem;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  background-color: #0c21c1;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+}
+
+.selecionado {
+  background-color: #000842;
+  color: white;
+  font-weight: bold;
+  border-color: #000842;
+}

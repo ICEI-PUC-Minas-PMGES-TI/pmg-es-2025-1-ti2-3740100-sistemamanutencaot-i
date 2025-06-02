@@ -38,6 +38,10 @@ public class OrdemServico {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Computador getComputador() {
         return computador;
     }

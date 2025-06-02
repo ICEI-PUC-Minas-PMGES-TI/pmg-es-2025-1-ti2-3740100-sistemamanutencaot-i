@@ -49,7 +49,7 @@ function App() {
         <Route path="/reparos" element={<Reparos />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage/>}/>
       </Routes>
     </Router>
   );

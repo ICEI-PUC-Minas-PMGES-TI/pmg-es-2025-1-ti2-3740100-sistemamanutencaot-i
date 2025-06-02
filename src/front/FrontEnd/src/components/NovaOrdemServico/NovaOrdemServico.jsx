@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./NovaOrdemServico.css";
+import { useNavigate } from "react-router-dom";
+
 
 const NovaOrdemServico = () => {
   const [formData, setFormData] = useState({
@@ -17,25 +19,12 @@ const NovaOrdemServico = () => {
   const [sugestoesClientes, setSugestoesClientes] = useState([]);
   const [sugestoesTecnicos, setSugestoesTecnicos] = useState([]);
   const [clienteSelecionado, setClienteSelecionado] = useState(null);
-  const [tecnicoSelecionado, setTecnicoSelecionado] = useState(null);
   const [tecnicos, setTecnicos] = useState([]);
   const [mensagem, setMensagem] = useState("");
+  const navigate = useNavigate();
+
 
   const dataHoje = new Date().toISOString().split("T")[0];
-
-  useEffect(() => {
-    // Carregar técnicos disponíveis
-    const fetchTecnicos = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/tecnicos");
-        setTecnicos(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar técnicos:", error);
-      }
-    };
-
-    fetchTecnicos();
-  }, []);
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -98,17 +87,11 @@ const NovaOrdemServico = () => {
       return;
     }
 
-    if (!tecnicoSelecionado) {
-      setMensagem("Por favor, selecione um técnico responsável.");
-      return;
-    }
-
     const novoComputador = {
       clienteId: clienteSelecionado.id,
       tipoMaquina: formData.tipoMaquina,
       marca: formData.marca,
       modelo: formData.modelo,
-      descricaoProblema: formData.descricaoProblema,
     };
 
     try {
@@ -122,33 +105,21 @@ const NovaOrdemServico = () => {
       // 2. Criar Ordem de Serviço
       const novaOS = {
         computadorId: computadorCriado.id,
-        tecnicoId: tecnicoSelecionado.id,
-        status: "AGUARDANDO_DIAGNOSTICO",
+        tecnicoId: null,
+        status: "AGUARDANDO DIAGNOSTICO",
         dataCriacao: dataHoje,
         prazoDiagnostico: formData.prazoDiagnostico,
         valorTotal: 0.0,
-        descricao_os: formData.descricaoOS,
+        descricaoProblema: formData.descricaoProblema,
+        solucaoOs: "EM AGUARDO"
       };
 
       await axios.post("http://localhost:8080/ordem-servico", novaOS);
       setMensagem("Ordem de Serviço criada com sucesso!");
 
-      // Resetar formulário
-      setFormData({
-        prazoDiagnostico: "",
-        tipoMaquina: "",
-        marca: "",
-        modelo: "",
-        descricaoProblema: "",
-        descricaoOS: "",
-        tecnicoId: "",
-      });
-      setTermoBusca("");
-      setClienteSelecionado(null);
-      setTecnicoSelecionado(null);
-
-      // Limpar mensagem após 3 segundos
-      setTimeout(() => setMensagem(""), 3000);
+      setTimeout(() => {
+        navigate("/home-tecnico");
+      }, 3000);
     } catch (error) {
       console.error("Erro ao criar Ordem de Serviço:", error);
       setMensagem(`Erro: ${error.response?.data?.message || error.message}`);
@@ -315,7 +286,6 @@ const NovaOrdemServico = () => {
                 marca: "",
                 modelo: "",
                 descricaoProblema: "",
-                descricaoOS: "",
                 tecnicoId: "",
               });
               setTermoBusca("");

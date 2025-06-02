@@ -3,15 +3,14 @@ package io.manager.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Cliente extends PessoaFisica{
+public class Cliente {
 
     @Id
-    @Column(name = "pessoa_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "pessoa_id")
+    @OneToOne 
+    @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
 
     @Column(length = 20)
