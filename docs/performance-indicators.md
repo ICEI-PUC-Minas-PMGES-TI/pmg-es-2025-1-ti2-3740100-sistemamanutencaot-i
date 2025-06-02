@@ -1,13 +1,11 @@
-## 5. Indicadores de desempenho
+## 5. Indicadores de Desempenho
 
-_Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no modelo relacional. Defina no mínimo 3 indicadores de desempenho._
+_Apresentam-se abaixo os principais indicadores de desempenho e algumas metas para o processo. As informações necessárias para gerar esses indicadores devem estar contempladas no modelo relacional. Foram definidos, no mínimo, três indicadores de desempenho essenciais para o controle eficiente dos processos._
 
-_Usar o seguinte modelo:_
+| **Indicador**                    | **Objetivos**                                                    | **Descrição**                                                                          | **Fonte de dados**                  | **Fórmula de cálculo**                                                                     |
+| --------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------- |
+| Taxa de Conclusão de Ordens de Serviço | Avaliar a eficiência no atendimento técnico                     | Mede a porcentagem de ordens de serviço concluídas em relação ao total de ordens geradas | Tabela_Ordens_Servico               | (número de O.S. concluídas / número total de O.S. abertas) * 100                           |
+| Quantidade de Ordens de Serviço por Técnico | Acompanhar a produtividade de cada técnico      | Conta ordens de serviço concluídas, agrupadas por cada técnico.      | Tabela_Ordens_Servico                    | (número de ordens de serviço feitas pelo técnico / número total de ordens de serviço) * 100                        |
+| Eficiência no Controle de Estoque | Controlar a disponibilidade de produtos e reduzir indisponibilidades | Mede a taxa de produtos disponíveis no estoque em relação à demanda média do período   | Tabela_Estoque, Tabela_Vendas       | (quantidade de itens disponíveis / demanda média do período) * 100                         |
 
-| **Indicador** | **Objetivos** | **Descrição** | **Fonte de dados** | **Fórmula de cálculo** |
-| ---           | ---           | ---           | ---             | ---             |
-| Percentual de reclamações | Avaliar quantitativamente as reclamações | Percentual de reclamações em relação ao total de atendimentos | Tabela Reclamações | número total de reclamações / número total de atendimentos |
-| Taxa de requisições atendidas | Melhorar a prestação de serviços medindo a porcentagem de requisições atendidas| Mede a % de requisições atendidas na semana | Tabela Solicitações | (número de requisições atendidas / número total de requisições) * 100 |
-| Taxa de entrega de material | Manter controle sobre os materiais que estão sendo entregues | Mede % de material entregue dentro do mês | Tabela Pedidos | (número de pedidos entregues / número total de pedidos) * 100 |
-
-_Obs.: todas as informações para gerar os indicadores devem estar no modelo relacional._
+_Obs.: Todas as informações para gerar os indicadores devem estar no modelo relacional da aplicação._
