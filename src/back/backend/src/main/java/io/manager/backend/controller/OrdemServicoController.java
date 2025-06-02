@@ -34,6 +34,8 @@ public class OrdemServicoController {
 
     @PostMapping
     public ResponseEntity<OrdemServico> criarOrdemServico(@RequestBody OrdemServico ordemServico) {
+        // Permitir que o campo descricaoOS seja recebido e salvo, se existir no JSON
+        // (Certifique-se de que o model OrdemServico tenha o campo descricaoOS)
         OrdemServico criada = ordemServicoService.salvar(ordemServico);
         return ResponseEntity.status(201).body(criada);
     }
