@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #F1EFEC;
+}
+
+.conteudo-bloco {
+  background-color: white;
+  height: 610px;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 1343px;
+  margin: 10px auto;
+}
+
+.layout-principal {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container-diagnostico {
+  background-color: #f8f6f4;
+  min-height: 100vh;
+  font-family: "Work Sans";
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+  margin-left: 70px;
+}
+
+.icon-notebook {
+  width: 84px;
+}
+
+.header-servico {
+  background-color: #000842;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 667px;
+  max-height: 121px;
+  margin: 0 auto;
+}
+
+.info-servico {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.servico-numero {
+  font-size: 50px;
+  font-weight: 750;
+  letter-spacing: -2px;
+}
+
+.cliente-nome {
+  font-size: 1rem;
+}
+
+.status-bolinha {
+  width: 65px;
+  height: 65px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+}
+
+.detalhes-superiores-esquerda,
+.detalhes-superiores-direita {
+  font-size: 1.2 rem;
+  font-weight: 500;
+}
+
+
+.data-e-Prazo{
+  margin-right: auto;
+}
+
+.titulo-secao {
+  color: #0C21C1;
+  font-size: 36px;
+  font-weight: 1000;
+  letter-spacing: -2px;
+  margin-bottom: 5px;
+}
+
+.caixa-texto {
+  width: 100%;
+  min-height: 100px;
+  height: 162px;
+  background-color: #E6E6ED;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.caixa-descricao {
+  width: 100%;
+  min-height: 100px;
+  height: 126px;
+  background-color: #E6E6ED;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-padrao {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: none;
+}
+
+.btn-editar {
+  background-color: #000842;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 239px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-editar:hover {
+  background-color: #000633;
+}
+
+.btn-salvar {
+  background-color: #0C21C1;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 239px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-salvar:hover {
+  background-color: #0A1A9C;
+}
+
+.btn-solicitar{
+  background-color: #A21919;
+  color: #ffffff;
+  font-weight: 650;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.2s ease;
+  max-width: 260px;
+  width: 100%;
+}
+
+.btn-solicitar:hover{
+  background-color: #891616;
+}
+
+.btn-concluir {
+  background-color: #19A22D;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  max-width: 500px;
+}
+
+.btn-concluir:hover {
+  background-color: #158c26;
+}
+
+.botoes-pecas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.table th {
+  background-color: #000842;
+  color: white;
+  text-align: center;
+}
+
+.table {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.titulos-tabela {
+  font-weight: 800;
+  font-size: 25px;
+  height: 51px;
+}
+
