@@ -12,6 +12,7 @@ import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
 import Estoque from "./pages/Estoque.jsx"
 import Reparos from "./pages/Reparos.jsx"
+import DiagnosticoServico from "./pages/DiagnosticoServico.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -45,8 +46,10 @@ function App() {
 
         <Route path="/reparos" element={<Reparos />} />
 
+        <Route path="/diagnostico" element={<DiagnosticoServico />} />
+
         {/* Rota raiz (opcional - pode redirecionar) */}
-        <Route path="/" element={<Estoque />} />
+        <Route path="/" element={<DiagnosticoServico />} />
       </Routes>
     </Router>
   );
