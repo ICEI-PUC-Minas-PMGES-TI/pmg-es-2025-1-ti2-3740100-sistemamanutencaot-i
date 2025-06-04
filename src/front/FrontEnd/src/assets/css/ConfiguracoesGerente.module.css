@@ -16,6 +16,7 @@ body {
   margin-left: 50px; /* Largura da sidebar */
   padding: 2rem 3rem;
   max-width: 900px;
+  height: 100vh;
   margin: 0 auto;
 }
 

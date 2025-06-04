@@ -1,40 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap");
 
+/* Reset e estilos gerais */
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
   background-color: #F1EFEC;
 }
 
-.conteudo-bloco {
-  background-color: white;
-  height: 610px;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 1343px;
-  margin: 10px auto;
-}
-
-.layout-principal {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-}
-
 .container-diagnostico {
   background-color: #f8f6f4;
-  min-height: 100vh;
-  font-family: "Work Sans";
-  padding: 20px;
-  flex: 1;
-  overflow-y: auto;
-  margin-left: 70px;
+  min-height: 100%;
+  height: 100vh;
+  width: 100%;
+  padding: 10px;
 }
 
-.icon-notebook {
-  width: 84px;
-}
-
+/* Cabeçalho */
 .header-servico {
   background-color: #000842;
   color: white;
@@ -43,15 +24,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 667px;
-  max-height: 121px;
-  margin: 0 auto;
+  width: 600px;
+  margin: 0 auto 20px;
 }
 
 .info-servico {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.logo-notebook img {
+  width: 84px;
 }
 
 .servico-numero {
@@ -62,6 +46,8 @@ body {
 
 .cliente-nome {
   font-size: 1rem;
+  margin-top: -10px;
+  padding-bottom: 10px;
 }
 
 .status-bolinha {
@@ -71,15 +57,51 @@ body {
   border-radius: 50%;
 }
 
-.detalhes-superiores-esquerda,
-.detalhes-superiores-direita {
-  font-size: 1.2 rem;
-  font-weight: 500;
+/* Conteúdo principal */
+.conteudo-bloco {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 1343px;
+  margin: 0 auto;
 }
 
+.detalhes-superiores {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
 
-.data-e-Prazo{
-  margin-right: auto;
+.detalhes-esquerda,
+.detalhes-direita {
+  font-size: 1.2rem;
+  font-weight: 500;
+  
+}
+
+/* Layout das colunas */
+.area-principal {
+  display: flex;
+  gap: 20px;
+}
+
+.coluna-esquerda {
+  flex: 1;
+}
+
+.coluna-direita {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards e elementos comuns */
+.card-padrao {
+  background-color: white;
+  border-radius: 8px;
+  padding: 0 15px;
+ 
 }
 
 .titulo-secao {
@@ -87,13 +109,12 @@ body {
   font-size: 36px;
   font-weight: 1000;
   letter-spacing: -2px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
-.caixa-texto {
+.textarea-custom {
   width: 100%;
-  min-height: 100px;
-  height: 162px;
+  height: 150px;
   background-color: #E6E6ED;
   border: none;
   border-radius: 8px;
@@ -101,41 +122,64 @@ body {
   font-size: 1rem;
   resize: vertical;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  font-family: "Work Sans", sans-serif;
 }
 
-.caixa-descricao {
+.table-custom {
   width: 100%;
-  min-height: 100px;
-  height: 126px;
-  background-color: #E6E6ED;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 1rem;
-  resize: vertical;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.card-padrao {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
-}
-
-textarea {
-  resize: none;
-}
-
-.btn-editar {
+.table-custom th {
   background-color: #000842;
-  color: #ffffff;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+.table-custom td {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-custom th:last-child {
+  text-align: center;
+}
+
+.table-custom tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Botões */
+.botoes-diagnostico {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-editar, 
+.btn-salvar {
   font-weight: bold;
   border-radius: 4px;
   padding: 8px 16px;
   width: 239px;
   border: none;
+  cursor: pointer;
   transition: background-color 0.2s ease;
+}
+
+.btn-editar {
+  background-color: #000842;
+  color: #ffffff;
 }
 
 .btn-editar:hover {
@@ -145,32 +189,39 @@ textarea {
 .btn-salvar {
   background-color: #0C21C1;
   color: #ffffff;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 8px 16px;
-  width: 239px;
-  border: none;
-  transition: background-color 0.2s ease;
 }
 
 .btn-salvar:hover {
   background-color: #0A1A9C;
 }
 
-.btn-solicitar{
+.botoes-pecas {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn-solicitar {
   background-color: #A21919;
   color: #ffffff;
   font-weight: 650;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
   transition: background-color 0.2s ease;
-  max-width: 260px;
   width: 100%;
+  max-width: 260px;
+  cursor: pointer;
 }
 
-.btn-solicitar:hover{
+.btn-solicitar:hover {
   background-color: #891616;
+}
+
+.botao-concluir-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
 }
 
 .btn-concluir {
@@ -178,39 +229,14 @@ textarea {
   color: #ffffff;
   font-weight: bold;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
   transition: background-color 0.2s ease;
   width: 100%;
   max-width: 500px;
+  cursor: pointer;
 }
 
 .btn-concluir:hover {
   background-color: #158c26;
 }
-
-.botoes-pecas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.table th {
-  background-color: #000842;
-  color: white;
-  text-align: center;
-}
-
-.table {
-  height: 230px;
-  overflow-y: auto;
-  width: 100%;
-}
-
-.titulos-tabela {
-  font-weight: 800;
-  font-size: 25px;
-  height: 51px;
-}
-

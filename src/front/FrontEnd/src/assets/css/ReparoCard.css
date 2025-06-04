@@ -1,0 +1,111 @@
+.reparocard-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .reparocard-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reparocard-card-header {
+    background-color: #000842 !important;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .reparocard-card-title {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reparocard-device-icon {
+    width: 45px;  
+    margin-right: 20px;
+  }
+  
+  .reparocard-nome {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+  }
+  
+  .reparocard-servico {
+    margin-top: -5px;
+    font-size: 0.9em;
+    color: white;
+  }
+  
+  .reparocard-status-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .reparocard-card-body {
+    background-color: #fff;
+    padding: 16px;
+    font-size: 1.1em;
+    color: #000842 !important;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  .reparocard-card-body p {
+    margin-bottom: 0px;
+    font-weight: 500;
+  }
+  
+  .reparocard-card-body strong {
+    font-weight: 950;
+  }
+  
+  .reparocard-sintomas-titulo {
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  
+  .reparocard-sintomas-texto {
+    text-overflow: ellipsis;
+    text-align: center;
+    background-color: #e9ebe4;
+    width: 480px;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    height: 80px;
+    max-height: 10rem;
+    overflow: hidden;
+    position: relative;
+    line-height: 1.055rem;
+    margin-inline-end: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    /* O efeito de fade ao final */
+  }
+  
+  .reparocard-sintomas-texto::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.2em;
+    background: linear-gradient(to bottom, rgba(233,235,228,0), rgba(233,235,228,1) 80%);
+    pointer-events: none;
+    opacity: var(--opacity, 0);
+  }
+  

@@ -1,0 +1,159 @@
+/* Container principal */
+.solicitar-container {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Card */
+  .solicitar-card {
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    background-color: #00103b;
+    border-radius: 12px;
+    padding: 24px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+  }
+  
+  /* Botão de fechar */
+  .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    background-color: #e03e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Título */
+  .solicitar-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Subtítulo */
+  .solicitar-subtitle {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    user-select: none;
+  }
+  
+  /* Formulário */
+  .solicitar-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  @media (min-width: 640px) {
+    .form-row {
+      flex-direction: row;
+    }
+  }
+  
+  .form-row input,
+  .form-row select {
+    flex: 1;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: white;
+    color: #000;
+    outline: none;
+    transition: box-shadow 0.2s;
+  }
+  
+  .form-row input:focus,
+  .form-row select:focus {
+    box-shadow: 0 0 0 2px #2563eb;
+  }
+  
+  /* Tabela */
+  .pecas-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .pecas-tabela th {
+    background-color: #1e40af;
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  .pecas-tabela td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .icon-cell {
+    text-align: center;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .icon-cell:hover {
+    color: #333;
+  }
+  
+  /* Botão Enviar */
+  .submit-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .submit-container button {
+    width: 144px;
+    padding: 12px 0;
+    background-color: #0b8e00;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-container button:hover {
+    background-color: #0a7a00;
+  }
+  
