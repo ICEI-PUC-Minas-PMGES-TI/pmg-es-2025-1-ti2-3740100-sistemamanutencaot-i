@@ -1,5 +1,5 @@
 import React from "react";
-import "./ReparoCard.css";
+import styles from "./ReparoCard.module.css"; // Importação modificada
 import notebookIcon from "../../assets/images/notebook-icon.png";
 import computadorIcon from "../../assets/images/computador.png";
 
@@ -17,21 +17,21 @@ const ReparoCard = ({
   const deviceAlt = tipo === "computador" ? "Computador" : "Notebook";
 
   return (
-    <article className="card-reparo" aria-labelledby={`card-${index}-title`}>
-      <header className="card-header">
-        <div className="card-title">
-          <div className="device-icon-container">
-            <img src={deviceIcon} alt={deviceAlt} className="device-icon" />
+    <article className={styles['card-reparo']} aria-labelledby={`card-${index}-title`}>
+      <header className={styles['card-header']}>
+        <div className={styles['card-title']}>
+          <div className={styles['device-icon-container']}>
+            <img src={deviceIcon} alt={deviceAlt} className={styles['device-icon']} />
           </div>
           <div>
-            <p id={`card-${index}-title`} className="nome">
+            <p id={`card-${index}-title`} className={styles.nome}>
               {nome}
             </p>
-            <p className="servico">Serviço #{id}</p>
+            <p className={styles.servico}>Serviço #{id}</p>
           </div>
         </div>
         <div
-          className="status-dot"
+          className={styles['status-dot']}
           style={{
             backgroundColor: statusCor,
             boxShadow: `0 0 8px ${statusCor}`,
@@ -40,24 +40,24 @@ const ReparoCard = ({
         />
       </header>
 
-      <div className="card-body">
+      <div className={styles['card-body']}>
         <p>
-          Prazo: <span className="prazo-text">{prazo}</span>
+          Prazo: <span className={styles['prazo-text']}>{prazo}</span>
         </p>
         <p>
-          Status: <span className="status-text">{status}</span>
+          Status: <span className={styles['status-text']}>{status}</span>
         </p>
 
-        <div className="sintomas-container">
-          <p className="sintomas-titulo">
+        <div className={styles['sintomas-container']}>
+          <p className={styles['sintomas-titulo']}>
             <strong>Sintomas:</strong>
           </p>
-          <p className="sintomas-texto">{sintomas || "Nada encontrado..."}</p>
+          <p className={styles['sintomas-texto']}>{sintomas || "Nada encontrado..."}</p>
         </div>
       </div>
 
       <button
-        className="btn-atribuir"
+        className={styles['btn-atribuir']}
         type="button"
         aria-label={`Atribuir reparo para ${nome}`}
       >
