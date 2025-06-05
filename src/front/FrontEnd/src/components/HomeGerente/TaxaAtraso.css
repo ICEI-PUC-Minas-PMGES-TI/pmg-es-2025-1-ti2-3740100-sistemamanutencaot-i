@@ -1,0 +1,146 @@
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+/* Estilos base */
+.taxa-atraso-container {
+  font-family: 'Inter', sans-serif;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.widget-container {
+  width: 280px;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: white;
+}
+
+/* Estilos do cabeçalho */
+.widget-header {
+  background-color: #050B3B;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
+
+.nav-button {
+  color: white;
+  font-size: 1.125rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.widget-title {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+/* Estilos do conteúdo */
+.widget-content {
+  padding: 1rem;
+}
+
+.chart-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.axis-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  user-select: none;
+}
+
+.bars-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.bar {
+  width: 1.25rem;
+  background-color: #D1D5DB;
+  border-radius: 0.125rem;
+}
+
+.highlighted-bar {
+  background-color: #0B3BFF;
+}
+
+.trend-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+}
+
+.highlight-bubble {
+  position: absolute;
+  top: 0;
+  left: 150px;
+  background-color: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transform: translateY(-100%);
+}
+
+.emoji {
+  color: #16A34A;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.bubble-content {
+  font-size: 0.75rem;
+  color: #374151;
+}
+
+.improvement {
+  font-weight: 600;
+  color: #16A34A;
+}
+
+/* Estilos do resumo */
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.percentage {
+  color: #16A34A;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.description {
+  color: #4B5563;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  margin: 0;
+}
