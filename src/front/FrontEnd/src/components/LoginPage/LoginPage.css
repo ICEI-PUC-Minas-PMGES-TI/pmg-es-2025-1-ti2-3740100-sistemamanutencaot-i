@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.login-container {
+  background-color: #efede8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #b7bbe0;
+  opacity: 0.9;
+}
+
+.circle-top-left {
+  width: 700px;
+  height: 700px;
+  top: -350px;
+  left: -350px;
+}
+
+.circle-bottom-right {
+  width: 700px;
+  height: 700px;
+  bottom: -350px;
+  right: -350px;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  color: #0a1a4f;
+  font-weight: 800;
+  font-size: 1.125rem;
+  user-select: none;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 4rem;
+}
+
+.login-title {
+  color: #0a1a4f;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.role-button {
+  font-weight: 800;
+  border-radius: 9999px;
+  padding: 0.5rem 2rem;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+}
+
+.technician {
+  background-color: #030a3a;
+  color: white;
+}
+
+.manager {
+  background-color: white;
+  color: #030a3a;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    flex-direction: row;
+    gap: 5rem;
+  }
+}
+
+.login-form {
+  background-color: #030a3a;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-title {
+  color: white;
+  font-weight: 800;
+  font-size: 1.25rem;
+  user-select: none;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input-label {
+  color: white;
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+.input-field {
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background: white;
+  border: none;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: #cbd5e0;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  font-size: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.forgot-password {
+  color: white;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  width: max-content;
+  user-select: none;
+}
+
+.submit-button {
+  background-color: #04406a;
+  color: white;
+  font-weight: 800;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+}
+
+.continue-with {
+  color: white;
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 1rem;
+  user-select: none;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-button {
+  background-color: white;
+  border-radius: 0.375rem;
+  width: 3rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.social-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.register-text {
+  color: white;
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  user-select: none;
+}
+
+.register-link {
+  font-weight: 800;
+  margin-left: 0.25rem;
+}
+
+.image-container {
+  background-color: #0a2a7a;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/4;
+}
+
+.feature-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.375rem;
+}
