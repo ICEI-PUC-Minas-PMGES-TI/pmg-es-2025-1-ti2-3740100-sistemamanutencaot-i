@@ -41,6 +41,11 @@ public class LojaController {
         return lojaService.atualizar(id, lojaAtualizada);
     }
 
+    @PatchMapping("/{id}")
+    public Loja atualizarParcialmente(@PathVariable Integer id, @RequestBody Loja lojaParcial) {
+        return lojaService.atualizarParcialmente(id, lojaParcial);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Integer id) {
         lojaService.deletar(id);

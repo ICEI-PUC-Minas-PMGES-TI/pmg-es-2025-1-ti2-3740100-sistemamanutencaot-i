@@ -12,6 +12,7 @@ const FormularioLoja = () => {
   const [formData, setFormData] = useState({
     nomeLoja: "",
     cnpj: "",
+    inscricaoJudicial: "",
     endereco: "",
   });
 
@@ -31,18 +32,21 @@ const FormularioLoja = () => {
     const novaLoja = {
       nome: formData.nomeLoja,
       cnpj: formData.cnpj,
+      inscricaoJudicial: formData.inscricaoJudicial,
       endereco: formData.endereco,
-      usuario: { id: idUsuario },
+      telefone: null,
+      email: null,
+      senha: null,
     };
 
     try {
       const response = await axios.post("http://localhost:8080/lojas", novaLoja);
       const loja = response.data;
-      console.log("Loja cadastrada com sucesso:", response.data);
+      console.log("Loja cadastrada com sucesso:", loja);
       setMensagem("Loja cadastrada com sucesso!");
       alert("Loja cadastrada com sucesso!");
-      setFormData({ nomeLoja: "", cnpj: "", endereco: "" });
-      navigate("/cadastro-tecnico", { state: { idLoja: loja.id } });
+      setFormData({ nomeLoja: "", cnpj: "", inscricaoJudicial: "", endereco: "" });
+      navigate("/cadastro-gerente", { state: { idLoja: loja.id } });
     } catch (error) {
       console.error("Erro ao cadastrar loja:", error);
       setMensagem("Erro ao cadastrar loja.");
@@ -83,6 +87,19 @@ const FormularioLoja = () => {
               value={formData.cnpj}
               onChange={handleChange}
               placeholder="Coloque o CNPJ da Loja"
+              className={styles.entradaFormulario}
+              required
+            />
+          </div>
+
+          <div className={styles.grupoCampoFormulario}>
+            <label className={styles.rotuloFormulario}>Inscrição Judicial</label>
+            <input
+              type="text"
+              name="inscricaoJudicial"
+              value={formData.inscricaoJudicial}
+              onChange={handleChange}
+              placeholder="Coloque a sua inscrição judicial"
               className={styles.entradaFormulario}
               required
             />

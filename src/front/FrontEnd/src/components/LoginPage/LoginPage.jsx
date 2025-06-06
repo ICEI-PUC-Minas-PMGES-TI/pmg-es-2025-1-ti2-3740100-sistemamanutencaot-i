@@ -12,6 +12,14 @@ const LoginPage = () => {
     const handleRoleChange = (role) => {
         setIsTechnician(role === 'technician');
     };
+
+    const handleRegisterClick = () => {
+        if (isTechnician) {
+            navigate("/cadastro-tecnico"); // rota do cadastro técnico
+        } else {
+            navigate("/cadastro-loja");    // rota do cadastro loja/gerente
+        }
+    };
     
     const [formData, setFormData] = useState({
         email: "",
@@ -164,7 +172,7 @@ const LoginPage = () => {
                             
                             <p className={styles['register-text']}>
                                 Don't have an account yet?
-                                <strong className={styles['register-link']}> Register for free</strong>
+                                <strong onClick={handleRegisterClick} className={styles['register-link']}> Register for free</strong>
                             </p>
                         </form>
                         

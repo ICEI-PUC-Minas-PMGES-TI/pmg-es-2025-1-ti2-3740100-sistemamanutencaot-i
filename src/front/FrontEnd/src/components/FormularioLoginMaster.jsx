@@ -1,20 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import "../assets/css/Formulariologinmaster.css";
 import VectorIcon from "../assets/images/VectorIcon.png";
 import PadlockIcon from "../assets/images/PadlockIcon.png";
 import EyeIcon from "../assets/images/EyeIcon.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function FormularioLoginMaster() {
-  const [login, setLogin] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { idLoja } = location.state || {};
+  const [telefone, setTelefone] = useState("");
+  const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const navigate = useNavigate();
+  const [lojaAtual, setLojaAtual] = useState(null);
 
-  // Função para cadastrar o usuário
+  useEffect(() => {
+    const buscarLoja = async () => {
+      if (!idLoja) {
+        console.error("ID da loja não fornecido");
+        alert("Erro: ID da loja não encontrado");
+        navigate("/formulario-loja");
+        return;
+      }
+
+      try {
+        const response = await axios.get(`http://localhost:8080/lojas/${idLoja}`);
+        setLojaAtual(response.data);
+        
+        // Preencher campos com dados existentes
+        if (response.data.telefone) setTelefone(response.data.telefone);
+        if (response.data.email) setEmail(response.data.email);
+      } catch (error) {
+        console.error("Erro ao buscar dados da loja:", error);
+        alert("Erro ao carregar dados da loja");
+      }
+    };
+
+    buscarLoja();
+  }, [idLoja, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,39 +52,49 @@ function FormularioLoginMaster() {
       return;
     }
 
-    const novoUsuario = {
-      login,
-      senha,
-      tipo: "LOGINMASTER"
+    const dadosAtualizados = {
+      telefone: telefone,
+      email: email,
+      senha: senha
     };
 
     try {
-      // Enviar os dados para criar o novo usuário (login)
-      const response = await axios.post("http://localhost:8080/usuarios", novoUsuario);
-      alert("Cadastro de login master realizado com sucesso!");
-      navigate("/cadastro-loja", { state: { idUsuario: response.data.id } });  // Passa o idUsuario para a próxima tela
+      await axios.patch(`http://localhost:8080/lojas/${idLoja}`, dadosAtualizados);
+      alert("Dados de login atualizados com sucesso!");
+      navigate("/login");
     } catch (error) {
-      console.error("Erro ao cadastrar login master:", error);
-
-      if (error.response && error.response.data && error.response.data.message) {
-        // Se o backend retornar uma mensagem de erro
-        alert(`Erro ao cadastrar: ${error.response.data.message}`);
-      } else {
-        // Erro genérico
-        alert("Erro ao cadastrar login master. Tente novamente mais tarde.");
-      }
+      console.error("Erro ao atualizar dados da loja:", error);
+      alert("Erro ao atualizar dados da loja. Por favor, tente novamente.");
     }
   };
+
+  if (!lojaAtual) {
+    return <div className="form-container">Carregando dados da loja...</div>;
+  }
+
 
   return (
     <div className="form-container">
       <div className="form-wrapper">
         <h1 className="form-title">Cadastrar o Login aqui!</h1>
-        <p className="form-subtitle">
-          Se você já possui uma loja cadastrada, você pode realizar o acesso <a href="" onClick={() => navigate("/login")}>aqui</a>!
-        </p>
-
         <form onSubmit={handleSubmit}>
+
+          <div className="form-field-group">
+            <label htmlFor="telefone" className="form-label">telefone</label>
+            <div className="input-line">
+              <img src={VectorIcon} alt="Telefone" className="input-icon" />
+              <input
+                type="telefone"
+                id="telefone"
+                className="form-input"
+                placeholder="Coloque o telefone de contato da sua Loja"
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
           <div className="form-field-group">
             <label htmlFor="email" className="form-label">Email</label>
             <div className="input-line">
@@ -65,8 +104,8 @@ function FormularioLoginMaster() {
                 id="email"
                 className="form-input"
                 placeholder="Coloque o login da sua Loja"
-                value={login}
-                onChange={(e) => setLogin(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
