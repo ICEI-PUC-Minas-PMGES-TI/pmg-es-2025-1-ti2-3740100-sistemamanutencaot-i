@@ -1,8 +1,16 @@
 import React from "react";
 import "./HeroSection.css";
 import Decima from "../../assets/images/Landingpage1.png"
+import { useNavigate } from "react-router-dom";
+
 
 const HeroSection = () => {
+   const navigate = useNavigate();
+
+  const handleEntrarClick = () => {
+    navigate("/login");
+  };
+
   return (
     <section className="hero-container">
       <div className="hero-content">
@@ -17,8 +25,10 @@ const HeroSection = () => {
           Com uma plataforma simples e intuitiva, você economiza tempo, evita
           erros e tem total controle.
         </p>
-        <div className="hero-cta">
-          <button className="cta-button">ENTRAR</button>
+        <div className="hero-cta">                          
+          <button className="cta-button" onClick={handleEntrarClick}>
+            ENTRAR
+          </button>   
           <svg
             className="arrow-icon"
             aria-hidden="true"

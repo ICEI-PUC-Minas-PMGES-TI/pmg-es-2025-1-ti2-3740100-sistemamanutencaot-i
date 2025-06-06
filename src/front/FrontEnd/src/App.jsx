@@ -4,7 +4,7 @@ import "./App.css";
 import CadastroLoja from "./pages/CadastroLoja.jsx";
 
 import CadastroTecnico from "./pages/CadastroTecnico.jsx";
-import TelaLogin from "./components/TelaLogin.jsx";
+import TelaLogin from "./components/LoginPage/LoginPage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import ConfigGerente from "./pages/ConfiguracoesGerente.jsx";
 import NovaOrdemServico from "./pages/OrdemServico.jsx";
@@ -32,7 +32,7 @@ function App() {
         <Route path="/cadastro-cliente" element={<CadastroCliente />} />
 
         {/* Rota para o login */}
-        <Route path="/login-tecnico" element={<TelaLogin />} />
+        <Route path="/login" element={<TelaLogin />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/home-tecnico" element={<HomeTecnico />} />

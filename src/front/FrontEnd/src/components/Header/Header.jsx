@@ -12,9 +12,9 @@ const Header = () => {
 
   const handleRedirect = (role) => {
     if (role === "gerente") {
-      window.location.href = "/login-gerente";
+      window.location.href = "/cadastro-loja";
     } else if (role === "tecnico") {
-      window.location.href = "/login-tecnico";
+      window.location.href = "/cadastro-tecnico";
     }
   };
 
