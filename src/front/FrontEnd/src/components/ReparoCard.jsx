@@ -1,7 +1,16 @@
 import React from "react";
 import NotebookIcon from "../assets/images/notebook-icon.png";
 import "../assets/css/ReparoCard.css";
-const ReparoCard = ({ nome, id, prazo, status, cor, index }) => {
+
+const ReparoCard = ({
+  nome,
+  id,
+  prazo,
+  status,
+  cor,
+  index,
+  onAtribuir, // recebe a função
+}) => {
   return (
     <article
       className="reparocard-card"
@@ -41,6 +50,11 @@ const ReparoCard = ({ nome, id, prazo, status, cor, index }) => {
         </p>
 
         <p className="reparocard-sintomas-texto">Nada encontrado...</p>
+
+        {/* Botão para atribuir técnico */}
+        <button onClick={onAtribuir} className="btn-atribuir">
+          Atribuir reparo
+        </button>
       </div>
     </article>
   );

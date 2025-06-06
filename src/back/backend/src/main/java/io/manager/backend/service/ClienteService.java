@@ -72,7 +72,10 @@ public class ClienteService {
     }
 
     public List<Cliente> buscarPorNome(String nome) {
-        return clienteRepository.findClientesByNome(nome);
+        if (nome == null || nome.trim().isEmpty()) {
+            return List.of(); // Retorna lista vazia se o nome for inválido
+        }
+        return clienteRepository.findByPessoaNomeContainingIgnoreCase(nome);
     }
 }
 

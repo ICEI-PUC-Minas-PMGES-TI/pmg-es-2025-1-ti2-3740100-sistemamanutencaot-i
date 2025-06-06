@@ -58,9 +58,11 @@ const LoginPage = () => {
                 // Armazena os dados de acordo com o tipo de usuário
                 if (isTechnician) {
                     localStorage.setItem("tecnico", JSON.stringify(userData));
+                    localStorage.setItem("id_tecnico", userData.id);
                     navigate("/home-tecnico");
                 } else {
                     localStorage.setItem("loja", JSON.stringify(userData)); // Ou "gerente" se preferir
+                    localStorage.setItem("id_loja", userData.id);
                     navigate("/home-gerente"); // Ajuste conforme sua rota
                 }
             } else {

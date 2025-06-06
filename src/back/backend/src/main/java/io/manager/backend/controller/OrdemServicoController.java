@@ -1,5 +1,6 @@
 package io.manager.backend.controller;
 
+import io.manager.backend.dto.OrdemServicoRequest;
 import io.manager.backend.model.OrdemServico;
 import io.manager.backend.service.OrdemServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class OrdemServicoController {
         return ResponseEntity.ok(ordensServicos);
     }
 
+    @GetMapping("/sem-tecnico")
+    public List<OrdemServico> listarSemTecnico() {
+        return ordemServicoService.listarSemTecnico();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrdemServico> buscarOrdemServicoPorId(@PathVariable Integer id) {
         return ordemServicoService.buscarPorId(id)
@@ -33,15 +39,13 @@ public class OrdemServicoController {
     }
 
     @PostMapping
-    public ResponseEntity<OrdemServico> criarOrdemServico(@RequestBody OrdemServico ordemServico) {
-        // Permitir que o campo descricaoOS seja recebido e salvo, se existir no JSON
-        // (Certifique-se de que o model OrdemServico tenha o campo descricaoOS)
-        OrdemServico criada = ordemServicoService.salvar(ordemServico);
+    public ResponseEntity<OrdemServico> criarOrdemServico(@RequestBody OrdemServicoRequest dto) {
+        OrdemServico criada = ordemServicoService.salvar(dto);
         return ResponseEntity.status(201).body(criada);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdemServico> atualizarOrdemServico(@PathVariable Integer id, @RequestBody OrdemServico ordemServico) {
+    public ResponseEntity<OrdemServico> atualizarOrdemServico(@PathVariable Integer id, @RequestBody OrdemServicoRequest ordemServico) {
         OrdemServico atualizada = ordemServicoService.atualizar(id, ordemServico);
         if (atualizada != null) {
             return ResponseEntity.ok(atualizada);
@@ -49,6 +53,25 @@ public class OrdemServicoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PatchMapping("/{id}/tecnico")
+    public ResponseEntity<OrdemServico> atualizarTecnicoOrdemServico(
+            @PathVariable Integer id,
+            @RequestBody Map<String, Integer> payload) {
+
+        Integer tecnicoId = payload.get("tecnicoId");
+        if (tecnicoId == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        try {
+            OrdemServico atualizada = ordemServicoService.atualizarTecnico(id, tecnicoId);
+            return ResponseEntity.ok(atualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarOrdemServico(@PathVariable Integer id) {

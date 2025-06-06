@@ -14,7 +14,7 @@ public class OrdemServico {
     @JoinColumn(name = "computador_id")
     private Computador computador;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
 
