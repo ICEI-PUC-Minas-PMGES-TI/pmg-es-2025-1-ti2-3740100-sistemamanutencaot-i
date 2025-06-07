@@ -56,6 +56,7 @@ const ReparosPendentes = () => {
             key={index}
             index={index}
             {...reparo}
+            tipo={reparo.computador?.tipo}
             onAtribuir={() => atribuirTecnicoLogado(reparo.id)}
           />
         ))}

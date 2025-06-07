@@ -56,7 +56,7 @@ function App() {
 
         <Route path="/reparos" element={<Reparos />} />
 
-        <Route path="/detalhes-reparo" element={<DetalhesReparo />} />
+        <Route path="/detalhes-reparo/:id" element={<DetalhesReparo />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<LandingPage />} />

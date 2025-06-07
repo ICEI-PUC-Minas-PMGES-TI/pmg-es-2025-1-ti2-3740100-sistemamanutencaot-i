@@ -1,32 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "../assets/css/DiagnosticoServico.css"; // CSS normal
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import "../assets/css/DiagnosticoServico.css";
 import BarraLateral from "../components/BarraLateral.jsx";
 import notebook from "../assets/images/notebook-icon.png";
 import SolicitarPecas from "../components/DetalhesServico/SolicitarPecas.jsx";
 import ManutencaoConcluida from "../components/DetalhesServico/ManutencaoConcluida";
 
 export default function DiagnosticoServico() {
-  const mockData = {
-    servico: {
-      id: "001",
-      cliente: "João Vasconcelos",
-      tecnico: "Joaquim Barbosa",
-      status: "Aguardando Diagnóstico",
-      marca: "Dell",
-      modelo: "Inspiron 8GB RAM, SSD 240GB",
-      dataSolicitacao: "10/10/2025",
-      prazo: "12/10/2025",
-      descricaoProblema:
-        "O computador não liga e faz um barulho estranho ao pressionar o botão de energia.",
-      diagnostico:
-        "Fonte de alimentação danificada e memória RAM com problemas de contato.",
-    },
-    pecas: [
-      { id: 1, componente: "Memória RAM", quantidade: 2 },
-      { id: 2, componente: "Fonte de Alimentação", quantidade: 1 },
-      { id: 3, componente: "Cooler", quantidade: 4 },
-    ],
-  };
+  const { id } = useParams(); // Pega o ID da URL
 
   const [servicoData, setServicoData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,11 +16,25 @@ export default function DiagnosticoServico() {
   const [showManutencaoConcluida, setShowManutencaoConcluida] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setServicoData(mockData);
-      setLoading(false);
-    }, 500);
-  }, []);
+    setLoading(true);
+    axios
+      .get(`http://localhost:8080/ordem-servicos/${id}`)
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          if (res.data.length > 0) {
+            setServicoData(res.data[0]);
+          } else {
+            setServicoData(null);
+          }
+        } else if (res.data && typeof res.data === "object") {
+          setServicoData(res.data);
+        } else {
+          setServicoData(null);
+        }
+      })
+      .catch(() => setServicoData(null))
+      .finally(() => setLoading(false));
+  }, [id]);
 
   if (loading) {
     return (
@@ -57,6 +53,19 @@ export default function DiagnosticoServico() {
     );
   }
 
+  if (!servicoData) {
+    return (
+      <div className="layout-principal">
+        <BarraLateral />
+        <div className="container-diagnostico">
+          <div className="conteudo-bloco">
+            <p>Ordem de serviço não encontrada.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="layout-principal">
       <BarraLateral />
@@ -66,9 +75,7 @@ export default function DiagnosticoServico() {
           <SolicitarPecas onClose={() => setShowSolicitarPecas(false)} />
         )}
         {showManutencaoConcluida && (
-          <ManutencaoConcluida
-            onClose={() => setShowManutencaoConcluida(false)}
-          />
+          <ManutencaoConcluida onClose={() => setShowManutencaoConcluida(false)} />
         )}
 
         <div className="header-servico">
@@ -77,11 +84,9 @@ export default function DiagnosticoServico() {
               <img src={notebook} alt="Notebook" />
             </div>
             <div>
-              <div className="servico-numero">
-                Serviço #{servicoData.servico.id}
-              </div>
+              <div className="servico-numero">Serviço #{servicoData.id}</div>
               <div className="cliente-nome">
-                Cliente: <strong>{servicoData.servico.cliente}</strong>
+                Cliente: <strong>{servicoData.computador.cliente.pessoa.nome}</strong>
               </div>
             </div>
           </div>
@@ -91,20 +96,19 @@ export default function DiagnosticoServico() {
         <div className="conteudo-bloco">
           <div className="detalhes-superiores">
             <div className="detalhes-esquerda">
-              Técnico: <strong>{servicoData.servico.tecnico}</strong>
+              Técnico: <strong>{servicoData.tecnico.nome}</strong>
               <br />
-              Status: <strong>{servicoData.servico.status}</strong>
+              Status: <strong>{servicoData.status}</strong>
             </div>
             <div className="detalhes-direita">
-              Marca: <strong>{servicoData.servico.marca}</strong>
+              Marca: <strong>{servicoData.computador.marca}</strong>
               <br />
-              Modelo: <strong>{servicoData.servico.modelo}</strong>
+              Modelo: <strong>{servicoData.computador.modelo}</strong>
             </div>
             <div className="detalhes-direita">
-              Data da Solicitação:{" "}
-              <strong>{servicoData.servico.dataSolicitacao}</strong>
+              Data da Solicitação: <strong>{servicoData.dataEntrada}</strong>
               <br />
-              Prazo atual: <strong>{servicoData.servico.prazo}</strong>
+              Prazo atual: <strong>{servicoData.prazo}</strong>
             </div>
           </div>
 
@@ -115,7 +119,7 @@ export default function DiagnosticoServico() {
                 <textarea
                   className="textarea-custom"
                   placeholder="Descreva o problema..."
-                  value={servicoData.servico.descricaoProblema}
+                  value={servicoData.descricaoOs}
                   readOnly
                 ></textarea>
               </div>
@@ -125,7 +129,8 @@ export default function DiagnosticoServico() {
                 <textarea
                   className="textarea-custom"
                   placeholder="Descreva o diagnóstico completo do problema..."
-                  value={servicoData.servico.diagnostico}
+                  value={servicoData.solucaoOs}
+                  readOnly
                 ></textarea>
                 <div className="botoes-diagnostico">
                   <button className="btn-editar">Editar</button>
@@ -145,7 +150,7 @@ export default function DiagnosticoServico() {
                     </tr>
                   </thead>
                   <tbody>
-                    {servicoData.pecas.map((peca) => (
+                    {(servicoData.pecas || []).map((peca) => (
                       <tr key={peca.id}>
                         <td>{peca.componente}</td>
                         <td>{peca.quantidade}</td>

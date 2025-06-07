@@ -25,7 +25,8 @@ const HomeTecnico = ()=> {
       .then(response => {
         const reparosComNome = response.data.map(reparo => {
           const nomeCliente = reparo.computador?.cliente?.pessoa?.nome || "Cliente não encontrado";
-          return { ...reparo, nome: nomeCliente };
+          const tipoComputador = reparo.computador?.tipo || "Desconhecido";
+          return { ...reparo, nome: nomeCliente, tipo: tipoComputador };
         });
         console.log("Reparos com nome:", reparosComNome);
         setReparos(reparosComNome);
@@ -73,13 +74,16 @@ const HomeTecnico = ()=> {
             </button>
           </form>
         </div>
-
         <h2 className="titulo-reparos">Seus Reparos</h2>
         <div className="scroll-cards">
           <section className="grid-cards" aria-label="Lista de reparos">
-            {reparos.map((reparo, index) => (
-              <ReparoCard key={index} index={index} {...reparo} />
-            ))}
+            {reparos.length > 0 ? (
+              reparos.map((reparo, index) => (
+                <ReparoCard key={index} index={index} {...reparo} />
+              ))
+            ) : (
+              <p className="mensagem-sem-reparos">Você não possui nenhum reparo no momento.</p>
+            )}
           </section>
         </div>
       </main>
