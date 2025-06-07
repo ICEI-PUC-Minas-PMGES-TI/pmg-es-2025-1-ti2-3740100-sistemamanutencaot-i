@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ReparosPendentes.css";
-import ReparoCard from "./ReparoCard";
+import ReparoCard from "./ReparoPendenteCard";
 import axios from "axios";
 
 const ReparosPendentes = () => {
@@ -21,7 +21,7 @@ const ReparosPendentes = () => {
   }, []);
 
   const atribuirTecnicoLogado = (idOrdemServico) => {
-    const tecnicoId = Number(localStorage.getItem("idTecnico"));
+    const tecnicoId = Number(localStorage.getItem("id_tecnico"));
     if (!tecnicoId) {
       alert("Técnico não está logado");
       return;

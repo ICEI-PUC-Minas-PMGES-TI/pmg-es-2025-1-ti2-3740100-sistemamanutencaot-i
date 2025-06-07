@@ -38,6 +38,12 @@ public class OrdemServicoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/tecnico/{tecnicoId}")
+    public ResponseEntity<List<OrdemServico>> listarPorTecnico(@PathVariable Integer tecnicoId) {
+        List<OrdemServico> ordens = ordemServicoService.buscarPorTecnicoId(tecnicoId);
+        return ResponseEntity.ok(ordens);
+    }
+
     @PostMapping
     public ResponseEntity<OrdemServico> criarOrdemServico(@RequestBody OrdemServicoRequest dto) {
         OrdemServico criada = ordemServicoService.salvar(dto);

@@ -35,6 +35,10 @@ public class OrdemServicoService {
         return ordemServicoRepository.findById(id);
     }
 
+    public List<OrdemServico> buscarPorTecnicoId(Integer tecnicoId) {
+        return ordemServicoRepository.findByTecnicoId(tecnicoId);
+    }
+
     public OrdemServico salvar(OrdemServicoRequest dto) {
         Computador comp = computadorRepository.findById(dto.getComputadorId())
             .orElseThrow(() -> new RuntimeException("Computador não encontrado"));

@@ -11,4 +11,7 @@ import java.util.List;
 public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Integer>{
     @Query("SELECT o FROM OrdemServico o WHERE o.tecnico IS NULL")
     List<OrdemServico> findAllSemTecnico();
+
+    @Query("SELECT o FROM OrdemServico o WHERE o.tecnico.id = :tecnicoId")
+    List<OrdemServico> findByTecnicoId(Integer tecnicoId);
 }

@@ -1,60 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/HomeTecnico.css";
 import BarraLateral from "../components/BarraLateral.jsx";
-import ReparoCard from "../components/ReparoCard.jsx";
+import ReparoCard from "../components/ReparosTecnico.jsx";
+import axios from "axios";
 
-// Ícones e imagens
 import FiltroIcone from "../assets/images/Filtro1.png";
 import SearchIcone from "../assets/images/search.png";
 
-//puxar do backend e retirar isso daqui
-const reparos = [
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#b22222",
-  },
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#d4a017",
-  },
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#b22222",
-  },
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#b22222",
-  },
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#2e8b57",
-  },
-  {
-    nome: "João Vasconcelos",
-    id: "001",
-    prazo: "22/10/2025",
-    status: "Manutenção",
-    cor: "#2e8b57",
-  },
-];
-
 const HomeTecnico = ()=> {
   const [nomeTecnico, setNomeTecnico] = useState("");
+  const [reparos, setReparos] = useState([]);
   useEffect(() => {
     const tecnicoStr = localStorage.getItem("tecnico");
     if (tecnicoStr) {
@@ -62,6 +17,28 @@ const HomeTecnico = ()=> {
       setNomeTecnico(tecnicoObj.nome); // Aqui pega o nome do técnico
     }
   }, []);
+
+  const buscarReparosTecnico = () => {
+    const tecnicoId = Number(localStorage.getItem("id_tecnico"));
+
+    axios.get(`http://localhost:8080/ordem-servicos/tecnico/${tecnicoId}`)
+      .then(response => {
+        const reparosComNome = response.data.map(reparo => {
+          const nomeCliente = reparo.computador?.cliente?.pessoa?.nome || "Cliente não encontrado";
+          return { ...reparo, nome: nomeCliente };
+        });
+        console.log("Reparos com nome:", reparosComNome);
+        setReparos(reparosComNome);
+      })
+      .catch(error => {
+        console.error("Erro ao buscar reparos:", error);
+      });
+  };
+
+
+  useEffect(() => {
+      buscarReparosTecnico();
+    }, []);
   
   return (
     <div className="container">
