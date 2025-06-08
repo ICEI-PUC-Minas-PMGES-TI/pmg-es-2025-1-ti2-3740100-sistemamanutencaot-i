@@ -1,16 +1,39 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Usuarios.css";
 import editar from "../../assets/images/edit.png";
 import filtrar from "../../assets/images/Filtro1.png";
 import adicionar from "../../assets/images/adicionar.png";
 import excluir from "../../assets/images/lixo.png";
 import pesquisar from "../../assets/images/search.png";
-import AdicionarAlert from "./AdicionarAlert"; // Importe o componente
+import AdicionarAlert from "./AdicionarAlert";
 
 const UserManagement = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const navigate = useNavigate(); // Hook para navegação
+  const [users, setUsers] = useState([]); // Estado para os usuários
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("http://localhost:8080/tecnicos"),
+      axios.get("http://localhost:8080/clientes")
+    ]).then(([tecnicosRes, clientesRes]) => {
+      const tecnicos = tecnicosRes.data.map(t => ({
+        name: t.nome || "Não informado",
+        cpf: t.cpf || "Não informado",
+        phone: t.telefone || "Não informado",
+        type: "Técnico"
+      }));
+      const clientes = clientesRes.data.map(c => ({
+        name: c.pessoa?.nome || "Não informado",
+        cpf: c.pessoa?.cpf || "Não informado",
+        phone: c.telefone || "Não informado",
+        type: "Cliente"
+      }));
+      setUsers([...tecnicos, ...clientes]);
+    }).catch(() => alert("Erro ao buscar usuários"));
+  }, []);
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
@@ -24,13 +47,6 @@ const UserManagement = () => {
     closeAddModal();
     navigate("/cadastro-tecnico"); // Navega para a tela de adicionar técnico
   };
-
-  const users = Array(8).fill({
-    name: "Juliana Ribeiro da Silva",
-    cpf: "123.456.789-12",
-    phone: "+55 (31) 9 1234-5678",
-    type: "Cliente",
-  });
 
   return (
     <main className="user-management">
