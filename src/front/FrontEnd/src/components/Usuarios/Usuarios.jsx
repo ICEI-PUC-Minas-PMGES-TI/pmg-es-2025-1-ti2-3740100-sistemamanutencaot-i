@@ -20,12 +20,14 @@ const UserManagement = () => {
       axios.get("http://localhost:8080/clientes")
     ]).then(([tecnicosRes, clientesRes]) => {
       const tecnicos = tecnicosRes.data.map(t => ({
+        id: t.id,
         name: t.nome || "Não informado",
         cpf: t.cpf || "Não informado",
         phone: t.telefone || "Não informado",
         type: "Técnico"
       }));
       const clientes = clientesRes.data.map(c => ({
+        id: c.id,
         name: c.pessoa?.nome || "Não informado",
         cpf: c.pessoa?.cpf || "Não informado",
         phone: c.telefone || "Não informado",
@@ -46,6 +48,22 @@ const UserManagement = () => {
   const handleAddTechnical = () => {
     closeAddModal();
     navigate("/cadastro-tecnico"); // Navega para a tela de adicionar técnico
+  };
+
+  const handleDelete = async (user) => {
+    try {
+      if (!window.confirm("Tem certeza que deseja excluir este usuário?")) return;
+
+      if (user.type === "Técnico") {
+        await axios.delete(`http://localhost:8080/tecnicos/${user.id}`);
+      } else if (user.type === "Cliente") {
+        await axios.delete(`http://localhost:8080/clientes/${user.id}`);
+      }
+      // Atualiza a lista após excluir
+      setUsers(users.filter(u => u.id !== user.id));
+    } catch (error) {
+      alert("Erro ao excluir usuário");
+    }
   };
 
   return (
@@ -109,7 +127,10 @@ const UserManagement = () => {
                     <button className="edit-button">
                       <img src={editar} alt="Editar" />
                     </button>
-                    <button className="delete-button">
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(user)}
+                    >
                       <img src={excluir} alt="Excluir" />
                     </button>
                   </div>
