@@ -79,6 +79,13 @@ public class OrdemServicoController {
     }
 
 
+    @PutMapping("/ordem-servicos/{id}")
+    public ResponseEntity<OrdemServico> atualizar(@PathVariable Integer id, @RequestBody OrdemServicoRequest dto) {
+        OrdemServico ordem = ordemServicoService.atualizar(id, dto);
+        return ResponseEntity.ok(ordem);
+    }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarOrdemServico(@PathVariable Integer id) {
         ordemServicoService.deletar(id);
