@@ -13,6 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pecas-utilizadas")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://pmg-es-2025-1-ti2-3740100-sistemamanutencaot-i.vercel.app"
+})
 public class PecaUtilizadaController {
 
     @Autowired

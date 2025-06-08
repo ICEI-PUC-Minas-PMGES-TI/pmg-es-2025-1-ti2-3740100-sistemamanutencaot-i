@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./Estoque.module.css"; // Corrigido a importação
 import AdicionarAlert from "./AdicionarAlert"; // Adicionado import
 import adicionar from "../../assets/images/adicionar.png";
@@ -10,39 +11,34 @@ import excluir from "../../assets/images/lixo.png";
 
 const EstoqueTecnico = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      nome: "Memória RAM",
-      marca: "Corsair",
-      modelo: "DDR4 2666hz",
-      quantidade: 8,
-      segmento: "Notebook", // Alterado para "segmento" para consistência
-    },
-    {
-      id: 2,
-      nome: "Placa de Vídeo",
-      marca: "NVIDIA",
-      modelo: "RTX 3060 Super 12GB",
-      quantidade: 2,
-      segmento: "Computador", // Alterado para "segmento"
-    },
-  ]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/pecas")
+      .then((res) => {
+        const pecas = res.data.map(p => ({
+          id: p.id,
+          nome: p.nome || "Não informado",
+          marca: p.marca || "Não informado",
+          modelo: p.modelo || "Não informado",
+          quantidade: p.quantidade || 0,
+          segmento: p.segmento || "Não informado",
+        }));
+        setItems(pecas);
+      })
+      .catch(() => alert("Erro ao buscar peças"));
+  }, []);
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
 
   const handleAddItem = (newItem) => {
-    // Adiciona novo item ao estoque
-    setItems((prevItems) => [
-      ...prevItems,
-      {
-        ...newItem,
-        id: prevItems.length + 1,
-        quantidade: Number(newItem.quantidade),
-      },
-    ]);
-    closeAddModal();
+    axios.post("http://localhost:8080/pecas", newItem)
+      .then((res) => {
+        setItems((prev) => [...prev, res.data]);
+        closeAddModal();
+      })
+      .catch(() => alert("Erro ao adicionar item"));
   };
 
   return (
