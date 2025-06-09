@@ -1,20 +1,9 @@
-/* Estilos base */
-.reposicao-container {
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 1rem;
-}
-
 .reposicao-widget {
-  width: 288px; /* 18rem */
+  background-color: white;
+  width: 100%;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
-              0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #E5E7EB;
   overflow: hidden;
+  height: 300px;
 }
 
 /* Cabeçalho */
@@ -42,7 +31,6 @@
   margin: 0;
 }
 
-/* Conteúdo */
 .reposicao-content {
   padding: 1.25rem; /* 20px */
 }
@@ -99,4 +87,8 @@
 
 .detalhes-button:hover {
   background-color: #002699;
+}
+
+.item-quantidade.neutro {
+  color: #4B5563; /* Cor neutra (cinza) */
 }

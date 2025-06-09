@@ -1,12 +1,192 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-
-body {
-  font-family: "Open Sans", sans-serif;
-  background-color: #f6f4f1;
-  color: #0a1446;
+/* HomeGerente.css */
+.home-gerente {
+  background-color: #f3f1ed;
+  min-height: 100vh;
+  padding: 1.5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header-title {
+  font-size: 28px;
+  color: #0a1a4f;
+  line-height: 1.1;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: #0a1a4f;
+  margin-top: -4px;
+}
+
+.header-divider {
+  border-top: 2px solid #0a1a4f;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-title {
+  color: #0a1a4f;
+  font-size: 20px;
+}
+
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  background-color: white;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  width: calc(25% - 0.75rem);
+  min-width: 140px;
+  position: relative;
+}
+
+.card-label {
+  font-size: 10px;
+  font-family: sans-serif;
+  color: #0a1a4f;
+  margin-bottom: 0.25rem;
+}
+
+.card-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0a1a4f;
+  line-height: 1;
+}
+
+.card-info-icon {
+  color: #0a1a4f;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 12px;
+}
+
+.cycle-selector {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calendar-icon {
+  color: #0a1a4f;
+  font-size: 18px;
+}
+
+.cycle-select {
+  border: 1px solid #0a1a4f;
+  border-radius: 0.375rem;
+  color: #0a1a4f;
+  font-size: 12px;
+  font-family: sans-serif;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.cycle-label {
+  font-size: 10px;
+  font-family: sans-serif;
+  color: #0a1a4f;
+}
+
+.chart-section {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.chart-title {
+  color: #0a1a4f;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.chart-wrapper {
+  flex: 1;
+}
+
+/* Estilos do carrossel */
+.carrossel-container {
+  background-color: #0a1a4f;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 280px;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .carrossel-container {
+    margin-top: 0;
+    margin-left: 1.5rem;
+  }
+}
+
+.carrossel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.nav-button {
+  color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.carrossel-title {
+  color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+.carrossel-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-calendar-icon {
+  color: #0a1a4f;
+  font-size: 18px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  padding: 0.25rem;
 }

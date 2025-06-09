@@ -1,77 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TaxaAtraso.css';
 
 const TaxaAtraso = () => {
+  // Banco de dados mockado
+  const [dadosTaxaAtraso, setDadosTaxaAtraso] = useState([
+    { mes: 'Jan', taxa: 40, melhor: false },
+    { mes: 'Fev', taxa: 70, melhor: false },
+    { mes: 'Mar', taxa: 40, melhor: false },
+    { mes: 'Abr', taxa: 60, melhor: false },
+    { mes: 'Mai', taxa: 40, melhor: false },
+    { mes: 'Jun', taxa: 50, melhor: false },
+    { mes: 'Jul', taxa: 40, melhor: false },
+    { mes: 'Ago', taxa: 80, melhor: true, data: '22 de Agosto', melhoria: 5 },
+    { mes: 'Set', taxa: 40, melhor: false },
+    { mes: 'Out', taxa: 60, melhor: false }
+  ]);
+
+  const [bubbleVisivel, setBubbleVisivel] = useState(false);
+  const [mesAtual, setMesAtual] = useState('Ago');
+
+  // Função para atualizar os dados (exemplo de como seria com dados dinâmicos)
+  const atualizarDados = () => {
+    const novosDados = [...dadosTaxaAtraso];
+    const indiceAtual = novosDados.findIndex(item => item.melhor);
+    
+    // Simula uma mudança de dados
+    if (indiceAtual >= 0) {
+      novosDados[indiceAtual].taxa = Math.max(10, Math.floor(Math.random() * 100));
+      novosDados[indiceAtual].melhoria = Math.floor(Math.random() * 10);
+      setDadosTaxaAtraso(novosDados);
+    }
+  };
+
   return (
-    <div className="taxa-atraso-container">
-      <div className="widget-container">
-        {/* Cabeçalho */}
-        <header className="widget-header">
-          <button aria-label="Voltar" className="nav-button">
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <h1 className="widget-title">Taxa de Atraso</h1>
-          <button aria-label="Avançar" className="nav-button">
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </header>
-        
-        {/* Conteúdo Principal */}
-        <main className="widget-content">
-          <div className="chart-container">
-            <div className="axis-labels">
-              <span>0%</span>
-              <span>10%</span>
-              <span>20%</span>
-            </div>
-            
-            <div className="bars-container">
-              {/* Barras do gráfico */}
-              {[40, 70, 40, 60, 40, 50, 40, 80, 40, 60].map((height, index) => (
-                <div 
-                  key={index}
-                  className={`bar ${index === 7 ? 'highlighted-bar' : ''}`}
-                  style={{ height: `${height}px` }}
-                ></div>
-              ))}
-            </div>
-            
-            {/* Linha de tendência SVG */}
-            <svg 
-              className="trend-line" 
-              viewBox="0 0 280 64" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg" 
-              aria-hidden="true"
-            >
-              <polyline
-                points="10,50 30,20 50,40 70,30 90,40 110,30 130,40 150,10 170,50 190,30"
-                stroke="#0B3BFF"
-                strokeWidth="2"
-                fill="none"
-              />
-              <circle cx="190" cy="30" r="5" fill="#0B3BFF" />
-            </svg>
-            
-            {/* Balão de destaque */}
+    <div className="widget-container">
+      <main className="widget-content">
+        <div className="chart-container">
+          <div className="axis-labels">
+            <span>0%</span>
+            <span>50%</span>
+            <span>100%</span>
+          </div>
+          
+          <div className="bars-container">
+            {dadosTaxaAtraso.map((dado, index) => (
+              <div 
+                key={index}
+                className={`bar ${dado.melhor ? 'highlighted-bar' : ''}`}
+                style={{ height: `${dado.taxa * 0.6}px` }} // Ajuste de escala
+                onMouseEnter={() => dado.melhor ? setBubbleVisivel(true) : null}
+                onMouseLeave={() => setBubbleVisivel(false)}
+              ></div>
+            ))}
+          </div>
+          
+          {bubbleVisivel && (
             <div className="highlight-bubble">
               <div className="emoji">😊</div>
               <div className="bubble-content">
-                <div className="improvement">5% melhor</div>
-                <div>22 de Dezembro</div>
+                <div className="improvement">
+                  {dadosTaxaAtraso.find(d => d.melhor)?.melhoria}% melhor
+                </div>
+                <div>{dadosTaxaAtraso.find(d => d.melhor)?.data}</div>
               </div>
             </div>
-          </div>
-          
-          {/* Informação de resumo */}
-          <div className="summary">
-            <span className="percentage">10%</span>
-            <p className="description">
-              A taxa de atraso está atualmente 5% melhor que o mês passado
-            </p>
-          </div>
-        </main>
-      </div>
+          )}
+        </div>
+        
+        <div className="summary">
+          <span className="percentage">
+            {dadosTaxaAtraso.find(d => d.melhor)?.taxa}%
+          </span>
+          <p className="description">
+            A taxa de atraso está atualmente {dadosTaxaAtraso.find(d => d.melhor)?.melhoria}% 
+            melhor que o mês passado
+          </p>
+        </div>
+      </main>
     </div>
   );
 };
