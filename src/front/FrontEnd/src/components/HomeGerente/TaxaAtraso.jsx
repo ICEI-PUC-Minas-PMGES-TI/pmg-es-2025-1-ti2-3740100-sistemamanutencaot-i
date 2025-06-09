@@ -1,81 +1,158 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TaxaAtraso.css';
 
 const TaxaAtraso = () => {
-  // Banco de dados mockado
-  const [dadosTaxaAtraso, setDadosTaxaAtraso] = useState([
-    { mes: 'Jan', taxa: 40, melhor: false },
-    { mes: 'Fev', taxa: 70, melhor: false },
-    { mes: 'Mar', taxa: 40, melhor: false },
-    { mes: 'Abr', taxa: 60, melhor: false },
-    { mes: 'Mai', taxa: 40, melhor: false },
-    { mes: 'Jun', taxa: 50, melhor: false },
-    { mes: 'Jul', taxa: 40, melhor: false },
-    { mes: 'Ago', taxa: 80, melhor: true, data: '22 de Agosto', melhoria: 5 },
-    { mes: 'Set', taxa: 40, melhor: false },
-    { mes: 'Out', taxa: 60, melhor: false }
-  ]);
+  const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
-  const [bubbleVisivel, setBubbleVisivel] = useState(false);
-  const [mesAtual, setMesAtual] = useState('Ago');
+  // Função para obter o mês atual
+  const getMesAtual = () => {
+    const data = new Date();
+    return meses[data.getMonth()];
+  };
 
-  // Função para atualizar os dados (exemplo de como seria com dados dinâmicos)
-  const atualizarDados = () => {
-    const novosDados = [...dadosTaxaAtraso];
-    const indiceAtual = novosDados.findIndex(item => item.melhor);
+  // Função para formatar a data atual
+  const formatarDataAtual = () => {
+    const data = new Date();
+    const dia = data.getDate();
+    const mes = data.toLocaleString('pt-BR', { month: 'long' });
+    return `${dia} de ${mes.charAt(0).toUpperCase() + mes.slice(1)}`;
+  };
+
+  const [dadosTaxaAtraso, setDadosTaxaAtraso] = useState([]);
+  const [barraHover, setBarraHover] = useState(null); // Controla qual barra está com hover
+  const [mesAtual, setMesAtual] = useState(getMesAtual());
+  const [dadoAtual, setDadoAtual] = useState(null);
+
+  // Inicializar dados
+  useEffect(() => {
+    const data = new Date();
+    const mesAtualIndex = data.getMonth();
     
-    // Simula uma mudança de dados
-    if (indiceAtual >= 0) {
-      novosDados[indiceAtual].taxa = Math.max(10, Math.floor(Math.random() * 100));
-      novosDados[indiceAtual].melhoria = Math.floor(Math.random() * 10);
-      setDadosTaxaAtraso(novosDados);
+    // Obter os últimos 7 meses (6 anteriores + atual)
+    const ultimosMeses = [];
+    for (let i = 6; i >= 0; i--) {
+      const mesIndex = (mesAtualIndex - i + 12) % 12;
+      ultimosMeses.push(meses[mesIndex]);
     }
+
+    const dadosIniciais = ultimosMeses.map((mes, index) => {
+      // Taxa fixa para exemplo, exceto para o mês atual que terá 8%
+      const taxa = index === 6 ? 8 : Math.floor(Math.random() * 10) + 3;
+      return { mes, taxa };
+    });
+
+    const indexAtual = 6; // O último mês é o atual
+
+    const dadosAtualizados = dadosIniciais.map((dado, index) => {
+      let variacao = 0;
+      let status = 'neutral';
+      let emoji = '😐';
+      
+      if (index === indexAtual && index > 0) {
+        const taxaAnterior = dadosIniciais[index - 1].taxa;
+        variacao = Math.round(((taxaAnterior - dado.taxa) / taxaAnterior) * 100);
+        
+        if (variacao > 0) {
+          status = 'positive';
+          emoji = '😊';
+        } else if (variacao < 0) {
+          status = 'negative';
+          emoji = '😞';
+          variacao = Math.abs(variacao);
+        }
+        
+        return {
+          ...dado,
+          atual: true,
+          variacao,
+          status,
+          emoji,
+          data: formatarDataAtual()
+        };
+      }
+      return { ...dado, atual: index === indexAtual };
+    });
+
+    setDadosTaxaAtraso(dadosAtualizados);
+    setDadoAtual(dadosAtualizados[indexAtual]);
+  }, []);
+
+  const getStatusClass = (status) => {
+    return status === 'positive' ? 'positive' : 
+           status === 'negative' ? 'negative' : 'neutral';
   };
 
   return (
     <div className="widget-container">
       <main className="widget-content">
         <div className="chart-container">
-          <div className="axis-labels">
+          <div className="y-axis">
+            <span>20%</span>
+            <span>10%</span>
             <span>0%</span>
-            <span>50%</span>
-            <span>100%</span>
           </div>
           
-          <div className="bars-container">
-            {dadosTaxaAtraso.map((dado, index) => (
-              <div 
-                key={index}
-                className={`bar ${dado.melhor ? 'highlighted-bar' : ''}`}
-                style={{ height: `${dado.taxa * 0.6}px` }} // Ajuste de escala
-                onMouseEnter={() => dado.melhor ? setBubbleVisivel(true) : null}
-                onMouseLeave={() => setBubbleVisivel(false)}
-              ></div>
-            ))}
-          </div>
-          
-          {bubbleVisivel && (
-            <div className="highlight-bubble">
-              <div className="emoji">😊</div>
-              <div className="bubble-content">
-                <div className="improvement">
-                  {dadosTaxaAtraso.find(d => d.melhor)?.melhoria}% melhor
+          <div className="chart-content">
+            <div className="bars-container">
+              {dadosTaxaAtraso.map((dado, index) => (
+                <div 
+                  key={index}
+                  className={`bar ${dado.atual ? 'highlighted-bar' : ''}`}
+                  style={{ height: `${dado.taxa * 8}px` }}
+                  onMouseEnter={() => setBarraHover(index)}
+                  onMouseLeave={() => setBarraHover(null)}
+                >
+                  {/* Balão para qualquer barra (mostra a taxa) */}
+                  {barraHover === index && (
+                    <div className="highlight-bubble">
+                      <div className="bubble-content">
+                        <div>{dado.taxa}%</div>
+                        {/* Para o mês atual, mostramos também a comparação */}
+                        {dado.atual && dado.variacao !== undefined && (
+                          <>
+                            <div className={`improvement ${getStatusClass(dado.status)}`}>
+                              {dado.status === 'positive' && `${dado.variacao}% melhor`}
+                              {dado.status === 'negative' && `${dado.variacao}% pior`}
+                              {dado.status === 'neutral' && 'Sem variação'}
+                            </div>
+                            <div>{dado.data}</div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div>{dadosTaxaAtraso.find(d => d.melhor)?.data}</div>
-              </div>
+              ))}
             </div>
-          )}
+            
+            {/* Rótulos dos meses */}
+            <div className="mes-labels">
+              {dadosTaxaAtraso.map((dado, index) => (
+                <div key={index} className="mes-label">
+                  {dado.mes}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         
-        <div className="summary">
-          <span className="percentage">
-            {dadosTaxaAtraso.find(d => d.melhor)?.taxa}%
-          </span>
-          <p className="description">
-            A taxa de atraso está atualmente {dadosTaxaAtraso.find(d => d.melhor)?.melhoria}% 
-            melhor que o mês passado
-          </p>
-        </div>
+        {dadoAtual && (
+          <div className="summary">
+            <span className={`percentage ${getStatusClass(dadoAtual.status)}`}>
+              {dadoAtual.taxa}%
+            </span>
+            <p className="description">
+              {dadoAtual.status === 'positive' && 
+                `A taxa de atraso está ${dadoAtual.variacao}% melhor que o mês passado`}
+              
+              {dadoAtual.status === 'negative' && 
+                `A taxa de atraso está ${dadoAtual.variacao}% pior que o mês passado`}
+              
+              {dadoAtual.status === 'neutral' && 
+                'A taxa de atraso está estável em relação ao mês passado'}
+            </p>
+          </div>
+        )}
       </main>
     </div>
   );
