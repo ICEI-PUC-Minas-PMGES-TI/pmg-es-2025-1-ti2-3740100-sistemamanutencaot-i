@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Adicione este import
 import styles from './LoginPage.module.css';
-import ImagemTecnico from "./logintecnico.png";
-import ImagemGerente from "./logingerente.png";
+import ImagemTecnico from "../../assets/images/logintecnico.png";
+import ImagemGerente from "../../assets/images/logingerente.png";
 import Logo from "./ManagerIO.png";
 
 const LoginPage = () => {
@@ -93,7 +93,7 @@ const LoginPage = () => {
                             className={`${styles['role-button']} ${isTechnician ? styles.technician : ''}`}
                             onClick={() => handleRoleChange('technician')}
                         >
-                            Tecnico
+                            Técnico
                         </button>
                         <button 
                             className={`${styles['role-button']} ${!isTechnician ? styles.technician : ''}`}
@@ -145,32 +145,6 @@ const LoginPage = () => {
                             <button className={styles['submit-button']} type="submit">
                                 Sign in
                             </button>
-                            
-                            <p className={styles['continue-with']}>or continue with</p>
-                            
-                            <div className={styles['social-buttons']}>
-                                <button aria-label="Continue with Google" className={styles['social-button']}>
-                                    <img 
-                                        alt="Google G logo icon" 
-                                        className={styles['social-icon']}
-                                        src="https://storage.googleapis.com/a1aa/image/8b10a6bc-da3b-42e7-74f4-8a5aa0db02c9.jpg" 
-                                    />
-                                </button>
-                                <button aria-label="Continue with GitHub" className={styles['social-button']}>
-                                    <img 
-                                        alt="GitHub GH logo icon" 
-                                        className={styles['social-icon']}
-                                        src="https://storage.googleapis.com/a1aa/image/fef17f2f-3cc3-4291-e320-c24e8f2c46c6.jpg" 
-                                    />
-                                </button>
-                                <button aria-label="Continue with Facebook" className={styles['social-button']}>
-                                    <img 
-                                        alt="Facebook F logo icon" 
-                                        className={styles['social-icon']}
-                                        src="https://storage.googleapis.com/a1aa/image/706a14c1-c959-4703-3a2f-fd84d838dba7.jpg" 
-                                    />
-                                </button>
-                            </div>
                             
                             <p className={styles['register-text']}>
                                 Don't have an account yet?

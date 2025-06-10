@@ -83,8 +83,9 @@
   border-radius: 0.375rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem;
+  width: 290px;
+  margin-left: -40px;
 }
 
 .item-servico {
@@ -93,9 +94,8 @@
   gap: 0.75rem;
 }
 
-.item-servico i {
-  color: #000c3a;
-  font-size: 1.125rem;
+.item-servico img {
+  height: 30px;
 }
 
 .info-servico {
@@ -116,5 +116,6 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 9999px;
-  display: inline-block;
+  display: block;
+  margin: 0 0 0 auto;
 }

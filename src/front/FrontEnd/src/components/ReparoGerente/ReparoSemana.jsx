@@ -1,12 +1,13 @@
 import React from 'react';
-import './ReparosSemana.css';
+import './ReparoSemana.css';
+import notebook from "../../assets/images/notebook.png"
 
 const ReparosSemana = () => {
   // Dados de exemplo para os serviços
   const servicosPendentes = [
     { nome: "João Vasconcelos", servico: "#001", cor: "#1dbf2a" },
-    { nome: "João Vasconcelos", servico: "#001", cor: "#d9a10a" },
-    { nome: "João Vasconcelos", servico: "#001", cor: "#c30a0a" },
+    { nome: "Maria Eduarda", servico: "#002", cor: "#d9a10a" },
+    { nome: "Julio Mercedes", servico: "#003", cor: "#c30a0a" },
     // ... outros itens
   ];
 
@@ -27,7 +28,7 @@ const ReparosSemana = () => {
         {servicos.map((item, index) => (
           <li key={index}>
             <div className="item-servico">
-              <i className="fas fa-desktop"></i>
+              <img src={notebook} />
               <div className="info-servico">
                 <div className="nome-cliente">{item.nome}</div>
                 <div className="numero-servico">{item.servico}</div>

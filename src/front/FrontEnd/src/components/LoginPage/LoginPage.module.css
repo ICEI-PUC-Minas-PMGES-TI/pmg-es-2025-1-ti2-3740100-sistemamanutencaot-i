@@ -56,7 +56,7 @@
 
 .logo-container {
   position: absolute;
-  top: 2rem;
+  top: 1rem;
   left: 2rem;
   display: flex;
   align-items: center;
@@ -80,15 +80,14 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 6rem;
+  margin-top: 2rem;
 }
 
 .login-title {
   color: #0a1a4f;
   font-weight: 800;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  user-select: none;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .role-buttons {
@@ -264,7 +263,7 @@
 }
 
 .image-container {
-  background-color: #0a2a7a;
+  background-color: #023482;
   border-radius: 1rem;
   padding: 2rem;
   width: 100%;
