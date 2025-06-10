@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./NovaOrdemServico.css";
+import styles from "./NovaOrdemServico.module.css"; 
 import { useNavigate } from "react-router-dom";
-
 
 const NovaOrdemServico = () => {
   const [formData, setFormData] = useState({
@@ -17,12 +16,9 @@ const NovaOrdemServico = () => {
 
   const [termoBusca, setTermoBusca] = useState("");
   const [sugestoesClientes, setSugestoesClientes] = useState([]);
-  const [sugestoesTecnicos, setSugestoesTecnicos] = useState([]);
   const [clienteSelecionado, setClienteSelecionado] = useState(null);
-  const [tecnicos, setTecnicos] = useState([]);
   const [mensagem, setMensagem] = useState("");
   const navigate = useNavigate();
-
 
   const dataHoje = new Date().toISOString().split("T")[0];
 
@@ -32,10 +28,9 @@ const NovaOrdemServico = () => {
         setSugestoesClientes([]);
         return;
       }
-
       try {
         const response = await axios.get(
-          `http://localhost:8080/clientes?nome=${termoBusca}`
+          `http://localhost:8080/clientes?nome=${encodeURIComponent(termoBusca)}`
         );
         setSugestoesClientes(response.data);
       } catch (error) {
@@ -52,16 +47,23 @@ const NovaOrdemServico = () => {
 
   const selecionarCliente = (cliente) => {
     setClienteSelecionado(cliente);
-    setTermoBusca(cliente.nome);
+    setTermoBusca(cliente.pessoa?.nome || cliente.nome || "");
     setSugestoesClientes([]);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    // Se estiver editando o campo do autocomplete, reseta clienteSelecionado
+    if (name === "cliente") {
+      setTermoBusca(value);
+      setClienteSelecionado(null);
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -89,32 +91,30 @@ const NovaOrdemServico = () => {
 
     const novoComputador = {
       clienteId: clienteSelecionado.id,
-      tipoMaquina: formData.tipoMaquina,
+      tipo: formData.tipoMaquina,
       marca: formData.marca,
       modelo: formData.modelo,
     };
 
     try {
-      // 1. Criar computador
       const computadorResponse = await axios.post(
         "http://localhost:8080/computadores",
         novoComputador
       );
       const computadorCriado = computadorResponse.data;
 
-      // 2. Criar Ordem de Serviço
       const novaOS = {
         computadorId: computadorCriado.id,
         tecnicoId: null,
-        status: "AGUARDANDO DIAGNOSTICO",
-        dataCriacao: dataHoje,
-        prazoDiagnostico: formData.prazoDiagnostico,
+        status: "Aguardando Diagnóstico",
+        dataEntrada: dataHoje,
+        prazo: formData.prazoDiagnostico,
         valorTotal: 0.0,
-        descricaoProblema: formData.descricaoProblema,
-        solucaoOs: "EM AGUARDO"
+        descricaoOs: formData.descricaoProblema,
+        solucaoOs: "Aguardando",
       };
 
-      await axios.post("http://localhost:8080/ordem-servico", novaOS);
+      await axios.post("http://localhost:8080/ordem-servicos", novaOS);
       setMensagem("Ordem de Serviço criada com sucesso!");
 
       setTimeout(() => {
@@ -127,68 +127,67 @@ const NovaOrdemServico = () => {
   };
 
   return (
-    <div className="container">
-      <form className="form-container" onSubmit={handleSubmit}>
-        <h1 className="form-title">Nova Ordem de Serviço</h1>
+    <div className={styles.container}>
+      <form className={styles["form-container"]} onSubmit={handleSubmit}>
+        <h1 className={styles["form-title"]}>Nova Ordem de Serviço</h1>
 
-        <h1 className="form-desc">
+        <h1 className={styles["form-desc"]}>
           Preencha as informações necessárias para registrar uma nova ordem de
           serviço no sistema. Certifique-se de inserir todos os dados com
           precisão para garantir o controle e acompanhamento corretos.
         </h1>
 
-        <hr className="form-divider" />
+        <hr className={styles["form-divider"]} />
 
         {mensagem && (
           <div
-            className={`message ${
-              mensagem.includes("sucesso") ? "success" : "error"
+            className={`${styles.message} ${
+              mensagem.toLowerCase().includes("sucesso")
+                ? styles.success
+                : styles.error
             }`}
           >
             {mensagem}
           </div>
         )}
 
-        <div className="form-group">
-          <label className="input-label" htmlFor="cliente">
+        <div className={styles["form-group"]}>
+          <label className={styles["input-label"]} htmlFor="cliente">
             Cliente
           </label>
           <input
-            className="text-input"
+            className={styles["text-input"]}
             id="cliente"
             name="cliente"
             placeholder="Buscar cliente..."
             type="text"
             value={termoBusca}
-            onChange={(e) => {
-              setTermoBusca(e.target.value);
-              setClienteSelecionado(null);
-            }}
+            onChange={handleChange}
             autoComplete="off"
           />
           {sugestoesClientes.length > 0 && (
-            <ul className="autocomplete-list">
+            <ul className={styles["autocomplete-list"]}>
               {sugestoesClientes.map((cliente) => (
                 <li
                   key={cliente.id}
                   onClick={() => selecionarCliente(cliente)}
-                  className="autocomplete-item"
+                  className={styles["autocomplete-item"]}
                 >
-                  {cliente.nome} - {cliente.telefone}
+                  {cliente.pessoa?.nome ?? "Sem nome"} - {cliente.telefone}
                 </li>
               ))}
             </ul>
           )}
         </div>
 
-        <div className="form-row">
-          <div className="form-group">
-            <label className="input-label" htmlFor="tipo-maquina">
+        <div className={styles["form-row"]}>
+          <div className={styles["form-group"]}>
+            <label className={styles["input-label"]} htmlFor="tipo-maquina">
               Tipo de Máquina
             </label>
-            <div className="select-container">
+            <div className={styles["select-container"]}>
               <select
-                className="select-input"
+                className={styles["select-input"]}
                 id="tipo-maquina"
                 name="tipoMaquina"
                 value={formData.tipoMaquina}
@@ -206,13 +205,13 @@ const NovaOrdemServico = () => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="input-label" htmlFor="prazo-diagnostico">
+          <div className={styles["form-group"]}>
+            <label className={styles["input-label"]} htmlFor="prazo-diagnostico">
               Prazo para Diagnóstico
             </label>
-            <div className="date-container">
+            <div className={styles["date-container"]}>
               <input
-                className="date-input"
+                className={styles["date-input"]}
                 id="prazo-diagnostico"
                 name="prazoDiagnostico"
                 type="date"
@@ -225,14 +224,14 @@ const NovaOrdemServico = () => {
           </div>
         </div>
 
-        <div className="form-row">
-          <div className="form-group">
-            <label className="input-label" htmlFor="marca">
+        <div className={styles["form-row"]}>
+          <div className={styles["form-group"]}>
+            <label className={styles["input-label"]} htmlFor="marca">
               Marca
             </label>
             <input
               type="text"
-              className="text-input"
+              className={styles["text-input"]}
               id="marca"
               name="marca"
               placeholder="Ex: Dell, HP, Lenovo"
@@ -242,13 +241,13 @@ const NovaOrdemServico = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label className="input-label" htmlFor="modelo">
+          <div className={styles["form-group"]}>
+            <label className={styles["input-label"]} htmlFor="modelo">
               Modelo
             </label>
             <input
               type="text"
-              className="text-input"
+              className={styles["text-input"]}
               id="modelo"
               name="modelo"
               placeholder="Ex: Inspiron 15, ThinkPad X1"
@@ -259,12 +258,12 @@ const NovaOrdemServico = () => {
           </div>
         </div>
 
-        <div className="form-group">
-          <label className="input-label" htmlFor="descricao-problema">
+        <div className={styles["form-group"]}>
+          <label className={styles["input-label"]} htmlFor="descricao-problema">
             Descrição do Problema
           </label>
           <textarea
-            className="textarea-input"
+            className={styles["textarea-input"]}
             id="descricao-problema"
             name="descricaoProblema"
             placeholder="Descreva detalhadamente o problema relatado pelo cliente..."
@@ -275,9 +274,9 @@ const NovaOrdemServico = () => {
           ></textarea>
         </div>
 
-        <div className="button-group">
+        <div className={styles["button-group"]}>
           <button
-            className="cancel-button"
+            className={styles["cancel-button"]}
             type="button"
             onClick={() => {
               setFormData({
@@ -286,17 +285,17 @@ const NovaOrdemServico = () => {
                 marca: "",
                 modelo: "",
                 descricaoProblema: "",
+                descricaoOS: "",
                 tecnicoId: "",
               });
               setTermoBusca("");
               setClienteSelecionado(null);
-              setTecnicoSelecionado(null);
               setMensagem("");
             }}
           >
             Cancelar
           </button>
-          <button className="submit-button" type="submit">
+          <button className={styles["submit-button"]} type="submit">
             Criar Ordem de Serviço
           </button>
         </div>

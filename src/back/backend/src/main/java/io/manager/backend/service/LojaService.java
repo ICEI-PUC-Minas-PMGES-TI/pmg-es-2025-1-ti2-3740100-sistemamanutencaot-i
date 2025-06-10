@@ -41,6 +41,22 @@ public class LojaService {
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }
 
+    public Loja atualizarParcialmente(Integer id, Loja lojaParcial) {
+        return lojaRepository.findById(id).map(loja -> {
+            // Atualiza somente os campos telefone, email e senha se forem fornecidos
+            if (lojaParcial.getTelefone() != null) {
+                loja.setTelefone(lojaParcial.getTelefone());
+            }
+            if (lojaParcial.getEmail() != null) {
+                loja.setEmail(lojaParcial.getEmail());
+            }
+            if (lojaParcial.getSenha() != null) {
+                loja.setSenha(lojaParcial.getSenha());
+            }
+            return lojaRepository.save(loja);
+        }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
+    }
+
     public void deletar(Integer id) {
         lojaRepository.deleteById(id);
     }

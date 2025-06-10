@@ -10,12 +10,10 @@ public class Peca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 20)
     private String codigo;
 
     @Column(nullable = false, length = 50)
     private String nome;
-
     private Integer estoque;
     private Double preco;
     private String tipo;

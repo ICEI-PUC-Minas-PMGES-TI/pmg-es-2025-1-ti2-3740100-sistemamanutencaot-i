@@ -50,7 +50,13 @@ public class ClienteController {
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam String nome) {
-        return ResponseEntity.ok(clienteService.buscarPorNome(nome));
+    public ResponseEntity<List<Cliente>> buscarClientesPorNome(@RequestParam(required = false) String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            return ResponseEntity.badRequest().build(); // ou você pode retornar todos os clientes se preferir
+        }
+
+        List<Cliente> resultados = clienteService.buscarPorNome(nome);
+        return ResponseEntity.ok(resultados);
     }
+
 }

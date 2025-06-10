@@ -1,7 +1,6 @@
 package io.manager.backend.model;
 
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -10,16 +9,10 @@ public class Loja extends PessoaJuridica{
     @Id
     private Integer id; // mesmo ID da PessoaJuridica
 
-    @OneToOne
-    @JsonIgnore
-    @MapsId
-    @JoinColumn(name = "pessoa_juridica_id")
-    private PessoaJuridica pessoaJuridica;
-
     @Column(nullable = false)
     private String endereco;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String telefone;
 
     private String email;
@@ -32,12 +25,7 @@ public class Loja extends PessoaJuridica{
     public void setId(Integer id) {
         this.id = id;
     }
-    public PessoaJuridica getPessoaJuridica() {
-        return pessoaJuridica;
-    }
-    public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
-        this.pessoaJuridica = pessoaJuridica;
-    }
+
     public String getEndereco() {
         return endereco;
     }

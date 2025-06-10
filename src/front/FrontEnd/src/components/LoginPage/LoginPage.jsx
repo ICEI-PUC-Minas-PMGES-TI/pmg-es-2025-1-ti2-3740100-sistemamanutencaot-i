@@ -1,101 +1,196 @@
-import React from 'react';
-import './LoginPage.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Adicione este import
+import styles from './LoginPage.module.css';
+import ImagemTecnico from "./logintecnico.png";
+import ImagemGerente from "./logingerente.png";
+import Logo from "./ManagerIO.png";
 
 const LoginPage = () => {
-  return (
-    <div className="login-container">
-      {/* Large circles behind */}
-      <div className="circle circle-top-left"></div>
-      <div className="circle circle-bottom-right"></div>
-      
-      <div className="content-wrapper">
-        {/* Logo top left */}
-        <div className="logo-container">
-          <img 
-            alt="Blue abstract network logo icon" 
-            className="logo-image" 
-            src="https://storage.googleapis.com/a1aa/image/5966ccf2-9e51-46fe-3191-5276226d938d.jpg" 
-          />
-          <span className="logo-text">MANAGER.IO</span>
-        </div>
+    const navigate = useNavigate(); // Hook para navegação
+    const [isTechnician, setIsTechnician] = useState(true);
+    
+    const handleRoleChange = (role) => {
+        setIsTechnician(role === 'technician');
+    };
 
-        <div className="main-content">
-          <h2 className="login-title">Logar como:</h2>
-          <div className="role-buttons">
-            <button className="role-button technician">Tecnico</button>
-            <button className="role-button manager">Gerente</button>
-          </div>
-          
-          <div className="form-container">
-            {/* Left login form */}
-            <form autoComplete="off" className="login-form">
-              <h3 className="form-title">Login</h3>
-              <div className="input-group">
-                <label className="input-label" htmlFor="email">Email</label>
-                <input 
-                  className="input-field" 
-                  id="email" 
-                  placeholder="username@gmail.com" 
-                  type="email"
-                />
-              </div>
-              <div className="input-group">
-                <label className="input-label" htmlFor="password">Password</label>
-                <div className="password-container">
-                  <input 
-                    className="input-field" 
-                    id="password" 
-                    placeholder="Password" 
-                    type="password"
-                  />
-                  <i className="fas fa-eye-slash password-icon"></i>
-                </div>
-              </div>
-              <a className="forgot-password" href="#">Forgot Password?</a>
-              <button className="submit-button" type="submit">Sign in</button>
-              <p className="continue-with">or continue with</p>
-              <div className="social-buttons">
-                <button aria-label="Continue with Google" className="social-button">
-                  <img 
-                    alt="Google G logo icon" 
-                    className="social-icon"
-                    src="https://storage.googleapis.com/a1aa/image/8b10a6bc-da3b-42e7-74f4-8a5aa0db02c9.jpg" 
-                  />
-                </button>
-                <button aria-label="Continue with GitHub" className="social-button">
-                  <img 
-                    alt="GitHub GH logo icon" 
-                    className="social-icon"
-                    src="https://storage.googleapis.com/a1aa/image/fef17f2f-3cc3-4291-e320-c24e8f2c46c6.jpg" 
-                  />
-                </button>
-                <button aria-label="Continue with Facebook" className="social-button">
-                  <img 
-                    alt="Facebook F logo icon" 
-                    className="social-icon"
-                    src="https://storage.googleapis.com/a1aa/image/706a14c1-c959-4703-3a2f-fd84d838dba7.jpg" 
-                  />
-                </button>
-              </div>
-              <p className="register-text">
-                Don't have an account yet?
-                <strong className="register-link"> Register for free</strong>
-              </p>
-            </form>
+    const handleRegisterClick = () => {
+        if (isTechnician) {
+            navigate("/cadastro-tecnico"); // rota do cadastro técnico
+        } else {
+            navigate("/cadastro-loja");    // rota do cadastro loja/gerente
+        }
+    };
+    
+    const [formData, setFormData] = useState({
+        email: "",
+        senha: "",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        // Determina o endpoint com base no tipo de usuário
+        const endpoint = isTechnician 
+            ? "http://localhost:8080/tecnicos/login-tecnico" 
+            : "http://localhost:8080/lojas/login-loja"; // Ajuste conforme seu endpoint
+        
+        try {
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                alert("Login realizado com sucesso!");
+                
+                // Armazena os dados de acordo com o tipo de usuário
+                if (isTechnician) {
+                    localStorage.setItem("tecnico", JSON.stringify(userData));
+                    localStorage.setItem("id_tecnico", userData.id);
+                    navigate("/home-tecnico");
+                } else {
+                    localStorage.setItem("loja", JSON.stringify(userData)); // Ou "gerente" se preferir
+                    localStorage.setItem("id_loja", userData.id);
+                    navigate("/home-gerente"); // Ajuste conforme sua rota
+                }
+            } else {
+                const msg = await response.text();
+                alert("Erro ao fazer login: " + msg);
+            }
+        } catch (error) {
+            console.error("Erro ao realizar login:", error);
+            alert("Erro de rede ou no servidor.");
+        }
+    };
+
+    return (
+        <div className={styles['login-container']}>
+            {/* Círculos com posições invertidas quando gerente */}
+            <div className={`${styles.circle} ${isTechnician ? styles['circle-top-left'] : styles['circle-top-right']}`}></div>
+            <div className={`${styles.circle} ${isTechnician ? styles['circle-bottom-right'] : styles['circle-bottom-left']}`}></div>
             
-            {/* Right image container */}
-            <div className="image-container">
-              <img 
-                alt="Illustration of a man in blue shirt pointing at a large mobile phone" 
-                className="feature-image"
-                src="https://storage.googleapis.com/a1aa/image/95a9975b-6a57-43de-1fa6-aab0e0059c7d.jpg" 
-              />
+            <div className={styles['content-wrapper']}>
+                <div className={styles['logo-container']}>
+                    <img src={Logo} alt="Logo" className={styles['feature-image']} />
+                </div>
+
+                <div className={styles['main-content']}>
+                    <h2 className={styles['login-title']}>Logar como:</h2>
+                    <div className={styles['role-buttons']}>
+                        <button 
+                            className={`${styles['role-button']} ${isTechnician ? styles.technician : ''}`}
+                            onClick={() => handleRoleChange('technician')}
+                        >
+                            Tecnico
+                        </button>
+                        <button 
+                            className={`${styles['role-button']} ${!isTechnician ? styles.technician : ''}`}
+                            onClick={() => handleRoleChange('manager')}
+                        >
+                            Gerente
+                        </button>
+                    </div>
+                    
+                    {/* Container com direção invertida quando gerente */}
+                    <div className={`${styles['form-container']} ${!isTechnician ? styles['inverted'] : ''}`}>
+                        {/* Formulário de login (sempre o mesmo) */}
+                        <form autoComplete="off" className={styles['login-form']} onSubmit={handleSubmit}>
+                            <h3 className={styles['form-title']}>Login</h3>
+                            
+                            <div className={styles['input-group']}>
+                                <label className={styles['input-label']} htmlFor="email">Email</label>
+                                <input 
+                                    className={styles['input-field']} 
+                                    id="email" 
+                                    name="email" // Adicione name para o handleChange
+                                    placeholder="username@gmail.com" 
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            
+                            <div className={styles['input-group']}>
+                                <label className={styles['input-label']} htmlFor="password">Password</label>
+                                <div className={styles['password-container']}>
+                                    <input 
+                                        className={styles['input-field']} 
+                                        id="password" 
+                                        name="senha" // Adicione name para o handleChange
+                                        placeholder="Password" 
+                                        type="password"
+                                        value={formData.senha}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <i className={`fas fa-eye-slash ${styles['password-icon']}`}></i>
+                                </div>
+                            </div>
+                            
+                            <a className={styles['forgot-password']} href="#">Forgot Password?</a>
+                            
+                            <button className={styles['submit-button']} type="submit">
+                                Sign in
+                            </button>
+                            
+                            <p className={styles['continue-with']}>or continue with</p>
+                            
+                            <div className={styles['social-buttons']}>
+                                <button aria-label="Continue with Google" className={styles['social-button']}>
+                                    <img 
+                                        alt="Google G logo icon" 
+                                        className={styles['social-icon']}
+                                        src="https://storage.googleapis.com/a1aa/image/8b10a6bc-da3b-42e7-74f4-8a5aa0db02c9.jpg" 
+                                    />
+                                </button>
+                                <button aria-label="Continue with GitHub" className={styles['social-button']}>
+                                    <img 
+                                        alt="GitHub GH logo icon" 
+                                        className={styles['social-icon']}
+                                        src="https://storage.googleapis.com/a1aa/image/fef17f2f-3cc3-4291-e320-c24e8f2c46c6.jpg" 
+                                    />
+                                </button>
+                                <button aria-label="Continue with Facebook" className={styles['social-button']}>
+                                    <img 
+                                        alt="Facebook F logo icon" 
+                                        className={styles['social-icon']}
+                                        src="https://storage.googleapis.com/a1aa/image/706a14c1-c959-4703-3a2f-fd84d838dba7.jpg" 
+                                    />
+                                </button>
+                            </div>
+                            
+                            <p className={styles['register-text']}>
+                                Don't have an account yet?
+                                <strong onClick={handleRegisterClick} className={styles['register-link']}> Register for free</strong>
+                            </p>
+                        </form>
+                        
+                        {/* Container da imagem - imagem muda conforme o perfil */}
+                        <div className={styles['image-container']}>
+                            <img 
+                                src={isTechnician ? ImagemTecnico : ImagemGerente} 
+                                alt={isTechnician ? "Imagem representando técnico" : "Imagem representando gerente"} 
+                                className={styles['feature-image']} 
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default LoginPage;

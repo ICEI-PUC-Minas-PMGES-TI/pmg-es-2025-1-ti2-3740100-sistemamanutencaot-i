@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./ReparoCard.module.css"; // Importação modificada
+import styles from "./ReparoPendenteCard.module.css"; // Importação modificada
+
 import notebookIcon from "../../assets/images/notebook-icon.png";
 import computadorIcon from "../../assets/images/computador.png";
 
@@ -12,9 +13,10 @@ const ReparoCard = ({
   sintomas,
   tipo,
   index,
+  onAtribuir,
 }) => {
-  const deviceIcon = tipo === "computador" ? computadorIcon : notebookIcon;
-  const deviceAlt = tipo === "computador" ? "Computador" : "Notebook";
+  const deviceIcon = tipo === "Computador" ? computadorIcon : notebookIcon;
+  const deviceAlt = tipo === "Computador" ? "Computador" : "Notebook";
 
   return (
     <article className={styles['card-reparo']} aria-labelledby={`card-${index}-title`}>
@@ -60,6 +62,7 @@ const ReparoCard = ({
         className={styles['btn-atribuir']}
         type="button"
         aria-label={`Atribuir reparo para ${nome}`}
+        onClick={onAtribuir}
       >
         Atribuir Reparo
       </button>

@@ -2,40 +2,75 @@ package io.manager.backend.service;
 
 import io.manager.backend.model.Peca;
 import io.manager.backend.repository.PecaRepository;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PecaService {
-    private final PecaRepository PecaRepository;
+    private final PecaRepository pecaRepository;
 
-    public PecaService(PecaRepository PecaRepository) {
-        this.PecaRepository = PecaRepository;
+    public PecaService(PecaRepository pecaRepository) {
+        this.pecaRepository = pecaRepository;
     }
 
     public List<Peca> getAllPecas() {
-        return PecaRepository.findAll();
+        return pecaRepository.findAll();
     }
 
     public Optional<Peca> getPecaById(Integer id) {
-        return PecaRepository.findById(id);
+        return pecaRepository.findById(id);
     }
 
-    public Peca savePeca(Peca peca) {
-        return PecaRepository.save(peca);
+    public ResponseEntity<Peca> adicionarOuAtualizar(@RequestBody Peca novaPeca) {
+        // Gera o código se não estiver presente
+        if (novaPeca.getCodigo() == null || novaPeca.getCodigo().isEmpty()) {
+            novaPeca.setCodigo(gerarCodigoPeca(novaPeca));
+        }
+
+        Optional<Peca> pecaExistente = pecaRepository.findByCodigo(novaPeca.getCodigo());
+
+        if (pecaExistente.isPresent()) {
+            Peca peca = pecaExistente.get();
+            peca.setEstoque(peca.getEstoque() + novaPeca.getQuantidade());
+            Peca atualizada = pecaRepository.save(peca);
+            return ResponseEntity.ok(atualizada);
+        } else {
+            novaPeca.setEstoque(novaPeca.getQuantidade());
+            Peca criada = pecaRepository.save(novaPeca);
+            return ResponseEntity.ok(criada);
+        }
     }
+
 
     public Peca updatePeca(Integer id, Peca peca) {
-        if (!PecaRepository.existsById(id)) {
+        if (!pecaRepository.existsById(id)) {
             return null; 
         }
         peca.setId(id);
-        return PecaRepository.save(peca);
+        return pecaRepository.save(peca);
     }
 
     public void deletePeca(Integer id) {
-        PecaRepository.deleteById(id);
+        pecaRepository.deleteById(id);
+    }
+
+    //Geram o código único para cada peça com base no nome, marca e modelo
+    private String gerarCodigoPeca(Peca peca) {
+        String nome = normalizar(peca.getNome());
+        String marca = normalizar(peca.getMarca());
+        String modelo = normalizar(peca.getModelo());
+        
+        return String.format("%s-%s-%s", nome, marca, modelo).toUpperCase();
+    }
+
+    private String normalizar(String valor) {
+        return valor.trim()
+                    .toLowerCase()
+                    .replaceAll("[^a-z0-9]", "");
     }
 }
