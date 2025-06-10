@@ -15,8 +15,8 @@ import Estoque from "./pages/Estoque.jsx"
 import Reparos from "./pages/Reparos.jsx"
 import CadastroCliente from "./pages/CadastroCliente.jsx";
 import DetalhesReparo from "./pages/DiagnosticoServico.jsx";
-import  Teste1 from "./components/DetalhesServico/ManutencaoConcluida.jsx";
-import Teste2 from "./components/DetalhesServico/SolicitarPecas.jsx";
+import Teste1 from "./components/HomeGerente/HomeGerente.jsx";
+import HomeGerente from "./components/HomeGerente/HomeGerente.jsx"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -57,6 +57,10 @@ function App() {
         <Route path="/reparos" element={<Reparos />} />
 
         <Route path="/detalhes-reparo/:id" element={<DetalhesReparo />} />
+
+        <Route path="/teste" element={<Teste1 />} />
+
+        <Route path="/home-gerente" element={<HomeGerente />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<LandingPage />} />

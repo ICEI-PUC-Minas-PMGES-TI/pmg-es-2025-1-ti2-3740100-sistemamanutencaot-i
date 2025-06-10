@@ -1,0 +1,94 @@
+.reposicao-widget {
+  background-color: white;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 300px;
+}
+
+/* Cabeçalho */
+.reposicao-header {
+  background-color: #00073E;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
+
+.nav-button {
+  color: white;
+  font-size: 1.125rem; /* 18px */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.reposicao-title {
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem; /* 14px */
+  margin: 0;
+}
+
+.reposicao-content {
+  padding: 1.25rem; /* 20px */
+}
+
+.estoque-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.item-nome {
+  font-weight: 600;
+  font-size: 0.875rem; /* 14px */
+  color: #111827; /* text-gray-900 */
+}
+
+.item-quantidade {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* 4px */
+  font-weight: 600;
+  font-size: 0.875rem; /* 14px */
+  color: #111827; /* text-gray-900 */
+}
+
+/* Status de quantidade */
+.item-quantidade.aumento {
+  color: #16A34A; /* text-green-600 */
+}
+
+.item-quantidade.reducao {
+  color: #DC2626; /* text-red-600 */
+}
+
+.divisor {
+  border-color: #D1D5DB; /* border-gray-300 */
+  margin-bottom: 1rem;
+}
+
+/* Botão de detalhes */
+.detalhes-button {
+  width: 100%;
+  background-color: #0033CC;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem; /* 14px */
+  padding: 0.5rem;
+  border-radius: 0.25rem; /* rounded */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.detalhes-button:hover {
+  background-color: #002699;
+}
+
+.item-quantidade.neutro {
+  color: #4B5563; /* Cor neutra (cinza) */
+}

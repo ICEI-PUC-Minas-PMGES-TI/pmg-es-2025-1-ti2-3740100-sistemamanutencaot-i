@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+.reparos-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f1f0ee;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.reparos-container main {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reparos-container h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0b2ccf;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.reparos-container p {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: black;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.reparos-container hr {
+  border-top: 1px solid #a0aec0;
+  margin-bottom: 2rem;
+}
+
+.colunas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .colunas-container {
+    flex-direction: row;
+  }
+}
+
+.coluna-servicos {
+  background-color: #000c3a;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .coluna-servicos {
+    width: 320px;
+  }
+}
+
+.coluna-servicos h2 {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  line-height: 1;
+}
+
+.coluna-servicos ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.coluna-servicos li {
+  background-color: white;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.item-servico {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.item-servico i {
+  color: #000c3a;
+  font-size: 1.125rem;
+}
+
+.info-servico {
+  color: #0b2ccf;
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 1.1;
+}
+
+.nome-cliente {
+  color: black;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.1;
+}
+
+.status-indicador {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  display: inline-block;
+}

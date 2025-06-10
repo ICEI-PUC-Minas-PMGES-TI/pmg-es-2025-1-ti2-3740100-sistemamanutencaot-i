@@ -1,0 +1,212 @@
+.home-gerente {
+  background-color: #f3f1ed;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header-title {
+  font-size: 28px;
+  color: #0a1a4f;
+  line-height: 1.1;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  color: #0a1a4f;
+  margin-top: -4px;
+}
+
+.header-divider {
+  border-top: 2px solid #0a1a4f;
+  margin: 0.5rem 0 1rem;
+}
+
+.dashboard-title {
+  color: #0a1a4f;
+  font-size: 20px;
+}
+
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  background-color: white;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  width: calc(25% - 0.75rem);
+  min-width: 140px;
+  position: relative;
+}
+
+.card-label {
+  font-size: 10px;
+  color: #0a1a4f;
+  margin-bottom: 0.25rem;
+}
+
+.card-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0a1a4f;
+}
+
+.card-info-icon {
+  color: #0a1a4f;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 12px;
+}
+
+.cycle-selector {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calendar-icon {
+  color: #0a1a4f;
+  font-size: 18px;
+}
+
+.cycle-select {
+  border: 1px solid #0a1a4f;
+  border-radius: 0.375rem;
+  color: #0a1a4f;
+  font-size: 12px;
+  padding: 0.25rem 0.5rem;
+}
+
+.cycle-label {
+  font-size: 10px;
+  color: #0a1a4f;
+}
+
+.chart-section {
+  background-color: white;
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.chart-title {
+  color: #0a1a4f;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    flex-direction: row;
+  }
+}
+
+.chart-wrapper {
+  flex: 1;
+  margin: 70px 70px 0 0;
+}
+
+.carrossel-container {
+  background-color: #0a1a4f;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 280px;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .carrossel-container {
+    margin-top: 0;
+    margin-left: 1.5rem;
+  }
+}
+
+.carrossel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.nav-button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.carrossel-title {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.carrossel-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
+.chart-calendar-icon {
+  color: #0a1a4f;
+  font-size: 18px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: white;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.card-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0a1a4f;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 0.5rem;
+}
+
+.card-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #0a1a4f transparent transparent transparent;
+}
+
+/* Tooltip nativo para as barras do gráfico */
+rect:hover {
+  opacity: 0.8;
+}
