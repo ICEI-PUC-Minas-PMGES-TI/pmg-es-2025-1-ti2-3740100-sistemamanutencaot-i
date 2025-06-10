@@ -1,7 +1,11 @@
 package io.manager.backend.controller;
 
+import io.manager.backend.dto.LoginRequest;
 import io.manager.backend.model.Loja;
 import io.manager.backend.service.LojaService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,4 +54,15 @@ public class LojaController {
     public void deletar(@PathVariable Integer id) {
         lojaService.deletar(id);
     }
+
+    @PostMapping("/login-loja")
+    public ResponseEntity<Loja> loginLoja(@RequestBody LoginRequest loginRequest) {
+        Loja loja = lojaService.autenticar(loginRequest.getEmail(), loginRequest.getSenha());
+        if (loja != null) {
+            return ResponseEntity.ok(loja);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
 }

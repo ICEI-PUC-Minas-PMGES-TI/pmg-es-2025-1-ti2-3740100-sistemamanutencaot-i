@@ -57,6 +57,11 @@ public class LojaService {
         }).orElseThrow(() -> new RuntimeException("Loja não encontrada"));
     }
 
+    public Loja autenticar(String email, String senha) {
+        return lojaRepository.findByEmailAndSenha(email, senha)
+                .orElse(null);
+    }
+
     public void deletar(Integer id) {
         lojaRepository.deleteById(id);
     }
