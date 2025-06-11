@@ -17,6 +17,8 @@ import CadastroCliente from "./pages/CadastroCliente.jsx";
 import DetalhesReparo from "./pages/DiagnosticoServico.jsx";
 import Teste1 from "./pages/HistoricoGerente.jsx";
 import HomeGerente from "./pages/MainGerente.jsx"
+import EditarTecnico from "./components/Usuarios/EditarTecnico";
+import EditarCliente from "./components/Usuarios/EditarCliente";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -61,6 +63,10 @@ function App() {
         <Route path="/reparos-semana" element={<Teste1 />} />
 
         <Route path="/home-gerente" element={<HomeGerente />} />
+
+        <Route path="/editar-tecnico/:id" element={<EditarTecnico />} />
+        
+        <Route path="/editar-cliente/:id" element={<EditarCliente />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<LandingPage />} />

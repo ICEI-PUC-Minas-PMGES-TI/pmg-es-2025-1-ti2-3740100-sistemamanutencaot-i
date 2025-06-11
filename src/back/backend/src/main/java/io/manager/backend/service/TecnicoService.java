@@ -34,7 +34,7 @@ public class TecnicoService {
     public Tecnico atualizar(Integer id, Tecnico dadosAtualizados) {
         Tecnico existente = buscarPorId(id);
         existente.setNome(dadosAtualizados.getNome());
-        existente.setCpf(dadosAtualizados.getCpf());
+        existente.setEmail(dadosAtualizados.getEmail());
         existente.setCargo(dadosAtualizados.getCargo());
         return tecnicoRepository.save(existente);
     }

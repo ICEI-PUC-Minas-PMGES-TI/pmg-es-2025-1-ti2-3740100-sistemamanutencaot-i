@@ -66,6 +66,14 @@ const UserManagement = () => {
     }
   };
 
+  const handleEdit = (user) => {
+    if (user.type === "Técnico") {
+      navigate(`/editar-tecnico/${user.id}`);
+    } else if (user.type === "Cliente") {
+      navigate(`/editar-cliente/${user.id}`);
+    }
+  };
+
   return (
     <main className="user-management">
       <header className="management-header">
@@ -124,7 +132,10 @@ const UserManagement = () => {
                 <td>{user.type}</td>
                 <td className="acoes">
                   <div className="actions">
-                    <button className="edit-button">
+                    <button
+                      className="edit-button"
+                      onClick={() => handleEdit(user)}
+                    >
                       <img src={editar} alt="Editar" />
                     </button>
                     <button
