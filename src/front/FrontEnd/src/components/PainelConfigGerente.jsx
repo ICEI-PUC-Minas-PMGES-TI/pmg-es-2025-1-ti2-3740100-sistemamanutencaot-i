@@ -1,5 +1,6 @@
 // PainelConfigGerente.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "../assets/css/PainelConfigGerente.module.css";
 import edit from "../assets/images/edit.png";
 import AlterarSenhaAlert from "./AlterarSenhaAlert";
@@ -10,6 +11,25 @@ import AlterarNomeLojaAlert from "./AlterarNomeLojaAlert";
 function PainelConfigGerente() {
   const [showAlert, setShowAlert] = useState(false);
   const [selectedField, setSelectedField] = useState("");
+  const [dadosLoja, setDadosLoja] = useState({
+    email: "",
+    nome: "",
+    endereco: "",
+    // outros campos se necessário
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/lojas/1") // ajuste o endpoint conforme seu backend
+      .then((res) => setDadosLoja(res.data))
+      .catch(() =>
+        setDadosLoja({
+          email: "Erro ao carregar",
+          nome: "Erro ao carregar",
+          endereco: "Erro ao carregar",
+        })
+      );
+  }, []);
 
   const handleEditClick = (fieldName) => {
     setSelectedField(fieldName);
@@ -39,9 +59,7 @@ function PainelConfigGerente() {
           <div className={styles.field}>
             <div className={styles.fieldText}>
               <label className={styles.fieldLabel}>Email</label>
-              <span className={styles.fieldValue}>
-                administrador@techlab.com.br
-              </span>
+              <span className={styles.fieldValue}>{dadosLoja.email}</span>
             </div>
             <button
               type="button"
@@ -73,7 +91,7 @@ function PainelConfigGerente() {
           <div className={styles.field}>
             <div className={styles.fieldText}>
               <label className={styles.fieldLabel}>Nome da Loja</label>
-              <span className={styles.fieldValue}>Tech Lab</span>
+              <span className={styles.fieldValue}>{dadosLoja.nome}</span>
             </div>
             <button
               type="button"
@@ -88,9 +106,7 @@ function PainelConfigGerente() {
           <div className={styles.field}>
             <div className={styles.fieldText}>
               <label className={styles.fieldLabel}>Endereço</label>
-              <span className={styles.fieldValue}>
-                Rua Comendador Francisco Baroni, 178 - Centro
-              </span>
+              <span className={styles.fieldValue}>{dadosLoja.endereco}</span>
             </div>
             <button
               type="button"
