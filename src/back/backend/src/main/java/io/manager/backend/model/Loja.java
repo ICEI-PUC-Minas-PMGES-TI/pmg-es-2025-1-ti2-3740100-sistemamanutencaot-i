@@ -6,9 +6,6 @@ import jakarta.persistence.*;
 @Entity
 public class Loja extends PessoaJuridica{
 
-    @Id
-    private Integer id; // mesmo ID da PessoaJuridica
-
     @Column(nullable = false)
     private String endereco;
 
@@ -19,12 +16,6 @@ public class Loja extends PessoaJuridica{
     private String senha;
 
     // Getters e Setters
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getEndereco() {
         return endereco;
