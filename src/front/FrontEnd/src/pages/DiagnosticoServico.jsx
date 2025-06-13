@@ -6,14 +6,15 @@ import BarraLateral from "../components/BarraLateral.jsx";
 import notebook from "../assets/images/notebook-icon.png";
 import SolicitarPecas from "../components/DetalhesServico/SolicitarPecas.jsx";
 import ManutencaoConcluida from "../components/DetalhesServico/ManutencaoConcluida";
+import AdicionarPecas from "../components/DetalhesServico/AdicionarPecas.jsx";
 
 export default function DiagnosticoServico() {
-  const { id } = useParams(); // Pega o ID da URL
+  const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [solucaoEditada, setSolucaoEditada] = useState("");
-
   const [servicoData, setServicoData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showAdicionarPecas, setShowAdicionarPecas] = useState(false);
   const [showSolicitarPecas, setShowSolicitarPecas] = useState(false);
   const [showManutencaoConcluida, setShowManutencaoConcluida] = useState(false);
 
@@ -30,7 +31,7 @@ export default function DiagnosticoServico() {
         }
 
         setServicoData(data);
-        if (data) setSolucaoEditada(data.solucaoOs); // Inicializa a edição
+        if (data) setSolucaoEditada(data.solucaoOs);
       })
       .catch(() => setServicoData(null))
       .finally(() => setLoading(false));
@@ -69,13 +70,23 @@ export default function DiagnosticoServico() {
   return (
     <div className="layout-principal">
       <BarraLateral />
-
       <div className="container-diagnostico">
+
         {showSolicitarPecas && (
           <SolicitarPecas onClose={() => setShowSolicitarPecas(false)} />
         )}
         {showManutencaoConcluida && (
           <ManutencaoConcluida onClose={() => setShowManutencaoConcluida(false)} />
+        )}
+        {showAdicionarPecas && (
+          <AdicionarPecas
+            ordemId={servicoData.id}
+            onClose={() => setShowAdicionarPecas(false)}
+            onPeçasAdicionadas={() => {
+              axios.get(`http://localhost:8080/ordem-servicos/${id}`)
+                .then(res => setServicoData(res.data));
+            }}
+          />
         )}
 
         <div className="header-servico">
@@ -149,7 +160,7 @@ export default function DiagnosticoServico() {
                               status: "Diagnostico feito"
                             })
                             .then((res) => {
-                              setServicoData(res.data); // atualiza com a resposta da API
+                              setServicoData(res.data);
                               setIsEditing(false);
                             })
                             .catch((err) => {
@@ -160,10 +171,13 @@ export default function DiagnosticoServico() {
                       >
                         Salvar
                       </button>
-                      <button className="btn-editar" onClick={() => {
-                        setSolucaoEditada(servicoData.solucaoOs); // desfaz mudanças
-                        setIsEditing(false);
-                      }}>
+                      <button
+                        className="btn-editar"
+                        onClick={() => {
+                          setSolucaoEditada(servicoData.solucaoOs);
+                          setIsEditing(false);
+                        }}
+                      >
                         Cancelar
                       </button>
                     </>
@@ -191,6 +205,15 @@ export default function DiagnosticoServico() {
                     ))}
                   </tbody>
                 </table>
+
+                <div className="botoes-pecas">
+                  <button
+                    className="btn-adicionar"
+                    onClick={() => setShowAdicionarPecas(true)}
+                  >
+                    Adicionar peças
+                  </button>
+                </div>
 
                 <div className="botoes-pecas">
                   <button

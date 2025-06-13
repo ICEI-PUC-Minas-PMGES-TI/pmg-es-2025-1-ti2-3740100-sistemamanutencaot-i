@@ -1,6 +1,9 @@
 package io.manager.backend.controller;
 
+import io.manager.backend.dto.PecaUtilizadaDTO;
 import io.manager.backend.model.OrdemServico;
+import io.manager.backend.service.OrdemServicoService;
+import io.manager.backend.service.PecaService;
 import io.manager.backend.model.Peca;
 import io.manager.backend.model.PecaUtilizada;
 import io.manager.backend.model.PecaUtilizadaId;
@@ -21,6 +24,13 @@ public class PecaUtilizadaController {
 
     @Autowired
     private PecaUtilizadaService service;
+
+    @Autowired
+    private OrdemServicoService osService;
+
+    @Autowired
+    private PecaService pecaService;
+
 
     @GetMapping
     public ResponseEntity<List<PecaUtilizada>> listar() {
@@ -44,9 +54,21 @@ public class PecaUtilizadaController {
     }
 
     @PostMapping
-    public ResponseEntity<PecaUtilizada> criar(@RequestBody PecaUtilizada pecaUtilizada) {
-        PecaUtilizada novaPeca = service.salvar(pecaUtilizada);
-        return ResponseEntity.ok(novaPeca);
+    public ResponseEntity<?> salvarPecaUtilizada(@RequestBody PecaUtilizadaDTO dto) {
+        OrdemServico ordem = osService.buscarPorId(dto.getOrdemId())
+            .orElseThrow(() -> new RuntimeException("Ordem não encontrada"));
+        Peca peca = pecaService.getPecaById(dto.getPecaId())
+        .orElseThrow(() -> new RuntimeException("Peça não encontrada"));
+
+        PecaUtilizada pecaUtilizada = new PecaUtilizada();
+        pecaUtilizada.setOrdemServico(ordem);
+        pecaUtilizada.setPeca(peca);
+        pecaUtilizada.setPrecoUnitario(dto.getPrecoUnitario());
+        pecaUtilizada.setQuantidade(dto.getQuantidade());
+
+        service.salvar(pecaUtilizada);
+
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{ordemId}/{pecaId}")

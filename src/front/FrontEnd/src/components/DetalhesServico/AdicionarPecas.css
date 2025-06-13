@@ -1,0 +1,26 @@
+.modal-adicionar {
+  position: fixed;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.conteudo-modal {
+  background: white;
+  padding: 2rem;
+  width: 500px;
+  border-radius: 10px;
+}
+
+.lista-pecas, .lista-selecionadas {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.botoes-modal {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}

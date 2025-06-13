@@ -218,6 +218,23 @@ body {
   background-color: #891616;
 }
 
+.btn-adicionar {
+  background-color: #f1c40f;
+  color: #ffffff;
+  font-weight: 650;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  max-width: 260px;
+  cursor: pointer;
+}
+
+.btn-adicionar:hover {
+  background-color: #d4ac0d;
+}
+
 .botao-concluir-container {
   display: flex;
   justify-content: center;

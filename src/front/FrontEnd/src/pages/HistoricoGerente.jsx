@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "../assets/css/MainGerente.module.css";
 import Historico from "../components/ReparoGerente/ReparoSemana.jsx";
-import BarraLateral from "../components/BarraLateral.jsx";
+import BarraLateral from "../components/BarraLateralGerente.jsx";
 
 const HistoricoGerente = () => {
   return (

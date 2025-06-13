@@ -21,7 +21,7 @@ const EstoqueTecnico = () => {
           nome: p.nome || "Não informado",
           marca: p.marca || "Não informado",
           modelo: p.modelo || "Não informado",
-          quantidade: p.quantidade || 0,
+          estoque: p.estoque || 0,   // <- Aqui troquei para estoque
           segmento: p.segmento || "Não informado",
         }));
         setItems(pecas);
@@ -33,7 +33,13 @@ const EstoqueTecnico = () => {
   const closeAddModal = () => setIsAddModalOpen(false);
 
   const handleAddItem = (newItem) => {
-    axios.post("http://localhost:8080/pecas", newItem)
+    const itemToSave = {
+      ...newItem,
+      tipo: "Peça",       // Força tipo "Peça"
+      preco: 0            // Força preço 0
+    };
+
+    axios.post("http://localhost:8080/pecas", itemToSave)
       .then((res) => {
         setItems((prev) => [...prev, res.data]);
         closeAddModal();
@@ -81,7 +87,7 @@ const EstoqueTecnico = () => {
               <th>Marca</th>
               <th>Modelo</th>
               <th>Quantidade</th>
-              <th>Segmento</th> {/* Alterado para Segmento */}
+              <th>Segmento</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -96,8 +102,8 @@ const EstoqueTecnico = () => {
                 </td>
                 <td>{item.marca}</td>
                 <td>{item.modelo}</td>
-                <td className={styles.quantidade}>{item.quantidade}</td>
-                <td>{item.segmento}</td> {/* Usando segmento */}
+                <td className={styles.quantidade}>{item.estoque}</td> {/* <-- aqui */}
+                <td>{item.segmento}</td>
                 <td className={styles.acoes}>
                   <div className={styles.actions}>
                     <button className={styles["view-button"]}>
