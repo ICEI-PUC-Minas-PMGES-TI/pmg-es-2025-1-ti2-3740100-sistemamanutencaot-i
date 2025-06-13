@@ -15,7 +15,7 @@ const LoginPage = () => {
 
     const handleRegisterClick = () => {
         if (isTechnician) {
-            navigate("/cadastro-tecnico"); // rota do cadastro técnico
+            //navigate("/cadastro-tecnico"); // rota do cadastro técnico
         } else {
             navigate("/cadastro-loja");    // rota do cadastro loja/gerente
         }
@@ -146,10 +146,17 @@ const LoginPage = () => {
                                 Sign in
                             </button>
                             
-                            <p className={styles['register-text']}>
-                                Don't have an account yet?
-                                <strong onClick={handleRegisterClick} className={styles['register-link']}> Register for free</strong>
-                            </p>
+                            {isTechnician ? (
+                                <p className={styles['register-text']}>
+                                    Ainda não tem uma conta? <strong className={styles['register-link']}>Peça para seu gerente te registrar.</strong>
+                                </p>
+                            ) : (
+                                <p className={styles['register-text']}>
+                                    Ainda não tem uma conta?
+                                    <strong onClick={handleRegisterClick} className={styles['register-link']}> Registre-se de graça</strong>
+                                </p>
+                            )}
+
                         </form>
                         
                         {/* Container da imagem - imagem muda conforme o perfil */}

@@ -20,6 +20,7 @@ const FormularioTecnico = () => {
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const { idLoja } = location.state || {};
+  const idLojaFinal = idLoja || localStorage.getItem("id_loja");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,6 +33,10 @@ const FormularioTecnico = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
+    if (!idLojaFinal) {
+    setMensagem("Erro: ID da loja não informado.");
+    return;
+  }
 
     const novoTecnico = {
       nome: formData.nomeTecnico,
@@ -40,7 +45,7 @@ const FormularioTecnico = () => {
       senha: formData.senha,
       cargo: opcaoSelecionada,
       loja: {
-        id: 1,
+        id: idLojaFinal,
       },
     };
 
@@ -51,7 +56,7 @@ const FormularioTecnico = () => {
       setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
       setOpcaoSelecionada("");
       setTimeout(() => {
-        navigate("/login");
+        navigate("/home-gerente");
       }, 3000);
     } catch (error) {
       console.error("Erro ao cadastrar técnico:", error);
