@@ -13,34 +13,34 @@ body {
   justify-content: center;
   text-align: center;
   background-color: #000842;
-  width: 735px;
+  width: 650px;
   height: 710px;
 }
 
+
 .tituloDestaque {
   color: white;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 900;
   letter-spacing: -0.5px;
-  line-height: 1.2;
-  max-width: 564px;
+  line-height: 1;
+  max-width: 400px;
   text-align: left;
-  margin: 0 0 -100px 0;
+  padding-left: 20px;
+  padding-bottom: 20px;
 }
 
 .textoDestaque {
+  font-weight: 100 !important;
   color: white;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 23px;
+  font-size: 18px;
+  line-height: 1.3;
   max-width: 564px;
-  margin: 0 auto;
-  border-radius: 12px;
   text-align: left;
-  margin: 2rem 0 0 0;
+  padding-left: 20px;
 }
 
 .imagemBanner {
-  max-width: 100%;
-  height: 512px;
+  margin: -100px 0 3rem 0;
+  height: 450px;
 }

@@ -3,6 +3,8 @@ import styles from "../assets/css/FormularioLoja.module.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 const FormularioLoja = () => {
   const location = useLocation();
@@ -22,6 +24,15 @@ const FormularioLoja = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const somenteNumeros = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+
+    // Permite apenas números (charCode 48-57 são 0-9)
+    if (charCode < 48 || charCode > 57) {
+      e.preventDefault();
+    }
   };
 
   const [mensagem, setMensagem] = useState("");
@@ -62,7 +73,7 @@ const FormularioLoja = () => {
           Se você já possui uma loja cadastrada
           <br />
           Você pode realizar o acesso{" "}
-          <span className={styles.textoAzul}>aqui!</span>
+          <Link to="/login" className={styles.textoAzul}>aqui!</Link>
         </p>
 
         <div>
@@ -86,8 +97,10 @@ const FormularioLoja = () => {
               name="cnpj"
               value={formData.cnpj}
               onChange={handleChange}
+              onKeyPress={somenteNumeros}
               placeholder="Coloque o CNPJ da Loja"
               className={styles.entradaFormulario}
+              maxLength={14}
               required
             />
           </div>
@@ -99,8 +112,10 @@ const FormularioLoja = () => {
               name="inscricaoJudicial"
               value={formData.inscricaoJudicial}
               onChange={handleChange}
+              onKeyPress={somenteNumeros}
               placeholder="Coloque a sua inscrição judicial"
               className={styles.entradaFormulario}
+              maxLength={20}
               required
             />
           </div>

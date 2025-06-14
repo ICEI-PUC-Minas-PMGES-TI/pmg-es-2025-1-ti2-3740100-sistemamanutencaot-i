@@ -1,4 +1,7 @@
 .app {
-    background-color: #F1EFEC;
-    overflow: scroll;
+    background-color: #F1EFEC; 
+}
+html, body {
+  
+  overflow-y: auto;
 }
