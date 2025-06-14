@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
 
 body {    
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif !important;
 }
 
 .conteinerPrincipal {
@@ -14,28 +14,30 @@ body {
   text-align: center;
   background-color: #000842;
   width: 735px;
-  height: 810px;
+  height: 710px;
 }
 
 .tituloDestaque {
   color: white;
   font-size: 2.5rem;
-  margin-bottom: 30px;
   font-weight: 900;
   letter-spacing: -0.5px;
   line-height: 1.2;
   max-width: 564px;
   text-align: left;
+  margin: 0 0 -100px 0;
 }
 
 .textoDestaque {
   color: white;
   font-size: 20px;
+  font-weight: 600;
   line-height: 23px;
   max-width: 564px;
   margin: 0 auto;
   border-radius: 12px;
   text-align: left;
+  margin: 2rem 0 0 0;
 }
 
 .imagemBanner {

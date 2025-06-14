@@ -10,12 +10,8 @@ const Header = () => {
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
-  const handleRedirect = (role) => {
-    if (role === "gerente") {
-      window.location.href = "/cadastro-loja";
-    } else if (role === "tecnico") {
-      window.location.href = "/cadastro-tecnico";
-    }
+  const handleRedirect = () => {
+    window.location.href = "/cadastro-loja";
   };
 
   return (
@@ -32,10 +28,10 @@ const Header = () => {
           <a href="#">Como começar?</a>
         </nav>
 
-        <button className="cta-button" onClick={openModal}>
+        <button className="cta-button" onClick={handleRedirect}>
           Juntar-se
         </button>
-      </header>
+      </header> 
 
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
