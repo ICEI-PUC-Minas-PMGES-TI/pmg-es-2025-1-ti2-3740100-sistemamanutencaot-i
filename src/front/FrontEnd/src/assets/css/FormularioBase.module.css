@@ -1,0 +1,105 @@
+/* FormularioBase.module.css */
+.container {
+  min-height: 100vh;
+  width: 700px;
+  background-color: #F1EFEC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.wrapper {
+  background-color: #F1EFEC;
+  padding: 1rem;
+  width: 100%;
+  max-width: 50rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0C21C1;
+  margin-bottom: 1rem;
+  text-align: left;
+  user-select: none;
+}
+
+.description {
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  
+  user-select: none;
+}
+
+.fieldGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0C21C1;
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  color: #000;
+  outline: none;
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.button {
+  background-color: #0C21C1;
+  width: 400px;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-weight: 900;
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: #091793;
+  
+}
+
+.blueText {
+  color: #0C21C1;
+  text-decoration: none;
+}
+
+.blueText:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

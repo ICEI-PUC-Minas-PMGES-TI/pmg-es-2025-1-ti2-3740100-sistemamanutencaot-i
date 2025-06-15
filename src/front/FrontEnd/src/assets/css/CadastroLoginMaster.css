@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
 
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Work Sans', sans-serif;
-    background-color: var(--fundo);
-    min-height: 100vh;
-    height: 100%;
-    overflow: hidden;
-  }
-
 :root {
   --azul-escuro: #000842;
   --azul-claro: #528FF4;
@@ -21,89 +11,61 @@ body, html {
   --fundo: #f1efec;
 }
 
-body {
+body, html {
   margin: 0;
   padding: 0;
   font-family: 'Work Sans', sans-serif;
   background-color: var(--fundo);
-  min-height: 100vh;
+  height: 100%;
 }
 
-.logo-topo {
-    position: fixed;
-    top: 1rem;
-    left: var(--espacamento-logo);
-    height: var(--tamanho-logo);
-    width: auto;
-    z-index: 100;
-  }
-
-  /* Adiciona margem abaixo da logo para separar do conteúdo */
-.logo-spacing {
-    margin-top: calc(var(--tamanho-logo) + 2rem);
-  }
-
-  .container-principal {
-    background-color: var(--fundo);
-    height: 100vh;
-  }
-
-  .container-lado-a-lado {
-    max-width: 100%;
-    border-radius: var(--borda-arredondada);
-    overflow: hidden;
-    height: 100%;
-    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
-  }
-
-.elemento-esquerda {
-  background-color: var(--branco);
+.tela-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fundo);
+  height: 100vh;
+  padding: 1rem;
 }
 
-.elemento-direita {
-  background-color: var(--azul-escuro);
-}
-
-.elemento-esquerda, .elemento-direita {
-    height: 100%;
-  }
+.conteudo-lado-a-lado {
+  display: flex;
+  width: 100%;
   
+  height: 100%;
+  border-radius: var(--borda-arredondada);
+  overflow: hidden;
+  
+}
 
-.titulo-bloco {
+.lado-esquerdo {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.lado-direito {
+  background-color: #000842;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  height: 100%;
+}
+
+.espaco-logo {
+  position: absolute;
+  top: 1rem;
+  left: 2rem; /* <- era right, agora é left */
+  height: var(--tamanho-logo);
+  width: auto;
+}
+
+.titulo-area {
   margin-bottom: 2rem;
 }
-
-.titulo-formulario {
-  color: var(--azul-destaque);
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitulo-formulario {
-  color: #000;
-  font-size: 1rem;
-}
-
-/* Responsivo */
-@media (max-width: 991.98px) {
-  .elemento-esquerda, .elemento-direita {
-    border-radius: 0 !important;
-    height: auto;
-  }
-
-  .titulo-bloco {
-    margin-top: 2rem;
-  }
-}
-
-@media (min-width: 992px) {
-    .elemento-esquerda {
-      border-top-left-radius: var(--borda-arredondada);
-      border-bottom-left-radius: var(--borda-arredondada);
-    }
-  
-    .elemento-direita {
-      border-radius: var(--borda-arredondada);
-    }
-  }

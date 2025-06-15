@@ -12,7 +12,7 @@ body {
     width: 90%;
     padding: var(--padding-grande);
     position: relative;
-
+    max-width: 750px;
 }
 
 .banner-background {
@@ -25,7 +25,7 @@ body {
 
 .banner-image {
     width: 100%;
-    max-width: 300px;
+    width: 550px;
     height: auto;
     display: block;
     object-fit: contain;
@@ -35,30 +35,18 @@ body {
 .banner-text {
     text-align: left;
     color: white;
-    width: 100%;
-    padding: 0 var(--padding-base);
+    width: 90%;
+    padding-left: 2rem;
 }
 
 .banner-text h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 2.6rem;
+    font-weight: 1000;
+    line-height: 1.1;
 }
 
 .banner-text p {
     font-size: 1.1rem;
     line-height: 1.5;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-@media (max-width: 768px) {
-    .banner-container {
-        padding: var(--padding-base);
-    }
-
-    .banner-image {
-        max-width: 18.75rem;
-        margin-bottom: 1rem;
-    }
+    font-weight: 100;
 }

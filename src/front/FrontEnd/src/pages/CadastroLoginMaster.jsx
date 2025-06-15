@@ -6,24 +6,22 @@ import "../assets/css/CadastroLoginMaster.css";
 
 function CadastroLoginMaster() {
   return (
-    <div className="container-fluid container-principal">
-      <div className="row no-gutters container-lado-a-lado">
-
+    <div className="tela-principal">
+      <div className="conteudo-lado-a-lado">
         {/* Bloco esquerdo */}
-        <div className="col-12 col-lg-6 elemento-esquerda d-flex flex-column align-items-center justify-content-center p-4">
-  <Logo />
-  <div className="logo-spacing"></div> {/* <-- espaço entre logo e formulário */}
-  <div className="titulo-bloco text-center mb-4">
-    <p className="subtitulo-formulario"></p>
-  </div>
-  <FormularioLoginMaster />
-</div>
-
-        {/* Bloco direito */}
-        <div className="col-12 col-lg-6 elemento-direita d-flex align-items-center justify-content-center p-4">
-          <BannerLoginMaster />
+        <div className="lado-esquerdo">
+          
+          <div className="espaco-logo">  
+            <Logo />
+          </div>
+          
+          <FormularioLoginMaster />
         </div>
 
+        {/* Bloco direito */}
+        <div className="lado-direito">
+          <BannerLoginMaster />
+        </div>
       </div>
     </div>
   );

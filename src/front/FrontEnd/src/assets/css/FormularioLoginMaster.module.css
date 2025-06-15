@@ -1,0 +1,105 @@
+/* FormularioLoginMaster.module.css */
+.container {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 40rem; /* era 25rem */
+}
+
+.title {
+  font-size: 2;
+  font-weight: 900;
+  color: #0C21C1;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.descricao {
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.fieldGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0C21C1;
+  margin-bottom: 0.5rem;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+.icon {
+  
+  height: 1rem;
+  margin-right: 0.625rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  color: #000;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.toggleButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.toggleButton img {
+  width: 1.25rem;
+  filter: brightness(0);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.button {
+  background-color: #0C21C1;
+  width: 400px;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 1.5625rem;
+  font-weight: 900;
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #091793;
+  transform: translateY(-2px);
+}
