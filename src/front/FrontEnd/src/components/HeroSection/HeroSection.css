@@ -1,6 +1,21 @@
+/* Aplicar a fonte para todos os elementos por padrão */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #f1efec;
+  color: #111827;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Garantir herança da fonte em todos os elementos */
+*, *::before, *::after {
+  font-family: inherit;
+}
 /* HeroSection.css */
 .hero-container {
-  max-width: 1200px;
+  max-width: 1450px;
   margin: 4rem auto 0;
   padding: 0 1.5rem;
   display: flex;
@@ -9,25 +24,25 @@
 }
 
 .hero-content {
-  max-width: 480px;
+  max-width: 650px;
 }
 
 .hero-title {
-  color: #0B1E8A;
-  font-size: 2.25rem;
+  color: #0C21C1;
+  font-size: 3rem !important;
   line-height: 0.9;
   font-weight: 1000;
 }
 
 .title-black { color: #1A1A1A; }
-.title-blue { color: #0B1E8A; }
+.title-blue { color: #0C21C1; }
 
 .hero-description {
   margin-top: 0.75rem;
   color: black;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   line-height: 1.1;
-  font-weight: 600;
+  font-weight: 500;
   padding: 1.5rem 0;
 }
 
@@ -39,7 +54,7 @@
 }
 
 .cta-button {
-  background: #0B1E8A;
+  background: #0C21C1;
   color: white;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
@@ -55,12 +70,13 @@
   position: relative;
   border-radius: 100px 100px 100px 240px;
   overflow: hidden;
-  width: 400px !important;
+  width: 500px !important;
   height: 350px !important;
   background: #8B8FE3;
 }
 .hero-image-container img {
-  height: 325px;
+  height: 350px;
+  margin: 0 0 0 40px;
 }
 
 @media (min-width: 640px) {

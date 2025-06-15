@@ -1,8 +1,23 @@
+/* Aplicar a fonte para todos os elementos por padrão */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #f1efec;
+  color: #111827;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Garantir herança da fonte em todos os elementos */
+*, *::before, *::after {
+  font-family: inherit;
+}
 /* Features.css */
 .features-container {
-  background: #0B1E8A;
+  max-width: 1500px;
+  background: #0C21C1;
   border-radius: 9999px;
-  max-width: 1150px;
   margin: 3rem auto;
   display: flex;
   flex-direction: column;
@@ -10,7 +25,7 @@
 }
 
 .features-container img{
-  height: 100px;
+  height: 120px;
   padding: 10px;
 }
 
@@ -42,12 +57,12 @@
 }
 
 .feature-title {
-  font-weight: 1000;
-  font-size: 1.4rem !important;
+  font-weight: 900;
+  font-size: 1.7rem !important;
 }
 
 .feature-info {
-  font-size: 0.8rem !important;
+  font-size: 0.9rem !important;
   font-weight: 400;
   margin-top: 0.25rem;
 }

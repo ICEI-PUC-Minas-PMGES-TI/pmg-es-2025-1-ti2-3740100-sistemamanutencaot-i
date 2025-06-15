@@ -1,37 +1,45 @@
-body {
-  background-color: antiquewhite;
+/* Aplicar a fonte para todos os elementos por padrão */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #f1efec;
+  color: #111827;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Garantir herança da fonte em todos os elementos */
+*, *::before, *::after {
+  font-family: inherit;
 }
 
 .header-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  margin-left: -18px;
 }
 
 .nav-links {
-  font-size: 1.35rem !important;
+  font-size: 1.5rem !important;
   display: flex;
   gap: 2.5rem;
   font-weight: 600;
-  color: #0b1e8a;
+  color: #0C21C1;
   font-weight: 1000;
 }
 
 .cta-button {
   font-weight: 800 !important;
-  font-size: 1.2rem !important;
-  background: #0b1e8a;
+  font-size: 1.5rem !important;
+  background: #0C21C1;
   color: white;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
@@ -42,10 +50,6 @@ body {
   .header-container {
     flex-direction: row;
     padding: 2rem 2.5rem;
-  }
-
-  .logo-text {
-    font-size: 1rem;
   }
 
   .nav-links {
@@ -71,7 +75,7 @@ body {
 }
 
 .modal-content {
-  background-color: blue;
+  background-color: #0C21C1;
   padding: 2rem;
   border-radius: 10px;
   text-align: center;

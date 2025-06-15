@@ -2,6 +2,7 @@ import React from "react";
 import "./Introduction.css";
 import seta from "../../assets/images/seta-direita.png"
 import imagem from "../../assets/images/landingpage2.png"
+import { Link } from 'react-router-dom';
 
 const Introduction = () => {
   return (
@@ -58,7 +59,9 @@ const Introduction = () => {
             prático enfrentado por pequenas e médias lojas do setor de
             informática.
           </p>
-          <button className="button">COMEÇAR AGORA</button>
+          <Link to="/cadastro-loja">
+            <button className="button">COMEÇAR AGORA</button>
+          </Link>
         </div>
 
         <p className="intro-text">

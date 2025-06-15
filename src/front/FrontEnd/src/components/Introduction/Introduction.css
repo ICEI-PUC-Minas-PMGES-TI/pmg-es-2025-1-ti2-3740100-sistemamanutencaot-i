@@ -1,6 +1,21 @@
+/* Aplicar a fonte para todos os elementos por padrão */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #f1efec;
+  color: #111827;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Garantir herança da fonte em todos os elementos */
+*, *::before, *::after {
+  font-family: inherit;
+}
 /* Introduction.css */
 .introduction-container {
-  max-width: 1150px;
+  max-width: 1400px;
   margin: 4rem auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -11,21 +26,21 @@
 .section-header {
   align-items: center;
   gap: 0.5rem;
-  color: #0b1e8a;
+  color: #0C21C1;
   font-weight: 1000 !important;
   font-size: 1.125rem;
 }
 
 .section-header h2 {
   gap: 0.5rem;
-  color: #0b1e8a;
+  color: #0C21C1;
   font-weight: 1000;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .section-header img {
   display: block;
-  width: 250px;
+  width: 350px;
   height: 35px;
   margin: -10px 0 0 40px;
 }
@@ -34,31 +49,31 @@
   display: flex;
 }
 .bottom h2 {
-  font-weight: 10 !important;
+  font-weight: 100 !important;
   line-height: 0.5;
   color: black;
 }
 
 .bottom img {
   display: block;
-  width: 250px;
+  width: 300px;
   height: 35px;
-  margin: -10px 0 0 40px;
+  margin: -8px 0 0 40px;
 }
 
 .image-container {
   position: relative;
   border-radius: 100px 200px 100px 200px;
   overflow: hidden;
-  width: 450px !important;
-  height: 450px !important;
+  width: 580px !important;
+  height: 580px !important;
   background: #8b8fe3;
   margin: 5rem 0;
 }
 
 .image-container img {
-  margin: 40px 0 0 12px;
-  height: 350px;
+  margin: 40px 0 0 0;
+  height: 480px;
 }
 
 .intro-image {
@@ -83,31 +98,45 @@
   margin: -10px 0 0 40px;
 }
 .introduction-right {
-  font-size: 0.75rem;
+  font-size: 1rem;
   color: black;
   line-height: 1.6;
 }
 
+.intro-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.1;
+  text-align: justify;
+}
 .subtitle-blue {
-  color: #0b1e8a;
+  color: #0C21C1;
   font-weight: 1000;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .subtitle-purple {
   line-height: 0.5;
   color: #8b8fe3;
   font-weight: 500 !important;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   margin-bottom: 3rem;
 }
+
+.description {
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+  text-align: justify;
+  color: black !important;
+}
 .button {
-  margin: 10px 0 128px 0;
+  margin: 50px 0 128px 0;
   font-weight: 800 !important;
-  font-size: 1.2rem !important;
-  background: #0b1e8a;
+  font-size: 1.5rem !important;
+  background: #0C21C1;
   color: white;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
