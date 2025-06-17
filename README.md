@@ -1,36 +1,39 @@
-# Manager.io
+# 📊 Manager.io
+
 <p align="center">
   <img src="docs/images/manager.png" alt="Logo do Manager.io" width="300">
 </p>
-O Manager.io é um sistema desenvolvido para otimizar a gestão e organização de processos empresariais, facilitando o controle de atividades, fluxo de trabalho e tomada de decisões. Com uma interface intuitiva e recursos de automação, a plataforma permite que gestores e equipes acompanhem seus processos de forma eficiente, garantindo maior produtividade e transparência nas operações.
 
-O projeto tem como foco a implementação de uma solução escalável e acessível, utilizando boas práticas de desenvolvimento de software. Através de um ambiente colaborativo, o Manager.io busca integrar diferentes setores e facilitar a comunicação entre os envolvidos, promovendo uma gestão mais estratégica e orientada a dados.
+**Manager.io** é uma plataforma voltada à **gestão empresarial eficiente**, desenvolvida para otimizar processos internos, melhorar o controle de atividades e apoiar a tomada de decisões estratégicas. Com uma interface amigável e recursos de automação, o sistema permite que gestores e equipes acompanhem o andamento dos fluxos de trabalho de maneira clara, integrada e orientada a dados.
 
-## Integrantes
+O projeto visa a criação de uma solução **escalável**, **modular** e **acessível**, utilizando boas práticas de engenharia de software. Ao promover a comunicação entre setores e centralizar informações em um ambiente colaborativo, o Manager.io contribui para uma gestão mais transparente, produtiva e eficaz.
 
-* Felipe Augusto Mendes Pereira
-* Francisco Rafael Pereira 
-* Gabriel Victor Souza Lopes
-* Igor Rodrigo Costa
-* João Pedro Maciel de Oliveira
-* João Ricardo Fiuza
+---
 
-## Professor
+## 👥 Equipe de Desenvolvimento
 
-* Michelle Hanna Soares de Andrade
-* Danilo de Quadros Maia Filho
-* Joana Gabriela Ribeiro de Souza
+- **Felipe Augusto Mendes Pereira**  
+- **Francisco Rafael Pereira**  
+- **Gabriel Victor Souza Lopes**  
+- **Igor Rodrigo Costa**  
+- **João Pedro Maciel de Oliveira**  
+- **João Ricardo Fiuza**
 
-## Instruções de utilização
+---
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+## 👩‍🏫 Professores Orientadores
 
-## Histórico de versões
+- Michelle Hanna Soares de Andrade  
+- Danilo de Quadros Maia Filho  
+- Joana Gabriela Ribeiro de Souza  
 
-* 0.1.1
-    * CHANGE: Atualização das documentações. Código permaneceu inalterado.
-* 0.1.0
-    * Implementação da funcionalidade X pertencente ao processo P.
-* 0.0.1
-    * Trabalhando na modelagem do processo de negócio.
+---
 
+## 🚀 Instruções de Instalação e Execução
+
+> ⚠️ *As instruções abaixo serão atualizadas assim que a primeira versão funcional estiver disponível.*
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/manager.io.git
+   cd manager.io
