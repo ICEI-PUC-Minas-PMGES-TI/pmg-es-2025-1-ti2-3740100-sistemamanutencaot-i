@@ -1,381 +1,121 @@
-# 🖥️ Manager.io
+<div align="center">
 
-## Autores
+# 🖥️ **Manager.io**
+### _O Sistema Definitivo de Gestão de Processos para Manutenção de TI_
 
-- **Felipe Augusto Mendes** - [felipepepe64@gmail.com](mailto:felipepepe64@gmail.com)
-- **Francisco Rafael Pereira** - [franciscocjn06@gmail.com](mailto:franciscocjn06@gmail.com)
-- **Gabriel Victor Souza Lopes** - [gabrieelvictor26@gmail.com](mailto:gabrieelvictor26@gmail.com)
-- **Igor Rodrigo Costa** - [igorrcosta250705@gmail.com](mailto:igorrcosta250705@gmail.com)
-- **João Pedro Maciel de Oliveira** - [jpmaciel74@gmail.com](mailto:jpmaciel74@gmail.com)
-- **João Ricardo Fiuza** - [Joaoricfiuza@gmail.com](mailto:Joaoricfiuza@gmail.com)
+</div>
 
----
+<p align="center">
+  <img alt="Status do Projeto" src="https://img.shields.io/badge/Status-Em_Desenvolvimento-blue?style=for-the-badge">
+  <img alt="Versão" src="https://img.shields.io/badge/Versão-1.0.0-sucess?style=for-the-badge">
+  <img alt="Licença" src="https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge">
+</p>
 
-## Professores Orientadores
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img alt="Spring" src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+  <img alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
+  <img alt="MySQL" src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+</p>
 
-- **Prof. Michelle Hanne Soares de Andrade**  
-- **Prof. Danilo de Quadros Maia Filho**  
-- **Prof. Joana Gabriela Ribeiro de Souza**  
-
----
-
-## Instituição
-
-📌 _Curso de Engenharia de Software_  
-🏛️ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade Católica de Minas Gerais (PUC MINAS)_  
-📍 _Belo Horizonte – MG – Brasil_  
+> **Missão Principal:** Entregar uma plataforma robusta e integrada que revoluciona a gestão de fluxos de trabalho para empresas de reparo de computadores, aumentando a eficiência, a transparência e a satisfação do cliente.
 
 ---
 
-## 📌 Resumo
+## 🏛️ **Informações da Equipe e Instituição**
 
-O presente trabalho apresenta o Manager.io, um sistema desenvolvido para otimizar a gestão de processos empresariais, com foco em empresas de manutenção de computadores. A plataforma busca solucionar problemas comuns, como falta de organização das ordens de serviço, comunicação ineficiente entre técnicos e clientes, e dificuldade na análise gerencial. O objetivo principal é integrar fluxos de trabalho, automatizar tarefas e disponibilizar ferramentas intuitivas que aumentem a produtividade e transparência nas operações. Utilizando tecnologias modernas como React, Spring Boot, Java e MySQL, o sistema oferece dashboards gerenciais, notificações automáticas e controle em tempo real das atividades. Como resultado, espera-se maior eficiência operacional, redução de erros e atrasos, além de uma experiência mais satisfatória para os clientes. 
+Este projeto é apresentado como requisito parcial para a obtenção do grau de Bacharel em Engenharia de Software pela Pontifícia Universidade Católica de Minas Gerais (PUC Minas).
 
----
-
-## 📖 1. Introdução
-
-Este projeto visa desenvolver um **software de gerenciamento de processos** que **otimize o fluxo de trabalho** e **melhore a comunicação com o cliente**, tornando-a mais clara e eficiente.
-
-### 1.1 Contextualização
-
-Com o avanço constante de hardware e software, inclusive com a computação quântica se tornando realidade, as lojas físicas de informática no Brasil ainda enfrentam problemas de otimização nos processos, especialmente no atendimento ao cliente. Muitos funcionários falham em explicar adequadamente os processos de manutenção, gerando confusão e prejudicando a aquisição de novos clientes. De acordo com a Accenture, clientes frustrados são três vezes mais propensos a abandonar uma marca, o que ressalta a necessidade de otimizar o atendimento. Nosso software visa facilitar o acompanhamento dos clientes e a gestão interna das lojas, tornando os processos mais eficientes. Além disso, uma pesquisa da Hibou com 2.600 pessoas revelou que apenas 11% dos consumidores brasileiros estão satisfeitos com o atendimento das lojas, evidenciando que, para se manterem competitivas, as lojas de informática precisam melhorar a experiência do cliente, diante do crescente mercado digital vindo à tona.
-
-### 1.2 Problema
-
-Os principais problemas enfrentados pelas empresas de manutenção de computadores incluem:
-
-❌ **Falta de Organização das Ordens de Serviço**
- Esse é um problema muito comum nas empresas de manutenção. Quando as ordens de serviço não são bem organizadas, surgem situações como:
- 
- Perda de informações importantes: Dados sobre o cliente, o problema relatado ou o status do reparo podem acabar se perdendo ou sendo mal registrados.
- Atrasos no atendimento: Sem um sistema eficiente, é fácil esquecer ou atrasar ordens de serviço.
- Dificuldade em priorizar tarefas: Sem controle, fica complicado saber quais reparos são mais urgentes.
- Isso tudo pode ser ainda pior quando a empresa não usa ferramentas tecnológicas, como softwares de gestão, para organizar as tarefas.
- 
- ❌ **Dificuldade na Comunicação com os Clientes**
- A comunicação com os clientes é essencial, mas muitas empresas enfrentam desafios nesse ponto, como:
- 
- Falta de transparência: Os clientes querem saber o que está acontecendo com seus equipamentos, mas nem sempre são informados sobre o status do reparo ou custos adicionais.
- Demora nas respostas: Quando a empresa demora para responder mensagens ou atender ligações, isso gera frustração.
- Explicações complicadas: Muitas vezes, os técnicos explicam o problema de forma muito técnica, e o cliente não entende, o que pode gerar desconfiança.
- Manter os clientes bem informados, de forma clara e rápida, é fundamental para construir confiança.
- 
- ❌ **Gestão Ineficiente da Equipe Técnica**
- A equipe técnica é o coração do negócio, mas problemas de gestão podem comprometer o trabalho, como:
- 
- Distribuição desigual de tarefas: Alguns técnicos ficam sobrecarregados, enquanto outros têm menos trabalho.
- Falta de treinamento: Sem atualização sobre novas tecnologias, os técnicos podem acabar entregando serviços de baixa qualidade.
- Falta de acompanhamento: Quando não há monitoramento do desempenho da equipe, fica difícil identificar problemas e melhorar a produtividade.
- Uma boa gestão da equipe garante que o trabalho seja bem feito e que todos estejam alinhados.
- 
- ❌ **Falta de Visão Gerencial sobre as Operações**
- Muitos gestores não têm uma visão clara do que está acontecendo na empresa. Isso pode incluir:
- 
- Não acompanhar métricas importantes: Sem dados como tempo médio de reparo ou satisfação dos clientes, é difícil tomar decisões estratégicas.
- Gestão financeira desorganizada: Erros no controle financeiro podem gerar problemas de caixa, especialmente com custos inesperados.
- Falta de planejamento: Sem um plano claro, o crescimento da empresa pode ser prejudicado.
- Ter uma visão estratégica é essencial para garantir o sucesso e o crescimento do negócio.
- 
- ❌ **Problemas com Estoque e Suprimentos**
- Gerenciar peças e suprimentos é um desafio constante. Os problemas mais comuns incluem:
- 
- Falta de peças em estoque: Isso pode atrasar reparos e deixar os clientes insatisfeitos.
- Excesso de peças desnecessárias: Manter um estoque cheio de itens que não são usados gera custos desnecessários.
- Erro no controle de inventário: Sem um sistema eficiente, é fácil perder o controle do que está disponível ou do que precisa ser comprado.
- Um estoque bem gerenciado ajuda a evitar atrasos e reduz custos desnecessários, além de melhorar a experiência do cliente.
- 
- ❌ **Concorrência e Pressão por Preços**
- O mercado de manutenção de computadores é extremamente competitivo, e as empresas enfrentam desafios como:
- 
- Concorrência desleal: Técnicos informais ou empresas que cobram preços muito baixos podem dificultar a conquista de clientes.
- Dificuldade em justificar preços: Quando o cliente não entende o valor do serviço, ele pode optar por opções mais baratas.
- Pressão por descontos: Muitos clientes tentam negociar preços, o que pode reduzir os lucros da empresa.
- Para se destacar, é importante oferecer qualidade e mostrar ao cliente o valor do serviço prestado.
- 
- ❌ **Problemas com Garantia e Pós-Venda**
- O atendimento após o serviço também é um ponto crítico. Alguns problemas comuns incluem:
- 
- Reparos mal feitos: Serviços de baixa qualidade podem gerar retrabalho e insatisfação.
- Falta de controle sobre garantias: Não gerenciar bem os prazos de garantia pode causar conflitos com os clientes.
- Pouco cuidado no pós-venda: Não entrar em contato com o cliente após o reparo pode ser uma oportunidade perdida de fidelização.
- Um bom acompanhamento após o serviço ajuda a construir uma relação de confiança com o cliente.
- 
- ❌ **Adaptação a Novas Tecnologias**
- A tecnologia muda rápido, e nem todas as empresas conseguem acompanhar. Os principais desafios são:
- 
- Falta de conhecimento técnico: Novos dispositivos e sistemas exigem constante atualização dos técnicos.
- Mudança no perfil dos problemas: Com o aumento do uso de dispositivos móveis e computação em nuvem, os serviços precisam se adaptar.
- Investimentos em ferramentas modernas: Algumas empresas têm dificuldade em adquirir equipamentos e softwares necessários para reparos mais avançados.
- Manter a equipe atualizada e investir em tecnologia é essencial para continuar competitivo.
- 
- ❌ **Atendimento ao Cliente Deficiente**
- O atendimento ao cliente vai além da comunicação. Problemas comuns incluem:
- 
- Despreparo no atendimento inicial: Um atendimento mal feito pode afastar o cliente logo no início.
- Falta de empatia: Clientes querem ser ouvidos e tratados com atenção, especialmente quando estão com problemas.
- Demora no atendimento presencial: Longas esperas podem gerar insatisfação e prejudicar a reputação da empresa.
- Um atendimento humanizado e ágil pode fazer toda a diferença na fidelização dos clientes.
- 
- ❌ **Problemas Legais e Regulatórios**
- Por fim, a falta de conformidade com leis e regulamentações pode trazer sérios problemas, como:
- 
- Falta de emissão de notas fiscais: Isso pode gerar problemas fiscais e prejudicar a confiança do cliente.
- Desrespeito à LGPD: Não proteger os dados dos clientes pode resultar em multas e processos.
- Contratos mal elaborados: Sem contratos claros, podem surgir conflitos com clientes e fornecedores.
- Estar em dia com as obrigações legais protege a empresa e fortalece sua credibilidade.
-
-### 1.3 Objetivo Geral
-
-Desenvolver um **sistema de gerenciamento de processos** que **otimize fluxos de trabalho** e **aproxime o cliente** de cada etapa do processo.
-
-### 🎯 1.3.1 Objetivos Específicos
-
-1️⃣ **Automatizar** o gerenciamento de ordens de serviço  
-   - Desenvolver um sistema que registre, acompanhe e atualize as ordens de serviço, reduzindo erros no cadastro, e melhorando o desempenho da equipe.  
-
-2️⃣ **Facilitar** a comunicação entre técnicos e clientes  
-   - Implementar um canal de comunicação eficiente dentro do sistema, permitindo que técnicos e clientes interajam de forma clara e objetiva sobre o status dos reparos.  
-
-3️⃣ **Fornecer histórico** detalhado de manutenções  
-   - Criar um banco de dados que armazene todas as ordens de serviço realizadas, permitindo consultas rápidas ao histórico de reparos e facilitando a tomada de decisões futuras.  
-
-4️⃣ **Gerar relatórios** de desempenho da equipe  
-   - Desenvolver ferramentas de análise que permitam monitorar métricas como tempo médio de atendimento, eficiência dos técnicos e quantidade de reparos realizados.  
-
-5️⃣ **Disponibilizar dashboards** intuitivos para análise gerencial  
-   - Criar painéis visuais com gráficos e indicadores que auxiliem gestores na análise do fluxo de trabalho e na identificação de possíveis melhorias no processo.  
-
-6️⃣ **Reduzir tempo de atendimento** e minimizar erros de comunicação  
-   - Otimizar o fluxo de trabalho dentro do sistema, reduzindo burocracias e melhorando a clareza das informações transmitidas entre técnicos e clientes.  
-  
-
-### 1.4 Justificativa
-
-Este software visa **solucionar problemas comuns** enfrentados por empresas do setor, como:
-
-📌 *Falta de organização*  
- 📌 *Comunicação ineficiente*  
- 📌 *Dificuldade no monitoramento da equipe*  
- 📌 *Ausência de histórico centralizado de reparos* 
-
-🔹 **Benefícios esperados:**
-
-✅ **Otimização de processos**  
-✅ **Aumento da satisfação dos clientes**  
-✅ **Redução de erros e retrabalho**  
-✅ **Melhor controle operacional**  
+| Papel | Autor | Contato |
+| :--- | :--- | :--- |
+| 🥑 **Autor** | Felipe Augusto Mendes | `felipepepe64@gmail.com` |
+| 🥥 **Autor** | Francisco Rafael Pereira | `franciscocjn06@gmail.com` |
+| 🍍 **Autor** | Gabriel Victor Souza Lopes | `gabrieelvictor26@gmail.com` |
+| 🍉 **Autor** | Igor Rodrigo Costa | `igorrcosta250705@gmail.com` |
+| 🍓 **Autor** | João Pedro Maciel de Oliveira | `jpmaciel74@gmail.com` |
+| 🥝 **Autor** | João Ricardo Fiuza | `Joaoricfiuza@gmail.com` |
+| --- | --- | --- |
+| 👨‍🏫 **Orientador** | Prof. Michelle Hanne Soares de Andrade | |
+| 👨‍🏫 **Orientador** | Prof. Danilo de Quadros Maia Filho | |
+| 👩‍🏫 **Orientadora** | Prof. Joana Gabriela Ribeiro de Souza | |
 
 ---
 
-## 🏢 2. Participantes do Processo
+## 🎯 **O Desafio: Superando a Lacuna Digital**
 
-O **Gerente** precisa de uma visão completa da operação da empresa, monitorando o status dos reparos, a produtividade dos técnicos e as ordens de serviço. Geralmente, possui entre 35 e 55 anos, com formação superior em áreas como Administração ou Tecnologia e experiência em gestão operacional. No sistema, ele acompanha os reparos em tempo real, gera relatórios estratégicos e supervisiona as atividades para garantir a eficiência do processo.  
+Em uma era de rápido avanço tecnológico, as lojas de manutenção de TI locais estão ficando para trás. Processos manuais e desatualizados levam ao caos operacional e a experiências ruins para os clientes. Impressionantes **89% dos consumidores brasileiros estão insatisfeitos com o atendimento no varejo**, uma lacuna que nosso projeto visa fechar.
 
-O **Técnico** é responsável por diagnosticar problemas, realizar os reparos e atualizar o sistema com o progresso das ordens de serviço. Normalmente, tem entre 25 e 45 anos, formação técnica ou superior em áreas como informática e mecânica , e experiência em manutenção de equipamentos. No sistema, ele registra cada etapa do reparo, informa a conclusão do serviço e garante a precisão dos dados para o gerente e o cliente.  
+<details>
+<summary><strong>Expanda para ver os problemas críticos que estamos resolvendo...</strong></summary>
 
-O **Cliente** deseja acompanhar o andamento do reparo de seu equipamento de forma simples e transparente. Pode ter entre 18 e 65 anos, com habilidades básicas de navegação digital. No sistema, ele consulta o status do reparo em tempo real, recebe notificações sobre atualizações e pode avaliar o serviço após a conclusão.
+- **❌ Ordens de Serviço Desorganizadas:** Resulta em perda de dados, atrasos e incapacidade de priorizar reparos críticos.
+- **❌ Comunicação Ineficaz com o Cliente:** A falta de transparência corrói a confiança e frustra os clientes.
+- **❌ Gestão de Equipe Ineficiente:** Distribuição desigual de trabalho e lacunas de habilidades reduzem a produtividade geral.
+- **❌ Falta de Visão Gerencial:** Uma gestão "cega", sem dados, leva a decisões estratégicas ruins.
+- **❌ Controle de Estoque Caótico:** Causa atrasos em reparos por falta de peças e perdas financeiras por excesso de estoque.
+- **❌ Competição de Mercado Intensa:** Dificulta a demonstração de valor e a manutenção da lucratividade.
+- **❌ Suporte Pós-Venda e Garantia Deficientes:** Prejudica a reputação e impede a fidelização de clientes.
+- **❌ Adaptação Lenta a Novas Tecnologias:** Deixa as empresas incapazes de atender dispositivos modernos.
+- **❌ Atendimento ao Cliente Deficiente:** Cria uma imagem de marca negativa desde a primeira interação.
+- **❌ Riscos Legais e Regulatórios:** A não conformidade com emissão de notas fiscais (NF) e leis de dados (LGPD) é uma bomba-relógio.
 
----
-
-## 🔄 3. Modelagem do Processo de Negócio
-
-### 3.1. Análise da Situação Atual
-
-#### 3.1.1. Problema ou Necessidade
-Atualmente, muitas empresas enfrentam dificuldades na gestão de reparos de computadores devido ao uso de processos manuais e desorganizados. Anotações em papel, planilhas ou sistemas genéricos não especializados tornam a comunicação entre clientes, técnicos e gerentes ineficaz. Isso resulta em atrasos, falta de transparência e problemas no controle do processo de reparo.
-
-#### 3.1.2. Soluções Existentes
-Embora algumas empresas recorram a sistemas genéricos de controle de ordens de serviço, mas existam sistemas avançados como **Orderry**, **Produttivo**, **Fracttal One**, **Melvin** e **Engeman®** para gerenciar ordens de serviço, muitos deles focam na automação interna e na geração de relatórios. No entanto, esses sistemas geralmente não oferecem uma interface simples e intuitiva para que o cliente acompanhe o status do reparo em tempo real, tornando o processo menos transparente e eficiente.
-
-
----
-
-### 3.2. Descrição Geral da Proposta de Solução
-
-A solução proposta visa otimizar a gestão da empresa de reparos de computadores, oferecendo uma plataforma centralizada para comunicação eficiente entre gerente, técnicos e clientes. Através desse sistema, cada usuário terá acesso às informações necessárias para realizar seu trabalho de forma mais transparente, eficiente e organizada.
-
-#### 3.2.1. Funcionalidades Principais
-- **Gerente:** Acesso completo ao sistema, podendo visualizar o status de todos os reparos, gerenciar técnicos, monitorar a produtividade e controlar as operações da empresa.
-- **Técnico:** Capacidade de registrar e atualizar em tempo real o status de cada reparo, fornecendo informações sobre diagnósticos, progresso e conclusão do serviço.
-- **Cliente:** Interface intuitiva para acompanhar o progresso do reparo de seu equipamento, com visualização detalhada de cada etapa do processo, de forma semelhante ao rastreamento de uma entrega.
-
-#### 3.2.2. Benefícios Esperados
-- **Transparência:** Acompanhamento em tempo real, reduzindo a necessidade de contato direto com a empresa.
-- **Eficiência:** Técnicos poderão atualizar o status dos serviços de forma ágil e organizada.
-- **Gestão aprimorada:** O gerente terá uma visão ampla e detalhada das operações, facilitando o controle e a tomada de decisões.
-- **Redução de erros:** Eliminando registros manuais e desorganizados, o sistema contribuirá para a redução de falhas e retrabalho.
-
-#### 3.2.3. Tecnologias e Implementação
-O sistema será desenvolvido com tecnologias modernas, robustas e amplamente utilizadas no mercado, garantindo uma experiência de uso fluida, segura e escalável. Abaixo, detalhamos as tecnologias escolhidas, com justificativas para cada uma delas:
-
-📍 **Frontend (Interface do Usuário)**
-
-- **React.js:** Uma biblioteca JavaScript para construção de interfaces de usuário interativas e responsivas.
-JavaScript: A linguagem base do React e essencial para criar funcionalidades dinâmicas e interativas no frontend.
-Por que usar React.js e JavaScript?
-
-- **React.js:**
-Permite criar interfaces modernas e altamente responsivas, melhorando a experiência do usuário.
-Facilita a reutilização de componentes, o que reduz o tempo de desenvolvimento e manutenção.
-Possui uma grande comunidade de desenvolvedores e suporte, o que garante acesso a bibliotecas e ferramentas complementares.
-
-- **JavaScript:**
-É a base do desenvolvimento frontend e amplamente suportado por navegadores.
-Oferece flexibilidade para implementar funcionalidades personalizadas e dinâmicas.
-
-📍 **Backend (Lógica e Processamento)**
-
-**Java:** Uma linguagem de programação robusta, versátil e amplamente utilizada no desenvolvimento de sistemas corporativos.
-Spring Boot: Um framework para Java que simplifica a criação de APIs RESTful e sistemas backend escaláveis.
-Por que usar Java e Spring Boot?
-
-- **Java**:
-É conhecido por sua estabilidade e desempenho, sendo ideal para sistemas de missão crítica.
-Possui forte suporte para integração com bancos de dados e outras tecnologias.
-É multiplataforma, permitindo que o sistema seja executado em diferentes ambientes.
-
-- **Spring Boot:**
-Simplifica o desenvolvimento de aplicações Java, reduzindo a quantidade de configuração necessária.
-Oferece suporte integrado para criação de APIs RESTful, autenticação e gerenciamento de dependências.
-É altamente escalável, permitindo que o sistema cresça conforme a demanda.
-
-📍 **Banco de Dados**
-
-- **MySQL:** Um sistema de gerenciamento de banco de dados relacional (RDBMS).
-Por que usar MySQL?
-
-É uma solução madura e confiável, amplamente utilizada em aplicações corporativas e web.
-Oferece excelente desempenho para consultas complexas e grandes volumes de dados.
-Possui suporte nativo para integração com Java e Spring Boot, facilitando o desenvolvimento.
-É uma solução econômica e fácil de escalar, ideal para sistemas que precisam crescer ao longo do tempo.
-
-📍 **Comunicação entre Frontend e Backend**
-
-**APIs RESTful**: Criadas com Spring Boot para comunicação entre o frontend (React.js) e o backend (Java).
-Por que usar APIs RESTful?
-
-São amplamente utilizadas e padronizadas, garantindo compatibilidade com diferentes plataformas e dispositivos.
-Facilitam a separação entre frontend e backend, permitindo que ambas as partes sejam desenvolvidas e mantidas de forma independente.
-São leves e eficientes, ideais para sistemas que exigem alta performance.
-
-📍 **Segurança**
-
-- **Spring Security:** Para autenticação e controle de acesso no backend.
-JWT (JSON Web Tokens): Para autenticação baseada em tokens, garantindo segurança e escalabilidade.
-Por que usar essas tecnologias?
-
-- **Spring Security:**
-Oferece uma solução completa para autenticação e autorização, protegendo as APIs contra acessos não autorizados.
-Integra-se facilmente com Spring Boot, reduzindo a complexidade da implementação.
-JWT:
-Permite autenticação sem a necessidade de armazenar sessões no servidor, tornando o sistema mais escalável.
-É amplamente utilizado e compatível com diferentes plataformas, garantindo segurança no acesso ao sistema.
-
-📍 **Relatórios e Análises**
-
-Java com bibliotecas de geração de relatórios (como JasperReports): Para criação de relatórios gerenciais detalhados.
-Por que usar essas tecnologias?
-
-O Java, em conjunto com ferramentas como JasperReports, permite a geração de relatórios customizados e visualmente atraentes.
-Facilita a criação de dashboards gerenciais que auxiliam na tomada de decisões estratégicas.
-Benefícios da Escolha das Tecnologias
-Escalabilidade: Todas as tecnologias escolhidas (React, Java, Spring Boot e MySQL) são conhecidas por sua capacidade de suportar sistemas em crescimento, tanto em número de usuários quanto em volume de dados.
-Segurança: O uso de Spring Security e JWT garante que o sistema esteja protegido contra acessos não autorizados e vulnerabilidades comuns.
-Desempenho: A combinação de React no frontend e Spring Boot no backend garante uma aplicação ágil e de alto desempenho.
-Manutenção e Evolução: Com tecnologias amplamente utilizadas no mercado, o sistema será fácil de manter e evoluir, com acesso a uma vasta comunidade de suporte e recursos.
-Experiência do Usuário: React.js, com sua abordagem baseada em componentes, permitirá criar interfaces intuitivas e responsivas, garantindo uma experiência de uso fluida para técnicos, gestores e clientes.
-
-#### 3.2.4. Requisitos e Restrições
-- Os técnicos devem poder registrar e atualizar o status de reparos de forma rápida e intuitiva, com um fluxo de trabalho eficiente que minimiza o tempo de interação e potencial de erro.
-- O sistema deve permitir que clientes, gerentes e técnicos visualizem o status dos reparos em tempo real, garantindo informações precisas e atualizadas.
-- O sistema deve proporcionar uma interface intuitiva, permitindo que os clientes acompanhem facilmente o andamento do serviço, enquanto oferece aos técnicos e gerentes uma visualização clara e acessível das máquinas em reparo.
-- O gerente deve ter acesso completo a todas as informações e relatórios da empresa.
-- O sistema deve ser seguro, garantindo que apenas usuários autorizados possam modificar ou visualizar dados sensíveis.
-- O sistema deve permitir que os técnicos cadastrem novas ordens de serviço, incluindo informações detalhadas sobre o problema reportado, a máquina em questão e o cliente responsável.
-- O sistema deve enviar notificações automáticas para os clientes e gerentes sempre que houver uma atualização no status de um reparo, como o início, progresso ou conclusão do serviço.
-- O sistema deve registrar o tempo gasto em cada reparo, permitindo que técnicos e gerentes acompanhem a eficiência e identifiquem possíveis gargalos no processo.
-
-### 3.3. Modelagem dos Processos
-
-📌 [Processo 1 - Cadastro de Loja](processo-1-gerenciar-cadastro-de-loja.md "Detalhamento do Processo 1.")  
-📌 [Processo 2 - Cadastro de Cliente](processo-2-gerenciar-cadastro-de-cliente.md "Detalhamento do Processo 2.")  
-📌 [Processo 3 - Cadastro de Técnico](processo-3-gerenciar-cadastro-de-tecnico.md "Detalhamento do Processo 3.")  
-📌 [Processo 4 - Diagnóstico](processo-4-diagnostico.md "Detalhamento do Processo 4.")  
-📌 [Processo 5 - Ordem de Serviço](processo-5-ordem-de-servico.md "Detalhamento do Processo 5.")  
-📌 [Processo 6 - Processo Financeiro](processo-6-processo-financeiro.md "Detalhamento do Processo 6.")  
-📌 [Processo 7 - Manutenção](processo-7-manutencao.md "Detalhamento do Processo 7.")  
-📌 [Processo 8 - Requisição de Peças](processo-8-requisicao-pecas.md "Detalhamento do Processo 8.") 
+</details>
 
 ---
 
-## 💡 4. Projeto da Solução
+## ✨ **Nossa Solução: Manager.io**
 
-> _O documento a seguir apresenta o detalhamento do projeto da solução. São apresentadas duas seções que descrevem, respectivamente: modelo relacional e tecnologias._
+O Manager.io é uma plataforma centralizada e completa que oferece clareza e controle a todos os envolvidos.
 
-📌 [Projeto da solução](solution-design.md "Detalhamento do projeto da solução: modelo relacional e tecnologias.") 
-
----
-
-## 📊 5. Indicadores de Desempenho
-
-> _O documento a seguir apresenta os indicadores de desempenho dos processos._
-
-📌 [Indicadores de desempenho dos processos](performance-indicators.md)  
+| Persona do Usuário | Necessidade Principal | Como o Manager.io Ajuda |
+| :--- | :--- | :--- |
+| 🧑‍💼 **O Gerente** | Precisa de uma visão 360° da operação. | Acessa dashboards em tempo real, análises de desempenho e relatórios financeiros para tomar decisões baseadas em dados. |
+| 🛠️ **O Técnico** | Precisa de um fluxo de trabalho organizado. | Atualiza ordens de serviço, comunica-se com clientes e acessa históricos de reparo instantaneamente, tudo em um só lugar. |
+| 👤 **O Cliente** | Precisa de transparência e tranquilidade. | Acompanha o status de seu reparo em tempo real com notificações automáticas, como se estivesse rastreando uma encomenda. |
 
 ---
 
-## 🖥️ 6. Interface do Sistema
+## ⚙️ **Tecnologia e Arquitetura**
 
-> _A sessão a seguir apresenta a descrição do produto de software desenvolvido._ 
+Escolhemos um conjunto de tecnologias moderno, escalável e robusto para construir uma plataforma à prova de futuro.
 
-📌 [Documentação da interface do sistema](interface.md)
-
----
-
-## 🏁 7. Conclusão
-
-> _Apresente aqui a conclusão do seu trabalho. Deve ser apresentada aqui uma discussão dos resultados obtidos no trabalho, local em que se verifica as observações pessoais de cada aluno. Essa seção poderá também apresentar sugestões de novas linhas de estudo._
-
-
----
-
-## 📚 Referências
-
-> _Como um projeto de software não requer revisão bibliográfica, a inclusão das referências não é obrigatória. No entanto, caso você deseje incluir referências relacionadas às tecnologias, padrões, ou metodologias que serão usadas no seu trabalho, relacione-as de acordo com a ABNT._
-
-> _Verifique no link abaixo como devem ser as referências no padrão ABNT:_
-
-📌 [Guia de Referências ABNT](http://portal.pucminas.br/imagedb/documento/DOC_DSC_NOME_ARQUI20160217102425.pdf)  
-
-
-**[1.1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
-
-**[1.2]** - _COPPIN, Ben. **Inteligência artificial**. Rio de Janeiro, RJ: LTC, c2010. E-book. ISBN 978-85-216-2936-8._
-
-**[1.3]** - _CORMEN, Thomas H. et al. **Algoritmos: teoria e prática**. Rio de Janeiro, RJ: Elsevier, Campus, c2012. xvi, 926 p. ISBN 9788535236996._
-
-**[1.4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
-
-**[1.5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
-
-**[1.6]** - MERCADO E CONSUMO. Atendimento é levado em conta para 94% dos brasileiros no momento da compra. 30 nov. 2020. Disponível em: https://mercadoeconsumo.com.br/30/11/2020/noticias-varejo/atendimento-e-levado-em-conta-para-94-dos-brasileiros-no-momento-da-compra/. Acesso em: 12 mar. 2025.
-
-**[1.7]** - ACCENTURE. Clientes frustrados estão 3 vezes mais propensos a abandonar relação com marca, aponta estudo da Accenture. 2019. Disponível em: https://newsroom.accenturebr.com/br/news/2019/clientes-frustrados-estao-3-vezes-mais-propensos-abandonar-relacao-com-marca-aponta-estudo-da-accenture?utm_source=chatgpt.com. Acesso em: 12 mar. 2025.
+| Categoria | Tecnologia | Justificativa |
+| :--- | :--- | :--- |
+| **Frontend** | <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> | Para construir uma interface de usuário rápida, interativa e baseada em componentes que proporciona uma experiência excepcional. |
+| **Backend** | <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white"> | Para criar uma base de API RESTful altamente estável, segura e escalável, perfeita para aplicações de nível corporativo. |
+| **Banco de Dados** | <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"> | Um banco de dados relacional comprovado, confiável e de alto desempenho, ideal para dados estruturados e consultas complexas. |
+| **Segurança** | <img src="https://img.shields.io/badge/Spring_Security-black?style=flat-square&logo=spring-security"> **+ JWT** | Implementa autenticação e autorização padrão de mercado para proteger todos os endpoints e dados dos usuários. |
+| **Relatórios** | <img src="https://img.shields.io/badge/JasperReports-D0383D?style=flat-square&logo=etsy&logoColor=white"> | Permite a geração de relatórios detalhados e precisos para insights gerenciais profundos. |
 
 ---
 
-## 📎 Apêndices
+## 📊 **Medindo o Sucesso: Indicadores Chave de Desempenho (KPIs)**
 
-### 📂 Código Fonte
+Nosso sucesso é medido por melhorias tangíveis no processo de negócio.
 
-📌 [Código do front-end](../src/front)  
-📌 [Código do back-end](../src/back)  
-
-### 📺 Apresentação Final
-
-📌 [Slides da apresentação](presentations/)  
-📌 [Vídeo da apresentação](video/)  
+| Indicador | Descrição | Meta de Melhoria |
+| :--- | :--- | :--- |
+| ⏱️ **Tempo Médio de Reparo** | Tempo desde a criação da ordem de serviço até a conclusão. | **-25%** |
+| 📉 **Erros de Comunicação** | Número de reclamações de clientes por desinformação. | **-40%** |
+| 📈 **Produtividade do Técnico** | Número de ordens de serviço concluídas por técnico por semana. | **+20%** |
+| 😊 **Satisfação do Cliente (CSAT)** | Nota de satisfação do cliente após o serviço. | **> 4.5 / 5** |
 
 ---
 
+## 📂 **Central de Documentação do Projeto**
+
+Aprofunde-se na estrutura e no design do projeto através de nossa documentação detalhada.
+
+- **[Modelagem de Processos](./process-models/)**: Detalhamento de todos os processos de negócio.
+- **[Projeto da Solução](./solution-design.md)**: A arquitetura técnica completa e os modelos de dados.
+- **[Guia da Interface do Sistema](./interface.md)**: Um guia visual da UI/UX do software.
+- **[Indicadores de Desempenho](./performance-indicators.md)**: Uma lista completa de todos os nossos KPIs.
+
+---
+
+## 📚 **Referências e Apêndices**
+
+- **[Referências Acadêmicas](./REFERENCES.md)**: Lista de todos os trabalhos citados.
+- **[Código Fonte: Frontend](../src/front)**: Link para o código da aplicação em React.
+- **[Código Fonte: Backend](../src/back)**: Link para o código da aplicação em Spring Boot.
+- **[Apresentação Final](./presentations/)**: Slides e vídeo da nossa defesa de projeto.
