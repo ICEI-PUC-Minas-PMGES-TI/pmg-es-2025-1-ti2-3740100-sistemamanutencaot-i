@@ -1,7 +1,7 @@
 # 📊 Manager.io
 
 <p align="center">
-  <img src="docs/images/manager.png" alt="Logo do Manager.io" width="300">
+  <img src="docs/images/Logo%20Meneger.png" alt="Logo Manerger.io" width="300">
 </p>
 
 **Manager.io** é uma plataforma voltada à **gestão empresarial eficiente**, desenvolvida para otimizar processos internos, melhorar o controle de atividades e apoiar a tomada de decisões estratégicas. Com uma interface amigável e recursos de automação, o sistema permite que gestores e equipes acompanhem o andamento dos fluxos de trabalho de maneira clara, integrada e orientada a dados.
