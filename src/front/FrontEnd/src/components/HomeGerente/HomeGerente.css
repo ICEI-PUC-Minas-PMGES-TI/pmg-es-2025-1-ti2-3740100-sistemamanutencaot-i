@@ -1,212 +1,303 @@
+/* HomeGerente.css */
 .home-gerente {
-  background-color: #f3f1ed;
+  background-color: #f8f9fc;
   min-height: 100vh;
   padding: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
+  overflow-x: hidden; /* Previne barras de rolagem horizontais indesejadas */
+}
+
+/* Header */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .header-title {
-  font-size: 28px;
+  font-size: 3rem;
   color: #0a1a4f;
+  font-weight: 900;
   line-height: 1.1;
+  margin-bottom: 0.25rem;
 }
 
 .header-subtitle {
-  font-size: 12px;
-  color: #0a1a4f;
-  margin-top: -4px;
+  font-size: 1rem;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.date-info {
+  background: #e9ecef;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.current-date {
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
 }
 
 .header-divider {
-  border-top: 2px solid #0a1a4f;
-  margin: 0.5rem 0 1rem;
+  border-top: 2px solid #e9ecef;
+  margin: 1rem 0;
+}
+
+/* Dashboard Title */
+.dashboard-title-section {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebra em telas menores */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; /* Espaçamento entre elementos */
+  margin-bottom: 1.5rem;
 }
 
 .dashboard-title {
   color: #0a1a4f;
-  font-size: 20px;
-}
-
-.summary-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.summary-card {
-  background-color: white;
-  border-radius: 0.375rem;
-  padding: 0.75rem;
-  width: calc(25% - 0.75rem);
-  min-width: 140px;
-  position: relative;
-}
-
-.card-label {
-  font-size: 10px;
-  color: #0a1a4f;
-  margin-bottom: 0.25rem;
-}
-
-.card-value {
-  font-size: 14px;
-  font-weight: bold;
-  color: #0a1a4f;
-}
-
-.card-info-icon {
-  color: #0a1a4f;
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 12px;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .cycle-selector {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f1f3f9;
+  padding: 0.5rem 1.25rem;
+  border-radius: 30px;
+  flex-wrap: wrap;
+}
+
+.cycle-label {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+}
+
+.select-group {
+  position: relative;
+  min-width: 120px;
+}
+
+.select-with-icon {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+.cycle-select {
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #0a1a4f;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  cursor: pointer;
+  appearance: none;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cycle-select:hover {
+  border-color: #a5b4fc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cycle-select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.select-group::after {
+  content: "▼";
+  font-size: 10px;
+  color: #6b7280;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .calendar-icon {
   color: #0a1a4f;
-  font-size: 18px;
+  font-size: 16px;
+  margin-right: 8px;
 }
 
-.cycle-select {
-  border: 1px solid #0a1a4f;
-  border-radius: 0.375rem;
-  color: #0a1a4f;
-  font-size: 12px;
-  padding: 0.25rem 0.5rem;
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.cycle-label {
-  font-size: 10px;
-  color: #0a1a4f;
-}
-
-.chart-section {
+.summary-card {
   background-color: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   position: relative;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.chart-title {
-  color: #0a1a4f;
-  font-size: 18px;
-  margin-bottom: 1rem;
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.chart-container {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .chart-container {
-    flex-direction: row;
-  }
-}
-
-.chart-wrapper {
-  flex: 1;
-  margin: 70px 70px 0 0;
-}
-
-.carrossel-container {
-  background-color: #0a1a4f;
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  width: 280px;
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .carrossel-container {
-    margin-top: 0;
-    margin-left: 1.5rem;
-  }
-}
-
-.carrossel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.nav-button {
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.carrossel-title {
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.carrossel-content {
-  flex: 1;
+.card-icon-container {
+  width: 40px;
+  height: 40px;
+  background: #f0f5ff;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 250px;
+  margin-bottom: 1rem;
 }
 
-.chart-calendar-icon {
+.card-icon-container i {
   color: #0a1a4f;
   font-size: 18px;
+}
+
+.card-label {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.card-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0a1a4f;
+  margin: 0;
+}
+
+.card-info-icon {
+  color: #adb5bd;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: white;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.card-info-icon:hover {
+  color: #0a1a4f;
 }
 
 .card-tooltip {
   position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 100%;
+  left: 0;
+  right: 0;
   background-color: #0a1a4f;
   color: white;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 10px;
-  white-space: nowrap;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 12px;
   z-index: 10;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-tooltip::after {
   content: '';
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 5px;
+  bottom: 100%;
+  left: 20px;
+  border-width: 8px;
   border-style: solid;
-  border-color: #0a1a4f transparent transparent transparent;
+  border-color: transparent transparent #0a1a4f transparent;
 }
 
-/* Tooltip nativo para as barras do gráfico */
-rect:hover {
-  opacity: 0.8;
+/* Chart Grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* Corrige o overflow */
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.chart-title {
+  color: #0a1a4f;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.chart-calendar-icon, .chart-icon {
+  color: #adb5bd;
+  font-size: 16px;
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+  overflow: hidden; /* Previne que gráficos vazem */
+}
+
+/* Widgets Grid */
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Layout de 2 colunas com controle de overflow */
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.widget-section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.widget-title {
+  color: #0a1a4f;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
 }
