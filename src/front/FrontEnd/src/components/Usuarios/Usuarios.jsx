@@ -10,32 +10,46 @@ import pesquisar from "../../assets/images/search.png";
 import AdicionarAlert from "./AdicionarAlert";
 
 const UserManagement = () => {
+  const tipoUsuario = localStorage.getItem("tipoUsuario");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [users, setUsers] = useState([]); // Estado para os usuários
   const navigate = useNavigate();
 
   useEffect(() => {
-    Promise.all([
-      axios.get("http://localhost:8080/tecnicos"),
-      axios.get("http://localhost:8080/clientes")
-    ]).then(([tecnicosRes, clientesRes]) => {
-      const tecnicos = tecnicosRes.data.map(t => ({
-        id: t.id,
-        name: t.nome || "Não informado",
-        cpf: t.cpf || "Não informado",
-        phone: t.telefone || "Não informado",
-        type: "Técnico"
-      }));
-      const clientes = clientesRes.data.map(c => ({
-        id: c.id,
-        name: c.pessoa?.nome || "Não informado",
-        cpf: c.pessoa?.cpf || "Não informado",
-        phone: c.telefone || "Não informado",
-        type: "Cliente"
-      }));
-      setUsers([...tecnicos, ...clientes]);
-    }).catch(() => alert("Erro ao buscar usuários"));
-  }, []);
+    const fetchData = async () => {
+      try {
+        let clientes = [];
+        let tecnicos = [];
+
+        const clientesRes = await axios.get("http://localhost:8080/clientes");
+        clientes = clientesRes.data.map(c => ({
+          id: c.id,
+          name: c.pessoa?.nome || "Não informado",
+          cpf: c.pessoa?.cpf || "Não informado",
+          phone: c.telefone || "Não informado",
+          type: "Cliente"
+        }));
+
+        if (tipoUsuario === "gerente") {
+          const tecnicosRes = await axios.get("http://localhost:8080/tecnicos");
+          tecnicos = tecnicosRes.data.map(t => ({
+            id: t.id,
+            name: t.nome || "Não informado",
+            cpf: t.cpf || "Não informado",
+            phone: t.telefone || "Não informado",
+            type: "Técnico"
+          }));
+        }
+
+        setUsers([...tecnicos, ...clientes]);
+      } catch (error) {
+        alert("Erro ao buscar usuários");
+      }
+    };
+
+    fetchData();
+  }, [tipoUsuario]);
+
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
@@ -49,6 +63,7 @@ const UserManagement = () => {
     closeAddModal();
     navigate("/cadastro-tecnico"); // Navega para a tela de adicionar técnico
   };
+  
 
   const handleDelete = async (user) => {
     try {
@@ -74,6 +89,15 @@ const UserManagement = () => {
     }
   };
 
+  const handleAddClick = () => {
+    if (tipoUsuario === "tecnico") {
+      navigate("/cadastro-cliente");
+    } else {
+      setIsAddModalOpen(true); // mostra o modal com opções
+    }
+  };
+
+
   return (
     <main className="user-management">
       <header className="management-header">
@@ -90,14 +114,13 @@ const UserManagement = () => {
         <div className="button-section">
           <button
             className="animated-button"
-            onClick={openAddModal} // Abre o modal
+            onClick={handleAddClick}
           >
             <span className="button-icon">
               <img src={adicionar} alt="Adicionar" />
             </span>
             <span className="button-text">Adicionar</span>
           </button>
-
           <button className="animated-button blue">
             <span className="button-icon">
               <img src={filtrar} alt="Filtrar" />
