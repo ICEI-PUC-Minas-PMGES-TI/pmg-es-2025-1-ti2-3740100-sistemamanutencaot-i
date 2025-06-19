@@ -1,7 +1,7 @@
 // NovaOrdemServicoPage.jsx
 import React from "react";
 import styles from "../assets/css/OrdemServico.module.css";
-import NovaOrdemServico from "../components/NovaOrdemServico/NovaOrdemServico.jsx";
+import NovaOrdemServico from "../components/OrdemServico/OrdensServico.jsx";
 import BarraLateral from "../components/BarraLateral.jsx";
 
 const NovaOrdemServicoPage = () => {
