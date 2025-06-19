@@ -17,6 +17,8 @@ const BarraLateral = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
 
   const menuItemsTecnico = [
+    { icon: User, text: "Usuários", path: "/usuarios" },
+    { icon: Configuracoes, text: "Configurações", path: "/configuracoes-gerente" },
     { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
     { icon: Chave, text: "Reparos", path: "/reparos" },
     { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },

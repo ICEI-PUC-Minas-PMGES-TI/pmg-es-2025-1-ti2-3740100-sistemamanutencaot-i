@@ -62,6 +62,7 @@ const LoginPage = () => {
                 
                 // Armazena os dados de acordo com o tipo de usuário
                 if (isTechnician) {
+                    localStorage.setItem("tipoUsuario", "tecnico");
                     localStorage.setItem("tecnico", JSON.stringify(userData));
                     localStorage.setItem("id_tecnico", userData.id);
                     navigate("/home-tecnico");
