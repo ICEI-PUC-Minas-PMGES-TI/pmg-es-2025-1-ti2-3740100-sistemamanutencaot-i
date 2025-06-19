@@ -92,7 +92,7 @@ const UserManagement = () => {
   const handleAddClick = () => {
     if (tipoUsuario === "tecnico") {
       navigate("/cadastro-cliente");
-    } else {
+    } else if(tipoUsuario === "gerente") {
       setIsAddModalOpen(true); // mostra o modal com opções
     }
   };

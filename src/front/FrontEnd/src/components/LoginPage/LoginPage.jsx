@@ -67,6 +67,7 @@ const LoginPage = () => {
                     localStorage.setItem("id_tecnico", userData.id);
                     navigate("/home-tecnico");
                 } else {
+                    localStorage.setItem("tipoUsuario", "gerente");
                     localStorage.setItem("loja", JSON.stringify(userData));
                     localStorage.setItem("id_loja", userData.id);
                     navigate("/home-gerente");
