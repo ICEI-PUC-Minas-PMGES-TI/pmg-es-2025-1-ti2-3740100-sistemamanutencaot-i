@@ -19,6 +19,7 @@ import Teste1 from "./pages/HistoricoGerente.jsx";
 import HomeGerente from "./pages/MainGerente.jsx"
 import EditarTecnico from "./components/Usuarios/EditarTecnico";
 import EditarCliente from "./components/Usuarios/EditarCliente";
+import EsqueceuSenha from "./components/LoginPage/ForgotPasswordPage.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -47,6 +48,8 @@ function App() {
         <Route path="/configuracoes-gerente" element={<ConfigGerente />} />
 
         <Route path="/landing-page" element={<LandingPage />} />
+
+        <Route path="/esqueceu-senha" element={<EsqueceuSenha />} />
 
         <Route path="/nova-ordem-servico" element={<NovaOrdemServico />} />
 
