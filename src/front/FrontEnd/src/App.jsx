@@ -7,7 +7,7 @@ import CadastroTecnico from "./pages/CadastroTecnico.jsx";
 import CadastroGerente from "./pages/CadastroLoginMaster.jsx";
 import TelaLogin from "./components/LoginPage/LoginPage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
-import ConfigGerente from "./pages/ConfiguracoesGerente.jsx";
+import Config from "./pages/Configuracoes.jsx";
 import NovaOrdemServico from "./pages/OrdemServico.jsx";
 import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
@@ -45,7 +45,7 @@ function App() {
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/home-tecnico" element={<HomeTecnico />} />
 
-        <Route path="/configuracoes-gerente" element={<ConfigGerente />} />
+        <Route path="/configuracoes" element={<Config />} />
 
         <Route path="/landing-page" element={<LandingPage />} />
 

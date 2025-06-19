@@ -1,10 +1,10 @@
 // ConfiguracoesGerente.jsx
 import React from "react";
-import styles from "../assets/css/ConfiguracoesGerente.module.css";
-import PainelConfigGerente from "../components/PainelConfigGerente";
+import styles from "../assets/css/Configuracoes.module.css";
+import PainelConfig from "../components/PainelConfig";
 import BarraLateral from "../components/BarraLateral";
 
-const ConfiguracoesGerente = () => {
+const Configuracoes = () => {
   return (
     <div className={styles.containerGeral}>
       <BarraLateral />
@@ -19,7 +19,7 @@ const ConfiguracoesGerente = () => {
           <div className={styles.tituloPainel}>
             <h2>Informações da Loja</h2>
           </div>
-          <PainelConfigGerente />
+          <PainelConfig />
         </div>
 
         <div className={styles.containerBotoes}>
@@ -31,4 +31,4 @@ const ConfiguracoesGerente = () => {
   );
 };
 
-export default ConfiguracoesGerente;
+export default Configuracoes;
