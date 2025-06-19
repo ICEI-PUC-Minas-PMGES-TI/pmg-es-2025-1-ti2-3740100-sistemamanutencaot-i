@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "../assets/css/MainGerente.module.css";
 import TelaGerente from "../components/HomeGerente/HomeGerente.jsx";
-import BarraLateral from "../components/BarraLateralGerente.jsx";
+import BarraLateral from "../components/BarraLateral.jsx";
 
 const MainGerente = () => {
   return (

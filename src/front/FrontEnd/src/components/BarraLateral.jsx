@@ -14,18 +14,28 @@ import Configuracoes from "../assets/images/config.png";
 import Historico from "../assets/images/historico.png";
 
 const BarraLateral = () => {
-  const menuItems = [
-    { icon: Box, text: "Estoque", path: "/estoque" },
-    { icon: User, text: "Usuários", path: "/usuarios" },
+  const tipoUsuario = localStorage.getItem("tipoUsuario");
+
+  const menuItemsTecnico = [
     { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
     { icon: Chave, text: "Reparos", path: "/reparos" },
-    { icon: Configuracoes, text: "Configurações", path: "/configuracoes-gerente"},
     { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
   ];
 
+  const menuItemsGerente = [
+    { icon: Box, text: "Estoque", path: "/estoque" },
+    { icon: User, text: "Usuários", path: "/usuarios" },
+    { icon: Configuracoes, text: "Configurações", path: "/configuracoes-gerente" },
+    { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
+    { icon: Chave, text: "Reparos", path: "/reparos" },
+    { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
+  ];
+
+  const menuItems = tipoUsuario === "tecnico" ? menuItemsTecnico : menuItemsGerente;
+
   return (
     <nav className="sidebar">
-      <Link to="/home-tecnico" className="sidebar-logo">
+      <Link to={tipoUsuario === "tecnico" ? "/home-tecnico" : "/home-gerente"} className="sidebar-logo">
         <img src={Logo} alt="Logo" />
         <span className="sidebar-logo-text">Manager.io</span>
       </Link>
@@ -48,5 +58,4 @@ const BarraLateral = () => {
     </nav>
   );
 };
-
 export default BarraLateral;
