@@ -117,7 +117,7 @@ function PainelConfig() {
           {/* Campo Nome da Loja */}
           <div className={styles.field}>
             <div className={styles.fieldText}>
-              <label className={styles.fieldLabel}>{tipoUsuario === "tecnico" ? "Perfil" : "Nome da Loja"}</label>
+              <label className={styles.fieldLabel}>{tipoUsuario === "tecnico" ? "Nome" : "Nome da Loja"}</label>
               <span className={styles.fieldValue}>{dadosUsuario.nome}</span>
             </div>
             <button
