@@ -10,7 +10,7 @@ const Team = () => {
       img: "https://storage.googleapis.com/a1aa/image/6c5d8f52-be7c-4595-aa7e-b89d08868497.jpg",
       name: "João Ricardo Fiuza",
       alt: "BackEnd",
-      linkedin: "https://www.linkedin.com/in/joao-ricardo-fiuza",
+      linkedin: "https://www.linkedin.com/in/joão-ricardo-fiuza-2997b9342",
       github: "https://github.com/joaoricardofiuza",
     },
     {
@@ -38,7 +38,7 @@ const Team = () => {
       img: "https://storage.googleapis.com/a1aa/image/6c5d8f52-be7c-4595-aa7e-b89d08868497.jpg",
       name: "Francisco Rafael",
       alt: "BackEnd & FrontEnd",
-      linkedin: "https://www.linkedin.com/in/francisco-rafael",
+      linkedin: "https://www.linkedin.com/in/franciscorafael06/",
       github: "https://github.com/franciscorafael",
     },
     {
