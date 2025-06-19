@@ -16,34 +16,19 @@
   border-radius: 50%;
   background-color: #b7bbe0;
   opacity: 0.9;
+  width: 1500px;
+  height: 1500px;
+  transition: transform 0.5s ease-in-out;
 }
 
-.circle-top-left {
-  width: 700px;
-  height: 700px;
-  top: -350px;
-  left: -350px;
+.circle-top {
+  top: 0;
+  right: 1000;
 }
 
-.circle-bottom-right {
-  width: 700px;
-  height: 700px;
-  bottom: -350px;
-  right: -350px;
-}
-
-.circle-top-right {
-  width: 700px;
-  height: 700px;
-  top: -350px;
-  right: -350px;
-}
-
-.circle-bottom-left {
-  width: 700px;
-  height: 700px;
-  bottom: -350px;
-  left: -350px;
+.circle-bottom {
+  bottom: 0;
+  left: 1000;
 }
 
 .content-wrapper {
@@ -144,6 +129,42 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.login-form.switching {
+  transform: translateX(150%);
+  opacity: 0.7;
+}
+
+.image-container {
+  background-color: #023482; /* Cor padrão (modo técnico) */
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/4;
+  transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+/* Nova cor para o modo gerente */
+.image-container.manager-mode {
+  background-color: #073460;
+}
+
+.image-container.switching {
+  transform: translateX(-150%);
+  opacity: 0.7;
+}
+
+.feature-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.375rem;
 }
 
 .form-title {
@@ -172,6 +193,7 @@
   font-size: 1rem;
   background: white;
   border: none;
+  width: 350px;
 }
 
 .input-field:focus {
@@ -251,7 +273,7 @@
 
 .register-text {
   color: white;
-  font-size: 0.6rem;
+  font-size: 1.2rem;
   text-align: center;
   margin-top: 1rem;
   user-select: none;
@@ -260,23 +282,7 @@
 .register-link {
   font-weight: 800;
   margin-left: 0.25rem;
-}
-
-.image-container {
-  background-color: #023482;
-  border-radius: 1rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 450px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 3/4;
-}
-
-.feature-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 0.375rem;
+  cursor: pointer;
+  display: block; /* Garante que o link fique em linha separada */
+  margin-top: 0.5rem; /* Espaçamento adicional */
 }

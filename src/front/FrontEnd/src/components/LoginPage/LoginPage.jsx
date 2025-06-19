@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Adicione este import
+import { useNavigate } from 'react-router-dom';
 import styles from './LoginPage.module.css';
 import ImagemTecnico from "../../assets/images/logintecnico.png";
 import ImagemGerente from "../../assets/images/logingerente.png";
 import Logo from "./ManagerIO.png";
 
 const LoginPage = () => {
-    const navigate = useNavigate(); // Hook para navegação
+    const navigate = useNavigate();
     const [isTechnician, setIsTechnician] = useState(true);
+    const [isSwitching, setIsSwitching] = useState(false);
     
     const handleRoleChange = (role) => {
-        setIsTechnician(role === 'technician');
+        setIsSwitching(true);
+        setTimeout(() => {
+            setIsTechnician(role === 'technician');
+            setIsSwitching(false);
+        }, 500);
     };
 
     const handleRegisterClick = () => {
         if (isTechnician) {
-            //navigate("/cadastro-tecnico"); // rota do cadastro técnico
+            //navigate("/cadastro-tecnico");
         } else {
-            navigate("/cadastro-loja");    // rota do cadastro loja/gerente
+            navigate("/cadastro-loja");
         }
     };
     
@@ -40,7 +45,7 @@ const LoginPage = () => {
         // Determina o endpoint com base no tipo de usuário
         const endpoint = isTechnician 
             ? "http://localhost:8080/tecnicos/login-tecnico" 
-            : "http://localhost:8080/lojas/login-loja"; // Ajuste conforme seu endpoint
+            : "http://localhost:8080/lojas/login-loja";
         
         try {
             const response = await fetch(endpoint, {
@@ -61,9 +66,9 @@ const LoginPage = () => {
                     localStorage.setItem("id_tecnico", userData.id);
                     navigate("/home-tecnico");
                 } else {
-                    localStorage.setItem("loja", JSON.stringify(userData)); // Ou "gerente" se preferir
+                    localStorage.setItem("loja", JSON.stringify(userData));
                     localStorage.setItem("id_loja", userData.id);
-                    navigate("/home-gerente"); // Ajuste conforme sua rota
+                    navigate("/home-gerente");
                 }
             } else {
                 const msg = await response.text();
@@ -77,9 +82,23 @@ const LoginPage = () => {
 
     return (
         <div className={styles['login-container']}>
-            {/* Círculos com posições invertidas quando gerente */}
-            <div className={`${styles.circle} ${isTechnician ? styles['circle-top-left'] : styles['circle-top-right']}`}></div>
-            <div className={`${styles.circle} ${isTechnician ? styles['circle-bottom-right'] : styles['circle-bottom-left']}`}></div>
+            {/* Círculos com animação */}
+            <div 
+                className={`${styles.circle} ${styles['circle-top']}`} 
+                style={{ 
+                    transform: isTechnician 
+                        ? 'translate(-50%, -50%)' 
+                        : 'translate(50%, -50%)' 
+                }}
+            ></div>
+            <div 
+                className={`${styles.circle} ${styles['circle-bottom']}`} 
+                style={{ 
+                    transform: isTechnician 
+                        ? 'translate(50%, 50%)' 
+                        : 'translate(-50%, 50%)' 
+                }}
+            ></div>
             
             <div className={styles['content-wrapper']}>
                 <div className={styles['logo-container']}>
@@ -103,10 +122,14 @@ const LoginPage = () => {
                         </button>
                     </div>
                     
-                    {/* Container com direção invertida quando gerente */}
+                    {/* Container com animação de troca */}
                     <div className={`${styles['form-container']} ${!isTechnician ? styles['inverted'] : ''}`}>
-                        {/* Formulário de login (sempre o mesmo) */}
-                        <form autoComplete="off" className={styles['login-form']} onSubmit={handleSubmit}>
+                        {/* Formulário de login com animação */}
+                        <form 
+                            autoComplete="off" 
+                            className={`${styles['login-form']} ${isSwitching ? styles.switching : ''}`} 
+                            onSubmit={handleSubmit}
+                        >
                             <h3 className={styles['form-title']}>Login</h3>
                             
                             <div className={styles['input-group']}>
@@ -114,7 +137,7 @@ const LoginPage = () => {
                                 <input 
                                     className={styles['input-field']} 
                                     id="email" 
-                                    name="email" // Adicione name para o handleChange
+                                    name="email"
                                     placeholder="username@gmail.com" 
                                     type="email"
                                     value={formData.email}
@@ -124,12 +147,12 @@ const LoginPage = () => {
                             </div>
                             
                             <div className={styles['input-group']}>
-                                <label className={styles['input-label']} htmlFor="password">Password</label>
+                                <label className={styles['input-label']} htmlFor="password">Senha</label>
                                 <div className={styles['password-container']}>
                                     <input 
                                         className={styles['input-field']} 
                                         id="password" 
-                                        name="senha" // Adicione name para o handleChange
+                                        name="senha"
                                         placeholder="Password" 
                                         type="password"
                                         value={formData.senha}
@@ -140,10 +163,10 @@ const LoginPage = () => {
                                 </div>
                             </div>
                             
-                            <a className={styles['forgot-password']} href="#">Forgot Password?</a>
+                            <a className={styles['forgot-password']} href="#">Esqueceu a senha?</a>
                             
                             <button className={styles['submit-button']} type="submit">
-                                Sign in
+                                Entrar
                             </button>
                             
                             {isTechnician ? (
@@ -151,16 +174,18 @@ const LoginPage = () => {
                                     Ainda não tem uma conta? <strong className={styles['register-link']}>Peça para seu gerente te registrar.</strong>
                                 </p>
                             ) : (
-                                <p className={styles['register-text']}>
-                                    Ainda não tem uma conta?
-                                    <strong onClick={handleRegisterClick} className={styles['register-link']}> Registre-se de graça</strong>
-                                </p>
+                                <div className={styles['register-text']}>
+                                    <div>Ainda não tem uma conta?</div>
+                                    <strong onClick={handleRegisterClick} className={styles['register-link']}>
+                                        Registre-se de graça
+                                    </strong>
+                                </div>
                             )}
 
                         </form>
                         
-                        {/* Container da imagem - imagem muda conforme o perfil */}
-                        <div className={styles['image-container']}>
+                        {/* Container da imagem com animação e cor de fundo condicional */}
+                        <div className={`${styles['image-container']} ${!isTechnician ? styles['manager-mode'] : ''} ${isSwitching ? styles.switching : ''}`}>
                             <img 
                                 src={isTechnician ? ImagemTecnico : ImagemGerente} 
                                 alt={isTechnician ? "Imagem representando técnico" : "Imagem representando gerente"} 
