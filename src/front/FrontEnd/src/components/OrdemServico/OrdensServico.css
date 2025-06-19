@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+.ordem-management {
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+  
+.management-header h1 {
+    color: #0B1446;
+    font-size: 2rem;
+    font-weight: 1000;
+    margin: 0;
+}
+  
+.controls-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 24px 0;
+}
+  
+.search-form {
+    flex: 1;
+    max-width: 900px;
+    display: flex;
+    background: #E6E6E6;
+    border-radius: 20px;
+    padding: 8px 8px;
+    max-height: 40px;
+}
+  
+.search-form input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 1px 10px;
+    font-size: 0.9rem;
+}
+  
+.search-form button {
+    background: none;
+    border: none;
+    padding: 0 8px;
+    cursor: pointer;
+}
+
+.button-section{
+    display: flex;
+    gap: 10px;
+    max-height: 40px;
+}
+
+.button-section img {
+    height: 25px;
+    margin-bottom: 4px;
+}
+
+.animated-button {
+    position: relative;
+    background: #2DAF3D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: 1000;
+    overflow: hidden;
+    width: 100px;
+    height: 40px;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.animated-button.blue {
+    background: #256ac5;
+}
+  
+.animated-button:hover {
+    background: #24932f;
+}
+  
+.animated-button.blue:hover {
+    background: #123594;
+}
+  
+.button-icon,
+.button-text {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+  
+.button-text {
+    opacity: 0;
+    transform: translateY(10px);
+}
+  
+.animated-button:hover .button-icon {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+  
+.animated-button:hover .button-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.table-container {
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+th {
+    background: #0B1446;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+  
+th:last-child  {
+    text-align: right;
+    padding: 0 29px 0 0;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 0.85rem;
+    color: #0B1446;
+}
+
+td:last-child {
+    padding-right: -10px;
+}  
+
+.acoes {
+    display: flex;
+    align-items: end;
+    justify-content: right;
+}
+
+/* Estilos para badges de status */
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-em-andamento {
+    background-color: #FFEDD5;
+    color: #C2410C;
+}
+
+.status-concluído {
+    background-color: #DCFCE7;
+    color: #166534;
+}
+
+.status-aguardando-peças {
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+}
+
+.status-diagnóstico {
+    background-color: #FEF3C7;
+    color: #B45309;
+}
+
+.status-aguardando-retirada {
+    background-color: #E0E7FF;
+    color: #4338CA;
+}
+
+/* Botão de detalhes */
+.view-button {
+    background: #0033A0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.view-button:hover {
+    background: #00257a;
+    transform: translateY(-2px);
+}
+
+.view-button img {
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
+  
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    color: #8B8B8B;
+    font-size: 0.85rem;
+}
+  
+.page-controls {
+    display: flex;
+    gap: 8px;
+}
+  
+.page-controls button {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+  
+.page-controls .active {
+    border: 1px solid #0B1446;
+    border-radius: 4px;
+    color: #0B1446;
+    font-weight: bold;
+}
