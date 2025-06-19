@@ -36,7 +36,7 @@ const UserManagement = () => {
             id: t.id,
             name: t.nome || "Não informado",
             cpf: t.cpf || "Não informado",
-            phone: t.telefone || "Não informado",
+            phone: t.email || "Não informado",
             type: "Técnico"
           }));
         }
@@ -136,7 +136,7 @@ const UserManagement = () => {
             <tr>
               <th>Nome</th>
               <th>CPF</th>
-              <th>Telefone</th>
+              <th>{tipoUsuario === "gerente" ? "Contato" : "Telefone"}</th>
               <th>Tipo</th>
               <th>Ações</th>
             </tr>
