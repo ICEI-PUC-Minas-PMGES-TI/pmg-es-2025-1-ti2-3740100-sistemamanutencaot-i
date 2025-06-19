@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import "../assets/css/AlterarSenhaAlert.css";
 import olhoFechado from "../assets/images/olho-fechado.png";
 import olhoAberto from "../assets/images/olho-aberto.png";
 
-const AlterarSenhaAlert = ({ field, onClose }) => {
+const AlterarSenhaAlert = ({ onClose, onUpdateSenha }) => {
   const [senhaVisivel, setSenhaVisivel] = React.useState({
     antiga: false,
     nova: false,
     confirmacao: false,
   });
 
+  const [senhaAntiga, setSenhaAntiga] = React.useState("");
+  const [senhaNova, setSenhaNova] = React.useState("");
+  const [senhaConfirmacao, setSenhaConfirmacao] = React.useState("");
+
   const toggleVisibilidade = (campo) => {
     setSenhaVisivel((prev) => ({ ...prev, [campo]: !prev[campo] }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!senhaAntiga || !senhaNova || !senhaConfirmacao) {
+      alert("Preencha todos os campos");
+      return;
+    }
+
+    if (senhaNova !== senhaConfirmacao) {
+      alert("A nova senha e a confirmação não coincidem");
+      return;
+    }
+
+    onUpdateSenha(senhaAntiga, senhaNova);
+    onClose();
   };
 
   return (
@@ -23,13 +44,15 @@ const AlterarSenhaAlert = ({ field, onClose }) => {
             Adicione abaixo a nova senha a ser cadastrada.
           </p>
 
-          <form className="formulario-alterar-senha">
+          <form className="formulario-alterar-senha" onSubmit={handleSubmit}>
             <CampoSenha
               id="old-password"
               label="Senha antiga:"
               visivel={senhaVisivel.antiga}
               toggle={() => toggleVisibilidade("antiga")}
-              icone={senhaVisivel.antiga ? olhoAberto : olhoFechado} // Alterado aqui
+              icone={senhaVisivel.antiga ? olhoAberto : olhoFechado}
+              value={senhaAntiga}
+              onChange={setSenhaAntiga}
             />
 
             <CampoSenha
@@ -37,7 +60,9 @@ const AlterarSenhaAlert = ({ field, onClose }) => {
               label="Nova Senha:"
               visivel={senhaVisivel.nova}
               toggle={() => toggleVisibilidade("nova")}
-              icone={senhaVisivel.nova ? olhoAberto : olhoFechado} // Alterado aqui
+              icone={senhaVisivel.nova ? olhoAberto : olhoFechado}
+              value={senhaNova}
+              onChange={setSenhaNova}
             />
 
             <CampoSenha
@@ -45,14 +70,16 @@ const AlterarSenhaAlert = ({ field, onClose }) => {
               label="Confirmar Senha:"
               visivel={senhaVisivel.confirmacao}
               toggle={() => toggleVisibilidade("confirmacao")}
-              icone={senhaVisivel.confirmacao ? olhoAberto : olhoFechado} // Alterado aqui
+              icone={senhaVisivel.confirmacao ? olhoAberto : olhoFechado}
+              value={senhaConfirmacao}
+              onChange={setSenhaConfirmacao}
             />
 
             <div className="botoes-alterar-senha">
               <button
                 type="button"
                 className="botao-cancelar"
-                onClick={onClose} // Adicionado o onClose aqui
+                onClick={onClose}
               >
                 Cancelar
               </button>
@@ -67,7 +94,7 @@ const AlterarSenhaAlert = ({ field, onClose }) => {
   );
 };
 
-const CampoSenha = ({ id, label, visivel, toggle, icone }) => (
+const CampoSenha = ({ id, label, visivel, toggle, icone, value, onChange }) => (
   <div className="campo-senha">
     <label htmlFor={id} className="label-senha">
       {label}
@@ -77,12 +104,16 @@ const CampoSenha = ({ id, label, visivel, toggle, icone }) => (
         id={id}
         type={visivel ? "text" : "password"}
         className="input-senha"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        required
       />
       <img
-        src={icone} // Já está usando a imagem correta baseada no estado
+        src={icone}
         alt={visivel ? "Ocultar senha" : "Mostrar senha"}
         className="icone-olho"
         onClick={toggle}
+        style={{ cursor: "pointer" }}
       />
     </div>
   </div>

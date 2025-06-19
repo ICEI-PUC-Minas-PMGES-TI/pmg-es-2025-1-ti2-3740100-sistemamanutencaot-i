@@ -63,20 +63,70 @@ function PainelConfig() {
     setShowAlert(true);
   };
 
+  const atualizarCampo = (campo, valor, senha = null) => {
+    const id = tipoUsuario === "tecnico" ? localStorage.getItem("id_tecnico") : localStorage.getItem("id_loja");
+    let url = "";
+
+    if (campo === "nome") {
+      url = tipoUsuario === "tecnico"
+        ? `http://localhost:8080/tecnicos/${id}/nome`
+        : `http://localhost:8080/lojas/${id}/nome`;
+    } else if (campo === "email") {
+      url = tipoUsuario === "tecnico"
+        ? `http://localhost:8080/tecnicos/${id}/email`
+        : `http://localhost:8080/lojas/${id}/email`;
+    } else if (campo === "endereco") {
+      url = `http://localhost:8080/lojas/${id}/endereco`; // apenas loja tem endereço
+    } else {
+      console.error("Campo inválido:", campo);
+      return;
+    }
+
+    axios.put(url, { novoValor: valor, senhaAtual: senha })
+      .then(() => {
+        setDadosUsuario(prev => ({ ...prev, [campo]: valor }));
+        alert(`${campo.charAt(0).toUpperCase() + campo.slice(1)} alterado com sucesso!`);
+      })
+      .catch(() => {
+        alert(`Erro ao alterar ${campo}. Verifique sua senha.`);
+      })
+      .finally(() => {
+        setShowAlert(false);
+      });
+  };
+
+
+  const atualizarSenha = (senhaAntiga, senhaNova) => {
+  const id = localStorage.getItem("id_tecnico") || localStorage.getItem("id_loja");
+    axios
+      .put(`http://localhost:8080/${tipoUsuario === "tecnico" ? "tecnicos" : "lojas"}/${id}/senha`, {
+        senhaAntiga,
+        senhaNova,
+      })
+      .then(() => {
+        alert("Senha alterada com sucesso!");
+        setShowAlert(false);
+      })
+      .catch(() => alert("Erro ao alterar senha. Verifique a senha atual."));
+  };
+
   const renderAlert = () => {
     switch (selectedField) {
       case "Senha":
-        return <AlterarSenhaAlert onClose={() => setShowAlert(false)} />;
+        return <AlterarSenhaAlert onClose={() => setShowAlert(false)} onUpdateSenha={atualizarSenha} />;
       case "Email":
-        return <AlterarEmailAlert onClose={() => setShowAlert(false)} />;
+        return <AlterarEmailAlert onClose={() => setShowAlert(false)} onUpdate={(novoEmail, senha) => atualizarCampo("email", novoEmail, senha)} />;
       case "Endereço":
-        return <AlterarEnderecoAlert onClose={() => setShowAlert(false)} />;
+        return <AlterarEnderecoAlert onClose={() => setShowAlert(false)} onUpdate={(novoEndereco, senha) => atualizarCampo("endereco", novoEndereco, senha)} />;
       case "Nome da Loja":
-        return <AlterarNomeLojaAlert onClose={() => setShowAlert(false)} />;
+        return <AlterarNomeLojaAlert onClose={() => setShowAlert(false)} onUpdate={(novoNome, senha) => atualizarCampo("nome", novoNome, senha)} />;
       default:
         return null;
     }
   };
+
+
+
 
   return (
     <>

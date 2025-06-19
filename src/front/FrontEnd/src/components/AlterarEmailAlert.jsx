@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/css/AlterarSenhaAlert.css";
 import olhoFechado from "../assets/images/olho-fechado.png";
 import olhoAberto from "../assets/images/olho-aberto.png";
 
-const AlterarEmailAlert = ({ onClose }) => {
-  const [mostrarSenha, setMostrarSenha] = React.useState(false);
+const AlterarEmailAlert = ({ onClose, onUpdate }) => {
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [novoEmail, setNovoEmail] = useState("");
+  const [senhaAtual, setSenhaAtual] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Aqui você pode validar os dados (ex: formato do email, senha não vazia, etc)
+    if (!novoEmail) {
+      alert("Informe um novo email válido.");
+      return;
+    }
+    if (!senhaAtual) {
+      alert("Informe sua senha atual para confirmar.");
+      return;
+    }
+
+    // Passa o novo email para o pai atualizar o estado
+    onUpdate(novoEmail, senhaAtual);
+
+    // Fecha o alerta
+    onClose();
+  };
 
   return (
     <div className="alertOverlay">
@@ -15,7 +37,7 @@ const AlterarEmailAlert = ({ onClose }) => {
             Digite o novo email e confirme com sua senha atual.
           </p>
 
-          <form className="formulario-alterar-senha">
+          <form className="formulario-alterar-senha" onSubmit={handleSubmit}>
             <div className="campo-senha">
               <label className="label-senha">Novo Email:</label>
               <div className="input-container">
@@ -23,6 +45,9 @@ const AlterarEmailAlert = ({ onClose }) => {
                   type="email"
                   className="input-senha"
                   placeholder="novo@email.com"
+                  value={novoEmail}
+                  onChange={(e) => setNovoEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -33,12 +58,16 @@ const AlterarEmailAlert = ({ onClose }) => {
                 <input
                   type={mostrarSenha ? "text" : "password"}
                   className="input-senha"
+                  value={senhaAtual}
+                  onChange={(e) => setSenhaAtual(e.target.value)}
+                  required
                 />
                 <img
                   src={mostrarSenha ? olhoAberto : olhoFechado}
                   alt="Visibilidade da senha"
                   className="icone-olho"
                   onClick={() => setMostrarSenha(!mostrarSenha)}
+                  style={{ cursor: "pointer" }}
                 />
               </div>
             </div>
