@@ -10,6 +10,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PecaUtilizadaRepository extends JpaRepository<PecaUtilizada, PecaUtilizadaId> {
+
+  List<PecaUtilizada> findByOrdemServicoId(int ordemId);
+
     @Query("""
        SELECT new io.manager.backend.dto.ProdutoDestaqueDTO(
             p.peca.nome,

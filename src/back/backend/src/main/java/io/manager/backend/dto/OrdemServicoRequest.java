@@ -7,6 +7,7 @@ public class OrdemServicoRequest {
     private Integer tecnicoId;
     private String status;
     private Date dataEntrada;
+    private Date dataFinalizacao;
     private Date prazo;
     private Double valorTotal;
     private String descricaoOs;
@@ -60,6 +61,12 @@ public class OrdemServicoRequest {
     public void setSolucaoOs(String solucaoOs) {
         this.solucaoOs = solucaoOs;
     }
-    
-    
+
+    public Date getDataFinalizacao() {
+    return dataFinalizacao;
+}
+
+    public void setDataFinalizacao(Date dataFinalizacao) {
+        this.dataFinalizacao = dataFinalizacao;
+    }
 }

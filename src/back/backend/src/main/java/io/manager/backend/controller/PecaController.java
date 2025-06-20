@@ -21,9 +21,14 @@ public class PecaController {
         this.pecaService = PecaService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Peca> getAllPecas() {
         return pecaService.getAllPecas();
+    }
+
+    @GetMapping("/{codigo}")
+    public List<Peca> buscarPorCodigo(@PathVariable String codigo) {
+        return pecaService.buscarCodigo(codigo);
     }
 
     @GetMapping("/{id}")

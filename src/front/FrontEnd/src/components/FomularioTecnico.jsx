@@ -4,8 +4,8 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; // Importar SweetAlert2
 
 const FormularioTecnico = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +16,6 @@ const FormularioTecnico = () => {
   });
 
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("");
-  const [mensagem, setMensagem] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const { idLoja } = location.state || {};
@@ -25,46 +24,134 @@ const FormularioTecnico = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    let valorFinal = value;
+
+    if (name === "nomeTecnico") {
+      // Permitir apenas letras (maiúsculas, minúsculas) e espaços
+      valorFinal = valorFinal.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+    } else if (name === "cpf") {
+      // Remove tudo que não for número e limita a 11 dígitos
+      valorFinal = value.replace(/\D/g, "").slice(0, 11);
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: valorFinal,
     }));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
     if (!idLojaFinal) {
-    setMensagem("Erro: ID da loja não informado.");
-    return;
-  }
-
-    const novoTecnico = {
-      nome: formData.nomeTecnico,
-      cpf: formData.cpf,
-      email: formData.email,
-      senha: formData.senha,
-      cargo: opcaoSelecionada,
-      loja: {
-        id: idLojaFinal,
-      },
-    };
-
-    try {
-      const tecnicoResponse = await axios.post("http://localhost:8080/tecnicos", novoTecnico);
-      console.log("Técnico cadastrado com sucesso:", tecnicoResponse.data);
-      setMensagem("Técnico cadastrado com sucesso!");
-      setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
-      setOpcaoSelecionada("");
-      setTimeout(() => {
-        navigate("/home-gerente");
-      }, 3000);
-    } catch (error) {
-      console.error("Erro ao cadastrar técnico:", error);
-      setMensagem(`Erro ao cadastrar técnico: ${error.response?.data?.message || error.message}`);
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "ID da loja não informado.",
+      });
+      return;
     }
 
-  
-};
+    const { nomeTecnico, cpf, email, senha } = formData;
+
+    // Validação de nome: pelo menos 3 letras e só letras/ espaços
+    if (!nomeTecnico || nomeTecnico.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "Nome inválido",
+        text: "O nome deve ter pelo menos 3 caracteres.",
+      });
+      return;
+    }
+
+    if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nomeTecnico)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Nome inválido",
+        text: "O nome deve conter apenas letras e espaços.",
+      });
+      return;
+    }
+
+    // Validação de CPF
+    if (cpf.length !== 11) {
+      Swal.fire({
+        icon: "warning",
+        title: "CPF inválido",
+        text: "O CPF deve conter exatamente 11 números.",
+      });
+      return;
+    }
+
+    // Validação de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Email inválido",
+        text: "Por favor, insira um email válido.",
+      });
+      return;
+    }
+
+    // Validação de senha
+    if (senha.length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "Senha muito curta",
+        text: "A senha deve ter pelo menos 6 caracteres.",
+      });
+      return;
+    }
+
+    // Validação de cargo
+    if (!opcaoSelecionada) {
+      Swal.fire({
+        icon: "warning",
+        title: "Cargo não selecionado",
+        text: "Por favor, selecione um cargo.",
+      });
+      return;
+    }
+
+    // Enviar ao backend se estiver tudo válido
+    try {
+      const novoTecnico = {
+        nome: nomeTecnico,
+        cpf: cpf,
+        email: email,
+        senha: senha,
+        cargo: opcaoSelecionada,
+        loja: {
+          id: idLojaFinal,
+        },
+      };
+
+      await axios.post("http://localhost:8080/tecnicos", novoTecnico);
+
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: "Técnico cadastrado com sucesso.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+
+      setFormData({ nomeTecnico: "", cpf: "", email: "", senha: "" });
+      setOpcaoSelecionada("");
+
+      setTimeout(() => {
+        navigate("/home-gerente");
+      }, 2000);
+    } catch (error) {
+      console.error("Erro ao cadastrar técnico:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: error.response?.data?.message || error.message,
+      });
+    }
+  };
 
   return (
     <div className={styles.containerFormulario}>
@@ -96,10 +183,13 @@ const FormularioTecnico = () => {
             name="cpf"
             value={formData.cpf}
             onChange={handleChange}
-            placeholder="Coloque o cpf do técnico"
+            placeholder="Digite apenas números do CPF"
             className={styles.entradaFormulario}
             required
+            inputMode="numeric"
+            maxLength={11}
           />
+          <p className={styles.dicaCampo}>Máximo de 11 dígitos</p>
         </div>
 
         <div className={styles.grupoCampoFormulario}>
@@ -156,10 +246,6 @@ const FormularioTecnico = () => {
         <button type="submit" className={styles.botaoFormulario}>
           Cadastrar
         </button>
-
-        {mensagem && (
-          <p style={{ marginTop: "1rem", fontWeight: "bold" }}>{mensagem}</p>
-        )}
       </form>
     </div>
   );

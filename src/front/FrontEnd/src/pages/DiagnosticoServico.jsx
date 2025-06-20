@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../assets/css/DiagnosticoServico.css";
 import BarraLateral from "../components/BarraLateral.jsx";
@@ -9,6 +9,7 @@ import ManutencaoConcluida from "../components/DetalhesServico/ManutencaoConclui
 import AdicionarPecas from "../components/DetalhesServico/AdicionarPecas.jsx";
 
 export default function DiagnosticoServico() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [solucaoEditada, setSolucaoEditada] = useState("");
@@ -21,24 +22,30 @@ export default function DiagnosticoServico() {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`http://localhost:8080/ordem-servicos/${id}`)
-      .then((res) => {
+
+    const fetchServico = axios.get(`http://localhost:8080/ordem-servicos/${id}`);
+    const fetchPecasUtilizadas = axios.get(`http://localhost:8080/pecas-utilizadas/ordem/${id}`);
+
+    Promise.all([fetchServico, fetchPecasUtilizadas])
+      .then(([resServico, resPecas]) => {
         let data = null;
-        if (Array.isArray(res.data)) {
-          data = res.data.length > 0 ? res.data[0] : null;
-        } else if (res.data && typeof res.data === "object") {
-          data = res.data;
+        if (Array.isArray(resServico.data)) {
+          data = resServico.data.length > 0 ? resServico.data[0] : null;
+        } else if (resServico.data && typeof resServico.data === "object") {
+          data = resServico.data;
         }
 
         setServicoData(data);
         if (data) {
           setSolucaoEditada(data.solucaoOs);
-          // Inicializar as peças com os dados do servidor
-          setPecas(data.pecas || []);
         }
+
+        setPecas(resPecas.data || []);
       })
-      .catch(() => setServicoData(null))
+      .catch((error) => {
+        console.error("Erro ao carregar dados:", error);
+        setServicoData(null);
+      })
       .finally(() => setLoading(false));
   }, [id]);
 
@@ -77,6 +84,34 @@ export default function DiagnosticoServico() {
         <div className="container-diagnostico">
           <div className="conteudo-bloco">
             <p>Ordem de serviço não encontrada.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (servicoData.status === "concluido") {
+    return (
+      <div className="layout-principal">
+        <BarraLateral />
+        <div
+          className="container-diagnostico"
+          style={{ backgroundColor: "transparent" }}
+        >
+          <div
+            className="conteudo-bloco"
+            style={{ backgroundColor: "transparent" }}
+          >
+            <h1
+              style={{
+                color: "#008000",
+                fontSize: "3rem",
+                textAlign: "center",
+                marginTop: "350px",
+              }}
+            >
+              Esse reparo já foi concluído.
+            </h1>
           </div>
         </div>
       </div>
@@ -215,26 +250,33 @@ export default function DiagnosticoServico() {
                   <tbody>
                     {pecas.map((peca) => (
                       <tr key={peca.id || Math.random()}>
-                        <td>{peca.codigo || peca.componente}</td>
+                        <td>
+                          {peca.peca
+                            ? `${peca.peca.nome} ${peca.peca.marca} ${peca.peca.modelo}`
+                            : "Peça não encontrada"}
+                        </td>
                         <td>{peca.quantidade}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
 
-                <div className="botoes-pecas" style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+                <div
+                  className="botoes-pecas"
+                  style={{ display: "flex", gap: "10px", justifyContent: "center" }}
+                >
                   <button
                     className="btn-adicionar"
                     onClick={() => setShowAdicionarPecas(true)}
-                    style={{ 
-                      background: '#f1c40f', 
-                      color: '#fff', 
-                      fontWeight: 'bold',
-                      padding: '10px 20px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      transition: 'background 0.3s'
+                    style={{
+                      background: "#f1c40f",
+                      color: "#fff",
+                      fontWeight: "bold",
+                      padding: "10px 20px",
+                      borderRadius: "8px",
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "background 0.3s",
                     }}
                   >
                     Adicionar peças
@@ -242,15 +284,15 @@ export default function DiagnosticoServico() {
                   <button
                     className="btn-solicitar"
                     onClick={() => setShowSolicitarPecas(true)}
-                    style={{ 
-                      background: '#A21919', 
-                      color: '#fff', 
-                      fontWeight: 'bold',
-                      padding: '10px 20px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      transition: 'background 0.3s'
+                    style={{
+                      background: "#A21919",
+                      color: "#fff",
+                      fontWeight: "bold",
+                      padding: "10px 20px",
+                      borderRadius: "8px",
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "background 0.3s",
                     }}
                   >
                     Solicitar peças
@@ -260,7 +302,21 @@ export default function DiagnosticoServico() {
               <div className="botao-concluir-container">
                 <button
                   className="btn-concluir"
-                  onClick={() => setShowManutencaoConcluida(true)}
+                  onClick={() => {
+                    axios
+                      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
+                        ...servicoData,
+                        dataFinalizacao: new Date().toISOString().split("T")[0],
+                        status: "concluido",
+                      })
+                      .then(() => {
+                        navigate("/ordens-servico");
+                      })
+                      .catch((err) => {
+                        console.error("Erro ao concluir manutenção:", err);
+                        alert("Erro ao concluir a manutenção");
+                      });
+                  }}
                 >
                   Concluir Manutenção
                 </button>

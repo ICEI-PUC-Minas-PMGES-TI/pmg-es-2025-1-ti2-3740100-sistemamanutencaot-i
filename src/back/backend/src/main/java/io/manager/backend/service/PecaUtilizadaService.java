@@ -26,6 +26,10 @@ public class PecaUtilizadaService {
         return repository.findAll();
     }
 
+    public List<PecaUtilizada> listarPorOrdem(Integer ordemId){
+        return repository.findByOrdemServicoId(ordemId);
+    }
+
     public Optional<PecaUtilizada> buscarPorId(PecaUtilizadaId id) {
         return repository.findById(id);
     }

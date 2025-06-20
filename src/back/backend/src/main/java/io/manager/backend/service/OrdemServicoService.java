@@ -100,6 +100,7 @@ public class OrdemServicoService {
         if (dto.getValorTotal() != null) ordem.setValorTotal(dto.getValorTotal());
         if (dto.getDescricaoOs() != null) ordem.setDescricaoOs(dto.getDescricaoOs());
         if (dto.getSolucaoOs() != null) ordem.setSolucaoOs(dto.getSolucaoOs());
+        if (dto.getDataFinalizacao() != null) ordem.setDataFinalizacao(dto.getDataFinalizacao()); // ADICIONADO
 
         return ordemServicoRepository.save(ordem);
     }

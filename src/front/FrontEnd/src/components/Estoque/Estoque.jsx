@@ -23,6 +23,7 @@ const EstoqueTecnico = () => {
           modelo: p.modelo || "Não informado",
           estoque: p.estoque || 0,   // <- Aqui troquei para estoque
           segmento: p.segmento || "Não informado",
+          preco: p.preco || 0,
         }));
         setItems(pecas);
       })
@@ -35,8 +36,7 @@ const EstoqueTecnico = () => {
   const handleAddItem = (newItem) => {
     const itemToSave = {
       ...newItem,
-      tipo: "Peça",       // Força tipo "Peça"
-      preco: 0            // Força preço 0
+      tipo: "Peça", // Força tipo "Peça"
     };
 
     axios.post("http://localhost:8080/pecas", itemToSave)
