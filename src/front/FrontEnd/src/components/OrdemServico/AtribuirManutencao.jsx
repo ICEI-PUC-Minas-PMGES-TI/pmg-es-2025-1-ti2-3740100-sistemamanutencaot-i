@@ -27,9 +27,14 @@ const AtribuirManutencao = ({ ordemId, onClose, onAtribuido }) => {
       return;
     }
 
-    axios.put(`http://localhost:8080/ordem-servicos/${ordemId}/atribuir`, { tecnicoId: tecnicoSelecionado })
+    const tecnicoObj = tecnicos.find(t => t.id === parseInt(tecnicoSelecionado));
+    const tecnicoNome = tecnicoObj ? tecnicoObj.nome : "Técnico";
+
+    axios.patch(`http://localhost:8080/ordem-servicos/${ordemId}/tecnico`, {
+      tecnicoId: parseInt(tecnicoSelecionado)
+    })
       .then(() => {
-        onAtribuido(ordemId, tecnicoSelecionado);
+        onAtribuido(ordemId, tecnicoSelecionado, tecnicoNome); // <-- envia nome também!
         onClose();
       })
       .catch(error => {

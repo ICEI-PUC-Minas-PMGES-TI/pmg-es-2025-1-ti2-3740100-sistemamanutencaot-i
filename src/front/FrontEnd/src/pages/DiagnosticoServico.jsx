@@ -18,7 +18,11 @@ export default function DiagnosticoServico() {
   const [showAdicionarPecas, setShowAdicionarPecas] = useState(false);
   const [showSolicitarPecas, setShowSolicitarPecas] = useState(false);
   const [showManutencaoConcluida, setShowManutencaoConcluida] = useState(false);
-  const [pecas, setPecas] = useState([]); // Estado para armazenar as peças
+  const [pecas, setPecas] = useState([]);
+
+  // Pegando dados do usuário logado
+  const tipoUsuario = localStorage.getItem("tipoUsuario");
+  const tecnicoIdLogado = localStorage.getItem("id_tecnico");
 
   useEffect(() => {
     setLoading(true);
@@ -49,15 +53,85 @@ export default function DiagnosticoServico() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  // Função para verificar permissão de edição/modificação
+  const podeEditar = () => {
+    if (tipoUsuario === "gerente") return true; // gerente pode tudo
+    if (tipoUsuario === "tecnico" && servicoData?.tecnico?.id?.toString() === tecnicoIdLogado) return true;
+    return false;
+  };
+
+  // Funções de bloqueio para ações se não tiver permissão
+  const handleEditarClick = () => {
+    if (!podeEditar()) {
+      alert("Você não pode editar esta ordem de serviço pois não é o técnico responsável.");
+      return;
+    }
+    setIsEditing(true);
+  };
+
+  const handleSalvarClick = () => {
+    if (!podeEditar()) {
+      alert("Você não pode salvar alterações nesta ordem de serviço pois não é o técnico responsável.");
+      return;
+    }
+    axios
+      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
+        solucaoOs: solucaoEditada,
+        status: "Diagnostico feito",
+      })
+      .then((res) => {
+        setServicoData(res.data);
+        setIsEditing(false);
+      })
+      .catch((err) => {
+        alert("Erro ao salvar as alterações");
+        console.error(err);
+      });
+  };
+
+  const handleCancelarClick = () => {
+    setSolucaoEditada(servicoData.solucaoOs);
+    setIsEditing(false);
+  };
+
+  const handleAdicionarPecasClick = () => {
+    if (!podeEditar()) {
+      alert("Você não pode adicionar peças nesta ordem de serviço pois não é o técnico responsável.");
+      return;
+    }
+    setShowAdicionarPecas(true);
+  };
+
+  const handleSolicitarPecasClick = () => {
+    if (!podeEditar()) {
+      alert("Você não pode solicitar peças nesta ordem de serviço pois não é o técnico responsável.");
+      return;
+    }
+    setShowSolicitarPecas(true);
+  };
+
+  const handleConcluirClick = () => {
+    if (!podeEditar()) {
+      alert("Você não pode concluir esta ordem de serviço pois não é o técnico responsável.");
+      return;
+    }
+    axios
+      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
+        ...servicoData,
+        dataFinalizacao: new Date().toISOString().split("T")[0],
+        status: "concluido",
+      })
+      .then(() => {
+        navigate("/ordens-servico");
+      })
+      .catch((err) => {
+        console.error("Erro ao concluir manutenção:", err);
+        alert("Erro ao concluir a manutenção");
+      });
+  };
+
   const handleAdicionarPecas = (novasPecas) => {
-    // Atualizar o estado local com as novas peças
     setPecas([...pecas, ...novasPecas]);
-    
-    // Aqui você faria a chamada para salvar no backend
-    // axios.post(`http://localhost:8080/ordem-servicos/${id}/pecas`, novasPecas)
-    //   .then(() => {
-    //     // Recarregar dados do servidor se necessário
-    //   });
   };
 
   if (loading) {
@@ -94,14 +168,8 @@ export default function DiagnosticoServico() {
     return (
       <div className="layout-principal">
         <BarraLateral />
-        <div
-          className="container-diagnostico"
-          style={{ backgroundColor: "transparent" }}
-        >
-          <div
-            className="conteudo-bloco"
-            style={{ backgroundColor: "transparent" }}
-          >
+        <div className="container-diagnostico" style={{ backgroundColor: "transparent" }}>
+          <div className="conteudo-bloco" style={{ backgroundColor: "transparent" }}>
             <h1
               style={{
                 color: "#008000",
@@ -122,12 +190,8 @@ export default function DiagnosticoServico() {
     <div className="layout-principal">
       <BarraLateral />
       <div className="container-diagnostico">
-
         {showSolicitarPecas && (
-          <SolicitarPecas 
-            onClose={() => setShowSolicitarPecas(false)} 
-            ordemId={id}
-          />
+          <SolicitarPecas onClose={() => setShowSolicitarPecas(false)} ordemId={id} />
         )}
         {showManutencaoConcluida && (
           <ManutencaoConcluida onClose={() => setShowManutencaoConcluida(false)} />
@@ -197,38 +261,15 @@ export default function DiagnosticoServico() {
                 ></textarea>
                 <div className="botoes-diagnostico">
                   {!isEditing ? (
-                    <button className="btn-editar" onClick={() => setIsEditing(true)}>
+                    <button className="btn-editar" onClick={handleEditarClick}>
                       Editar
                     </button>
                   ) : (
                     <>
-                      <button
-                        className="btn-salvar"
-                        onClick={() => {
-                          axios
-                            .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
-                              solucaoOs: solucaoEditada,
-                              status: "Diagnostico feito"
-                            })
-                            .then((res) => {
-                              setServicoData(res.data);
-                              setIsEditing(false);
-                            })
-                            .catch((err) => {
-                              alert("Erro ao salvar as alterações");
-                              console.error(err);
-                            });
-                        }}
-                      >
+                      <button className="btn-salvar" onClick={handleSalvarClick}>
                         Salvar
                       </button>
-                      <button
-                        className="btn-editar"
-                        onClick={() => {
-                          setSolucaoEditada(servicoData.solucaoOs);
-                          setIsEditing(false);
-                        }}
-                      >
+                      <button className="btn-editar" onClick={handleCancelarClick}>
                         Cancelar
                       </button>
                     </>
@@ -265,10 +306,7 @@ export default function DiagnosticoServico() {
                   className="botoes-pecas"
                   style={{ display: "flex", gap: "10px", justifyContent: "center" }}
                 >
-                  <button
-                    className="btn-adicionar"
-                    onClick={() => setShowAdicionarPecas(true)}
-                    style={{
+                  <button className="btn-adicionar" onClick={handleAdicionarPecasClick} style={{
                       background: "#f1c40f",
                       color: "#fff",
                       fontWeight: "bold",
@@ -277,14 +315,10 @@ export default function DiagnosticoServico() {
                       border: "none",
                       cursor: "pointer",
                       transition: "background 0.3s",
-                    }}
-                  >
+                    }}>
                     Adicionar peças
                   </button>
-                  <button
-                    className="btn-solicitar"
-                    onClick={() => setShowSolicitarPecas(true)}
-                    style={{
+                  <button className="btn-solicitar" onClick={handleSolicitarPecasClick} style={{
                       background: "#A21919",
                       color: "#fff",
                       fontWeight: "bold",
@@ -293,31 +327,13 @@ export default function DiagnosticoServico() {
                       border: "none",
                       cursor: "pointer",
                       transition: "background 0.3s",
-                    }}
-                  >
+                    }}>
                     Solicitar peças
                   </button>
                 </div>
               </div>
               <div className="botao-concluir-container">
-                <button
-                  className="btn-concluir"
-                  onClick={() => {
-                    axios
-                      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
-                        ...servicoData,
-                        dataFinalizacao: new Date().toISOString().split("T")[0],
-                        status: "concluido",
-                      })
-                      .then(() => {
-                        navigate("/ordens-servico");
-                      })
-                      .catch((err) => {
-                        console.error("Erro ao concluir manutenção:", err);
-                        alert("Erro ao concluir a manutenção");
-                      });
-                  }}
-                >
+                <button className="btn-concluir" onClick={handleConcluirClick}>
                   Concluir Manutenção
                 </button>
               </div>
