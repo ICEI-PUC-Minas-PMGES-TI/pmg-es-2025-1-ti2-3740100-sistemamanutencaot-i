@@ -18,7 +18,7 @@ const BarraLateral = () => {
 
   const menuItemsTecnico = [
     { icon: Home, text: "Home", path: "/home-tecnico" },
-    { icon: User, text: "Usuários", path: "/usuarios" },
+    { icon: User, text: "Clientes", path: "/usuarios" },
     { icon: Info, text: "Informações Perfil", path: "/configuracoes" },
     { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
   ];
@@ -26,7 +26,7 @@ const BarraLateral = () => {
   const menuItemsGerente = [
     { icon: Home, text: "Home", path: "/home-gerente" },
     { icon: Box, text: "Estoque", path: "/estoque" },
-    { icon: User, text: "Clientes", path: "/usuarios" },
+    { icon: User, text: "Usuários", path: "/usuarios" },
     { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
     { icon: Loja, text: "Informações Loja", path: "/configuracoes" },
   ];
