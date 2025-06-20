@@ -9,6 +9,7 @@ const AddItemForm = ({ onClose, onAddItem }) => {
     modelo: "",
     segmento: "computador",
     quantidade: "",
+    preco: "" // Novo campo para o preço
   });
 
   const handleChange = (e) => {
@@ -69,6 +70,23 @@ const AddItemForm = ({ onClose, onAddItem }) => {
           placeholder="Adicione o modelo do produto..."
           className="form-input"
           value={formData.modelo}
+          onChange={handleChange}
+          required
+        />
+
+        {/* Novo campo: Preço */}
+        <label htmlFor="preco" className="input-label">
+          <b>Preço (R$):</b>
+        </label>
+        <input
+          id="preco"
+          name="preco"
+          type="number"
+          step="0.01"
+          min="0"
+          placeholder="Adicione o preço do produto..."
+          className="form-input"
+          value={formData.preco}
           onChange={handleChange}
           required
         />
