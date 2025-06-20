@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../assets/css/DiagnosticoServico.css";
 import BarraLateral from "../components/BarraLateral.jsx";
@@ -9,6 +9,7 @@ import ManutencaoConcluida from "../components/DetalhesServico/ManutencaoConclui
 import AdicionarPecas from "../components/DetalhesServico/AdicionarPecas.jsx";
 
 export default function DiagnosticoServico() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const [solucaoEditada, setSolucaoEditada] = useState("");
@@ -83,6 +84,34 @@ export default function DiagnosticoServico() {
         <div className="container-diagnostico">
           <div className="conteudo-bloco">
             <p>Ordem de serviço não encontrada.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (servicoData.status === "concluido") {
+    return (
+      <div className="layout-principal">
+        <BarraLateral />
+        <div
+          className="container-diagnostico"
+          style={{ backgroundColor: "transparent" }}
+        >
+          <div
+            className="conteudo-bloco"
+            style={{ backgroundColor: "transparent" }}
+          >
+            <h1
+              style={{
+                color: "#008000",
+                fontSize: "3rem",
+                textAlign: "center",
+                marginTop: "350px",
+              }}
+            >
+              Esse reparo já foi concluído.
+            </h1>
           </div>
         </div>
       </div>
@@ -273,7 +302,21 @@ export default function DiagnosticoServico() {
               <div className="botao-concluir-container">
                 <button
                   className="btn-concluir"
-                  onClick={() => setShowManutencaoConcluida(true)}
+                  onClick={() => {
+                    axios
+                      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
+                        ...servicoData,
+                        status: "concluido",
+                        dataFinalizacao: new Date().toISOString().split("T")[0]
+                      })
+                      .then(() => {
+                        navigate("/ordens-servico");
+                      })
+                      .catch((err) => {
+                        console.error("Erro ao concluir manutenção:", err);
+                        alert("Erro ao concluir a manutenção");
+                      });
+                  }}
                 >
                   Concluir Manutenção
                 </button>
