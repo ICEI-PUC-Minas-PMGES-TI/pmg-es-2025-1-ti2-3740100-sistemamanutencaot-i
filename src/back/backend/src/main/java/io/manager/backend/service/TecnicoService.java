@@ -66,4 +66,25 @@ public class TecnicoService {
             throw new EntityNotFoundException("Técnico não encontrado.");
         }
     }
+
+    public void atualizarSenha(Integer id, String senhaAntiga, String senhaNova) {
+        Tecnico tecnico = buscarPorId(id);
+        String senhaBanco = tecnico.getSenha() != null ? tecnico.getSenha().trim() : "";
+        String senhaRecebida = senhaAntiga != null ? senhaAntiga.trim() : "";
+        System.out.println("DEBUG TROCA SENHA TECNICO | Senha antiga digitada: '" + senhaRecebida + "' | Senha no banco: '" + senhaBanco + "'");
+        // Se não houver senha cadastrada, permite trocar sem exigir senha antiga
+        if (senhaBanco.isEmpty()) {
+            tecnico.setSenha(senhaNova);
+            tecnicoRepository.save(tecnico);
+            return;
+        }
+        // Se a senha digitada for igual à do banco (ignorando case e espaços)
+        if (senhaBanco.equalsIgnoreCase(senhaRecebida)) {
+            tecnico.setSenha(senhaNova);
+            tecnicoRepository.save(tecnico);
+            return;
+        }
+        throw new RuntimeException("Senha atual incorreta");
+    }
 }
+
