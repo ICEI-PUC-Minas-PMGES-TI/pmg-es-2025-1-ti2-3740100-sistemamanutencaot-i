@@ -4,6 +4,7 @@ import styles from './LoginPage.module.css';
 import ImagemTecnico from "../../assets/images/logintecnico.png";
 import ImagemGerente from "../../assets/images/logingerente.png";
 import Logo from "./ManagerIO.png";
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -19,13 +20,11 @@ const LoginPage = () => {
     };
 
     const handleRegisterClick = () => {
-        if (isTechnician) {
-            //navigate("/cadastro-tecnico");
-        } else {
+        if (!isTechnician) {
             navigate("/cadastro-loja");
         }
     };
-    
+
     const [formData, setFormData] = useState({
         email: "",
         senha: "",
@@ -42,7 +41,6 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Determina o endpoint com base no tipo de usuário
         const endpoint = isTechnician 
             ? "http://localhost:8080/tecnicos/login-tecnico" 
             : "http://localhost:8080/lojas/login-loja";
@@ -58,9 +56,14 @@ const LoginPage = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                alert("Login realizado com sucesso!");
-                
-                // Armazena os dados de acordo com o tipo de usuário
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login realizado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
                 if (isTechnician) {
                     localStorage.setItem("tipoUsuario", "tecnico");
                     localStorage.setItem("tecnico", JSON.stringify(userData));
@@ -70,22 +73,29 @@ const LoginPage = () => {
                     localStorage.setItem("tipoUsuario", "gerente");
                     localStorage.setItem("loja", JSON.stringify(userData));
                     localStorage.setItem("id_loja", userData.id);
-                    localStorage.setItem("id_gerente", userData.id); // Adicionado para compatibilidade com Configuracoes.jsx
+                    localStorage.setItem("id_gerente", userData.id); // compatível com Configuracoes.jsx
                     navigate("/home-gerente");
                 }
             } else {
                 const msg = await response.text();
-                alert("Erro ao fazer login: " + msg);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao fazer login',
+                    text: msg
+                });
             }
         } catch (error) {
             console.error("Erro ao realizar login:", error);
-            alert("Erro de rede ou no servidor.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro de conexão',
+                text: 'Erro de rede ou no servidor.'
+            });
         }
     };
 
     return (
         <div className={styles['login-container']}>
-            {/* Círculos com animação */}
             <div 
                 className={`${styles.circle} ${styles['circle-top']}`} 
                 style={{ 
@@ -125,9 +135,7 @@ const LoginPage = () => {
                         </button>
                     </div>
                     
-                    {/* Container com animação de troca */}
                     <div className={`${styles['form-container']} ${!isTechnician ? styles['inverted'] : ''}`}>
-                        {/* Formulário de login com animação */}
                         <form 
                             autoComplete="off" 
                             className={`${styles['login-form']} ${isSwitching ? styles.switching : ''}`} 
@@ -184,10 +192,8 @@ const LoginPage = () => {
                                     </strong>
                                 </div>
                             )}
-
                         </form>
                         
-                        {/* Container da imagem com animação e cor de fundo condicional */}
                         <div className={`${styles['image-container']} ${!isTechnician ? styles['manager-mode'] : ''} ${isSwitching ? styles.switching : ''}`}>
                             <img 
                                 src={isTechnician ? ImagemTecnico : ImagemGerente} 
