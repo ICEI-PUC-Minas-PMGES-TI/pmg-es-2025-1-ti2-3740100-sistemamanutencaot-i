@@ -23,6 +23,7 @@ const EstoqueTecnico = () => {
           modelo: p.modelo || "Não informado",
           estoque: p.estoque || 0,   // <- Aqui troquei para estoque
           segmento: p.segmento || "Não informado",
+          preco: p.preco || 0,
         }));
         setItems(pecas);
       })
