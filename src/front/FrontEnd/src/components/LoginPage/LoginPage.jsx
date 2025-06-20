@@ -174,7 +174,7 @@ const LoginPage = () => {
                                 </div>
                             </div>
                             
-                            <a className={styles['forgot-password']} href="#">Esqueceu a senha?</a>
+                            <a className={styles['forgot-password']} href="ForgotPasswordPage.jsx">Esqueceu a senha?</a>
                             
                             <button className={styles['submit-button']} type="submit">
                                 Entrar

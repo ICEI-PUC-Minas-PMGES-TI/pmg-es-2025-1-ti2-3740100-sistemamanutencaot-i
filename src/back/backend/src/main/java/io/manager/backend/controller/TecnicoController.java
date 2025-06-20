@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.manager.backend.dto.LoginRequest;
+import io.manager.backend.dto.SenhaUpdateRequest;
 
 import java.util.List;
 
@@ -97,6 +98,19 @@ public class TecnicoController {
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         tecnicoService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/senha")
+    public ResponseEntity<?> atualizarSenha(@PathVariable Integer id, @RequestBody SenhaUpdateRequest request) {
+        try {
+            if (request.getSenhaAntiga() == null || request.getSenhaNova() == null) {
+                return ResponseEntity.badRequest().body("Campos obrigatórios não informados");
+            }
+            tecnicoService.atualizarSenha(id, request.getSenhaAntiga(), request.getSenhaNova());
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
     }
 
 }
