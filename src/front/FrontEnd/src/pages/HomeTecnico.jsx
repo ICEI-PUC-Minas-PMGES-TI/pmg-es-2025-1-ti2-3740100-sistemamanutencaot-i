@@ -6,15 +6,17 @@ import axios from "axios";
 
 import FiltroIcone from "../assets/images/Filtro1.png";
 import SearchIcone from "../assets/images/search.png";
+import NoRepairImg from "../assets/images/NoRepair.png";
 
-const HomeTecnico = ()=> {
+const HomeTecnico = () => {
   const [nomeTecnico, setNomeTecnico] = useState("");
   const [reparos, setReparos] = useState([]);
+  
   useEffect(() => {
     const tecnicoStr = localStorage.getItem("tecnico");
     if (tecnicoStr) {
       const tecnicoObj = JSON.parse(tecnicoStr);
-      setNomeTecnico(tecnicoObj.nome); // Aqui pega o nome do técnico
+      setNomeTecnico(tecnicoObj.nome);
     }
   }, []);
 
@@ -28,7 +30,6 @@ const HomeTecnico = ()=> {
           const tipoComputador = reparo.computador?.tipo || "Desconhecido";
           return { ...reparo, nome: nomeCliente, tipo: tipoComputador };
         });
-        console.log("Reparos com nome:", reparosComNome);
         setReparos(reparosComNome);
       })
       .catch(error => {
@@ -36,11 +37,10 @@ const HomeTecnico = ()=> {
       });
   };
 
-
   useEffect(() => {
-      buscarReparosTecnico();
-    }, []);
-  
+    buscarReparosTecnico();
+  }, []);
+
   return (
     <div className="container">
       <BarraLateral />
@@ -51,11 +51,7 @@ const HomeTecnico = ()=> {
         </header>
 
         <div className="busca-wrapper">
-          <form
-            className="busca-form"
-            role="search"
-            aria-label="Buscar reparos"
-          >
+          <form className="busca-form" role="search" aria-label="Buscar reparos">
             <input
               type="search"
               placeholder="Buscar..."
@@ -74,6 +70,7 @@ const HomeTecnico = ()=> {
             </button>
           </form>
         </div>
+        
         <h2 className="titulo-reparos">Seus Reparos</h2>
         <div className="scroll-cards">
           <section className="grid-cards" aria-label="Lista de reparos">
@@ -82,7 +79,14 @@ const HomeTecnico = ()=> {
                 <ReparoCard key={index} index={index} {...reparo} />
               ))
             ) : (
-              <p className="mensagem-sem-reparos">Você não possui nenhum reparo no momento.</p>
+              <div className="mensagem-sem-reparos">
+                <img 
+                  src={NoRepairImg} 
+                  alt="Nenhum reparo encontrado" 
+                  className="imagem-sem-reparos"
+                />
+                <p className="texto-sem-reparos">Você não possui reparos no momento</p>
+              </div>
             )}
           </section>
         </div>
