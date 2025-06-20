@@ -1,17 +1,26 @@
 package io.manager.backend.service;
 
+import io.manager.backend.model.OrdemServico;
 import io.manager.backend.model.Tecnico;
 import io.manager.backend.repository.TecnicoRepository;
+import io.manager.backend.repository.OrdemServicoRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TecnicoService {
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
+
+    @Autowired
+    private OrdemServicoRepository ordemServicoRepository;
 
     public List<Tecnico> listarTodos() {
         return tecnicoRepository.findAll();
@@ -39,8 +48,22 @@ public class TecnicoService {
         return tecnicoRepository.save(existente);
     }
 
+    @Transactional
     public void deletar(Integer id) {
-        Tecnico existente = buscarPorId(id);
-        tecnicoRepository.delete(existente);
+        Optional<Tecnico> tecnicoOptional = tecnicoRepository.findById(id);
+        if (tecnicoOptional.isPresent()) {
+            Tecnico tecnico = tecnicoOptional.get();
+
+            // Setar tecnico como null nas ordens dele
+            List<OrdemServico> ordens = ordemServicoRepository.findByTecnicoId(id);
+            for (OrdemServico os : ordens) {
+                os.setTecnico(null);
+            }
+            ordemServicoRepository.saveAll(ordens);
+
+            tecnicoRepository.delete(tecnico);
+        } else {
+            throw new EntityNotFoundException("Técnico não encontrado.");
+        }
     }
 }
