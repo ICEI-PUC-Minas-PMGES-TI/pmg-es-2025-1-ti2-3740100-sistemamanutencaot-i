@@ -53,6 +53,11 @@ public class PecaUtilizadaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/ordem/{ordemId}")
+    public ResponseEntity<List<PecaUtilizada>> listarPorOrdem(@PathVariable int ordemId) {
+        return ResponseEntity.ok(service.listarPorOrdem(ordemId));
+    }
+
     @PostMapping
     public ResponseEntity<?> salvarPecaUtilizada(@RequestBody PecaUtilizadaDTO dto) {
         OrdemServico ordem = osService.buscarPorId(dto.getOrdemId())

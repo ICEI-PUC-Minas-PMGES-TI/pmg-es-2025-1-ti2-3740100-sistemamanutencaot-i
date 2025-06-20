@@ -12,7 +12,7 @@ public class PecaUtilizada {
     private OrdemServico ordemServico;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "peca_id", nullable = false)
     private Peca peca;
 

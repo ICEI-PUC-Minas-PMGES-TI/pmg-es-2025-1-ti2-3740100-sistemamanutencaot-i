@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import "./AdicionarPecas.css";
 
 const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
@@ -9,24 +10,30 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
 
   const adicionarPeca = () => {
     if (!codigoPeca.trim()) {
-      setErro("Digite o código da peça.");
+      setErro("Selecione o código da peça.");
       return;
     }
 
-    // Verifica se a peça já foi adicionada
+    const pecaSelecionada = pecasDisponiveis.find(p => p.codigo === codigoPeca);
+    if (!pecaSelecionada) {
+      setErro("Peça não encontrada.");
+      return;
+    }
+
     if (pecasSelecionadas.some(p => p.codigo === codigoPeca)) {
       setErro("Esta peça já foi adicionada.");
       return;
     }
 
     const novaPeca = {
-      id: Math.random().toString(36).substr(2, 9), // ID temporário
-      codigo: codigoPeca,
+      id: Math.random().toString(36).substr(2, 9), // ID temporário só para frontend
+      peca_id: pecaSelecionada.id,
+      codigo: pecaSelecionada.codigo,
+      preco_unitario: pecaSelecionada.preco,
       quantidade: quantidade
     };
 
     setPecasSelecionadas([...pecasSelecionadas, novaPeca]);
-    // Resetar campos
     setCodigoPeca("");
     setQuantidade(1);
     setErro(null);
@@ -36,16 +43,44 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
     setPecasSelecionadas(pecasSelecionadas.filter(p => p.id !== id));
   };
 
-  const salvarPecas = () => {
+  const salvarPecas = async () => {
     if (pecasSelecionadas.length === 0) {
       setErro("Adicione pelo menos uma peça.");
       return;
     }
 
-    // Fechar o modal e retornar à tela principal
-    onPeçasAdicionadas(pecasSelecionadas);
-    onClose();
+    try {
+      //Loop para adicionar as peças
+      for (const peca of pecasSelecionadas) {
+        await axios.post("http://localhost:8080/pecas-utilizadas", {
+          ordemId: ordemId,
+          pecaId: peca.peca_id,
+          precoUnitario: peca.preco_unitario,
+          quantidade: peca.quantidade
+        });
+      }
+
+      onPeçasAdicionadas(pecasSelecionadas);
+      onClose();
+    } catch (err) {
+      setErro("Erro ao salvar peças.");
+      console.error(err);
+    }
   };
+
+
+  const [pecasDisponiveis, setPecasDisponiveis] = useState([]);
+
+useEffect(() => {
+  axios.get("http://localhost:8080/pecas")
+    .then(response => {
+      setPecasDisponiveis(response.data);
+    })
+    .catch(error => {
+      console.error("Erro ao buscar peças:", error);
+    });
+}, []);
+
 
   return (
     <div className="modal-adicionar">
@@ -55,13 +90,26 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
         {erro && <p className="erro">{erro}</p>}
         
         <div className="form-row">
-          <input
-            type="text"
-            placeholder="Código da peça (ex: MEMRIARAM-CORSAIR-DDR42666HZ)"
+          <select
             value={codigoPeca}
             onChange={(e) => setCodigoPeca(e.target.value)}
-            aria-label="Código da peça"
-          />
+            aria-label="Selecionar peça"
+          >
+            {pecasDisponiveis.filter(p => p.estoque > 0).length === 0 ? (
+              <option value="">Nenhuma peça disponível no estoque</option>
+            ) : (
+              <>
+                <option value="">Selecione uma peça</option>
+                {pecasDisponiveis
+                  .filter(p => p.estoque > 0)
+                  .map(peca => (
+                    <option key={peca.id} value={peca.codigo}>
+                      {peca.codigo} - {peca.nome} (Estoque: {peca.estoque})
+                    </option>
+                  ))}
+              </>
+            )}
+          </select>
           <input
             type="number"
             min="1"
