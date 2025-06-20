@@ -8,7 +8,8 @@ import CadastroGerente from "./pages/CadastroLoginMaster.jsx";
 import TelaLogin from "./components/LoginPage/LoginPage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import Config from "./pages/Configuracoes.jsx";
-import NovaOrdemServico from "./pages/OrdemServico.jsx";
+import OrdemServico from "./pages/OrdemServico.jsx";
+import NovaOrdemServico from "./components/NovaOrdemServico/NovaOrdemServico.jsx";
 import RequisicaoPecas from "./pages/RequesicaoPeca.jsx";
 import Usuarios from "./pages/Usuarios.jsx";
 import Estoque from "./pages/Estoque.jsx"
@@ -50,6 +51,8 @@ function App() {
         <Route path="/landing-page" element={<LandingPage />} />
 
         <Route path="/esqueceu-senha" element={<EsqueceuSenha />} />
+
+        <Route path="/ordens-servico" element={<OrdemServico />} />
 
         <Route path="/nova-ordem-servico" element={<NovaOrdemServico />} />
 

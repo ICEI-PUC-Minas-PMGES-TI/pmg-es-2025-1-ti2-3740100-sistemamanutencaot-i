@@ -19,7 +19,7 @@ const BarraLateral = () => {
   const menuItemsTecnico = [
     { icon: User, text: "Usuários", path: "/usuarios" },
     { icon: Configuracoes, text: "Configurações", path: "/configuracoes" },
-    { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
+    { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
     { icon: Chave, text: "Reparos", path: "/reparos" },
     { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
   ];
@@ -28,7 +28,7 @@ const BarraLateral = () => {
     { icon: Box, text: "Estoque", path: "/estoque" },
     { icon: User, text: "Usuários", path: "/usuarios" },
     { icon: Configuracoes, text: "Configurações", path: "/configuracoes" },
-    { icon: Folder, text: "Ordem de Serviço", path: "/nova-ordem-servico" },
+    { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
     { icon: Chave, text: "Reparos", path: "/reparos" },
     { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
   ];
