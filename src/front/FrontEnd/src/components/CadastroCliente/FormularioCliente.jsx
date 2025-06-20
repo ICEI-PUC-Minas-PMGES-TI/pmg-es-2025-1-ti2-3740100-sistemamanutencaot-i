@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./FormularioCliente.module.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const FormularioCliente = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const FormularioCliente = () => {
   });
 
   const [tipoDocumento, setTipoDocumento] = useState("CPF");
-  const [mensagem, setMensagem] = useState("");
 
   const location = useLocation();
   const { idLoja } = location.state || {};
@@ -19,51 +19,126 @@ const FormularioCliente = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    // Permitir apenas números nos campos de documento e telefone
+
     let valorFinal = value;
-    
-    if (name === "documento" || name === "telefone") {
-      // Remover todos os caracteres não numéricos
-      valorFinal = value.replace(/\D/g, '');
-      
-      // Limitar o tamanho máximo
+
+    if (name === "nomeCliente") {
+      // Permitir apenas letras (maiúsculas, minúsculas) e espaços
+      valorFinal = valorFinal.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+    } else if (name === "documento" || name === "telefone") {
+      valorFinal = value.replace(/\D/g, ""); // Remove tudo que não for número
+
       if (name === "documento") {
         valorFinal = valorFinal.slice(0, tipoDocumento === "CPF" ? 11 : 14);
       } else if (name === "telefone") {
-        valorFinal = valorFinal.slice(0, 11); // Limitar a 11 dígitos
+        valorFinal = valorFinal.slice(0, 11);
       }
     }
-    
+
     setFormData((prev) => ({
       ...prev,
       [name]: valorFinal,
     }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { nomeCliente, documento, telefone } = formData;
+
+    // Validação de nome: pelo menos 3 letras e só letras/ espaços
+    if (!nomeCliente || nomeCliente.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "Nome inválido",
+        text: "O nome deve ter pelo menos 3 caracteres.",
+      });
+      return;
+    }
+
+    if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(nomeCliente)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Nome inválido",
+        text: "O nome deve conter apenas letras e espaços.",
+      });
+      return;
+    }
+
+    // Validação de nome
+    if (!nomeCliente || nomeCliente.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "Nome inválido",
+        text: "O nome deve ter pelo menos 3 caracteres.",
+      });
+      return;
+    }
+
+    // Validação de CPF ou CNPJ
+    if (tipoDocumento === "CPF" && documento.length !== 11) {
+      Swal.fire({
+        icon: "warning",
+        title: "CPF inválido",
+        text: "O CPF deve conter exatamente 11 números.",
+      });
+      return;
+    }
+
+    if (tipoDocumento === "CNPJ" && documento.length !== 14) {
+      Swal.fire({
+        icon: "warning",
+        title: "CNPJ inválido",
+        text: "O CNPJ deve conter exatamente 14 números.",
+      });
+      return;
+    }
+
+    // Validação de telefone
+    if (telefone.length !== 11) {
+      Swal.fire({
+        icon: "warning",
+        title: "Telefone inválido",
+        text: "O telefone deve conter exatamente 11 números (DDD + número).",
+      });
+      return;
+    }
+
+    // Enviar ao backend se estiver tudo válido
     try {
       const novoCliente = {
-        nome: formData.nomeCliente,
+        nome: nomeCliente,
         tipoPessoa: tipoDocumento === "CPF" ? "PF" : "PJ",
-        [tipoDocumento.toLowerCase()]: formData.documento,
-        telefone: formData.telefone,
+        [tipoDocumento.toLowerCase()]: documento,
+        telefone: telefone,
       };
 
       await axios.post("http://localhost:8080/clientes", novoCliente);
-      setMensagem("Cliente cadastrado com sucesso!");
+
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: "Cliente cadastrado com sucesso.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+
       setFormData({ nomeCliente: "", documento: "", telefone: "" });
 
       setTimeout(() => {
-        navigate(-1); // Volta para a tela anterior
+        navigate(-1);
       }, 2000);
     } catch (error) {
       console.error("Erro ao cadastrar cliente:", error);
-      setMensagem(`Erro: ${error.response?.data?.message || error.message}`);
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: error.response?.data?.message || error.message,
+      });
     }
   };
+
 
   return (
     <div className={styles.containerFormulario}>
@@ -131,7 +206,8 @@ const FormularioCliente = () => {
             placeholder={`Digite apenas números do ${tipoDocumento}`}
             className={styles.entradaFormulario}
             required
-            inputMode="numeric" // Mostrar teclado numérico em dispositivos móveis
+            inputMode="numeric"
+            maxLength={tipoDocumento === "CPF" ? 11 : 14}
           />
           <p className={styles.dicaCampo}>
             Máximo de {tipoDocumento === "CPF" ? "11" : "14"} dígitos
@@ -148,7 +224,8 @@ const FormularioCliente = () => {
             placeholder="Digite apenas números com DDD"
             className={styles.entradaFormulario}
             required
-            inputMode="numeric" // Mostrar teclado numérico em dispositivos móveis
+            inputMode="numeric"
+            maxLength={11}
           />
           <p className={styles.dicaCampo}>Máximo de 11 dígitos (DDD + número)</p>
         </div>
@@ -156,10 +233,6 @@ const FormularioCliente = () => {
         <button type="submit" className={styles.botaoFormulario}>
           Cadastrar Cliente
         </button>
-
-        {mensagem && (
-          <p style={{ marginTop: "1rem", fontWeight: "bold" }}>{mensagem}</p>
-        )}
       </form>
     </div>
   );
