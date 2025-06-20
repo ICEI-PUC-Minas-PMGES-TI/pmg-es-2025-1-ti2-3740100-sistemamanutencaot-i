@@ -8,29 +8,27 @@ import Logo from "../assets/images/Logo simples.png";
 import Box from "../assets/images/Caixa.png";
 import User from "../assets/images/User.png";
 import Folder from "../assets/images/Folder plus.png";
-import Chave from "../assets/images/Chave.png";
+import Home from "../assets/images/home.png";
 import Saida from "../assets/images/Log out.png";
-import Configuracoes from "../assets/images/config.png";
-import Historico from "../assets/images/historico.png";
+import Loja from "../assets/images/loja.png";
+import Info from "../assets/images/info.png";
 
 const BarraLateral = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
 
   const menuItemsTecnico = [
+    { icon: Home, text: "Home", path: "/home-tecnico" },
     { icon: User, text: "Usuários", path: "/usuarios" },
-    { icon: Configuracoes, text: "Configurações", path: "/configuracoes" },
+    { icon: Info, text: "Informações Perfil", path: "/configuracoes" },
     { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
-    { icon: Chave, text: "Reparos", path: "/reparos" },
-    { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
   ];
 
   const menuItemsGerente = [
+    { icon: Home, text: "Home", path: "/home-gerente" },
     { icon: Box, text: "Estoque", path: "/estoque" },
-    { icon: User, text: "Usuários", path: "/usuarios" },
-    { icon: Configuracoes, text: "Configurações", path: "/configuracoes" },
+    { icon: User, text: "Clientes", path: "/usuarios" },
     { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
-    { icon: Chave, text: "Reparos", path: "/reparos" },
-    { icon: Historico, text: "Historico de Reparos", path: "/reparos-semana" },
+    { icon: Loja, text: "Informações Loja", path: "/configuracoes" },
   ];
 
   const menuItems = tipoUsuario === "tecnico" ? menuItemsTecnico : menuItemsGerente;
