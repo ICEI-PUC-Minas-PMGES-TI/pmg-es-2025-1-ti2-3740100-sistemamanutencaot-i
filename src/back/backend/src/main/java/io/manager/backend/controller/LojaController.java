@@ -1,6 +1,8 @@
 package io.manager.backend.controller;
 
+import io.manager.backend.dto.EmailUpdateRequest;
 import io.manager.backend.dto.LoginRequest;
+import io.manager.backend.dto.SenhaUpdateRequest;
 import io.manager.backend.model.Loja;
 import io.manager.backend.service.LojaService;
 import org.springframework.http.HttpStatus;
@@ -73,6 +75,29 @@ public class LojaController {
             return ResponseEntity.ok(loja);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    @PutMapping("/{id}/email")
+    public ResponseEntity<?> atualizarEmail(@PathVariable Integer id, @RequestBody EmailUpdateRequest request) {
+        try {
+            Loja lojaAtualizada = lojaService.atualizarEmail(id, request.getNovoValor(), request.getSenhaAtual());
+            return ResponseEntity.ok(lojaAtualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}/senha")
+    public ResponseEntity<?> atualizarSenha(@PathVariable Integer id, @RequestBody SenhaUpdateRequest request) {
+        try {
+            if (request.getSenhaAntiga() == null || request.getSenhaNova() == null) {
+                return ResponseEntity.badRequest().body("Campos obrigatórios não informados");
+            }
+            lojaService.atualizarSenha(id, request.getSenhaAntiga(), request.getSenhaNova());
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 }

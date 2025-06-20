@@ -13,7 +13,9 @@ public class Loja extends PessoaJuridica{
     private String telefone;
 
     private String email;
-    private String senha;
+
+    @Column(nullable = false)
+    private String senha = "";
 
     // Getters e Setters
 
@@ -36,10 +38,10 @@ public class Loja extends PessoaJuridica{
         this.email = email;
     }
     public String getSenha() {
-        return senha;
+        return senha == null ? "" : senha;
     }
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = senha == null ? "" : senha;
     }
 
     

@@ -64,4 +64,39 @@ public class LojaService {
     public void deletar(Integer id) {
         lojaRepository.deleteById(id);
     }
+
+    public Loja atualizarEmail(Integer id, String novoEmail, String senhaAtual) {
+        Loja loja = lojaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Loja não encontrada"));
+        // Compara ignorando espaços e case sensitive
+        String senhaBanco = loja.getSenha() != null ? loja.getSenha().trim() : "";
+        String senhaRecebida = senhaAtual != null ? senhaAtual.trim() : "";
+        System.out.println("Senha digitada: '" + senhaRecebida + "' | Senha no banco: '" + senhaBanco + "'");
+        if (!senhaBanco.equalsIgnoreCase(senhaRecebida)) {
+            throw new RuntimeException("Senha incorreta");
+        }
+        loja.setEmail(novoEmail);
+        return lojaRepository.save(loja);
+    }
+
+    public void atualizarSenha(Integer id, String senhaAntiga, String senhaNova) {
+        Loja loja = lojaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Loja não encontrada"));
+        String senhaBanco = loja.getSenha() != null ? loja.getSenha().trim() : "";
+        String senhaRecebida = senhaAntiga != null ? senhaAntiga.trim() : "";
+        System.out.println("DEBUG TROCA SENHA | Senha antiga digitada: '" + senhaRecebida + "' | Senha no banco: '" + senhaBanco + "'");
+        // Se não houver senha cadastrada, permite trocar sem exigir senha antiga
+        if (senhaBanco.isEmpty()) {
+            loja.setSenha(senhaNova);
+            lojaRepository.save(loja);
+            return;
+        }
+        // Se a senha digitada for igual à do banco (ignorando case e espaços)
+        if (senhaBanco.equalsIgnoreCase(senhaRecebida)) {
+            loja.setSenha(senhaNova);
+            lojaRepository.save(loja);
+            return;
+        }
+        throw new RuntimeException("Senha atual incorreta");
+    }
 }

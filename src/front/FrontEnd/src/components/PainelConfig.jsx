@@ -97,17 +97,32 @@ function PainelConfig() {
 
 
   const atualizarSenha = (senhaAntiga, senhaNova) => {
-  const id = localStorage.getItem("id_tecnico") || localStorage.getItem("id_loja");
+    let id;
+    if (tipoUsuario === "tecnico") {
+      id = localStorage.getItem("id_tecnico");
+    } else if (tipoUsuario === "gerente") {
+      id = localStorage.getItem("id_gerente"); // Corrigido para garantir uso do id correto
+    } else {
+      id = localStorage.getItem("id_loja");
+    }
+    console.log("DEBUG ALTERAR SENHA | tipoUsuario:", tipoUsuario, "| id:", id, "| senhaAntiga:", senhaAntiga, "| senhaNova:", senhaNova);
     axios
       .put(`http://localhost:8080/${tipoUsuario === "tecnico" ? "tecnicos" : "lojas"}/${id}/senha`, {
         senhaAntiga,
-        senhaNova,
+        senhaNova: senhaNova, // Corrigido para o nome esperado pelo backend
       })
       .then(() => {
         alert("Senha alterada com sucesso!");
         setShowAlert(false);
       })
-      .catch(() => alert("Erro ao alterar senha. Verifique a senha atual."));
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          alert("Erro ao alterar senha: " + error.response.data);
+        } else {
+          alert("Erro ao alterar senha. Verifique a senha atual.");
+        }
+        console.error(error);
+      });
   };
 
   const renderAlert = () => {
