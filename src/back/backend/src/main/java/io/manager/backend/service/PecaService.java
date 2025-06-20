@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,9 +71,11 @@ public class PecaService {
     }
 
     private String normalizar(String valor) {
-        return valor.trim()
-                    .toLowerCase()
-                    .replaceAll("[^a-z0-9]", "");
+        String semAcento = Normalizer.normalize(valor, Normalizer.Form.NFD)
+                                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        return semAcento.trim()
+                        .toLowerCase()
+                        .replaceAll("[^a-z0-9]", "");
     }
 
     public List<EstoqueAtualDTO> getEstoqueParaDashboard() {
