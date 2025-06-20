@@ -19,9 +19,25 @@ const FormularioCliente = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Permitir apenas números nos campos de documento e telefone
+    let valorFinal = value;
+    
+    if (name === "documento" || name === "telefone") {
+      // Remover todos os caracteres não numéricos
+      valorFinal = value.replace(/\D/g, '');
+      
+      // Limitar o tamanho máximo
+      if (name === "documento") {
+        valorFinal = valorFinal.slice(0, tipoDocumento === "CPF" ? 11 : 14);
+      } else if (name === "telefone") {
+        valorFinal = valorFinal.slice(0, 11); // Limitar a 11 dígitos
+      }
+    }
+    
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: valorFinal,
     }));
   };
 
@@ -112,10 +128,14 @@ const FormularioCliente = () => {
             name="documento"
             value={formData.documento}
             onChange={handleChange}
-            placeholder={`Digite o ${tipoDocumento}`}
+            placeholder={`Digite apenas números do ${tipoDocumento}`}
             className={styles.entradaFormulario}
             required
+            inputMode="numeric" // Mostrar teclado numérico em dispositivos móveis
           />
+          <p className={styles.dicaCampo}>
+            Máximo de {tipoDocumento === "CPF" ? "11" : "14"} dígitos
+          </p>
         </div>
 
         <div className={styles.grupoCampoFormulario}>
@@ -125,10 +145,12 @@ const FormularioCliente = () => {
             name="telefone"
             value={formData.telefone}
             onChange={handleChange}
-            placeholder="Telefone do cliente"
+            placeholder="Digite apenas números com DDD"
             className={styles.entradaFormulario}
             required
+            inputMode="numeric" // Mostrar teclado numérico em dispositivos móveis
           />
+          <p className={styles.dicaCampo}>Máximo de 11 dígitos (DDD + número)</p>
         </div>
 
         <button type="submit" className={styles.botaoFormulario}>
