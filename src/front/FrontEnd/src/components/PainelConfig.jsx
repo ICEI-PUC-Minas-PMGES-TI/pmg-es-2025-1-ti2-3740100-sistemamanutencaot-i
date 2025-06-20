@@ -6,6 +6,7 @@ import AlterarSenhaAlert from "./AlterarSenhaAlert";
 import AlterarEmailAlert from "./AlterarEmailAlert";
 import AlterarEnderecoAlert from "./AlterarEnderecoAlert";
 import AlterarNomeLojaAlert from "./AlterarNomeLojaAlert";
+import Swal from "sweetalert2"; // Importar SweetAlert2
 
 function PainelConfig() {
   const [showAlert, setShowAlert] = useState(false);
@@ -15,7 +16,6 @@ function PainelConfig() {
     email: "",
     nome: "",
     endereco: "",
-    // outros campos se necessário
   });
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function PainelConfig() {
     setShowAlert(true);
   };
 
-  const atualizarCampo = (campo, valor, senha = null) => {
+  const atualizarCampo = async (campo, valor, senha = null) => {
     const id = tipoUsuario === "tecnico" ? localStorage.getItem("id_tecnico") : localStorage.getItem("id_loja");
     let url = "";
 
@@ -76,53 +76,67 @@ function PainelConfig() {
         ? `http://localhost:8080/tecnicos/${id}/email`
         : `http://localhost:8080/lojas/${id}/email`;
     } else if (campo === "endereco") {
-      url = `http://localhost:8080/lojas/${id}/endereco`; // apenas loja tem endereço
+      url = `http://localhost:8080/lojas/${id}/endereco`;
     } else {
       console.error("Campo inválido:", campo);
       return;
     }
 
-    axios.put(url, { novoValor: valor, senhaAtual: senha })
-      .then(() => {
-        setDadosUsuario(prev => ({ ...prev, [campo]: valor }));
-        alert(`${campo.charAt(0).toUpperCase() + campo.slice(1)} alterado com sucesso!`);
-      })
-      .catch(() => {
-        alert(`Erro ao alterar ${campo}. Verifique sua senha.`);
-      })
-      .finally(() => {
-        setShowAlert(false);
+    try {
+      await axios.put(url, { novoValor: valor, senhaAtual: senha });
+      setDadosUsuario(prev => ({ ...prev, [campo]: valor }));
+      
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: `${campo.charAt(0).toUpperCase() + campo.slice(1)} alterado com sucesso!`,
+        showConfirmButton: false,
+        timer: 2000
       });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: `Erro ao alterar ${campo}. Verifique sua senha.`,
+      });
+    } finally {
+      setShowAlert(false);
+    }
   };
 
-
-  const atualizarSenha = (senhaAntiga, senhaNova) => {
+  const atualizarSenha = async (senhaAntiga, senhaNova) => {
     let id;
     if (tipoUsuario === "tecnico") {
       id = localStorage.getItem("id_tecnico");
     } else if (tipoUsuario === "gerente") {
-      id = localStorage.getItem("id_gerente"); // Corrigido para garantir uso do id correto
+      id = localStorage.getItem("id_gerente");
     } else {
       id = localStorage.getItem("id_loja");
     }
-    console.log("DEBUG ALTERAR SENHA | tipoUsuario:", tipoUsuario, "| id:", id, "| senhaAntiga:", senhaAntiga, "| senhaNova:", senhaNova);
-    axios
-      .put(`http://localhost:8080/${tipoUsuario === "tecnico" ? "tecnicos" : "lojas"}/${id}/senha`, {
+
+    try {
+      await axios.put(`http://localhost:8080/${tipoUsuario === "tecnico" ? "tecnicos" : "lojas"}/${id}/senha`, {
         senhaAntiga,
-        senhaNova: senhaNova, // Corrigido para o nome esperado pelo backend
-      })
-      .then(() => {
-        alert("Senha alterada com sucesso!");
-        setShowAlert(false);
-      })
-      .catch((error) => {
-        if (error.response && error.response.data) {
-          alert("Erro ao alterar senha: " + error.response.data);
-        } else {
-          alert("Erro ao alterar senha. Verifique a senha atual.");
-        }
-        console.error(error);
+        senhaNova,
       });
+      
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: "Senha alterada com sucesso!",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    } catch (error) {
+      const errorMessage = error.response?.data || "Erro ao alterar senha. Verifique a senha atual.";
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: errorMessage,
+      });
+    } finally {
+      setShowAlert(false);
+    }
   };
 
   const renderAlert = () => {
@@ -139,9 +153,6 @@ function PainelConfig() {
         return null;
     }
   };
-
-
-
 
   return (
     <>
