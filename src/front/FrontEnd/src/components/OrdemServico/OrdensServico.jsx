@@ -38,7 +38,7 @@ const OrdensServico = () => {
   };
 
   const handleViewDetails = (id) => {
-    navigate(`/ordem-servico/:${id}`);
+    navigate(`/detalhes-reparo/${id}`);
   };
 
   return (

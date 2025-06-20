@@ -107,7 +107,7 @@ export default function DiagnosticoServico() {
         <div className="conteudo-bloco">
           <div className="detalhes-superiores">
             <div className="detalhes-esquerda">
-              Técnico: <strong>{servicoData.tecnico.nome}</strong>
+              Técnico: <strong>{servicoData?.tecnico?.nome || "Nenhum técnico selecionou essa O.S"}</strong>
               <br />
               Status: <strong>{servicoData.status}</strong>
             </div>
