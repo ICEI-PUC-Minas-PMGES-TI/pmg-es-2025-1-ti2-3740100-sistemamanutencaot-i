@@ -28,12 +28,12 @@ Este projeto é apresentado como requisito parcial para a obtenção do grau de 
 
 | Papel | Autor | Contato |
 | :--- | :--- | :--- |
-| 🥑 **Autor** | Felipe Augusto Mendes | `felipepepe64@gmail.com` |
-| 🥥 **Autor** | Francisco Rafael Pereira | `franciscocjn06@gmail.com` |
-| 🍍 **Autor** | Gabriel Victor Souza Lopes | `gabrieelvictor26@gmail.com` |
-| 🍉 **Autor** | Igor Rodrigo Costa | `igorrcosta250705@gmail.com` |
-| 🍓 **Autor** | João Pedro Maciel de Oliveira | `jpmaciel74@gmail.com` |
-| 🥝 **Autor** | João Ricardo Fiuza | `Joaoricfiuza@gmail.com` |
+|  **Autor** | Felipe Augusto Mendes | `felipepepe64@gmail.com` |
+|  **Autor** | Francisco Rafael Pereira | `franciscocjn06@gmail.com` |
+|  **Autor** | Gabriel Victor Souza Lopes | `gabrieelvictor26@gmail.com` |
+|  **Autor** | Igor Rodrigo Costa | `igorrcosta250705@gmail.com` |
+|  **Autor** | João Pedro Maciel de Oliveira | `jpmaciel74@gmail.com` |
+|  **Autor** | João Ricardo Fiuza | `Joaoricfiuza@gmail.com` |
 | --- | --- | --- |
 | 👨‍🏫 **Orientador** | Prof. Michelle Hanne Soares de Andrade | |
 | 👨‍🏫 **Orientador** | Prof. Danilo de Quadros Maia Filho | |
