@@ -17,6 +17,7 @@ export default function DiagnosticoServico() {
   const [showAdicionarPecas, setShowAdicionarPecas] = useState(false);
   const [showSolicitarPecas, setShowSolicitarPecas] = useState(false);
   const [showManutencaoConcluida, setShowManutencaoConcluida] = useState(false);
+  const [pecas, setPecas] = useState([]); // Estado para armazenar as peças
 
   useEffect(() => {
     setLoading(true);
@@ -31,11 +32,26 @@ export default function DiagnosticoServico() {
         }
 
         setServicoData(data);
-        if (data) setSolucaoEditada(data.solucaoOs);
+        if (data) {
+          setSolucaoEditada(data.solucaoOs);
+          // Inicializar as peças com os dados do servidor
+          setPecas(data.pecas || []);
+        }
       })
       .catch(() => setServicoData(null))
       .finally(() => setLoading(false));
   }, [id]);
+
+  const handleAdicionarPecas = (novasPecas) => {
+    // Atualizar o estado local com as novas peças
+    setPecas([...pecas, ...novasPecas]);
+    
+    // Aqui você faria a chamada para salvar no backend
+    // axios.post(`http://localhost:8080/ordem-servicos/${id}/pecas`, novasPecas)
+    //   .then(() => {
+    //     // Recarregar dados do servidor se necessário
+    //   });
+  };
 
   if (loading) {
     return (
@@ -73,7 +89,10 @@ export default function DiagnosticoServico() {
       <div className="container-diagnostico">
 
         {showSolicitarPecas && (
-          <SolicitarPecas onClose={() => setShowSolicitarPecas(false)} />
+          <SolicitarPecas 
+            onClose={() => setShowSolicitarPecas(false)} 
+            ordemId={id}
+          />
         )}
         {showManutencaoConcluida && (
           <ManutencaoConcluida onClose={() => setShowManutencaoConcluida(false)} />
@@ -82,10 +101,7 @@ export default function DiagnosticoServico() {
           <AdicionarPecas
             ordemId={servicoData.id}
             onClose={() => setShowAdicionarPecas(false)}
-            onPeçasAdicionadas={() => {
-              axios.get(`http://localhost:8080/ordem-servicos/${id}`)
-                .then(res => setServicoData(res.data));
-            }}
+            onPeçasAdicionadas={handleAdicionarPecas}
           />
         )}
 
@@ -197,28 +213,45 @@ export default function DiagnosticoServico() {
                     </tr>
                   </thead>
                   <tbody>
-                    {(servicoData.pecas || []).map((peca) => (
-                      <tr key={peca.id}>
-                        <td>{peca.componente}</td>
+                    {pecas.map((peca) => (
+                      <tr key={peca.id || Math.random()}>
+                        <td>{peca.codigo || peca.componente}</td>
                         <td>{peca.quantidade}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
 
-                <div className="botoes-pecas">
+                <div className="botoes-pecas" style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                   <button
                     className="btn-adicionar"
                     onClick={() => setShowAdicionarPecas(true)}
+                    style={{ 
+                      background: '#f1c40f', 
+                      color: '#fff', 
+                      fontWeight: 'bold',
+                      padding: '10px 20px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'background 0.3s'
+                    }}
                   >
                     Adicionar peças
                   </button>
-                </div>
-
-                <div className="botoes-pecas">
                   <button
                     className="btn-solicitar"
                     onClick={() => setShowSolicitarPecas(true)}
+                    style={{ 
+                      background: '#A21919', 
+                      color: '#fff', 
+                      fontWeight: 'bold',
+                      padding: '10px 20px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'background 0.3s'
+                    }}
                   >
                     Solicitar peças
                   </button>

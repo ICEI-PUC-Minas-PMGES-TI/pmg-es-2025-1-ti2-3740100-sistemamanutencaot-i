@@ -1,111 +1,105 @@
-// components/DetalhesServico/AdicionarPecas.jsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import "./AdicionarPecas.css";
 
 const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
-  const [pecasDisponiveis, setPecasDisponiveis] = useState([]);
+  const [codigoPeca, setCodigoPeca] = useState("");
+  const [quantidade, setQuantidade] = useState(1);
   const [pecasSelecionadas, setPecasSelecionadas] = useState([]);
   const [erro, setErro] = useState(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/pecas')
-      .then(res => setPecasDisponiveis(res.data))
-      .catch(err => console.error("Erro ao buscar peças:", err));
-  }, []);
-
-  const adicionarPeca = (peca) => {
-    const existente = pecasSelecionadas.find(p => p.id === peca.id);
-    if (!existente) {
-      setPecasSelecionadas([...pecasSelecionadas, { ...peca, quantidade: 1 }]);
+  const adicionarPeca = () => {
+    if (!codigoPeca.trim()) {
+      setErro("Digite o código da peça.");
+      return;
     }
-  };
 
-  const alterarQuantidade = (pecaId, quantidade) => {
-    if (quantidade < 1) return;
-    setPecasSelecionadas(prev =>
-      prev.map(p => p.id === pecaId ? { ...p, quantidade } : p)
-    );
-  };
+    // Verifica se a peça já foi adicionada
+    if (pecasSelecionadas.some(p => p.codigo === codigoPeca)) {
+      setErro("Esta peça já foi adicionada.");
+      return;
+    }
 
-  const salvarPecas = async () => {
+    const novaPeca = {
+      id: Math.random().toString(36).substr(2, 9), // ID temporário
+      codigo: codigoPeca,
+      quantidade: quantidade
+    };
+
+    setPecasSelecionadas([...pecasSelecionadas, novaPeca]);
+    // Resetar campos
+    setCodigoPeca("");
+    setQuantidade(1);
     setErro(null);
-    try {
-      // Validação de estoque
-      for (const pecaSelecionada of pecasSelecionadas) {
-        const pecaEstoque = pecasDisponiveis.find(p => p.id === pecaSelecionada.id);
-        if (!pecaEstoque) {
-          setErro(`Peça ${pecaSelecionada.nome} não encontrada no estoque.`);
-          return;
-        }
-        if (pecaSelecionada.quantidade > pecaEstoque.estoque) {
-          setErro(`Quantidade insuficiente para a peça ${pecaSelecionada.nome}. Disponível: ${pecaEstoque.estoque}`);
-          return;
-        }
-      }
+  };
 
-      // Salvar e atualizar estoque
-      for (const pecaSelecionada of pecasSelecionadas) {
-        // Salvar peça utilizada
-        await axios.post('http://localhost:8080/pecas-utilizadas', {
-          ordemId: ordemId,
-          pecaId: pecaSelecionada.id,
-          precoUnitario: pecaSelecionada.preco,
-          quantidade: pecaSelecionada.quantidade
-        });
+  const removerPeca = (id) => {
+    setPecasSelecionadas(pecasSelecionadas.filter(p => p.id !== id));
+  };
 
-        // Atualizar estoque
-        const pecaEstoqueAtual = pecasDisponiveis.find(p => p.id === pecaSelecionada.id);
-        const novaQuantidade = pecaEstoqueAtual.estoque - pecaSelecionada.quantidade;
-        await axios.put(`http://localhost:8080/pecas/${pecaSelecionada.id}`, {
-          ...pecaEstoqueAtual,
-          estoque: novaQuantidade
-        });
-      }
-
-      onPeçasAdicionadas();
-      onClose();
-    } catch (err) {
-      console.error("Erro ao salvar peças:", err);
-      setErro("Erro ao salvar peças. Tente novamente.");
+  const salvarPecas = () => {
+    if (pecasSelecionadas.length === 0) {
+      setErro("Adicione pelo menos uma peça.");
+      return;
     }
+
+    // Fechar o modal e retornar à tela principal
+    onPeçasAdicionadas(pecasSelecionadas);
+    onClose();
   };
 
   return (
     <div className="modal-adicionar">
       <div className="conteudo-modal">
-        <h2>Selecionar Peças</h2>
+        <button className="close-button" onClick={onClose}>×</button>
+        <h2>Adicionar Peças</h2>
         {erro && <p className="erro">{erro}</p>}
-        <ul className="lista-pecas">
-          {pecasDisponiveis.map(peca => (
-            <li key={peca.id}>
-              <div>
-                <strong>{peca.nome}</strong> - {peca.codigo} ({peca.estoque} em estoque)
-              </div>
-              <button onClick={() => adicionarPeca(peca)}>Adicionar</button>
-            </li>
-          ))}
-        </ul>
+        
+        <div className="form-row">
+          <input
+            type="text"
+            placeholder="Código da peça (ex: MEMRIARAM-CORSAIR-DDR42666HZ)"
+            value={codigoPeca}
+            onChange={(e) => setCodigoPeca(e.target.value)}
+            aria-label="Código da peça"
+          />
+          <input
+            type="number"
+            min="1"
+            value={quantidade}
+            onChange={(e) => setQuantidade(parseInt(e.target.value) || 1)}
+            style={{ width: '100px' }}
+          />
+          <button type="button" onClick={adicionarPeca} className="add-peca-btn">
+            Adicionar
+          </button>
+        </div>
 
         <h3>Peças Selecionadas</h3>
         <ul className="lista-selecionadas">
-          {pecasSelecionadas.map(p => (
-            <li key={p.id}>
-              {p.nome} - Qtd:
-              <input
-                type="number"
-                min="1"
-                max={pecasDisponiveis.find(pd => pd.id === p.id)?.estoque || 1}
-                value={p.quantidade}
-                onChange={(e) => alterarQuantidade(p.id, parseInt(e.target.value))}
-              />
+          {pecasSelecionadas.map(peca => (
+            <li key={peca.id}>
+              <div className="peca-info">
+                <div><strong>{peca.codigo}</strong></div>
+                <div>Qtd: {peca.quantidade}</div>
+              </div>
+              <button 
+                onClick={() => removerPeca(peca.id)} 
+                className="remove-peca-btn"
+                aria-label="Remover peça"
+              >
+                ×
+              </button>
             </li>
           ))}
         </ul>
 
         <div className="botoes-modal">
-          <button onClick={salvarPecas}>Salvar</button>
-          <button onClick={onClose}>Cancelar</button>
+          <button onClick={salvarPecas} className="botao-salvar">
+            Salvar
+          </button>
+          <button onClick={onClose} className="botao-cancelar">
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
