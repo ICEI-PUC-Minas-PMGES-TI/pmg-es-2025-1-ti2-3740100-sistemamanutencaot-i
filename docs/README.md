@@ -106,7 +106,7 @@ Nosso sucesso é medido por melhorias tangíveis no processo de negócio.
 
 Aprofunde-se na estrutura e no design do projeto através de nossa documentação detalhada.
 
-- **[Modelagem de Processos](./process-models/)**: Detalhamento de todos os processos de negócio.
+- **[Modelagem de Processos](./images/processos/novo/)**: Detalhamento de todos os processos de negócio.
 - **[Projeto da Solução](./solution-design.md)**: A arquitetura técnica completa e os modelos de dados.
 - **[Guia da Interface do Sistema](./interface.md)**: Um guia visual da UI/UX do software.
 - **[Indicadores de Desempenho](./performance-indicators.md)**: Uma lista completa de todos os nossos KPIs.
