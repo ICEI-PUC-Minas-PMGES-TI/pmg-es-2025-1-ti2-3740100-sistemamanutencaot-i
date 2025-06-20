@@ -4,8 +4,11 @@ import io.manager.backend.dto.OrdemServicoRequest;
 import io.manager.backend.model.OrdemServico;
 import io.manager.backend.service.OrdemServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 import java.util.*;
 
@@ -21,9 +24,13 @@ public class OrdemServicoController {
     private OrdemServicoService ordemServicoService;
 
     @GetMapping
-    public ResponseEntity<List<OrdemServico>> buscarTodasOrdensServicos() {
-        List<OrdemServico> ordensServicos = ordemServicoService.listarTodos();
-        return ResponseEntity.ok(ordensServicos);
+    public ResponseEntity<Page<OrdemServico>> buscarOrdensComPaginacao(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "8") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<OrdemServico> ordens = ordemServicoService.listarPaginado(pageable);
+        return ResponseEntity.ok(ordens);
     }
 
     @GetMapping("/sem-tecnico")
@@ -91,5 +98,6 @@ public class OrdemServicoController {
         ordemServicoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }

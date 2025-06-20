@@ -10,91 +10,28 @@ import detalhes from "../../assets/images/detalhes.png"; // Adicione este ícone
 const OrdensServico = () => {
   const [ordens, setOrdens] = useState([]);
   const navigate = useNavigate();
-
+  const [paginaAtual, setPaginaAtual] = useState(0);
+  const [totalPaginas, setTotalPaginas] = useState(0);
+  const tamanhoPagina = 8;
+  
   useEffect(() => {
-    // Mock de dados - substituir por chamada à API real
-    const mockOrdens = [
-      {
-        id: 1,
-        numero: "OS-001",
-        cliente: "João Silva",
-        equipamento: "Notebook Dell",
-        dataEntrada: "10/05/2024",
-        status: "Em andamento"
-      },
-      {
-        id: 2,
-        numero: "OS-002",
-        cliente: "Maria Oliveira",
-        equipamento: "Impressora HP",
-        dataEntrada: "11/05/2024",
-        status: "Concluído"
-      },
-      {
-        id: 3,
-        numero: "OS-003",
-        cliente: "Carlos Souza",
-        equipamento: "Monitor LG",
-        dataEntrada: "12/05/2024",
-        status: "Aguardando peças"
-      },
-      {
-        id: 4,
-        numero: "OS-004",
-        cliente: "Ana Costa",
-        equipamento: "PC Gamer",
-        dataEntrada: "13/05/2024",
-        status: "Diagnóstico"
-      },
-      {
-        id: 5,
-        numero: "OS-005",
-        cliente: "Pedro Mendes",
-        equipamento: "Tablet Samsung",
-        dataEntrada: "14/05/2024",
-        status: "Em andamento"
-      },
-      {
-        id: 6,
-        numero: "OS-006",
-        cliente: "Fernanda Lima",
-        equipamento: "Smartphone Xiaomi",
-        dataEntrada: "15/05/2024",
-        status: "Concluído"
-      },
-      {
-        id: 7,
-        numero: "OS-007",
-        cliente: "Roberto Alves",
-        equipamento: "Roteador TP-Link",
-        dataEntrada: "16/05/2024",
-        status: "Aguardando retirada"
-      },
-      {
-        id: 8,
-        numero: "OS-008",
-        cliente: "Juliana Santos",
-        equipamento: "Notebook Asus",
-        dataEntrada: "17/05/2024",
-        status: "Em andamento"
-      }
-    ];
-    
-    setOrdens(mockOrdens);
-    
-    // Exemplo de chamada à API:
-    /*
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/ordens-servico");
-        setOrdens(response.data);
-      } catch (error) {
-        alert("Erro ao buscar ordens de serviço");
-      }
-    };
-    fetchData();
-    */
-  }, []);
+    buscarReparos(paginaAtual);
+  }, [paginaAtual]);
+
+  const buscarReparos = (pagina = 0) => {
+    axios.get(`http://localhost:8080/ordem-servicos?page=${pagina}&size=${tamanhoPagina}`)
+      .then(response => {
+        setOrdens(response.data.content); // Supondo Spring Data Page
+        setTotalPaginas(response.data.totalPages);
+      })
+      .catch(error => {
+        console.error("Erro ao buscar ordens de serviço:", error);
+      });
+  };
+
+  const mudarPagina = (pagina) => {
+    setPaginaAtual(pagina);
+  };
 
   const handleAddClick = () => {
     navigate("/nova-ordem-servico");
@@ -151,9 +88,9 @@ const OrdensServico = () => {
           <tbody>
             {ordens.map((ordem, index) => (
               <tr key={index}>
-                <td>{ordem.numero}</td>
-                <td>{ordem.cliente}</td>
-                <td>{ordem.equipamento}</td>
+                <td>{ordem.id}</td>
+                <td>{ordem.computador.cliente.pessoa.nome}</td>
+                <td>{ordem.computador.tipo}</td>
                 <td>{ordem.dataEntrada}</td>
                 <td>
                   <span className={`status-badge status-${ordem.status.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -176,14 +113,19 @@ const OrdensServico = () => {
       </div>
 
       <nav className="pagination">
-        <span>Mostrando 1 a 8 de 40 itens</span>
+        <span>Mostrando {paginaAtual * tamanhoPagina + 1} a {(paginaAtual + 1) * tamanhoPagina} itens</span>
         <div className="page-controls">
-          <button>‹</button>
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>›</button>
+          <button onClick={() => mudarPagina(Math.max(0, paginaAtual - 1))}>‹</button>
+          {Array.from({ length: totalPaginas }, (_, i) => (
+            <button
+              key={i}
+              className={i === paginaAtual ? "active" : ""}
+              onClick={() => mudarPagina(i)}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={() => mudarPagina(Math.min(totalPaginas - 1, paginaAtual + 1))}>›</button>
         </div>
       </nav>
     </main>

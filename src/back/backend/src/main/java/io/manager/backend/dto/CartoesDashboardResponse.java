@@ -1,23 +1,23 @@
 package io.manager.backend.dto;
 
 public class CartoesDashboardResponse{
-    private String totalVendas;
+    private double totalVendas;
     private long reparos;
-    private String ticketMedio;
-    private String taxaAtraso;
+    private double ticketMedio;
+    private double taxaAtraso;
 
     public CartoesDashboardResponse(double totalVendas, long reparos, double ticketMedio, double taxaAtraso) {
-        this.totalVendas = String.format("R$ %.2f", totalVendas);
+        this.totalVendas = totalVendas;
         this.reparos = reparos;
-        this.ticketMedio = String.format("R$ %.2f", ticketMedio);
-        this.taxaAtraso = String.format("%.0f%%", taxaAtraso);
+        this.ticketMedio = ticketMedio;
+        this.taxaAtraso = taxaAtraso;
     }
 
-    public String getTotalVendas() {
+    public double getTotalVendas() {
         return totalVendas;
     }
 
-    public void setTotalVendas(String totalVendas) {
+    public void setTotalVendas(double totalVendas) {
         this.totalVendas = totalVendas;
     }
 
@@ -29,19 +29,19 @@ public class CartoesDashboardResponse{
         this.reparos = reparos;
     }
 
-    public String getTicketMedio() {
+    public double getTicketMedio() {
         return ticketMedio;
     }
 
-    public void setTicketMedio(String ticketMedio) {
+    public void setTicketMedio(double ticketMedio) {
         this.ticketMedio = ticketMedio;
     }
 
-    public String getTaxaAtraso() {
+    public double getTaxaAtraso() {
         return taxaAtraso;
     }
 
-    public void setTaxaAtraso(String taxaAtraso) {
+    public void setTaxaAtraso(double taxaAtraso) {
         this.taxaAtraso = taxaAtraso;
     }
 

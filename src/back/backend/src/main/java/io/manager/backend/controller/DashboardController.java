@@ -29,7 +29,13 @@ public class DashboardController {
             @RequestParam int mes,
             @RequestParam int ano
     ) {
-        return ResponseEntity.ok(dashboardService.getCartoes(mes, ano));
+        try {
+            CartoesDashboardResponse response = dashboardService.getCartoes(mes, ano);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace(); // para ver no console do backend o erro
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @GetMapping("/vendas-diarias")

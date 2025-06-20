@@ -36,16 +36,21 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
     double ticketMedio(@Param("mes") int mes, @Param("ano") int ano);
 
    @Query("""
-       SELECT (COUNT(o) * 100.0) / 
+       SELECT COALESCE(
+              (COUNT(o) * 100.0) / 
               (SELECT COUNT(o2) FROM OrdemServico o2 
               WHERE FUNCTION('MONTH', o2.dataFinalizacao) = :mes 
-              AND FUNCTION('YEAR', o2.dataFinalizacao) = :ano)
+              AND FUNCTION('YEAR', o2.dataFinalizacao) = :ano 
+              AND o2.status = 'Concluído'), 
+       0)
        FROM OrdemServico o
        WHERE o.dataFinalizacao > o.prazo
        AND FUNCTION('MONTH', o.dataFinalizacao) = :mes
        AND FUNCTION('YEAR', o.dataFinalizacao) = :ano
+       AND o.status = 'Concluído'
        """)
        Double taxaAtraso(@Param("mes") int mes, @Param("ano") int ano);
+
 
     @Query("SELECT new io.manager.backend.dto.VendaDiariaDTO(DAY(o.dataFinalizacao), SUM(o.valorTotal)) " +
            "FROM OrdemServico o " +

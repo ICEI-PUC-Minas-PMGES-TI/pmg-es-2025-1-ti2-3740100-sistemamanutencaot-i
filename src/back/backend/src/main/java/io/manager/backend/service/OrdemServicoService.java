@@ -10,6 +10,8 @@ import io.manager.backend.repository.TecnicoRepository;
 import io.manager.backend.dto.VendaDiariaDTO;
 import io.manager.backend.dto.TaxaAtrasoMensalDTO;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,6 +44,10 @@ public class OrdemServicoService {
 
     public List<OrdemServico> buscarPorTecnicoId(Integer tecnicoId) {
         return ordemServicoRepository.findByTecnicoId(tecnicoId);
+    }
+
+    public Page<OrdemServico> listarPaginado(Pageable pageable) {
+        return ordemServicoRepository.findAll(pageable);
     }
 
     public OrdemServico salvar(OrdemServicoRequest dto) {
@@ -135,8 +141,13 @@ public class OrdemServicoService {
     }
 
     public double calcularTaxaAtraso(int mes, int ano) {
-        return ordemServicoRepository.taxaAtraso(mes, ano);
+        Double taxa = ordemServicoRepository.taxaAtraso(mes, ano);
+        if (taxa == null) {
+            return 0.0; // ou algum valor padrão
+        }
+        return taxa.doubleValue();
     }
+
 
     public List<VendaDiariaDTO> listarVendasDiarias(int mes, int ano) {
         return ordemServicoRepository.vendasPorDia(mes, ano);
