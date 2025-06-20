@@ -7,10 +7,15 @@ import io.manager.backend.model.Tecnico;
 import io.manager.backend.repository.OrdemServicoRepository;
 import io.manager.backend.repository.ComputadorRepository;
 import io.manager.backend.repository.TecnicoRepository;
+import io.manager.backend.dto.VendaDiariaDTO;
+import io.manager.backend.dto.TaxaAtrasoMensalDTO;
+
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class OrdemServicoService {
@@ -114,5 +119,46 @@ public class OrdemServicoService {
 
     public void deletar(Integer id) {
         ordemServicoRepository.deleteById(id);
+    }
+
+
+    public double calcularTotalVendas(int mes, int ano) {
+        return ordemServicoRepository.totalVendas(mes, ano);
+    }
+
+    public long contarReparosConcluidos(int mes, int ano) {
+        return ordemServicoRepository.contadorTotalReparos("CONCLUIDO", mes, ano);
+    }
+
+    public double calcularTicketMedio(int mes, int ano) {
+        return ordemServicoRepository.ticketMedio(mes, ano);
+    }
+
+    public double calcularTaxaAtraso(int mes, int ano) {
+        return ordemServicoRepository.taxaAtraso(mes, ano);
+    }
+
+    public List<VendaDiariaDTO> listarVendasDiarias(int mes, int ano) {
+        return ordemServicoRepository.vendasPorDia(mes, ano);
+    }
+
+    
+    public List<TaxaAtrasoMensalDTO> calcularTaxaAtrasoMensal(int ano) {
+        List<TaxaAtrasoMensalDTO> resultado = new ArrayList<>();
+
+        String[] meses = {
+            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+        };
+
+        for (int mes = 1; mes <= 12; mes++) {
+            int total = ordemServicoRepository.contarFinalizadasPorMesEAno(mes, ano);
+            int atrasadas = ordemServicoRepository.contarAtrasadasPorMesEAno(mes, ano);
+
+            double taxa = (total == 0) ? 0.0 : (atrasadas * 100.0) / total;
+            resultado.add(new TaxaAtrasoMensalDTO(meses[mes - 1], taxa));
+        }
+
+        return resultado;
     }
 }

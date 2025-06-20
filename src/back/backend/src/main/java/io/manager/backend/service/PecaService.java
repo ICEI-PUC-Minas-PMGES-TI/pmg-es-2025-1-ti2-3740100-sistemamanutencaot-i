@@ -1,5 +1,6 @@
 package io.manager.backend.service;
 
+import io.manager.backend.dto.EstoqueAtualDTO;
 import io.manager.backend.model.Peca;
 import io.manager.backend.repository.PecaRepository;
 
@@ -72,5 +73,9 @@ public class PecaService {
         return valor.trim()
                     .toLowerCase()
                     .replaceAll("[^a-z0-9]", "");
+    }
+
+    public List<EstoqueAtualDTO> getEstoqueParaDashboard() {
+        return pecaRepository.listarEstoqueParaDashboard();
     }
 }

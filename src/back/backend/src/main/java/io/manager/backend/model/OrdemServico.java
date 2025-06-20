@@ -20,11 +20,14 @@ public class OrdemServico {
 
     private String status;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataEntrada;
 
     @Temporal(TemporalType.DATE)
     private Date prazo;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataFinalizacao;
 
     private Double valorTotal;
 
@@ -74,6 +77,14 @@ public class OrdemServico {
         this.dataEntrada = dataEntrada;
     }
 
+    public Date getDataFinalizacao() {
+        return dataFinalizacao;
+    }
+
+    public void setDataFinalizacao(Date dataFinalizacao) {
+        this.dataFinalizacao = dataFinalizacao;
+    }
+
     public Date getPrazo() {
         return prazo;
     }
@@ -110,6 +121,6 @@ public class OrdemServico {
     public String toString() {
         return "OrdemServico{id=" + id + ", computador=" + computador + ", tecnico=" + tecnico +
                 ", status='" + status + "', dataEntrada=" + dataEntrada + ", prazo=" + prazo +
-                ", valorTotal=" + valorTotal + ", descricaoOs='" + descricaoOs + "', solucaoOs='" + solucaoOs + "'}";
+                ", valorTotal=" + valorTotal + ", descricaoOs='" + descricaoOs + "', solucaoOs='" + solucaoOs + ", dataFinalizao=" + dataFinalizacao + "'}";
     }
 }

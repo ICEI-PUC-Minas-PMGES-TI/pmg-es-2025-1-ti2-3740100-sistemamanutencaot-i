@@ -6,51 +6,6 @@ import './HomeGerente.css';
 // Registrar componentes do Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
-// Banco de dados mockado centralizado
-const mockData = {
-  usuario: {
-    nome: "Alexandre",
-    cargo: "Gerente de Loja"
-  },
-  dashboard: {
-    cartoes: [
-      { id: 1, label: 'Total de Vendas', value: 'R$ 10.100,75', icon: 'fas fa-shopping-cart' },
-      { id: 2, label: 'Reparos', value: '21', icon: 'fas fa-tools' },
-      { id: 3, label: 'Ticket Médio', value: 'R$ 147,50', icon: 'fas fa-ticket-alt' },
-      { id: 4, label: 'Taxa de Atrasos', value: '10%', icon: 'fas fa-clock' }
-    ],
-    vendas: [
-      { dia: 24, valor: 3800 },
-      { dia: 25, valor: 4100 },
-      { dia: 26, valor: 4400 },
-      { dia: 27, valor: 4000 },
-      { dia: 28, valor: 4300 },
-      { dia: 29, valor: 4600 },
-      { dia: 30, valor: 4200 },
-      { dia: 31, valor: 4800 }
-    ],
-    produtosDestaque: [
-      { id: 1, nome: "Memoria RAM", valor: 40, cor: "#1E9B1E", porcentagem: 37 },
-      { id: 2, nome: "HD", valor: 55, cor: "#E18B00", porcentagem: 23 },
-      { id: 3, nome: "SSD", valor: 130, cor: "#0B3BDB", porcentagem: 40 }
-    ],
-    estoque: [
-      { id: 1, nome: "Memoria RAM", quantidade: 10, status: "aumento" },
-      { id: 2, nome: "HD", quantidade: 2, status: "reducao" },
-      { id: 3, nome: "SSD", quantidade: 5, status: "aumento" },
-      { id: 4, nome: "Placa de Vídeo", quantidade: 8, status: "aumento" }
-    ],
-    taxaAtraso: [
-      { mes: "Jan", taxa: 12 },
-      { mes: "Fev", taxa: 9 },
-      { mes: "Mar", taxa: 7 },
-      { mes: "Abr", taxa: 8 },
-      { mes: "Mai", taxa: 6 },
-      { mes: "Jun", taxa: 5 }
-    ]
-  }
-};
-
 // Opções de mês
 const meses = [
   { value: 'todos', label: 'Ano Todo' },
@@ -75,11 +30,94 @@ const anos = [
   { value: '2023', label: '2023' }
 ];
 
+const BASE_URL = 'http://localhost:8080/api/dashboard';
+
+const fetchCartoes = async (mes, ano) => {
+  const response = await fetch(`${BASE_URL}/cartoes?mes=${mes}&ano=${ano}`);
+  return await response.json();
+};
+
+const fetchVendasDiarias = async (mes, ano) => {
+  const response = await fetch(`${BASE_URL}/vendas-diarias?mes=${mes}&ano=${ano}`);
+  return await response.json();
+};
+
+const fetchProdutosDestaque = async (mes, ano) => {
+  const response = await fetch(`${BASE_URL}/produtos-destaque?mes=${mes}&ano=${ano}`);
+  return await response.json();
+};
+
+const fetchTaxaAtrasoPorMes = async (ano) => {
+  const response = await fetch(`${BASE_URL}/taxa-atraso?ano=${ano}`);
+  return await response.json();
+};
+
+const fetchEstoqueAtual = async () => {
+  const response = await fetch(`${BASE_URL}/estoque-atual`);
+  return await response.json();
+};
+
 const HomeGerente = () => {
-  const [hoveredCardId, setHoveredCardId] = useState(null);
-  const [anoSelecionado, setAnoSelecionado] = useState('2025');
   const [mesSelecionado, setMesSelecionado] = useState('5');
-  const { usuario, dashboard } = mockData;
+  const [anoSelecionado, setAnoSelecionado] = useState('2025');
+  const [hoveredCardId, setHoveredCardId] = useState(null);
+
+  // Estados para dados da API
+  const [cartoes, setCartoes] = useState([]);
+  const [vendas, setVendas] = useState([]);
+  const [produtosDestaque, setProdutosDestaque] = useState([]);
+  const [taxaAtraso, setTaxaAtraso] = useState([]);
+  const [estoque, setEstoque] = useState([]);
+
+  // Pode deixar fixo ou fazer outro fetch para usuário, se quiser
+  const usuario = { nome: "Alexandre", cargo: "Gerente de Loja" };
+
+  useEffect(() => {
+    const carregarDadosDashboard = async () => {
+      try {
+        const [cartoesData, vendasData, produtosData, taxaData, estoqueData] = await Promise.all([
+          fetchCartoes(mesSelecionado, anoSelecionado),
+          fetchVendasDiarias(mesSelecionado, anoSelecionado),
+          fetchProdutosDestaque(mesSelecionado, anoSelecionado),
+          fetchTaxaAtrasoPorMes(anoSelecionado),
+          fetchEstoqueAtual()
+        ]);
+        setCartoes([
+          {
+            id: 1,
+            label: "Total de Vendas",
+            value: `R$ ${cartoesData.totalVendas.toFixed(2)}`,
+            icon: "fas fa-shopping-cart",
+          },
+          {
+            id: 2,
+            label: "Reparos",
+            value: `${cartoesData.reparos}`,
+            icon: "fas fa-tools",
+          },
+          {
+            id: 3,
+            label: "Ticket Médio",
+            value: `R$ ${cartoesData.ticketMedio.toFixed(2)}`,
+            icon: "fas fa-ticket-alt",
+          },
+          {
+            id: 4,
+            label: "Taxa de Atrasos",
+            value: `${cartoesData.taxaAtraso.toFixed(1)}%`,
+            icon: "fas fa-clock",
+          },
+        ]);
+        setVendas(vendasData);
+        setProdutosDestaque(produtosData);
+        setTaxaAtraso(taxaData);
+        setEstoque(estoqueData);
+      } catch (error) {
+        console.error("Erro ao buscar dados do dashboard:", error);
+      }
+    };
+    carregarDadosDashboard();
+  }, [mesSelecionado, anoSelecionado]);
   
   // Configuração do gráfico de vendas diárias
   const vendasDiariasOptions = {
@@ -111,11 +149,11 @@ const HomeGerente = () => {
   };
 
   const vendasDiariasData = {
-    labels: dashboard.vendas.map(v => v.dia.toString()),
+    labels: vendas.map(v => v.dia.toString()),
     datasets: [
       {
         label: 'Vendas (R$)',
-        data: dashboard.vendas.map(v => v.valor),
+        data: vendas.map(v => v.valor),
         backgroundColor: '#0a1a4f',
         borderRadius: 5,
       }
@@ -146,11 +184,11 @@ const HomeGerente = () => {
   };
 
   const produtosDestaqueData = {
-    labels: dashboard.produtosDestaque.map(p => p.nome),
+    labels: produtosDestaque.map(p => p.nome),
     datasets: [
       {
-        data: dashboard.produtosDestaque.map(p => p.valor),
-        backgroundColor: dashboard.produtosDestaque.map(p => p.cor),
+        data: produtosDestaque.map(p => p.valor),
+        backgroundColor: produtosDestaque.map(p => p.cor),
         borderWidth: 0,
       }
     ]
@@ -185,11 +223,11 @@ const HomeGerente = () => {
   };
 
   const taxaAtrasoData = {
-    labels: dashboard.taxaAtraso.map(t => t.mes),
+    labels: taxaAtraso.map(t => t.mes),
     datasets: [
       {
         label: 'Taxa de Atraso',
-        data: dashboard.taxaAtraso.map(t => t.taxa),
+        data: taxaAtraso.map(t => t.taxa),
         backgroundColor: '#0a1a4f',
         borderRadius: 5,
       }
@@ -221,12 +259,12 @@ const HomeGerente = () => {
   };
 
   const estoqueData = {
-    labels: dashboard.estoque.map(e => e.nome),
+    labels: estoque.map(e => e.nome),
     datasets: [
       {
         label: 'Quantidade',
-        data: dashboard.estoque.map(e => e.quantidade),
-        backgroundColor: dashboard.estoque.map(e => {
+        data: estoque.map(e => e.quantidade),
+        backgroundColor: estoque.map(e => {
           if (e.status === 'aumento') return '#16A34A';
           if (e.status === 'reducao') return '#DC2626';
           return '#D1D5DB';
@@ -297,7 +335,7 @@ const HomeGerente = () => {
         </section>
         
         <section className="summary-cards">
-          {dashboard.cartoes.map(cartao => (
+          {cartoes.map(cartao => (
             <article key={cartao.id} className="summary-card">
               <div className="card-icon-container">
                 <i className={cartao.icon}></i>
