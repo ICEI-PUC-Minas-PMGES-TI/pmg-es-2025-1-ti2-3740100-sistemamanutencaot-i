@@ -43,7 +43,7 @@ const AdicionarAlert = ({ onClose, onAddUser, onAddTechnical }) => {
                   hoveredButton === "user" ? "visible" : ""
                 }`}
               >
-                Usuário
+                Cliente
               </span>
             </div>
           </button>
