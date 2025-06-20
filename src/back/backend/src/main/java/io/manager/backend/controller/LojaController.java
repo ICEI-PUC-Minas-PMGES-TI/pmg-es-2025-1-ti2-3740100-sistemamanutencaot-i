@@ -3,7 +3,6 @@ package io.manager.backend.controller;
 import io.manager.backend.dto.LoginRequest;
 import io.manager.backend.model.Loja;
 import io.manager.backend.service.LojaService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +50,20 @@ public class LojaController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Integer id) {
-        lojaService.deletar(id);
+    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+        Optional<Loja> lojaOptional = lojaService.buscarPorId(id);
+
+        if (lojaOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        try {
+            lojaService.deletar(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/login-loja")
@@ -64,5 +75,4 @@ public class LojaController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-
 }

@@ -70,6 +70,7 @@ const LoginPage = () => {
                     localStorage.setItem("tipoUsuario", "gerente");
                     localStorage.setItem("loja", JSON.stringify(userData));
                     localStorage.setItem("id_loja", userData.id);
+                    localStorage.setItem("id_gerente", userData.id); // Adicionado para compatibilidade com Configuracoes.jsx
                     navigate("/home-gerente");
                 }
             } else {

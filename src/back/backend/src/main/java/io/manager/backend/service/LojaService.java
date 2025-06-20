@@ -30,9 +30,9 @@ public class LojaService {
 
     public Loja atualizar(Integer id, Loja lojaAtualizada) {
         return lojaRepository.findById(id).map(loja -> {
-            loja.setNome(lojaAtualizada.getNome()); // herdado de Pessoa
-            loja.setCnpj(lojaAtualizada.getCnpj()); // herdado de PessoaJuridica
-            loja.setInscricaoJudicial(lojaAtualizada.getInscricaoJudicial()); // herdado de PessoaJuridica
+            loja.setNome(lojaAtualizada.getNome());
+            loja.setCnpj(lojaAtualizada.getCnpj());
+            loja.setInscricaoJudicial(lojaAtualizada.getInscricaoJudicial());
             loja.setEndereco(lojaAtualizada.getEndereco());
             loja.setTelefone(lojaAtualizada.getTelefone());
             loja.setEmail(lojaAtualizada.getEmail());
@@ -43,7 +43,6 @@ public class LojaService {
 
     public Loja atualizarParcialmente(Integer id, Loja lojaParcial) {
         return lojaRepository.findById(id).map(loja -> {
-            // Atualiza somente os campos telefone, email e senha se forem fornecidos
             if (lojaParcial.getTelefone() != null) {
                 loja.setTelefone(lojaParcial.getTelefone());
             }
