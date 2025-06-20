@@ -5,7 +5,9 @@ import "./OrdensServico.css";
 import filtrar from "../../assets/images/Filtro1.png";
 import adicionar from "../../assets/images/adicionar.png";
 import pesquisar from "../../assets/images/search.png";
-import detalhes from "../../assets/images/detalhes.png"; // Adicione este ícone
+import detalhes from "../../assets/images/detalhes.png";
+import atribuirIcon from "../../assets/images/adicionar.png"; // Adicione este ícone
+import AtribuirManutencao from "./AtribuirManutencao.jsx"; // Importe o novo componente
 
 const OrdensServico = () => {
   const [ordens, setOrdens] = useState([]);
@@ -13,7 +15,9 @@ const OrdensServico = () => {
   const [paginaAtual, setPaginaAtual] = useState(0);
   const [totalPaginas, setTotalPaginas] = useState(0);
   const tamanhoPagina = 8;
-  
+  const [showAtribuirModal, setShowAtribuirModal] = useState(false);
+  const [ordemSelecionada, setOrdemSelecionada] = useState(null);
+
   useEffect(() => {
     buscarReparos(paginaAtual);
   }, [paginaAtual]);
@@ -21,7 +25,7 @@ const OrdensServico = () => {
   const buscarReparos = (pagina = 0) => {
     axios.get(`http://localhost:8080/ordem-servicos?page=${pagina}&size=${tamanhoPagina}`)
       .then(response => {
-        setOrdens(response.data.content); // Supondo Spring Data Page
+        setOrdens(response.data.content);
         setTotalPaginas(response.data.totalPages);
       })
       .catch(error => {
@@ -41,8 +45,34 @@ const OrdensServico = () => {
     navigate(`/detalhes-reparo/${id}`);
   };
 
+  const openAtribuirModal = (ordemId) => {
+    setOrdemSelecionada(ordemId);
+    setShowAtribuirModal(true);
+  };
+
+  const handleAtribuido = (ordemId, tecnicoId) => {
+    // Atualizar a ordem na lista local
+    setOrdens(ordens.map(ordem => {
+      if (ordem.id === ordemId) {
+        return {
+          ...ordem,
+          tecnico: { id: tecnicoId, nome: "Técnico Atribuído" } // Mock, atualize com dados reais
+        };
+      }
+      return ordem;
+    }));
+  };
+
   return (
     <main className="ordem-management">
+      {showAtribuirModal && (
+        <AtribuirManutencao 
+          ordemId={ordemSelecionada}
+          onClose={() => setShowAtribuirModal(false)}
+          onAtribuido={handleAtribuido}
+        />
+      )}
+
       <header className="management-header">
         <h1>Ordens de Serviço</h1>
       </header>
@@ -82,6 +112,7 @@ const OrdensServico = () => {
               <th>Equipamento</th>
               <th>Data de Entrada</th>
               <th>Status</th>
+              <th>Técnico</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -97,14 +128,29 @@ const OrdensServico = () => {
                     {ordem.status}
                   </span>
                 </td>
+                <td>
+                  {ordem.tecnico ? ordem.tecnico.nome : "Não atribuído"}
+                </td>
                 <td className="acoes">
-                  <button
-                    className="view-button"
-                    onClick={() => handleViewDetails(ordem.id)}
-                  >
-                    <img src={detalhes} alt="Ver Detalhes" />
-                    <span>Ver Detalhes</span>
-                  </button>
+                  <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                    <button
+                      className="view-button"
+                      onClick={() => handleViewDetails(ordem.id)}
+                    >
+                      <img src={detalhes} alt="Ver Detalhes" />
+                      <span>Ver Detalhes</span>
+                    </button>
+                    {!ordem.tecnico && (
+                      <button
+                        className="view-button"
+                        style={{ background: '#f1c40f' }}
+                        onClick={() => openAtribuirModal(ordem.id)}
+                      >
+                        <img src={atribuirIcon} alt="Atribuir" style={{ filter: 'brightness(0) invert(1)' }} />
+                        <span>Atribuir</span>
+                      </button>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
