@@ -36,7 +36,7 @@ const EstoqueTecnico = () => {
   const handleAddItem = (newItem) => {
     const itemToSave = {
       ...newItem,
-      tipo: "Peça",       // Força tipo "Peça"
+      tipo: "Peça", // Força tipo "Peça"
     };
 
     axios.post("http://localhost:8080/pecas", itemToSave)

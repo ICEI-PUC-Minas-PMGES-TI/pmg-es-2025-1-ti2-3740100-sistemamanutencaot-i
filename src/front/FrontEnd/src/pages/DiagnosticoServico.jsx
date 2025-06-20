@@ -306,8 +306,8 @@ export default function DiagnosticoServico() {
                     axios
                       .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
                         ...servicoData,
+                        dataFinalizacao: new Date().toISOString().split("T")[0],
                         status: "concluido",
-                        dataFinalizacao: new Date().toISOString().split("T")[0]
                       })
                       .then(() => {
                         navigate("/ordens-servico");
