@@ -7,6 +7,8 @@ import notebook from "../assets/images/notebook-icon.png";
 import SolicitarPecas from "../components/DetalhesServico/SolicitarPecas.jsx";
 import ManutencaoConcluida from "../components/DetalhesServico/ManutencaoConcluida";
 import AdicionarPecas from "../components/DetalhesServico/AdicionarPecas.jsx";
+import ModalMaoDeObra from "../components/DetalhesServico/MaoDeObra.jsx";
+
 
 export default function DiagnosticoServico() {
   const navigate = useNavigate();
@@ -110,16 +112,30 @@ export default function DiagnosticoServico() {
     setShowSolicitarPecas(true);
   };
 
+  const [mostrarModalMaoDeObra, setMostrarModalMaoDeObra] = useState(false);
+
   const handleConcluirClick = () => {
     if (!podeEditar()) {
       alert("Você não pode concluir esta ordem de serviço pois não é o técnico responsável.");
       return;
     }
+    setMostrarModalMaoDeObra(true); // abrir o modal
+  };
+
+  const concluirManutencaoComValor = (valorMaoDeObra) => {
+    const custoPecas = pecas.reduce((total, peca) => {
+      const preco = peca.precoUnitario || peca.peca?.precoUnitario || 0;
+      return total + preco * peca.quantidade;
+    }, 0);
+
+    const custoTotal = custoPecas + valorMaoDeObra;
+
     axios
       .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
         ...servicoData,
         dataFinalizacao: new Date().toISOString().split("T")[0],
         status: "concluido",
+        valorTotal: custoTotal, // certifique-se que o campo exista no backend
       })
       .then(() => {
         navigate("/ordens-servico");
@@ -204,6 +220,15 @@ export default function DiagnosticoServico() {
           />
         )}
 
+        {mostrarModalMaoDeObra && (
+          <ModalMaoDeObra
+            onClose={() => setMostrarModalMaoDeObra(false)}
+            onConfirm={(valor) => {
+              setMostrarModalMaoDeObra(false);
+              concluirManutencaoComValor(valor);
+            }}
+          />
+        )}
         <div className="header-servico">
           <div className="info-servico">
             <div className="logo-notebook">

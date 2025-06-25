@@ -1,0 +1,33 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-container input {
+  width: 100%;
+  padding: 8px;
+  margin: 15px 0;
+}
+
+.modal-actions button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
