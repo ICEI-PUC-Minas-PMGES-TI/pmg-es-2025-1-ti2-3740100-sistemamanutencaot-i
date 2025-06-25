@@ -32,6 +32,8 @@ const anos = [
 
 const BASE_URL = 'http://localhost:8080/api/dashboard';
 
+const id_gerente = localStorage.getItem('id_gerente');
+
 const fetchCartoes = async (mes, ano) => {
   const response = await fetch(`${BASE_URL}/cartoes?mes=${mes}&ano=${ano}`);
   return await response.json();
@@ -70,7 +72,11 @@ const HomeGerente = () => {
   const [estoque, setEstoque] = useState([]);
 
   // Pode deixar fixo ou fazer outro fetch para usuário, se quiser
-  const usuario = { nome: "Alexandre", cargo: "Gerente de Loja" };
+ 
+const usuario = {
+  nome: "Gerente",
+  cargo: `Gerente da loja ${id_gerente || 'desconhecido'}`
+};
 
   useEffect(() => {
     const carregarDadosDashboard = async () => {
