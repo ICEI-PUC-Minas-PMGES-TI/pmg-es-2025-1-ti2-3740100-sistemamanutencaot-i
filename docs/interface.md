@@ -22,7 +22,7 @@ O dashboard é a primeira tela que o usuário vê após fazer login. Apresenta u
 
 Tela principal para visualização e gerenciamento de todos os usuários cadastrados no sistema.
 
-![Lista de Usuários](images/interface/Lista_Usuarios.png)
+![Lista de Usuários](images/interface/Usuarios-Tela_de_Tecnico.png)
 
 *Figura 2: Tela de gerenciamento de usuários com funcionalidades de pesquisa, filtro e paginação*
 
