@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
+import FiltroDropdown from "../FiltroDownDrop/FiltroDownDrop.jsx";
 import axios from "axios";
-import styles from "./Estoque.module.css"; // Corrigido a importação
-import AdicionarAlert from "./AdicionarAlert"; // Adicionado import
+import styles from "./Estoque.module.css";
+import AdicionarAlert from "./AdicionarAlert";
 import adicionar from "../../assets/images/adicionar.png";
-import filtrar from "../../assets/images/Filtro1.png";
 import pesquisar from "../../assets/images/search.png";
 import ver from "../../assets/images/ver.png";
 import editar from "../../assets/images/edit.png";
 import excluir from "../../assets/images/lixo.png";
 
 const EstoqueTecnico = () => {
+  const [filtro, setFiltro] = useState('Todos');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [items, setItems] = useState([]);
+  const [itemsFiltrados, setItemsFiltrados] = useState([]);
+
+  // Opções de filtro para estoque
+  const opcoesFiltroEstoque = [
+    { label: 'Todos', valor: 'Todos' },
+    { label: 'Baixo Estoque', valor: 'Baixo' },
+    { label: 'Em Estoque', valor: 'Normal' },
+  ];
 
   useEffect(() => {
     axios.get("http://localhost:8080/pecas")
@@ -21,14 +30,26 @@ const EstoqueTecnico = () => {
           nome: p.nome || "Não informado",
           marca: p.marca || "Não informado",
           modelo: p.modelo || "Não informado",
-          estoque: p.estoque || 0,   // <- Aqui troquei para estoque
+          estoque: p.estoque || 0,
           segmento: p.segmento || "Não informado",
           preco: p.preco || 0,
         }));
         setItems(pecas);
+        setItemsFiltrados(pecas); // Inicializa os itens filtrados
       })
       .catch(() => alert("Erro ao buscar peças"));
   }, []);
+
+  // Aplicar filtro sempre que o estado de filtro ou items mudar
+  useEffect(() => {
+    if (filtro === 'Todos') {
+      setItemsFiltrados(items);
+    } else if (filtro === 'Baixo') {
+      setItemsFiltrados(items.filter(item => item.estoque < 5));
+    } else if (filtro === 'Normal') {
+      setItemsFiltrados(items.filter(item => item.estoque >= 5));
+    }
+  }, [filtro, items]);
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
@@ -36,12 +57,22 @@ const EstoqueTecnico = () => {
   const handleAddItem = (newItem) => {
     const itemToSave = {
       ...newItem,
-      tipo: "Peça", // Força tipo "Peça"
+      tipo: "Peça",
     };
 
     axios.post("http://localhost:8080/pecas", itemToSave)
       .then((res) => {
-        setItems((prev) => [...prev, res.data]);
+        const novoItem = {
+          id: res.data.id,
+          nome: res.data.nome,
+          marca: res.data.marca,
+          modelo: res.data.modelo,
+          estoque: res.data.estoque,
+          segmento: res.data.segmento,
+          preco: res.data.preco,
+        };
+        
+        setItems(prev => [...prev, novoItem]);
         closeAddModal();
       })
       .catch(() => alert("Erro ao adicionar item"));
@@ -70,12 +101,11 @@ const EstoqueTecnico = () => {
             <span className={styles["button-text"]}>Adicionar</span>
           </button>
 
-          <button className={`${styles["animated-button"]} ${styles["blue"]}`}>
-            <span className={styles["button-icon"]}>
-              <img src={filtrar} alt="Filtrar" />
-            </span>
-            <span className={styles["button-text"]}>Filtrar</span>
-          </button>
+          <FiltroDropdown
+            opcoes={opcoesFiltroEstoque}
+            filtroSelecionado={filtro}
+            aoSelecionarFiltro={setFiltro}
+          />
         </div>
       </div>
 
@@ -92,7 +122,7 @@ const EstoqueTecnico = () => {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) => (
+            {itemsFiltrados.map((item) => (
               <tr key={item.id}>
                 <td>
                   <label>
@@ -102,7 +132,7 @@ const EstoqueTecnico = () => {
                 </td>
                 <td>{item.marca}</td>
                 <td>{item.modelo}</td>
-                <td className={styles.quantidade}>{item.estoque}</td> {/* <-- aqui */}
+                <td className={styles.quantidade}>{item.estoque}</td>
                 <td>{item.segmento}</td>
                 <td className={styles.acoes}>
                   <div className={styles.actions}>
@@ -124,7 +154,7 @@ const EstoqueTecnico = () => {
       </div>
 
       <nav className={styles.pagination}>
-        <span>Mostrando 1 a 8 de 40 itens</span>
+        <span>Mostrando 1 a {itemsFiltrados.length} de {itemsFiltrados.length} itens</span>
         <div className={styles["page-controls"]}>
           <button>‹</button>
           <button className={styles.active}>1</button>

@@ -2,24 +2,36 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./OrdensServico.css";
-import filtrar from "../../assets/images/Filtro1.png";
 import adicionar from "../../assets/images/adicionar.png";
 import pesquisar from "../../assets/images/search.png";
 import detalhes from "../../assets/images/detalhes.png";
-import atribuirIcon from "../../assets/images/adicionar.png"; // Ícone para atribuir
-import AtribuirManutencao from "./AtribuirManutencao.jsx"; // Componente modal para atribuir técnico
+import atribuirIcon from "../../assets/images/adicionar.png";
+import AtribuirManutencao from "./AtribuirManutencao.jsx";
+import FiltroDownDrop from "../FiltroDownDrop/FiltroDownDrop.jsx"; // Importe o componente de filtro
 
 const OrdensServico = () => {
   const [ordens, setOrdens] = useState([]);
+  const [ordensFiltradas, setOrdensFiltradas] = useState([]);
   const navigate = useNavigate();
   const [paginaAtual, setPaginaAtual] = useState(0);
   const [totalPaginas, setTotalPaginas] = useState(0);
   const tamanhoPagina = 8;
   const [showAtribuirModal, setShowAtribuirModal] = useState(false);
   const [ordemSelecionada, setOrdemSelecionada] = useState(null);
+  const [filtroStatus, setFiltroStatus] = useState('Todos');
 
   const tipoUsuario = localStorage.getItem("tipoUsuario");
   const tecnicoIdLogado = localStorage.getItem("id_tecnico");
+
+  // Opções de filtro para status
+  const opcoesFiltroStatus = [
+    { label: 'Todos', valor: 'Todos' },
+    { label: 'Em Andamento', valor: 'Em Andamento' },
+    { label: 'Concluído', valor: 'Concluído' },
+    { label: 'Aguardando Peças', valor: 'Aguardando Peças' },
+    { label: 'Diagnóstico', valor: 'Diagnóstico' },
+    { label: 'Aguardando Retirada', valor: 'Aguardando Retirada' },
+  ];
 
   useEffect(() => {
     buscarReparos(paginaAtual);
@@ -30,12 +42,22 @@ const OrdensServico = () => {
       .get(`http://localhost:8080/ordem-servicos?page=${pagina}&size=${tamanhoPagina}`)
       .then((response) => {
         setOrdens(response.data.content);
+        setOrdensFiltradas(response.data.content); // Inicializa com todas as ordens
         setTotalPaginas(response.data.totalPages);
       })
       .catch((error) => {
         console.error("Erro ao buscar ordens de serviço:", error);
       });
   };
+
+  // Aplicar filtro sempre que o status do filtro ou as ordens mudarem
+  useEffect(() => {
+    if (filtroStatus === 'Todos') {
+      setOrdensFiltradas(ordens);
+    } else {
+      setOrdensFiltradas(ordens.filter(ordem => ordem.status === filtroStatus));
+    }
+  }, [filtroStatus, ordens]);
 
   const mudarPagina = (pagina) => {
     setPaginaAtual(pagina);
@@ -102,6 +124,12 @@ const OrdensServico = () => {
     setShowAtribuirModal(false);
   };
 
+  // Calcular índices para paginação
+  const inicio = paginaAtual * tamanhoPagina;
+  const fim = inicio + tamanhoPagina;
+  const ordensPagina = ordensFiltradas.slice(inicio, fim);
+  const totalItens = ordensFiltradas.length;
+
   return (
     <main className="ordem-management">
       {showAtribuirModal && (
@@ -130,12 +158,13 @@ const OrdensServico = () => {
             </span>
             <span className="button-text">Adicionar</span>
           </button>
-          <button className="animated-button blue">
-            <span className="button-icon">
-              <img src={filtrar} alt="Filtrar" />
-            </span>
-            <span className="button-text">Filtrar</span>
-          </button>
+          
+          {/* Substituído o botão de filtrar pelo componente de filtro */}
+          <FiltroDownDrop
+            opcoes={opcoesFiltroStatus}
+            filtroSelecionado={filtroStatus}
+            aoSelecionarFiltro={setFiltroStatus}
+          />
         </div>
       </div>
 
@@ -153,7 +182,7 @@ const OrdensServico = () => {
             </tr>
           </thead>
           <tbody>
-            {ordens.map((ordem, index) => (
+            {ordensPagina.map((ordem, index) => (
               <tr key={index}>
                 <td>{ordem.id}</td>
                 <td>{ordem.computador.cliente.pessoa.nome}</td>
@@ -202,10 +231,15 @@ const OrdensServico = () => {
 
       <nav className="pagination">
         <span>
-          Mostrando {paginaAtual * tamanhoPagina + 1} a {(paginaAtual + 1) * tamanhoPagina} itens
+          Mostrando {inicio + 1} a {Math.min(fim, totalItens)} de {totalItens} itens
         </span>
         <div className="page-controls">
-          <button onClick={() => mudarPagina(Math.max(0, paginaAtual - 1))}>‹</button>
+          <button 
+            onClick={() => mudarPagina(Math.max(0, paginaAtual - 1))}
+            disabled={paginaAtual === 0}
+          >
+            ‹
+          </button>
           {Array.from({ length: totalPaginas }, (_, i) => (
             <button
               key={i}
@@ -215,7 +249,12 @@ const OrdensServico = () => {
               {i + 1}
             </button>
           ))}
-          <button onClick={() => mudarPagina(Math.min(totalPaginas - 1, paginaAtual + 1))}>›</button>
+          <button 
+            onClick={() => mudarPagina(Math.min(totalPaginas - 1, paginaAtual + 1))}
+            disabled={paginaAtual === totalPaginas - 1}
+          >
+            ›
+          </button>
         </div>
       </nav>
     </main>

@@ -1,0 +1,77 @@
+.filtroContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px; /* Mesma altura dos outros botões */
+}
+
+.filtroSelector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #256ac5; /* Cor do botão azul */
+  color: white; /* Texto branco */
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  height: 100%;
+  transition: background 0.3s;
+}
+
+.filtroSelector:hover {
+  background: #123594; /* Cor do hover do botão azul */
+}
+
+.filtroIconImage {
+  height: 16px; /* Tamanho do ícone igual aos outros */
+  filter: brightness(0) invert(1); /* Tornar o ícone branco */
+}
+
+.filtroTexto {
+  font-weight: 600;
+}
+
+.filtroIcon {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  margin-left: 4px;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.filtroDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+  min-width: 150px;
+}
+
+.filtroOption {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0B1446;
+  cursor: pointer;
+}
+
+.filtroOption:hover {
+  background-color: #f5f5f5;
+}
+
+.selected {
+  background-color: #f0f0f0;
+  font-weight: 700;
+}

@@ -3,25 +3,34 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Usuarios.css";
 import editar from "../../assets/images/edit.png";
-import filtrar from "../../assets/images/Filtro1.png";
 import adicionar from "../../assets/images/adicionar.png";
 import excluir from "../../assets/images/lixo.png";
 import pesquisar from "../../assets/images/search.png";
 import AdicionarAlert from "./AdicionarAlert";
+import FiltroDownDrop from "../FiltroDownDrop/FiltroDownDrop.jsx";
 
 const UserManagement = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);  const [users, setUsers] = useState([]); // Estado para os usuários
-  const [filteredUsers, setFilteredUsers] = useState([]); // Estado para os usuários filtrados
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para o termo de pesquisa
-  const [activeFilters, setActiveFilters] = useState({
-    showClientes: true,
-    showTecnicos: true
-  });
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filtroTipo, setFiltroTipo] = useState('Todos');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8); // 8 itens por página
+  const [itemsPerPage] = useState(8);
   const navigate = useNavigate();
+
+  // Opções de filtro para usuários
+  const opcoesFiltro = [
+    { label: 'Todos', valor: 'Todos' },
+    { label: 'Apenas Clientes', valor: 'Clientes' },
+  ];
+  
+  // Se for gerente, adiciona opção de técnicos
+  if (tipoUsuario === "gerente") {
+    opcoesFiltro.push({ label: 'Apenas Técnicos', valor: 'Técnicos' });
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,7 +57,9 @@ const UserManagement = () => {
           }));
         }
 
-        setUsers([...tecnicos, ...clientes]);
+        const allUsers = [...tecnicos, ...clientes];
+        setUsers(allUsers);
+        setFilteredUsers(allUsers);
       } catch (error) {
         alert("Erro ao buscar usuários");
       }
@@ -56,28 +67,30 @@ const UserManagement = () => {
 
     fetchData();
   }, [tipoUsuario]);
-  // useEffect para filtrar usuários com base no termo de pesquisa e filtros ativos
+
+  // Filtrar usuários com base nos critérios
   useEffect(() => {
     let filtered = users;
 
-    // Aplicar filtros por tipo
-    filtered = filtered.filter(user => {
-      if (user.type === "Cliente" && !activeFilters.showClientes) return false;
-      if (user.type === "Técnico" && !activeFilters.showTecnicos) return false;
-      return true;
-    });
+    // Aplicar filtro por tipo
+    if (filtroTipo !== 'Todos') {
+      filtered = filtered.filter(user => 
+        filtroTipo === 'Clientes' ? user.type === 'Cliente' : user.type === 'Técnico'
+      );
+    }
 
-    // Aplicar filtro de pesquisa
+    // Aplicar filtro por termo de busca
     if (searchTerm.trim() !== "") {
       filtered = filtered.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.cpf.includes(searchTerm) ||
-        user.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.type.toLowerCase().includes(searchTerm.toLowerCase())
+        user.phone.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    }    setFilteredUsers(filtered);
-    setCurrentPage(1); // Reset para primeira página quando filtros mudam
-  }, [users, searchTerm, activeFilters]);
+    }
+
+    setFilteredUsers(filtered);
+    setCurrentPage(1);
+  }, [users, searchTerm, filtroTipo]);
 
   // Calcular dados da paginação
   const totalItems = filteredUsers.length;
@@ -110,39 +123,21 @@ const UserManagement = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // A filtragem já é feita automaticamente pelo useEffect
   };
+
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
 
-  const openFilterModal = () => setIsFilterModalOpen(true);
-  const closeFilterModal = () => setIsFilterModalOpen(false);
-
-  const handleFilterChange = (filterType) => {
-    setActiveFilters(prev => ({
-      ...prev,
-      [filterType]: !prev[filterType]
-    }));
-  };
-
-  const clearFilters = () => {
-    setActiveFilters({
-      showClientes: true,
-      showTecnicos: true
-    });
-  };
-
   const handleAddUser = () => {
     closeAddModal();
-    navigate("/cadastro-cliente"); // Navega para a tela de adicionar usuário
+    navigate("/cadastro-cliente");
   };
 
   const handleAddTechnical = () => {
     closeAddModal();
-    navigate("/cadastro-tecnico"); // Navega para a tela de adicionar técnico
+    navigate("/cadastro-tecnico");
   };
   
-
   const handleDelete = async (user) => {
     try {
       if (!window.confirm("Tem certeza que deseja excluir este usuário?")) return;
@@ -152,7 +147,6 @@ const UserManagement = () => {
       } else if (user.type === "Cliente") {
         await axios.delete(`http://localhost:8080/clientes/${user.id}`);
       }
-      // Atualiza a lista após excluir
       setUsers(users.filter(u => u.id !== user.id));
     } catch (error) {
       alert("Erro ao excluir usuário");
@@ -171,16 +165,17 @@ const UserManagement = () => {
     if (tipoUsuario === "tecnico") {
       navigate("/cadastro-cliente");
     } else if(tipoUsuario === "gerente") {
-      setIsAddModalOpen(true); // mostra o modal com opções
+      setIsAddModalOpen(true);
     }
   };
-
 
   return (
     <main className="user-management">
       <header className="management-header">
         <h1>Usuários</h1>
-      </header>      <div className="controls-container">
+      </header>
+      
+      <div className="controls-container">
         <form className="search-form" onSubmit={handleSearchSubmit}>
           <input 
             type="search" 
@@ -193,6 +188,7 @@ const UserManagement = () => {
             <img src={pesquisar} alt="Pesquisar" />
           </button>
         </form>
+        
         <div className="button-section">
           <button
             className="animated-button"
@@ -202,12 +198,13 @@ const UserManagement = () => {
               <img src={adicionar} alt="Adicionar" />
             </span>
             <span className="button-text">Adicionar</span>
-          </button>          <button className="animated-button blue" onClick={openFilterModal}>
-            <span className="button-icon">
-              <img src={filtrar} alt="Filtrar" />
-            </span>
-            <span className="button-text">Filtrar</span>
           </button>
+          
+          <FiltroDownDrop
+            opcoes={opcoesFiltro}
+            filtroSelecionado={filtroTipo}
+            aoSelecionarFiltro={setFiltroTipo}
+          />
         </div>
       </div>
 
@@ -221,7 +218,8 @@ const UserManagement = () => {
               <th>Tipo</th>
               <th>Ações</th>
             </tr>
-          </thead>          <tbody>
+          </thead>
+          <tbody>
             {currentItems.map((user, index) => (
               <tr key={index}>
                 <td>
@@ -253,7 +251,9 @@ const UserManagement = () => {
             ))}
           </tbody>
         </table>
-      </div>      <nav className="pagination">
+      </div>
+      
+      <nav className="pagination">
         <span>
           Mostrando {totalItems === 0 ? 0 : startIndex + 1} a {Math.min(endIndex, totalItems)} de {totalItems} itens
         </span>
@@ -281,48 +281,6 @@ const UserManagement = () => {
           </button>
         </div>
       </nav>
-
-      {/* Modal de Filtro */}
-      {isFilterModalOpen && (
-        <div className="modal-overlay" onClick={closeFilterModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Filtrar Usuários</h3>
-              <button className="close-button" onClick={closeFilterModal}>×</button>
-            </div>
-            <div className="modal-body">
-              <div className="filter-options">
-                <label className="filter-option">
-                  <input
-                    type="checkbox"
-                    checked={activeFilters.showClientes}
-                    onChange={() => handleFilterChange('showClientes')}
-                  />
-                  <span>Mostrar Clientes</span>
-                </label>
-                {tipoUsuario === "gerente" && (
-                  <label className="filter-option">
-                    <input
-                      type="checkbox"
-                      checked={activeFilters.showTecnicos}
-                      onChange={() => handleFilterChange('showTecnicos')}
-                    />
-                    <span>Mostrar Técnicos</span>
-                  </label>
-                )}
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="btn-secondary" onClick={clearFilters}>
-                Limpar Filtros
-              </button>
-              <button className="btn-primary" onClick={closeFilterModal}>
-                Aplicar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Modal de Adicionar */}
       {isAddModalOpen && (
