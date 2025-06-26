@@ -21,6 +21,7 @@ import HomeGerente from "./pages/MainGerente.jsx"
 import EditarTecnico from "./components/Usuarios/EditarTecnico";
 import EditarCliente from "./components/Usuarios/EditarCliente";
 import EsqueceuSenha from "./components/LoginPage/ForgotPasswordPage.jsx";
+import RequisicaoPecaGerente from "./pages/RequisicaoPecaGerente.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -73,6 +74,8 @@ function App() {
         <Route path="/editar-tecnico/:id" element={<EditarTecnico />} />
         
         <Route path="/editar-cliente/:id" element={<EditarCliente />} />
+
+        <Route path="/requisicao-peca-gerente" element={<RequisicaoPecaGerente />} />
 
         {/* Rota raiz (opcional - pode redirecionar) */}
         <Route path="/" element={<LandingPage />} />

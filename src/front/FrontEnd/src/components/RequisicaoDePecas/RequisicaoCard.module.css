@@ -1,0 +1,148 @@
+.requestCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.requestCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardId {
+  color: #0B1446;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.statusPendente {
+  background-color: rgba(249, 168, 37, 0.15);
+  color: #f9a825;
+  border: 1px solid #f9a825;
+}
+
+.statusAceito {
+  background-color: rgba(67, 160, 71, 0.15);
+  color: #43a047;
+  border: 1px solid #43a047;
+}
+
+.statusRejeitado {
+  background-color: rgba(229, 57, 53, 0.15);
+  color: #e53935;
+  border: 1px solid #e53935;
+}
+
+.statusIndicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.cardDate {
+  color: #666;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.componentTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+
+.componentTable th:first-child {
+  text-align: left;
+}
+
+.componentTable th:last-child {
+  text-align: right;
+}
+
+.componentTable th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  border-bottom: 1px solid #eee;
+  padding: 4px 8px;
+}
+
+
+.componentTable td:first-child {
+  text-align: left;
+}
+
+.componentTable td:last-child {
+  text-align: right;
+}
+
+.componentTable td {
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  color: #0a1a4f; /* tom escuro padrão usado no restante do projeto */
+}
+
+
+.componentTable tr:last-child td {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.componentQuantity {
+  text-align: right;
+  font-weight: 600;
+}
+
+.observationsLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0B1446;
+  margin: 0 5px 4px 5px;
+}
+
+.observationsText {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0 5px 16px 5px;
+}
+
+.detailsButton {
+  width: 100%;
+  background: #0B1446;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.detailsButton:hover {
+  background: #1a237e;
+}

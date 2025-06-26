@@ -1,0 +1,222 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  background-color: #0b1440;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.closeButton:hover {
+  background-color: #b71c1c;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.modalId {
+  font-weight: 400;
+}
+
+.solicitante {
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+  color: #ccc;
+}
+
+.solicitanteNome {
+  font-weight: 700;
+  color: #a3a3a3;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .infoContainer {
+    flex-direction: row;
+  }
+}
+
+.infoBox {
+  background-color: white;
+  color: #0b1440;
+  border-radius: 6px;
+  padding: 12px;
+  flex: 1;
+}
+
+.infoLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.infoValue {
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pendente {
+  background-color: rgba(249, 168, 37, 0.2);
+  color: #f9a825;
+}
+
+.aceito {
+  background-color: rgba(67, 160, 71, 0.2);
+  color: #43a047;
+}
+
+.rejeitado {
+  background-color: rgba(229, 57, 53, 0.2);
+  color: #e53935;
+}
+
+.detalhesTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.detalhesTable thead {
+  background-color: #0b3a8a;
+}
+
+.detalhesTable th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.detalhesTable tbody {
+  background-color: white;
+  color: #0b1440;
+}
+
+.detalhesTable td {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detalhesTable tr:last-child td {
+  border-bottom: none;
+}
+
+.quantidade {
+  text-align: center;
+  font-weight: 700;
+}
+
+.observacoesContainer {
+  margin-bottom: 24px;
+}
+
+.observacoesBox {
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.observacoesLabel {
+  display: block;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+
+.observacoesTexto {
+  color: #4b5563;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 8px;
+}
+
+.acoesContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.acaoButton {
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  width: 160px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  transition: all 0.3s;
+}
+
+.aceitarButton {
+  background-color: #16a34a;
+}
+
+.aceitarButton:hover {
+  background-color: #15803d;
+}
+
+.recusarButton {
+  background-color: #dc2626;
+}
+
+.recusarButton:hover {
+  background-color: #b91c1c;
+}

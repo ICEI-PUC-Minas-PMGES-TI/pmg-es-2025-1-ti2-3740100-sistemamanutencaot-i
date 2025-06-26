@@ -12,6 +12,7 @@ import Home from "../assets/images/home.png";
 import Saida from "../assets/images/Log out.png";
 import Loja from "../assets/images/loja.png";
 import Info from "../assets/images/info.png";
+import Solicitacao from "../assets/images/solicitacao.png";
 
 const BarraLateral = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
@@ -28,6 +29,7 @@ const BarraLateral = () => {
     { icon: Box, text: "Estoque", path: "/estoque" },
     { icon: User, text: "Usuários", path: "/usuarios" },
     { icon: Folder, text: "Ordem de Serviço", path: "/ordens-servico" },
+    { icon: Solicitacao, text: "Solicitações de Peças", path: "/requisicao-peca-gerente" },
     { icon: Loja, text: "Informações Loja", path: "/configuracoes" },
   ];
 

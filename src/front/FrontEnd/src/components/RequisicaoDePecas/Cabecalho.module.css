@@ -1,0 +1,106 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.screenHeader {
+  color: #0B1446;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.screenSubtitle {
+  color: #0B1446;
+  font-size: 1rem;
+  margin: 0.25rem 0 0;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.filterLabel {
+  color: #0B1446;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.filterSelector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0B1446;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+
+.filterText {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.statusIndicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.todos { background-color: #0a1a4f; }
+.pendente { background-color: #f9a825; }
+.aceito { background-color: #43a047; }
+.rejeitado { background-color: #e53935; }
+
+.filterIcon {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.filterDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+  width: 120px;
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0B1446;
+  cursor: pointer;
+}
+
+.filterOption:hover {
+  background-color: #f5f5f5;
+}
+
+.selected {
+  background-color: #f0f0f0;
+}
