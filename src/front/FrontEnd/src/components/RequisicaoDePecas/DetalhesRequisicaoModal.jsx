@@ -20,7 +20,7 @@ const DetalhesRequisicaoModal = ({ requisicao, onClose, onAceitar, onRecusar }) 
         </h1>
         
         <p className={styles.solicitante}>
-          Solicitado por: <span className={styles.solicitanteNome}>{requisicao.solicitante}</span>
+          Solicitado por: <span className={styles.solicitanteNome}>{requisicao.tecnicoNome}</span>
         </p>
 
         <div className={styles.infoContainer}>
@@ -38,8 +38,7 @@ const DetalhesRequisicaoModal = ({ requisicao, onClose, onAceitar, onRecusar }) 
                 requisicao.status === 'Pendente' ? 'fa-hourglass-half' :
                 requisicao.status === 'Aceito' ? 'fa-check' : 'fa-times'
               }`}></i>
-              {requisicao.status === 'Pendente' ? 'Pendente' : 
-               requisicao.status === 'Aceito' ? 'Aceito' : 'Rejeitado'}
+              {requisicao.status}
             </span>
           </div>
         </div>
@@ -54,12 +53,12 @@ const DetalhesRequisicaoModal = ({ requisicao, onClose, onAceitar, onRecusar }) 
             </tr>
           </thead>
           <tbody>
-            {requisicao.items.map((item, index) => (
+            {requisicao.pecasRequeridas.map((item, index) => (
               <tr key={index}>
-                <td>{item.component}</td>
+                <td>{item.nome}</td>
                 <td>{item.marca || 'N/A'}</td>
                 <td>{item.modelo || 'N/A'}</td>
-                <td className={styles.quantidade}>{item.quantity}</td>
+                <td className={styles.quantidade}>{item.quantidade}</td>
               </tr>
             ))}
           </tbody>
@@ -69,7 +68,7 @@ const DetalhesRequisicaoModal = ({ requisicao, onClose, onAceitar, onRecusar }) 
           <div className={styles.observacoesBox}>
             <label className={styles.observacoesLabel}>Observações:</label>
             <p className={styles.observacoesTexto}>
-              {requisicao.note || 'Nenhuma observação a pontuar.'}
+              {requisicao.observacao || 'Nenhuma observação a pontuar.'}
             </p>
           </div>
         </div>

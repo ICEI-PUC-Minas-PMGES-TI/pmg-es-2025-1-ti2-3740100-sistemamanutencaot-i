@@ -34,7 +34,7 @@ const RequisicaoCard = ({ requisicao, onVerDetalhes }) => { // Adicione onVerDet
       </div>
       
       <p className={styles.cardDate}>
-        {requisicao.date}
+        {requisicao.dataSolicitacao}
       </p>
       
       <table className={styles.componentTable}>
@@ -45,11 +45,11 @@ const RequisicaoCard = ({ requisicao, onVerDetalhes }) => { // Adicione onVerDet
           </tr>
         </thead>
         <tbody>
-          {requisicao.items.map((item, index) => (
+          {requisicao.pecasRequeridas.map((item, index) => (
             <tr key={index}>
-              <td>{item.component}</td>
-              <td className={styles.componentQuantity}>{item.quantity}</td>
-            </tr>
+              <td>{item.nome}</td>
+              <td className={styles.componentQuantity}>{item.quantidade}</td>
+              </tr>
           ))}
         </tbody>
       </table>
@@ -58,7 +58,7 @@ const RequisicaoCard = ({ requisicao, onVerDetalhes }) => { // Adicione onVerDet
         Observações:
       </p>
       <p className={styles.observationsText}>
-        {requisicao.note}
+        {requisicao.observacao}
       </p>
       
       <button

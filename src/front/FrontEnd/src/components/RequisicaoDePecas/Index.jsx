@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import Cabecalho from './Cabecalho';
 import RequisicaoCard from './RequisicaoCard';
-import { requisicoes } from './data/requisicoes';
 import DetalhesRequisicaoModal from './DetalhesRequisicaoModal';
-import Swal from 'sweetalert2'; // Importação adicionada
+import Swal from 'sweetalert2';
+
+const API_URL = 'http://localhost:8080/api/requisicoes'; // ajuste para sua URL real
 
 const RequisicaoDePecas = () => {
   const [filtroSelecionado, setFiltroSelecionado] = useState('Todos');
   const [requisicaoSelecionada, setRequisicaoSelecionada] = useState(null);
   const [modalAberto, setModalAberto] = useState(false);
-  const [requisicoesList, setRequisicoesList] = useState(requisicoes); // Estado para gerenciar requisições
+  const [requisicoesList, setRequisicoesList] = useState([]);
 
-  // Atualizado para usar o estado interno
+  // Pega os dados da API no carregamento
+  useEffect(() => {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setRequisicoesList(data))
+      .catch(err => {
+        console.error("Erro ao carregar requisições:", err);
+        Swal.fire('Erro', 'Não foi possível carregar as requisições', 'error');
+      });
+  }, []);
+
   const requisicoesFiltradas = filtroSelecionado === 'Todos'
     ? requisicoesList
     : requisicoesList.filter(r => 
@@ -31,13 +42,26 @@ const RequisicaoDePecas = () => {
     setRequisicaoSelecionada(null);
   };
 
-  // Função para atualizar o status de uma requisição
+  // Atualiza status localmente e no backend
   const atualizarStatusRequisicao = (id, novoStatus) => {
-    setRequisicoesList(prevList => 
-      prevList.map(req => 
-        req.id === id ? { ...req, status: novoStatus } : req
-      )
-    );
+    fetch(`${API_URL}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...requisicoesList.find(r => r.id === id), status: novoStatus }),
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Erro ao atualizar');
+      return res.json();
+    })
+    .then(atualizada => {
+      setRequisicoesList(prevList =>
+        prevList.map(req => (req.id === id ? atualizada : req))
+      );
+    })
+    .catch(err => {
+      console.error(err);
+      Swal.fire('Erro', 'Não foi possível atualizar a requisição', 'error');
+    });
   };
 
   const handleAceitar = () => {
@@ -52,9 +76,7 @@ const RequisicaoDePecas = () => {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Atualiza o status da requisição
         atualizarStatusRequisicao(requisicaoSelecionada.id, 'Aceito');
-        
         Swal.fire({
           icon: 'success',
           title: 'Requisição Aceita!',
@@ -78,9 +100,7 @@ const RequisicaoDePecas = () => {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Atualiza o status da requisição
         atualizarStatusRequisicao(requisicaoSelecionada.id, 'Rejeitado');
-        
         Swal.fire({
           icon: 'error',
           title: 'Requisição Recusada!',
