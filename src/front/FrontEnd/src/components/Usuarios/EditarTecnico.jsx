@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../assets/css/FormularioTecnico.module.css";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-const EditarTecnico = () => {
-  const { id } = useParams();
+// Removemos o useParams e useNavigate, pois agora recebemos id e onClose via props
+const EditarTecnico = ({ id, onClose }) => {
   const [formData, setFormData] = useState({
     nomeTecnico: "",
     email: "",
   });
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("");
   const [mensagem, setMensagem] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:8080/tecnicos/${id}`)
@@ -48,17 +47,29 @@ const EditarTecnico = () => {
 
     try {
       await axios.put(`http://localhost:8080/tecnicos/${id}`, tecnicoAtualizado);
-      setMensagem("Técnico atualizado com sucesso!");
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: 'Técnico atualizado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
       setTimeout(() => {
-        navigate("/usuarios");
-      }, 2000);
+        onClose(); // Fecha o modal após sucesso
+      }, 1500);
     } catch (error) {
-      setMensagem(`Erro ao atualizar técnico: ${error.response?.data?.message || error.message}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro!',
+        text: `Erro ao atualizar técnico: ${error.response?.data?.message || error.message}`
+      });
     }
   };
 
   return (
-    <div className={styles.containerFormulario}>
+    <div className={styles.containerFormulario} style={{ width: '100%' }}>
       <form onSubmit={handleSubmit} className={styles.envoltorioFormulario}>
         <h1 className={styles.tituloFormulario}>Editar Técnico</h1>
         <p className={styles.descricaoFormulario}>
@@ -106,9 +117,19 @@ const EditarTecnico = () => {
           </select>
         </div>
 
-        <button type="submit" className={styles.botaoFormulario}>
-          Salvar Alterações
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button 
+            type="button" 
+            className={styles.botaoFormulario}
+            style={{ backgroundColor: '#6c757d' }}
+            onClick={onClose}
+          >
+            Cancelar
+          </button>
+          <button type="submit" className={styles.botaoFormulario}>
+            Salvar Alterações
+          </button>
+        </div>
 
         {mensagem && (
           <p style={{ marginTop: "1rem", fontWeight: "bold" }}>{mensagem}</p>

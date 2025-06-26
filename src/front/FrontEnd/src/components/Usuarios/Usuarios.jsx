@@ -8,10 +8,17 @@ import excluir from "../../assets/images/lixo.png";
 import pesquisar from "../../assets/images/search.png";
 import AdicionarAlert from "./AdicionarAlert";
 import FiltroDownDrop from "../FiltroDownDrop/FiltroDownDrop.jsx";
+import Swal from 'sweetalert2';
+import EditarCliente from "./EditarCliente.jsx";
+import EditarTecnico from "./EditarTecnico.jsx";
 
 const UserManagement = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditTecnicoModalOpen, setIsEditTecnicoModalOpen] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState(null);
+  const [currentEditTecnicoId, setCurrentEditTecnicoId] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,40 +38,40 @@ const UserManagement = () => {
     opcoesFiltro.push({ label: 'Apenas Técnicos', valor: 'Técnicos' });
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let clientes = [];
-        let tecnicos = [];
+  const fetchData = async () => {
+    try {
+      let clientes = [];
+      let tecnicos = [];
 
-        const clientesRes = await axios.get("http://localhost:8080/clientes");
-        clientes = clientesRes.data.map(c => ({
-          id: c.id,
-          name: c.pessoa?.nome || "Não informado",
-          cpf: c.pessoa?.cpf || "Não informado",
-          phone: c.telefone || "Não informado",
-          type: "Cliente"
+      const clientesRes = await axios.get("http://localhost:8080/clientes");
+      clientes = clientesRes.data.map(c => ({
+        id: c.id,
+        name: c.pessoa?.nome || "Não informado",
+        cpf: c.pessoa?.cpf || "Não informado",
+        phone: c.telefone || "Não informado",
+        type: "Cliente"
+      }));
+
+      if (tipoUsuario === "gerente") {
+        const tecnicosRes = await axios.get("http://localhost:8080/tecnicos");
+        tecnicos = tecnicosRes.data.map(t => ({
+          id: t.id,
+          name: t.nome || "Não informado",
+          cpf: t.cpf || "Não informado",
+          phone: t.email || "Não informado",
+          type: "Técnico"
         }));
-
-        if (tipoUsuario === "gerente") {
-          const tecnicosRes = await axios.get("http://localhost:8080/tecnicos");
-          tecnicos = tecnicosRes.data.map(t => ({
-            id: t.id,
-            name: t.nome || "Não informado",
-            cpf: t.cpf || "Não informado",
-            phone: t.email || "Não informado",
-            type: "Técnico"
-          }));
-        }
-
-        const allUsers = [...tecnicos, ...clientes];
-        setUsers(allUsers);
-        setFilteredUsers(allUsers);
-      } catch (error) {
-        alert("Erro ao buscar usuários");
       }
-    };
 
+      const allUsers = [...tecnicos, ...clientes];
+      setUsers(allUsers);
+      setFilteredUsers(allUsers);
+    } catch (error) {
+      alert("Erro ao buscar usuários");
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [tipoUsuario]);
 
@@ -139,26 +146,50 @@ const UserManagement = () => {
   };
   
   const handleDelete = async (user) => {
-    try {
-      if (!window.confirm("Tem certeza que deseja excluir este usuário?")) return;
+    const result = await Swal.fire({
+      title: 'Tem certeza?',
+      text: `Você está prestes a excluir ${user.type} ${user.name}. Essa ação não pode ser desfeita!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
+    });
 
-      if (user.type === "Técnico") {
-        await axios.delete(`http://localhost:8080/tecnicos/${user.id}`);
-      } else if (user.type === "Cliente") {
-        await axios.delete(`http://localhost:8080/clientes/${user.id}`);
+    if (result.isConfirmed) {
+      try {
+        if (user.type === "Técnico") {
+          await axios.delete(`http://localhost:8080/tecnicos/${user.id}`);
+        } else if (user.type === "Cliente") {
+          await axios.delete(`http://localhost:8080/clientes/${user.id}`);
+        }
+        setUsers(users.filter(u => u.id !== user.id));
+        Swal.fire('Excluído!', 'O usuário foi excluído com sucesso.', 'success');
+      } catch (error) {
+        Swal.fire('Erro!', 'Não foi possível excluir o usuário.', 'error');
       }
-      setUsers(users.filter(u => u.id !== user.id));
-    } catch (error) {
-      alert("Erro ao excluir usuário");
     }
   };
 
   const handleEdit = (user) => {
     if (user.type === "Técnico") {
-      navigate(`/editar-tecnico/${user.id}`);
+      setCurrentEditTecnicoId(user.id);
+      setIsEditTecnicoModalOpen(true);
     } else if (user.type === "Cliente") {
-      navigate(`/editar-cliente/${user.id}`);
+      setCurrentEditId(user.id);
+      setIsEditModalOpen(true);
     }
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    fetchData();
+  };
+
+  const handleCloseEditTecnicoModal = () => {
+    setIsEditTecnicoModalOpen(false);
+    fetchData();
   };
 
   const handleAddClick = () => {
@@ -289,6 +320,48 @@ const UserManagement = () => {
           onAddUser={handleAddUser}
           onAddTechnical={handleAddTechnical}
         />
+      )}
+
+      {/* Modal de Edição de Cliente */}
+      {isEditModalOpen && (
+        <div className="modal-overlay-editar" onClick={() => setIsEditModalOpen(false)}>
+          <div 
+            className="modal-content-editar" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="modal-close-button-editar" 
+              onClick={() => setIsEditModalOpen(false)}
+            >
+              ×
+            </button>
+            <EditarCliente 
+              id={currentEditId} 
+              onClose={handleCloseEditModal} 
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Edição de Técnico */}
+      {isEditTecnicoModalOpen && (
+        <div className="modal-overlay-editar" onClick={() => setIsEditTecnicoModalOpen(false)}>
+          <div 
+            className="modal-content-editar" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="modal-close-button-editar" 
+              onClick={() => setIsEditTecnicoModalOpen(false)}
+            >
+              ×
+            </button>
+            <EditarTecnico 
+              id={currentEditTecnicoId} 
+              onClose={handleCloseEditTecnicoModal} 
+            />
+          </div>
+        </div>
       )}
     </main>
   );

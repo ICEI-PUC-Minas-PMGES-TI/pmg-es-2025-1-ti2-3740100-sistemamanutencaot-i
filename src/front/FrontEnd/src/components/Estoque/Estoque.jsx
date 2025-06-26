@@ -8,12 +8,17 @@ import pesquisar from "../../assets/images/search.png";
 import ver from "../../assets/images/ver.png";
 import editar from "../../assets/images/edit.png";
 import excluir from "../../assets/images/lixo.png";
+import Swal from 'sweetalert2';
+import EditarItemEstoque from "./EditarItemEstoque";
 
 const EstoqueTecnico = () => {
   const [filtro, setFiltro] = useState('Todos');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [items, setItems] = useState([]);
   const [itemsFiltrados, setItemsFiltrados] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentItem, setCurrentItem] = useState(null);
 
   // Opções de filtro para estoque
   const opcoesFiltroEstoque = [
@@ -23,6 +28,10 @@ const EstoqueTecnico = () => {
   ];
 
   useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = () => {
     axios.get("http://localhost:8080/pecas")
       .then((res) => {
         const pecas = res.data.map(p => ({
@@ -35,24 +44,47 @@ const EstoqueTecnico = () => {
           preco: p.preco || 0,
         }));
         setItems(pecas);
-        setItemsFiltrados(pecas); // Inicializa os itens filtrados
       })
-      .catch(() => alert("Erro ao buscar peças"));
-  }, []);
+      .catch(() => Swal.fire('Erro!', 'Não foi possível carregar os itens do estoque.', 'error'));
+  };
 
-  // Aplicar filtro sempre que o estado de filtro ou items mudar
+  // Aplicar filtro sempre que o estado de filtro, items ou searchTerm mudar
   useEffect(() => {
-    if (filtro === 'Todos') {
-      setItemsFiltrados(items);
-    } else if (filtro === 'Baixo') {
-      setItemsFiltrados(items.filter(item => item.estoque < 5));
-    } else if (filtro === 'Normal') {
-      setItemsFiltrados(items.filter(item => item.estoque >= 5));
+    let filtered = items;
+
+    // Aplicar filtro por termo de busca
+    if (searchTerm.trim() !== "") {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(item => 
+        item.nome.toLowerCase().includes(term) ||
+        item.marca.toLowerCase().includes(term) ||
+        item.modelo.toLowerCase().includes(term) ||
+        item.segmento.toLowerCase().includes(term)
+      );
     }
-  }, [filtro, items]);
+
+    // Aplicar filtro por estoque
+    if (filtro === 'Baixo') {
+      filtered = filtered.filter(item => item.estoque < 5);
+    } else if (filtro === 'Normal') {
+      filtered = filtered.filter(item => item.estoque >= 5);
+    }
+
+    setItemsFiltrados(filtered);
+  }, [filtro, items, searchTerm]);
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
+
+  const openEditModal = (item) => {
+    setCurrentItem(item);
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setCurrentItem(null);
+  };
 
   const handleAddItem = (newItem) => {
     const itemToSave = {
@@ -74,8 +106,48 @@ const EstoqueTecnico = () => {
         
         setItems(prev => [...prev, novoItem]);
         closeAddModal();
+        Swal.fire('Sucesso!', 'Item adicionado ao estoque.', 'success');
       })
-      .catch(() => alert("Erro ao adicionar item"));
+      .catch(() => Swal.fire('Erro!', 'Não foi possível adicionar o item.', 'error'));
+  };
+
+  const handleUpdateItem = (updatedItem) => {
+    setItems(prevItems => 
+      prevItems.map(item => item.id === updatedItem.id ? updatedItem : item)
+    );
+    closeEditModal();
+  };
+
+  const handleDeleteItem = (item) => {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: `Você está prestes a excluir o item "${item.nome}". Essa ação não pode ser desfeita!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:8080/pecas/${item.id}`)
+          .then(() => {
+            setItems(prev => prev.filter(i => i.id !== item.id));
+            Swal.fire('Excluído!', 'O item foi excluído com sucesso.', 'success');
+          })
+          .catch(() => {
+            Swal.fire('Erro!', 'Não foi possível excluir o item.', 'error');
+          });
+      }
+    });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -86,8 +158,14 @@ const EstoqueTecnico = () => {
       </header>
 
       <div className={styles["controls-container"]}>
-        <form className={styles["search-form"]}>
-          <input type="search" placeholder="Buscar..." aria-label="Buscar" />
+        <form className={styles["search-form"]} onSubmit={handleSearchSubmit}>
+          <input 
+            type="search" 
+            placeholder="Buscar..." 
+            aria-label="Buscar"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
           <button type="submit" aria-label="Buscar">
             <img src={pesquisar} alt="Pesquisar" />
           </button>
@@ -136,13 +214,10 @@ const EstoqueTecnico = () => {
                 <td>{item.segmento}</td>
                 <td className={styles.acoes}>
                   <div className={styles.actions}>
-                    <button className={styles["view-button"]}>
-                      <img src={ver} alt="Ver" />
-                    </button>
-                    <button className={styles["edit-button"]}>
+                    <button className={styles["edit-button"]} onClick={() => openEditModal(item)}>
                       <img src={editar} alt="Editar" />
                     </button>
-                    <button className={styles["delete-button"]}>
+                    <button className={styles["delete-button"]} onClick={() => handleDeleteItem(item)}>
                       <img src={excluir} alt="Excluir" />
                     </button>
                   </div>
@@ -168,6 +243,18 @@ const EstoqueTecnico = () => {
       {isAddModalOpen && (
         <div className={styles.modalOverlay}>
           <AdicionarAlert onClose={closeAddModal} onAddItem={handleAddItem} />
+        </div>
+      )}
+
+      {isEditModalOpen && currentItem && (
+        <div className={styles.modalOverlay} onClick={closeEditModal}>
+          <div onClick={(e) => e.stopPropagation()}>
+            <EditarItemEstoque 
+              item={currentItem} 
+              onClose={closeEditModal} 
+              onUpdate={handleUpdateItem} 
+            />
+          </div>
         </div>
       )}
     </main>
