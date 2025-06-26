@@ -95,16 +95,16 @@ useEffect(() => {
             onChange={(e) => setCodigoPeca(e.target.value)}
             aria-label="Selecionar peça"
           >
-            {pecasDisponiveis.filter(p => p.estoque > 0).length === 0 ? (
+            {pecasDisponiveis.filter(p => p.quantidade > 0).length === 0 ? (
               <option value="">Nenhuma peça disponível no estoque</option>
             ) : (
               <>
                 <option value="">Selecione uma peça</option>
                 {pecasDisponiveis
-                  .filter(p => p.estoque > 0)
+                  .filter(p => p.quantidade > 0)
                   .map(peca => (
                     <option key={peca.id} value={peca.codigo}>
-                      {peca.codigo} - {peca.nome} (Estoque: {peca.estoque})
+                      {peca.codigo} - {peca.nome} (Estoque: {peca.quantidade})
                     </option>
                   ))}
               </>

@@ -10,15 +10,14 @@ import java.util.List;
 
 @Repository
 public interface PecaRepository extends JpaRepository<Peca, Integer> {
-    Optional<Peca> findByCodigo(String codigo);
 
     @Query("""
         SELECT new io.manager.backend.dto.EstoqueAtualDTO(
-            p.nome,
-            p.estoque,
+            p.tipo,
+            p.quantidade,
             CASE
-                WHEN p.estoque >= 10 THEN 'aumento'
-                WHEN p.estoque <= 3 THEN 'reducao'
+                WHEN p.quantidade >= 10 THEN 'aumento'
+                WHEN p.quantidade <= 3 THEN 'reducao'
                 ELSE 'neutro'
             END
         )

@@ -36,10 +36,10 @@ const EstoqueTecnico = () => {
       .then((res) => {
         const pecas = res.data.map(p => ({
           id: p.id,
-          nome: p.nome || "Não informado",
+          nome: p.tipo || "Não informado",
           marca: p.marca || "Não informado",
           modelo: p.modelo || "Não informado",
-          estoque: p.estoque || 0,
+          estoque: p.quantidade || 0,
           segmento: p.segmento || "Não informado",
           preco: p.preco || 0,
         }));

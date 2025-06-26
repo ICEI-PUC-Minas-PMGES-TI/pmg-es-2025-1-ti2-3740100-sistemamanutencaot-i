@@ -26,11 +26,6 @@ public class PecaController {
         return pecaService.getAllPecas();
     }
 
-    @GetMapping("/{codigo}")
-    public List<Peca> buscarPorCodigo(@PathVariable String codigo) {
-        return pecaService.buscarCodigo(codigo);
-    }
-
     @GetMapping("/{id}")
     public Optional<Peca> getPecaById(@PathVariable Integer id) {
         return pecaService.getPecaById(id);

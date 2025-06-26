@@ -23,12 +23,6 @@ public class PecaService {
         return pecaRepository.findAll();
     }
 
-    public List<Peca> buscarCodigo(String codigo) {
-        return pecaRepository.findByCodigo(codigo)
-                .map(List::of)
-                .orElse(List.of());
-    }
-
     public Optional<Peca> getPecaById(Integer id) {
         return pecaRepository.findById(id);
     }

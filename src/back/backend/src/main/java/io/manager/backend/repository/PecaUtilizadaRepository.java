@@ -15,7 +15,7 @@ public interface PecaUtilizadaRepository extends JpaRepository<PecaUtilizada, Pe
 
     @Query("""
        SELECT new io.manager.backend.dto.ProdutoDestaqueDTO(
-            p.peca.nome,
+            p.peca.tipo,
             SUM(p.precoUnitario * p.quantidade),
             CAST(SUM(p.quantidade) AS long),
             '',
@@ -24,7 +24,7 @@ public interface PecaUtilizadaRepository extends JpaRepository<PecaUtilizada, Pe
         FROM PecaUtilizada p
         WHERE MONTH(p.ordemServico.dataEntrada) = :mes
           AND YEAR(p.ordemServico.dataEntrada) = :ano
-        GROUP BY p.peca.nome
+        GROUP BY p.peca.tipo
         ORDER BY SUM(p.quantidade) DESC
     """)
     List<ProdutoDestaqueDTO> buscarProdutosDestaque(@Param("mes") int mes, @Param("ano") int ano);
