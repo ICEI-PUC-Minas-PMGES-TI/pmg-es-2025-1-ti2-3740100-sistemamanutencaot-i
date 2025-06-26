@@ -49,23 +49,23 @@ const RequisicaoDePecas = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...requisicoesList.find(r => r.id === id), status: novoStatus }),
     })
-    .then(res => {
-      if (!res.ok) throw new Error('Erro ao atualizar');
-      return res.json();
-    })
-    .then(atualizada => {
-      setRequisicoesList(prevList =>
-        prevList.map(req => (req.id === id ? atualizada : req))
-      );
-    })
-    .catch(err => {
-      console.error(err);
-      Swal.fire('Erro', 'Não foi possível atualizar a requisição', 'error');
-    });
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao atualizar');
+        return res.json();
+      })
+      .then(atualizada => {
+        setRequisicoesList(prevList =>
+          prevList.map(req => (req.id === id ? atualizada : req))
+        );
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire('Erro', 'Não foi possível atualizar a requisição', 'error');
+      });
   };
 
-  const handleAceitar = () => {
-    Swal.fire({
+  const handleAceitar = async () => {
+    const confirmacao = await Swal.fire({
       title: 'Confirmar aceitação',
       text: `Deseja realmente aceitar a requisição #${requisicaoSelecionada.id}?`,
       icon: 'question',
@@ -74,9 +74,21 @@ const RequisicaoDePecas = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, aceitar!',
       cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        atualizarStatusRequisicao(requisicaoSelecionada.id, 'Aceito');
+    });
+
+    if (confirmacao.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:8080/api/requisicoes/${parseInt(requisicaoSelecionada.id)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...requisicaoSelecionada, status: 'Aceito' })
+        });
+
+        const dataAtualizada = await response.json();
+
+        // Atualiza a lista de requisições no estado
+        atualizarStatusRequisicao(dataAtualizada.id, dataAtualizada.status);
+
         Swal.fire({
           icon: 'success',
           title: 'Requisição Aceita!',
@@ -84,12 +96,14 @@ const RequisicaoDePecas = () => {
           confirmButtonColor: '#43a047',
         });
         fecharModal();
+      } catch (error) {
+        console.error('Erro ao aceitar requisição:', error);
       }
-    });
+    }
   };
 
-  const handleRecusar = () => {
-    Swal.fire({
+  const handleRecusar = async () => {
+    const confirmacao = await Swal.fire({
       title: 'Confirmar recusa',
       text: `Deseja realmente recusar a requisição #${requisicaoSelecionada.id}?`,
       icon: 'warning',
@@ -98,9 +112,20 @@ const RequisicaoDePecas = () => {
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sim, recusar!',
       cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        atualizarStatusRequisicao(requisicaoSelecionada.id, 'Rejeitado');
+    });
+
+    if (confirmacao.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:8080/api/requisicoes/${parseInt(requisicaoSelecionada.id)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...requisicaoSelecionada, status: 'Rejeitado' })
+        });
+
+        const dataAtualizada = await response.json();
+
+        atualizarStatusRequisicao(dataAtualizada.id, dataAtualizada.status);
+
         Swal.fire({
           icon: 'error',
           title: 'Requisição Recusada!',
@@ -108,8 +133,10 @@ const RequisicaoDePecas = () => {
           confirmButtonColor: '#e53935',
         });
         fecharModal();
+      } catch (error) {
+        console.error('Erro ao recusar requisição:', error);
       }
-    });
+    }
   };
 
   return (

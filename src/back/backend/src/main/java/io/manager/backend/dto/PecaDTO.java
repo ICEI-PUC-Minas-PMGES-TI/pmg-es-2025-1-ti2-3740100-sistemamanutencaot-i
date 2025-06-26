@@ -4,9 +4,6 @@ import io.manager.backend.model.Peca;
 
 public class PecaDTO {
     private int id;
-    private String codigo;
-    private String nome;
-    private Integer estoque;
     private Double preco;
     private String tipo;
     private String marca;
@@ -16,9 +13,6 @@ public class PecaDTO {
 
     public PecaDTO(Peca peca) {
         this.id = peca.getId();
-        this.codigo = peca.getCodigo();
-        this.nome = peca.getNome();
-        this.estoque = peca.getEstoque();
         this.preco = peca.getPreco();
         this.tipo = peca.getTipo();
         this.marca = peca.getMarca();
@@ -30,18 +24,6 @@ public class PecaDTO {
     // Getters (se quiser, pode adicionar setters, mas geralmente DTOs são só leitura)
     public int getId() {
         return id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Integer getEstoque() {
-        return estoque;
     }
 
     public Double getPreco() {

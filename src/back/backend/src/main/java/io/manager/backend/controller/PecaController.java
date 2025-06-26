@@ -38,13 +38,19 @@ public class PecaController {
 
     @PostMapping
     public ResponseEntity<Peca> addPeca(@RequestBody Peca peca) {
-        return pecaService.adicionarOuAtualizar(peca);
+        return pecaService.adicionar(peca);
     }
 
     @PutMapping("/update/{id}")
-    public Peca updatePeca(@PathVariable Integer id, @RequestBody Peca peca) {
-        return pecaService.updatePeca(id, peca);
+    public ResponseEntity<Peca> atualizar(@PathVariable Integer id, @RequestBody Peca peca) {
+        return pecaService.atualizar(id, peca);
     }
+
+    @PatchMapping("/adicionarAoEstoque/{id}")
+    public ResponseEntity<Peca> adicionarEstoque(@PathVariable Integer id, @RequestParam Integer quantidade) {
+        return pecaService.adicionarEstoque(id, quantidade);
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public void deletePeca(@PathVariable Integer id) {

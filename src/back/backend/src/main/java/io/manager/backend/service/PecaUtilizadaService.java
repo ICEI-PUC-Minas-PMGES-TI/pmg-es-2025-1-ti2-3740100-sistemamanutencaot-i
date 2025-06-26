@@ -37,11 +37,11 @@ public class PecaUtilizadaService {
     @Transactional
     public void salvar(PecaUtilizada pecaUtilizada) {
         Peca peca = pecaUtilizada.getPeca();
-        int novaQuantidade = peca.getEstoque() - pecaUtilizada.getQuantidade();
+        int novaQuantidade = peca.getQuantidade() - pecaUtilizada.getQuantidade();
         if (novaQuantidade < 0) {
-            throw new IllegalArgumentException("Estoque insuficiente para a peça: " + peca.getNome());
+            throw new IllegalArgumentException("Estoque insuficiente para a peça: " + peca.getTipo());
         }
-        peca.setEstoque(novaQuantidade);
+        peca.setQuantidade(novaQuantidade);
         pecaRepository.save(peca);
 
         repository.save(pecaUtilizada);

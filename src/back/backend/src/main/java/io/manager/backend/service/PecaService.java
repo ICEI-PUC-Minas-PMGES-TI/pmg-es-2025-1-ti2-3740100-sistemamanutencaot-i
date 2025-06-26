@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,54 +33,45 @@ public class PecaService {
         return pecaRepository.findById(id);
     }
 
-    public ResponseEntity<Peca> adicionarOuAtualizar(@RequestBody Peca novaPeca) {
-        // Gera o código se não estiver presente
-        if (novaPeca.getCodigo() == null || novaPeca.getCodigo().isEmpty()) {
-            novaPeca.setCodigo(gerarCodigoPeca(novaPeca));
+    public ResponseEntity<Peca> atualizar(Integer id, @RequestBody Peca pecaAtualizada) {
+        Optional<Peca> pecaExistente = pecaRepository.findById(id);
+        
+        if (pecaExistente.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
 
-        Optional<Peca> pecaExistente = pecaRepository.findByCodigo(novaPeca.getCodigo());
+        Peca peca = pecaExistente.get();
+        // Atualiza os campos desejados
+        peca.setTipo(pecaAtualizada.getTipo());
+        peca.setPreco(pecaAtualizada.getPreco());
+        peca.setMarca(pecaAtualizada.getMarca());
+        peca.setModelo(pecaAtualizada.getModelo());
+        peca.setSegmento(pecaAtualizada.getSegmento());
+        peca.setQuantidade(pecaAtualizada.getQuantidade());
 
-        if (pecaExistente.isPresent()) {
-            Peca peca = pecaExistente.get();
-            peca.setEstoque(peca.getEstoque() + novaPeca.getQuantidade());
-            Peca atualizada = pecaRepository.save(peca);
-            return ResponseEntity.ok(atualizada);
-        } else {
-            novaPeca.setEstoque(novaPeca.getQuantidade());
-            Peca criada = pecaRepository.save(novaPeca);
-            return ResponseEntity.ok(criada);
+        Peca atualizada = pecaRepository.save(peca);
+        return ResponseEntity.ok(atualizada);
+    }
+
+    public ResponseEntity<Peca> adicionarEstoque(Integer id, Integer quantidadeAdicionar) {
+        Optional<Peca> pecaExistente = pecaRepository.findById(id);
+        if (pecaExistente.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+        Peca peca = pecaExistente.get();
+        peca.setQuantidade(peca.getQuantidade() + quantidadeAdicionar);
+        Peca atualizada = pecaRepository.save(peca);
+        return ResponseEntity.ok(atualizada);
     }
 
 
-    public Peca updatePeca(Integer id, Peca peca) {
-        if (!pecaRepository.existsById(id)) {
-            return null; 
-        }
-        peca.setId(id);
-        return pecaRepository.save(peca);
+    public ResponseEntity<Peca> adicionar(@RequestBody Peca novaPeca) {
+        Peca criada = pecaRepository.save(novaPeca);
+        return ResponseEntity.ok(criada);
     }
 
     public void deletePeca(Integer id) {
         pecaRepository.deleteById(id);
-    }
-
-    //Geram o código único para cada peça com base no nome, marca e modelo
-    private String gerarCodigoPeca(Peca peca) {
-        String nome = normalizar(peca.getNome());
-        String marca = normalizar(peca.getMarca());
-        String modelo = normalizar(peca.getModelo());
-        
-        return String.format("%s-%s-%s", nome, marca, modelo).toUpperCase();
-    }
-
-    private String normalizar(String valor) {
-        String semAcento = Normalizer.normalize(valor, Normalizer.Form.NFD)
-                                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-        return semAcento.trim()
-                        .toLowerCase()
-                        .replaceAll("[^a-z0-9]", "");
     }
 
     public List<EstoqueAtualDTO> getEstoqueParaDashboard() {
