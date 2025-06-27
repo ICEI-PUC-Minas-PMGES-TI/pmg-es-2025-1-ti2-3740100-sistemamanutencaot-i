@@ -200,7 +200,7 @@ Versão melhorada da interface de ordens de serviço com novas funcionalidades e
 
 Interface para associação de ordens de serviço a técnicos específicos e definição de cronograma de execução.
 
-![Tela OS Vinculada](images/interface/OS_Vinculada.png)
+![Tela OS Vinculada](images/interface/OS_vinculada.png)
 
 *Figura 17: Tela de vinculação de OS com seleção de técnico e agendamento*
 
