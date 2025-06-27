@@ -288,18 +288,7 @@ const NovaOrdemServico = () => {
             className={styles["cancel-button"]}
             type="button"
             onClick={() => {
-              setFormData({
-                prazoDiagnostico: "",
-                tipoMaquina: "",
-                marca: "",
-                modelo: "",
-                descricaoProblema: "",
-                descricaoOS: "",
-                tecnicoId: "",
-              });
-              setTermoBusca("");
-              setClienteSelecionado(null);
-              setMensagem("");
+              navigate("/ordens-servico");
             }}
           >
             Cancelar
