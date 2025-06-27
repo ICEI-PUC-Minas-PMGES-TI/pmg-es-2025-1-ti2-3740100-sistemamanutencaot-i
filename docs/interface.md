@@ -1,160 +1,381 @@
 # Interface do Sistema
 
-Visão geral da interação do usuário por meio das telas do sistema Manager.io.
+Este documento apresenta uma visão geral detalhada da interface do usuário do sistema Manager.io, incluindo todas as telas, funcionalidades e padrões de design utilizados.
 
-## Tela principal do sistema
+## Landing Page
 
-O dashboard é a primeira tela que o usuário vê após fazer login. Apresenta um resumo geral do sistema com métricas e indicadores principais.
-
-![Dashboard Principal](images/interface/DashBoard.png)
-
-*Figura 1: Dashboard principal com visão geral das métricas do sistema*
-
-### Características do Dashboard:
-- Cards informativos com números de clientes, técnicos e ordens
-- Gráficos de performance
-- Menu de navegação lateral
-- Informações do usuário logado no cabeçalho
-
-## Telas do processo de gerenciamento de usuários
-
-### Lista de Usuários
-
-Tela principal para visualização e gerenciamento de todos os usuários cadastrados no sistema.
-
-![Lista de Usuários](images/interface/Usuarios-Tela_de_Tecnico.png)
-
-*Figura 2: Tela de gerenciamento de usuários com funcionalidades de pesquisa, filtro e paginação*
-
-**Funcionalidades disponíveis:**
-- Pesquisa em tempo real por nome, CPF, telefone
-- Filtro por tipo de usuário (Cliente/Técnico)
-- Paginação para navegação eficiente
-- Opção de editar ou excluir usuários
-- Indicador visual do tipo de usuário
-
-### Cadastro de Cliente
-
-Formulário completo para cadastro de novos clientes no sistema.
-
-![Cadastro de Cliente](images/interface/Cadastrar_Cliente.png)
-
-*Figura 3: Tela de cadastro de cliente com todos os campos necessários*
-
-**Campos principais:**
-- Dados pessoais (nome, CPF, email, telefone)
-- Endereço completo
-- Observações adicionais
-
-### Cadastro de Técnico
-
-Tela específica para cadastro de técnicos com informações profissionais.
-
-![Cadastro de Técnico](images/interface/Cadastrar_Tecnico.png)
-
-*Figura 4: Formulário de cadastro de técnico com campos profissionais*
-
-**Informações adicionais:**
-- Especialidade técnica
-- Nível profissional
-- Status ativo/inativo
-- Certificações
-
-## Telas de configuração e gestão
-
-### Cadastro de Gerente
-
-Interface para cadastro de usuários com perfil de gerente.
-
-![Cadastro de Gerente](images/interface/Cadastro_Gerente.png)
-
-*Figura 5: Tela de cadastro para perfil gerencial*
-
-### Cadastro de Loja
-
-Formulário para cadastro de filiais ou unidades da empresa.
-
-![Cadastro de Loja](images/interface/Cadastro_Loja.png)
-
-*Figura 6: Interface para cadastro de lojas/filiais*
-
-### Configurações do Sistema
-
-Tela de configurações gerais do sistema.
-
-![Configurações](images/interface/Configuraçoes.png)
-
-*Figura 7: Painel de configurações do sistema*
-
-## Telas específicas por perfil de usuário
-
-### Landing Page
-
-Página inicial de apresentação do sistema antes do login.
+A página inicial do sistema serve como ponto de entrada e apresentação da plataforma aos usuários antes do processo de autenticação.
 
 ![Landing Page](images/interface/LandingPage.png)
 
-*Figura 8: Página inicial de apresentação do sistema Manager.io*
+*Figura 1: Página inicial de apresentação do sistema Manager.io com elementos de branding e acesso ao login*
 
-### Tela Principal do Técnico
+## Processo 1 - Gerenciamento de Lojas
 
-Interface principal para usuários com perfil de técnico, com acesso às funcionalidades específicas.
+### Cadastro de Loja
 
-![Tela Principal do Técnico](images/interface/Principal-Tela_de_Tecnico.png)
+Interface dedicada ao cadastro de filiais ou unidades da empresa no sistema, permitindo o registro completo de informações essenciais para cada estabelecimento.
 
-*Figura 9: Dashboard personalizado para técnicos com suas funções principais*
+![Cadastro de Loja](images/interface/Cadastro_Loja.png)
 
-### Usuários - Visão do Técnico
+*Figura 2: Interface para cadastro de lojas/filiais com campos para informações básicas da unidade*
 
-Tela de visualização de usuários com perspectiva do técnico.
+**Campos principais:**
+- Nome
+- CNPJ 
+- Inscrição estadual
+- Endereço completo
 
-![Usuários - Tela do Técnico](images/interface/Usuarios-Tela_de_Tecnico.png)
+### Cadastro de Login Master
 
-*Figura 10: Interface de usuários adaptada para o perfil de técnico*
+Interface especializada para cadastro de usuários com perfil administrativo, responsáveis pela gestão das lojas.
 
-## Telas de processos operacionais
+![Cadastro de Gerente](images/interface/Cadastro_login_Loja.png)
 
-### Estoque - Visão do Gerente
+*Figura 3: Tela de cadastro para perfil gerencial com dados de acesso e permissões*
 
-Tela de controle de estoque com funcionalidades administrativas para gerentes.
+**Informações requeridas:**
+- Dados de contato
+- Credenciais de acesso (login e senha)
 
-![Estoque - Tela do Gerente](images/interface/Estoque-Tela_do_Gerente.png)
+### Edição de Loja
 
-*Figura 11: Interface de controle de estoque com visão gerencial*
+Funcionalidade para atualização e modificação dos dados cadastrais das lojas já registradas no sistema.
 
-### Requisição de Peças
+![Edição de Loja](images/interface/edicao_loja.png)
 
-Formulário para solicitação de peças e materiais necessários para manutenção.
+*Figura 4: Interface de edição para atualização dos dados cadastrais da loja*
 
-![Requisição de Peças](images/interface/Requisição_de_Peças.png)
+## Dashboard Principal do Sistema
 
-*Figura 12: Tela de requisição de peças para serviços de manutenção*
+O dashboard representa o centro de controle do sistema, sendo a primeira interface apresentada aos usuários Master após a autenticação. Oferece uma visão panorâmica das operações e métricas essenciais do negócio.
 
-## Padrões visuais da interface
+![Dashboard Principal](images/interface/Home_Loja.png)
 
-### Características gerais:
-- Design limpo e moderno
-- Cores consistentes (azul escuro como primária)
-- Formulários bem organizados em seções
-- Botões com ícones intuitivos
-- Layout responsivo para diferentes dispositivos
+*Figura 5: Dashboard principal com visão geral das métricas operacionais e indicadores de performance*
 
-### Elementos comuns:
-- Cabeçalho com logo e informações do usuário
-- Menu lateral de navegação
-- Breadcrumbs para localização
-- Campos obrigatórios marcados com asterisco
-- Botões de ação padronizados (Salvar, Cancelar, etc.)
+### Componentes do Dashboard:
+- **Cards informativos:** Exibição consolidada de números de clientes, técnicos e ordens de serviço
+- **Gráficos de performance:** Análise visual de tendências e indicadores chave
+- **Menu de navegação lateral:** Acesso rápido a todas as funcionalidades do sistema
+- **Cabeçalho personalizado:** Informações do usuário logado e configurações de perfil
+- **Widgets customizáveis:** Painéis adaptativos conforme o perfil do usuário
 
-### Diretrizes de design:
-- **Responsividade:** Todas as telas se adaptam a diferentes tamanhos de dispositivos
-- **Acessibilidade:** Textos alternativos em imagens e contraste adequado
-- **Usabilidade:** Interface intuitiva com fluxos lógicos de navegação
-- **Consistência:** Padrões visuais mantidos em todo o sistema
+## Gerenciamento de Usuários
 
-### Notas para desenvolvedores:
-- Para adicionar novas imagens, salve-as no diretório `docs/images/interface/`
-- Use nomes descritivos para os arquivos (ex: `Nome_Funcionalidade.png`)
-- Mantenha a numeração sequencial das figuras
-- Inclua sempre legendas explicativas com `*Figura X: descrição*`
+### Lista de Usuários
+
+Interface central para visualização, pesquisa e administração de todos os usuários registrados no sistema, oferecendo ferramentas completas de gestão.
+
+![Lista de Usuários](images/interface/Gerenciamento_usuarios.png)
+
+*Figura 6: Tela de gerenciamento de usuários com funcionalidades avançadas de pesquisa, filtro e paginação*
+
+**Funcionalidades disponíveis:**
+- **Pesquisa inteligente:** Busca em tempo real por nome, CPF, telefone ou email
+- **Filtros avançados:** Segmentação por tipo de usuário (Cliente/Técnico), status e período
+- **Paginação otimizada:** Navegação eficiente através de grandes listas de usuários
+- **Ações rápidas:** Opções de editar, visualizar detalhes ou excluir usuários
+
+## Processo 2 - Gerenciamento de Clientes
+
+### Seleção de Tipo de Usuário
+
+Interface para definição do tipo de usuário a ser cadastrado no sistema.
+
+![Seleção Criar Usuario](images/interface/Selecao_criar_usuario.png)
+
+*Figura 7: Tela de seleção para escolha do tipo de usuário a ser cadastrado*
+
+### Cadastro de Cliente
+
+Formulário completo e estruturado para registro de novos clientes no sistema, contemplando todas as informações necessárias para o relacionamento comercial.
+
+![Cadastro de Cliente](images/interface/cadastro_cliente.png)
+
+*Figura 8: Tela de cadastro de cliente com formulário completo e validação de dados*
+
+**Campos obrigatórios:**
+- **Dados pessoais:** Nome e CPF
+- **Informações de contato:** telefone principal
+
+**Validações implementadas:**
+- Verificação de CPF válido
+- Validação de formato de email
+- Confirmação de telefone com DDD
+
+### Edição de Cliente
+
+Interface para atualização e modificação dos dados de clientes já cadastrados no sistema.
+
+![Edição Cliente](images/interface/edicao_cliente.png)
+
+*Figura 9: Tela de edição de cliente com preservação do histórico de alterações*
+
+## Processo 3 - Gerenciamento de Técnicos
+
+### Seleção de Tipo de Usuário
+
+Interface para definição do perfil técnico a ser cadastrado no sistema.
+
+![Seleção Criar Usuario](images/interface/Selecao_criar_usuario.png)
+
+*Figura 10: Tela de seleção para criação de usuário técnico*
+
+### Cadastro de Técnico
+
+Interface especializada para registro de profissionais técnicos, incluindo informações específicas sobre qualificações e especialidades.
+
+![Cadastro de Técnico](images/interface/cadastro_tecnico.png)
+
+*Figura 11: Formulário de cadastro de técnico com campos profissionais e de qualificação*
+
+**Informações técnicas requeridas:**
+- **Dados pessoais:** Nome e CPF
+- **Dados profissionais:** Cargo
+
+### Edição de Técnico
+
+Funcionalidade para atualização de dados dos técnicos, incluindo qualificações e status de disponibilidade.
+
+![Edição Técnico](images/interface/edicao_tecnico.png)
+
+*Figura 12: Interface de edição de técnico com campos específicos da profissão*
+
+## Usuários Atualizados
+
+Visualização do sistema após atualizações e melhorias na interface de gerenciamento de usuários.
+
+![Usuarios Atualizados](images/interface/usuarios_att_2.png)
+
+*Figura 13: Interface atualizada de gerenciamento de usuários com melhorias de usabilidade*
+
+**Melhorias implementadas:**
+- Layout mais intuitivo e responsivo
+- Filtros aprimorados com múltiplas opções
+
+## Processo 4 - Diagnóstico e Ordens de Serviço
+
+### Listagem de Ordens de Serviço
+
+Interface principal para visualização e gerenciamento de todas as ordens de serviço registradas no sistema.
+
+![Tela OS](images/interface/OS.png)
+
+*Figura 14: Tela principal de ordens de serviço com listagem completa e filtros*
+
+**Funcionalidades da tela:**
+- Visualização de todas as OS em diferentes status
+- Filtros por período, técnico, cliente e status
+- Busca por número da OS ou dados do cliente
+- Indicadores visuais de prioridade e urgência
+- Ações rápidas para edição e visualização
+
+### Diagnóstico
+
+Processo de análise técnica inicial para identificação de problemas e definição de soluções.
+
+![Tela Diagnostico](images/interface/Cadastro_OS.png)
+
+*Figura 15: Interface de diagnóstico técnico com campos para análise detalhada*
+
+**Etapas do diagnóstico:**
+- Recebimento e inspeção inicial do equipamento
+- Identificação de problemas e falhas
+- Análise técnica detalhada
+- Estimativa de tempo e custo de reparo
+- Aprovação do cliente para prosseguimento
+
+### Ordens de Serviço Atualizadas
+
+Versão melhorada da interface de ordens de serviço com novas funcionalidades e design otimizado.
+
+![Tela OS Atualizada](images/interface/OS_att.png)
+
+*Figura 16: Interface atualizada de ordens de serviço com melhorias de usabilidade e performance*
+
+## Processo 5 - Execução e Detalhamento de Ordens de Serviço
+
+### Vinculação de Ordem de Serviço
+
+Interface para associação de ordens de serviço a técnicos específicos e definição de cronograma de execução.
+
+![Tela OS Vinculada](images/interface/OS_Vinculada.png)
+
+*Figura 17: Tela de vinculação de OS com seleção de técnico e agendamento*
+
+**Funcionalidades de vinculação:**
+- Seleção de técnico disponível
+- Priorização automática baseada em critérios
+
+### Detalhamento da Ordem de Serviço
+
+Visualização completa dos detalhes e especificações técnicas da ordem de serviço.
+
+![Detalhes OS](images/interface/detalhes_OS.png)
+
+*Figura 18: Tela de detalhes da OS com informações completas do serviço*
+
+### Utilização de Peças do Estoque
+
+Processo para seleção e aplicação de peças disponíveis no estoque para a execução do serviço.
+
+![Uso de Peça Estoque](images/interface/usa_peca_estoque.png)
+
+*Figura 19: Interface para seleção de peças do estoque com consulta de disponibilidade*
+
+### Utilização de Peças Atualizada
+
+Versão melhorada do processo de utilização de peças com interface otimizada.
+
+![Uso de Peça Estoque Atualizada](images/interface/usa_peca_estoque_att.png)
+
+*Figura 20: Interface atualizada para uso de peças com melhor experiência do usuário*
+
+### Ordem de Serviço com Peças Vinculadas
+
+Visualização da OS após a vinculação de peças necessárias para a execução do serviço.
+
+![OS com Peça Estoque](images/interface/OS_com_peca_estoque.png)
+
+*Figura 21: OS com peças do estoque vinculadas e custos calculados*
+
+### Edição de Ordem de Serviço
+
+Interface para modificação e atualização de informações da ordem de serviço durante sua execução.
+
+![Edição OS](images/interface/edita_OS.png)
+
+*Figura 22: Tela de edição de OS com campos modificáveis e controle de versão*
+
+## Processo 6 - Gestão Financeira
+
+### Definição de Valores da Ordem de Serviço
+
+Interface dedicada ao cálculo e definição dos valores financeiros associados à ordem de serviço, incluindo mão de obra e materiais.
+
+![Valor OS](images/interface/valor_OS.png)
+
+*Figura 23: Tela de definição de valores da OS com cálculo automático de custos*
+
+**Componentes financeiros:**
+- **Valor da mão de obra:** Cálculo baseado na complexidade e tempo estimado
+- **Custo de peças e materiais:** Valores atualizados do estoque
+- **Total geral:** Soma automatizada de todos os componentes
+
+## Processo 7 - Manutenção Preventiva e Corretiva
+
+### Gestão de Manutenção
+
+Módulo dedicado ao planejamento e execução de atividades de manutenção preventiva e corretiva de equipamentos.
+
+**Funcionalidades do módulo:**
+- **Histórico de manutenções:** Registro completo de todas as intervenções realizadas
+
+## Processo 8 - Requisição de Peças
+
+### Solicitação de Peças
+
+Interface para requisição de peças e materiais necessários para execução de serviços, quando não disponíveis no estoque local.
+
+![Solicitação de Peça](images/interface/Solicita_peca.png)
+
+*Figura 24: Tela de solicitação de peças com formulário detalhado*
+
+**Campos da requisição:**
+- **Identificação da peça:** Nome, modelo, marca e segmento
+
+### Solicitação de Peças Atualizada
+
+Versão melhorada do processo de requisição com interface otimizada e novas funcionalidades.
+
+![Solicitação de Peça Atualizada](images/interface/Solicita_peca_att.png)
+
+*Figura 25: Interface atualizada de solicitação de peças com melhorias de usabilidade*
+
+**Melhorias implementadas:**
+- Aprovação digital do gestor responsável
+- Rastreamento em tempo real do status da solicitação
+- Histórico completo de requisições por técnico
+
+## Gestão de Estoque
+
+### Visualização do Estoque
+
+Interface principal para controle e monitoramento do inventário de peças e materiais disponíveis.
+
+![Estoque](images/interface/Estoque.png)
+
+*Figura 26: Tela principal de gestão de estoque com listagem completa de itens*
+
+**Funcionalidades do estoque:**
+- **Consulta de disponibilidade:** Verificação em tempo real de quantidades disponíveis
+- **Pontos de reposição:** Alertas automáticos para itens com estoque baixo
+- **Valorização do estoque:** Cálculo do valor total do inventário
+- **Relatórios gerenciais:** Análises de giro, obsolescência e performance
+- **Rastreabilidade:** Histórico completo de cada item do estoque
+
+### Adição ao Estoque
+
+Processo para registro de entrada de novas peças e materiais no inventário.
+
+![Adicionar ao Estoque](images/interface/Add_estoque.png)
+
+*Figura 27: Interface de entrada de peças no estoque com validação de dados*
+
+**Dados de entrada:**
+- Tipo
+- Marca
+- Modelo
+- Preço
+- Segmento
+- Quantidade
+
+### Estoque Atualizado
+
+Visualização do sistema de estoque após implementação de melhorias e otimizações.
+
+![Estoque Atualizado](images/interface/estoque_att.png)
+
+*Figura 28: Interface atualizada de estoque com melhorias de performance e usabilidade*
+
+### Edição de Itens do Estoque
+
+Interface para modificação e atualização dos dados de peças já cadastradas no estoque.
+
+![Edição de Estoque](images/interface/edicao_estoque.png)
+
+*Figura 29: Tela de edição de itens do estoque com controle de alterações e auditoria*
+
+## Padrões Visuais da Interface
+
+### Características Gerais:
+- **Design limpo e moderno:** Interface minimalista com foco na funcionalidade
+- **Cores consistentes:** Paleta baseada em azul escuro como cor primária, complementada por tons neutros
+- **Formulários bem estruturados:** Organização lógica em seções com agrupamento por contexto
+- **Iconografia intuitiva:** Uso de ícones padronizados e reconhecíveis universalmente
+- **Layout responsivo:** Adaptação automática para diferentes dispositivos e resoluções de tela
+
+### Elementos Comuns da Interface:
+- **Cabeçalho padronizado:** Logo da empresa, informações do usuário logado e configurações de perfil
+- **Menu lateral de navegação:** Estrutura hierárquica com acesso rápido a todas as funcionalidades
+- **Breadcrumbs contextuais:** Navegação estrutural para localização dentro do sistema
+- **Indicadores de campos obrigatórios:** Marcação visual clara com asterisco (*) 
+- **Botões de ação padronizados:** Uniformidade em Salvar, Cancelar, Editar, Excluir, etc.
+- **Mensagens de feedback:** Sistema consistente de notificações de sucesso, erro e alerta
+
+### Diretrizes de Design e Usabilidade:
+- **Responsividade total:** Todas as interfaces se adaptam perfeitamente a tablets, smartphones e desktops
+- **Acessibilidade garantida:** Textos alternativos em imagens, contraste adequado para pessoas com deficiência visual
+- **Usabilidade otimizada:** Fluxos de navegação intuitivos com redução de cliques necessários
+- **Consistência visual:** Manutenção rigorosa de padrões visuais em todo o sistema
+- **Performance otimizada:** Carregamento rápido e interações fluidas mesmo em conexões lentas
+
+### Notas Técnicas para Desenvolvedores:
+- **Diretório de imagens:** Todas as capturas de tela devem ser salvas em `docs/images/interface/`
+- **Nomenclatura de arquivos:** Utilize nomes descritivos e padronizados (ex: `Cadastro_Cliente.png`, `Edicao_OS.png`)
+- **Numeração sequencial:** Mantenha a ordem lógica das figuras conforme aparecem na documentação
+- **Legendas obrigatórias:** Inclua sempre descrições explicativas no formato `*Figura X: descrição detalhada*`
+- **Versionamento de imagens:** Mantenha histórico de versões para rastreabilidade de mudanças
+- **Otimização de arquivos:** Comprima imagens para web mantendo qualidade adequada para visualização
 
