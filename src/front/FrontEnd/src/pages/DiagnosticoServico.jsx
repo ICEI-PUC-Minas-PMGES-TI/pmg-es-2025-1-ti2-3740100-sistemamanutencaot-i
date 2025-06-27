@@ -127,26 +127,36 @@ export default function DiagnosticoServico() {
   };
 
   const concluirManutencaoComValor = (valorMaoDeObra) => {
+    // Calcula custo das peças
     const custoPecas = pecas.reduce((total, peca) => {
-      const preco = peca.precoUnitario || peca.peca?.precoUnitario || 0;
-      return total + preco * peca.quantidade;
+      const preco = peca.peca?.precoUnitario ?? peca.precoUnitario ?? 0;
+      return total + (preco * (peca.quantidade || 1));
     }, 0);
 
     const custoTotal = custoPecas + valorMaoDeObra;
+    
+    // Formata data no formato dd/MM/yyyy
+    const hoje = new Date();
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+    const ano = hoje.getFullYear();
+    const dataFinalizacao = `${dia}/${mes}/${ano}`;
+    
+    // Cria payload com os nomes de campos corretos
+    const payload = {
+      data_finalizacao: dataFinalizacao, // Campo correto para data
+      status: "concluido",
+      valor_total: custoTotal, // Campo correto para valor total
+    };
 
     axios
-      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
-        ...servicoData,
-        dataFinalizacao: new Date().toISOString().split("T")[0],
-        status: "concluido",
-        valorTotal: custoTotal, // certifique-se que o campo exista no backend
-      })
+      .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, payload)
       .then(() => {
         navigate("/ordens-servico");
       })
       .catch((err) => {
-        console.error("Erro ao concluir manutenção:", err);
-        alert("Erro ao concluir a manutenção");
+        console.error("Erro detalhado:", err.response?.data || err.message);
+        alert(`Erro ao concluir: ${err.response?.data?.message || "Verifique o console para detalhes"}`);
       });
   };
 
