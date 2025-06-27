@@ -30,7 +30,7 @@ public class RequisicaoService {
 
     public Requisicao salvar(Requisicao requisicao) {
         if (requisicao.getStatus() == null) {
-            requisicao.setStatus("PENDENTE");
+            requisicao.setStatus("Pendente");
         }
         if (requisicao.getDataSolicitacao() == null) {
             requisicao.setDataSolicitacao(new Date());

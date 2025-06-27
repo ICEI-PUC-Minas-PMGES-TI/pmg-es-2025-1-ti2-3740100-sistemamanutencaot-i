@@ -18,12 +18,16 @@ const RequisicaoDePecas = () => {
   useEffect(() => {
     fetch(API_URL)
       .then(res => res.json())
-      .then(data => setRequisicoesList(data))
+      .then(data => {
+        console.log("🔧 JSON recebido da API:", data); // 👈 Aqui imprime o JSON
+        setRequisicoesList(data);
+      })
       .catch(err => {
         console.error("Erro ao carregar requisições:", err);
         Swal.fire('Erro', 'Não foi possível carregar as requisições', 'error');
       });
   }, []);
+
 
   const requisicoesFiltradas = filtroSelecionado === 'Todos'
     ? requisicoesList
@@ -79,16 +83,20 @@ const RequisicaoDePecas = () => {
 
     if (confirmacao.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:8080/api/requisicoes/${parseInt(requisicaoSelecionada.id)}`, {
-          method: 'PUT',
+        const response = await fetch(`http://localhost:8080/api/requisicoes/${requisicaoSelecionada.id}/status`, {
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...requisicaoSelecionada, status: 'Aceito' })
+          body: JSON.stringify({ status: 'Aceito' })  // só envia o status
         });
+
+        if (!response.ok) throw new Error('Erro ao atualizar status');
 
         const dataAtualizada = await response.json();
 
-        // Atualiza a lista de requisições no estado
-        atualizarStatusRequisicao(dataAtualizada.id, dataAtualizada.status);
+        // Atualiza a lista local com o status atualizado
+        setRequisicoesList(prevList =>
+          prevList.map(req => (req.id === dataAtualizada.id ? dataAtualizada : req))
+        );
 
         Swal.fire({
           icon: 'success',
@@ -99,6 +107,7 @@ const RequisicaoDePecas = () => {
         fecharModal();
       } catch (error) {
         console.error('Erro ao aceitar requisição:', error);
+        Swal.fire('Erro', 'Não foi possível aceitar a requisição', 'error');
       }
     }
   };
@@ -117,15 +126,19 @@ const RequisicaoDePecas = () => {
 
     if (confirmacao.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:8080/api/requisicoes/${parseInt(requisicaoSelecionada.id)}`, {
-          method: 'PUT',
+        const response = await fetch(`http://localhost:8080/api/requisicoes/${requisicaoSelecionada.id}/status`, {
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...requisicaoSelecionada, status: 'Rejeitado' })
+          body: JSON.stringify({ status: 'Rejeitado' })  // só envia o status
         });
+
+        if (!response.ok) throw new Error('Erro ao atualizar status');
 
         const dataAtualizada = await response.json();
 
-        atualizarStatusRequisicao(dataAtualizada.id, dataAtualizada.status);
+        setRequisicoesList(prevList =>
+          prevList.map(req => (req.id === dataAtualizada.id ? dataAtualizada : req))
+        );
 
         Swal.fire({
           icon: 'error',
@@ -136,9 +149,11 @@ const RequisicaoDePecas = () => {
         fecharModal();
       } catch (error) {
         console.error('Erro ao recusar requisição:', error);
+        Swal.fire('Erro', 'Não foi possível recusar a requisição', 'error');
       }
     }
   };
+
 
   return (
     <div className={styles.screenContainer}>

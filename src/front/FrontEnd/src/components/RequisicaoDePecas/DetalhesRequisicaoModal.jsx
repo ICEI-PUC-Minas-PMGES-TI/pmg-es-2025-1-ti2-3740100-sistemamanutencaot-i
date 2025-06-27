@@ -53,12 +53,10 @@ const DetalhesRequisicaoModal = ({ requisicao, onClose, onAceitar, onRecusar }) 
             </tr>
           </thead>
           <tbody>
-            {requisicao.pecasRequeridas.map((item, index) => (
-              <tr key={index}>
-                <td>{item.nome}</td>
-                <td>{item.marca || 'N/A'}</td>
-                <td>{item.modelo || 'N/A'}</td>
-                <td className={styles.quantidade}>{item.quantidade}</td>
+            {requisicao.requisicaoPecas.map((item) => (
+              <tr key={item.peca.id}>
+                <td>{`${item.peca.tipo} ${item.peca.marca} ${item.peca.modelo}`}</td>
+                <td className={styles.componentQuantity}>{item.quantidade}</td>
               </tr>
             ))}
           </tbody>

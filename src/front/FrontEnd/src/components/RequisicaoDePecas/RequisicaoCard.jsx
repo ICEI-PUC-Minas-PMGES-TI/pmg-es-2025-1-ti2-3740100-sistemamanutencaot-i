@@ -45,11 +45,11 @@ const RequisicaoCard = ({ requisicao, onVerDetalhes }) => { // Adicione onVerDet
           </tr>
         </thead>
         <tbody>
-          {requisicao.pecasRequeridas.map((item, index) => (
-            <tr key={index}>
-              <td>{item.nome}</td>
+          {requisicao.requisicaoPecas.map((item) => (
+            <tr key={item.peca.id}>
+              <td>{`${item.peca.tipo} ${item.peca.marca} ${item.peca.modelo}`}</td>
               <td className={styles.componentQuantity}>{item.quantidade}</td>
-              </tr>
+            </tr>
           ))}
         </tbody>
       </table>

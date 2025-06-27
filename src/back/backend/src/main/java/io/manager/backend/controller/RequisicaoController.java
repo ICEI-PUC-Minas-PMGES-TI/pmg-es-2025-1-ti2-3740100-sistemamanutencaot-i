@@ -2,6 +2,7 @@ package io.manager.backend.controller;
 
 import io.manager.backend.dto.RequisicaoDTO;
 import io.manager.backend.dto.RequisicaoInputDTO;
+import io.manager.backend.dto.StatusRequisicaoDTO;
 import io.manager.backend.model.Peca;
 import io.manager.backend.model.Requisicao;
 import io.manager.backend.model.RequisicaoPeca;
@@ -69,6 +70,20 @@ public class RequisicaoController {
         requisicao.setId(id);
         Requisicao salva = requisicaoService.salvar(requisicao);
         return ResponseEntity.ok(new RequisicaoDTO(salva));
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<RequisicaoDTO> atualizarStatus(
+            @PathVariable Integer id,
+            @RequestBody StatusRequisicaoDTO statusDTO) {
+
+        return requisicaoService.buscarPorId(id)
+                .map(requisicao -> {
+                    requisicao.setStatus(statusDTO.getStatus());
+                    Requisicao salva = requisicaoService.salvar(requisicao);
+                    return ResponseEntity.ok(new RequisicaoDTO(salva));
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     // Deletar uma requisição
