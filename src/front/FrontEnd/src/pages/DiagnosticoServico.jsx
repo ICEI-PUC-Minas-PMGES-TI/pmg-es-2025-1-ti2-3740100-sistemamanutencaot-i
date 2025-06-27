@@ -148,6 +148,7 @@ export default function DiagnosticoServico() {
 
   const handleAdicionarPecas = (novasPecas) => {
     setPecas([...pecas, ...novasPecas]);
+    window.location.reload(); // força um F5
   };
 
   if (loading) {
@@ -318,7 +319,7 @@ export default function DiagnosticoServico() {
                       <tr key={peca.id || Math.random()}>
                         <td>
                           {peca.peca
-                            ? `${peca.peca.nome} ${peca.peca.marca} ${peca.peca.modelo}`
+                            ? `${peca.peca.tipo} ${peca.peca.marca} ${peca.peca.modelo}`
                             : "Peça não encontrada"}
                         </td>
                         <td>{peca.quantidade}</td>

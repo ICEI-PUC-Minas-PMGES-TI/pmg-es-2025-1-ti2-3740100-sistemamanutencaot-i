@@ -3,7 +3,7 @@ import axios from "axios";
 import "./AdicionarPecas.css";
 
 const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
-  const [codigoPeca, setCodigoPeca] = useState("");
+  const [pecaIdSelecionada, setPecaIdSelecionada] = useState("");
   const [quantidade, setQuantidade] = useState(1);
   const [pecasSelecionadas, setPecasSelecionadas] = useState([]);
   const [erro, setErro] = useState(null);
@@ -47,12 +47,12 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
   }, []);
 
   const adicionarPeca = () => {
-    if (!codigoPeca.trim()) {
-      setErro("Selecione o código da peça.");
+    if (!pecaIdSelecionada.trim()) {
+      setErro("Selecione uma peça.");
       return;
     }
 
-    const pecaSelecionada = pecasDisponiveis.find(p => p.codigo === codigoPeca);
+    const pecaSelecionada = pecasDisponiveis.find(p => p.id === parseInt(pecaIdSelecionada));
     if (!pecaSelecionada) {
       setErro("Peça não encontrada. Deseja solicitar uma nova?");
       return;
@@ -66,7 +66,7 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
       setEstoqueInsuficiente(false);
     }
 
-    if (pecasSelecionadas.some(p => p.codigo === codigoPeca)) {
+    if (pecasSelecionadas.some(p => p.peca_id === pecaSelecionada.id)) {
       setErro("Esta peça já foi adicionada.");
       return;
     }
@@ -74,32 +74,33 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
     const novaPeca = {
       id: Math.random().toString(36).substr(2, 9),
       peca_id: pecaSelecionada.id,
-      codigo: pecaSelecionada.codigo,
-      nome: pecaSelecionada.nome,
+      tipo: pecaSelecionada.tipo,
+      marca: pecaSelecionada.marca,
+      modelo: pecaSelecionada.modelo,
       preco_unitario: pecaSelecionada.preco,
       quantidade: quantidade,
       estoqueAtual: pecaSelecionada.quantidade
     };
 
     setPecasSelecionadas([...pecasSelecionadas, novaPeca]);
-    setCodigoPeca("");
+    setPecaIdSelecionada("");
     setQuantidade(1);
     setErro(null);
   };
 
   const solicitarPeca = () => {
-    if (!codigoPeca.trim()) {
-      setErro("Selecione o código da peça.");
+    if (!pecaIdSelecionada.trim()) {
+      setErro("Selecione uma peça.");
       return;
     }
 
-    const pecaSelecionada = pecasDisponiveis.find(p => p.codigo === codigoPeca);
+    const pecaSelecionada = pecasDisponiveis.find(p => p.id === parseInt(pecaIdSelecionada));
     if (!pecaSelecionada) {
       setErro("Peça não encontrada. Deseja solicitar uma nova?");
       return;
     }
 
-    if (pecasSelecionadas.some(p => p.codigo === codigoPeca)) {
+    if (pecasSelecionadas.some(p => p.peca_id === pecaSelecionada.id)) {
       setErro("Esta peça já foi adicionada.");
       return;
     }
@@ -116,7 +117,7 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
     };
 
     setPecasSelecionadas([...pecasSelecionadas, novaPeca]);
-    setCodigoPeca("");
+    setPecaIdSelecionada("");
     setQuantidade(1);
     setErro(null);
     setEstoqueInsuficiente(false);
@@ -146,6 +147,9 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
       return;
     }
 
+    // Criando o código temporário no formato "tipo - marca - modelo"
+    const codigoTemporario = `${tipo} - ${marca} - ${modelo}`;
+
     const novaSolicitacao = {
       id: Math.random().toString(36).substr(2, 9),
       tipo,
@@ -153,6 +157,7 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
       marca,
       segmento,
       quantidade,
+      codigo: codigoTemporario,  // <-- aqui
       novaPeca: true,
       solicitada: true
     };
@@ -223,8 +228,8 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
   };
 
   const pecasFiltradas = pecasDisponiveis.filter(peca => 
-    peca.codigo.toLowerCase().includes(busca.toLowerCase()) || 
-    peca.nome.toLowerCase().includes(busca.toLowerCase())
+    peca.tipo.toLowerCase().includes(busca.toLowerCase())
+
   );
 
   return (
@@ -351,20 +356,13 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
             
             <div className="form-row">
               <select
-                value={codigoPeca}
-                onChange={(e) => setCodigoPeca(e.target.value)}
-                aria-label="Selecionar peça"
-                style={{ flex: 2 }}
+                value={pecaIdSelecionada}
+                onChange={(e) => setPecaIdSelecionada(e.target.value)}
               >
                 <option value="">Selecione uma peça</option>
                 {pecasFiltradas.map(peca => (
-                  <option 
-                    key={peca.id} 
-                    value={peca.codigo}
-                    className={peca.quantidade === 0 ? "opcao-esgotada" : ""}
-                  >
-                    {peca.codigo} - {peca.nome} 
-                    {peca.quantidade === 0 ? " (ESGOTADO)" : ` (Estoque: ${peca.quantidade})`}
+                  <option key={peca.id} value={peca.id}>
+                    {peca.tipo} - {peca.marca} - {peca.modelo} - (Estoque: {peca.quantidade})
                   </option>
                 ))}
               </select>
@@ -398,7 +396,7 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
               )}
             </div>
 
-            {!codigoPeca && (
+            {!pecaIdSelecionada && (
               <div className="form-row">
                 <button 
                   onClick={iniciarSolicitacaoNovaPeca} 
@@ -431,7 +429,7 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
                     </>
                   ) : (
                     <>
-                      <strong>{peca.codigo}</strong> - {peca.nome}
+                      <strong>{peca.tipo} - {peca.marca} - {peca.modelo}</strong>
                       {peca.solicitada && <span className="solicitada-tag"> (SOLICITADA)</span>}
                     </>
                   )}
