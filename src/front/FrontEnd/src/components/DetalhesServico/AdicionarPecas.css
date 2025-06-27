@@ -180,3 +180,102 @@ h3 {
 .botao-cancelar:hover {
   background-color: #c42c2c;
 }
+
+input[type="text"] {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: white;
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Opções esgotadas no select */
+select option.opcao-esgotada {
+  color: #ff6b6b;
+  font-style: italic;
+}
+
+/* Peça solicitada */
+.peca-solicitada {
+  background-color: rgba(255, 149, 0, 0.15) !important;
+  border-left: 4px solid #ff9500;
+}
+
+.solicitada-tag {
+  color: #ff9500;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* Lista vazia */
+.lista-vazia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Botão de solicitação */
+.add-peca-btn.solicitar {
+  background-color: #ff9500;
+}
+
+.add-peca-btn.solicitar:hover {
+  background-color: #e08500;
+}
+
+.formulario-nova-peca {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.formulario-nova-peca h3 {
+  margin-top: 0;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
+/* Peça solicitada */
+.peca-solicitada {
+  background-color: rgba(255, 149, 0, 0.15) !important;
+  border-left: 4px solid #ff9500;
+}
+
+.solicitada-tag {
+  color: #ff9500;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* Lista vazia */
+.lista-vazia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Melhorias de layout */
+.peca-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.peca-info > div {
+  flex: 1;
+}
