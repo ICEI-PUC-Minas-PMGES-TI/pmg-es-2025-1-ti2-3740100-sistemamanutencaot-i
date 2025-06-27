@@ -13,21 +13,16 @@ public class Requisicao {
     @Column(nullable = false)
     private String status;
 
-    @ManyToMany
-    @JoinTable(
-        name = "requisicao_peca",
-        joinColumns = @JoinColumn(name = "requisicao_id"),
-        inverseJoinColumns = @JoinColumn(name = "peca_id")
-    )
-    private List<Peca> pecasRequeridas;
+    @OneToMany(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RequisicaoPeca> requisicaoPecas;
 
     private String observacao;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataSolicitacao;
 
     @ManyToOne
-    @JoinColumn(name = "tecnico_id", nullable = false)
+    @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
 
     // Getters e Setters 
@@ -48,12 +43,12 @@ public class Requisicao {
         this.status = status;
     }
 
-    public List<Peca> getPecasRequeridas() {
-        return pecasRequeridas;
-    }
+    public List<RequisicaoPeca> getRequisicaoPecas() {
+    return requisicaoPecas;
+}
 
-    public void setPecasRequeridas(List<Peca> pecasRequeridas) {
-        this.pecasRequeridas = pecasRequeridas;
+    public void setRequisicaoPecas(List<RequisicaoPeca> requisicaoPecas) {
+        this.requisicaoPecas = requisicaoPecas;
     }
 
     public String getObservacao() {

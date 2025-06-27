@@ -184,9 +184,32 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
       return;
     }
 
+    const tipoUsuario = localStorage.getItem("tipoUsuario");
+    const tecnicoId = tipoUsuario === "tecnico" ? localStorage.getItem("id_tecnico") : null;
+
     try {
-      // Enviar peças normais
-      const pecasNormais = pecasSelecionadas.filter(p => !p.solicitada);
+      // Primeiro, cadastra as peças novas e guarda seus IDs
+      const pecasNovas = pecasSelecionadas.filter(p => p.novaPeca);
+
+      // Mapa para guardar ID da peça nova criada: { id temporário do front : id gerado pela API }
+      const mapaIdsNovasPecas = {};
+
+      for (const pecaNova of pecasNovas) {
+        const resposta = await axios.post("http://localhost:8080/pecas", {
+          tipo: pecaNova.tipo,
+          modelo: pecaNova.modelo,
+          marca: pecaNova.marca,
+          segmento: pecaNova.segmento,
+          preco: 0, // ou algum valor padrão
+          quantidade: 0
+        });
+
+        // Guarda o ID real retornado do backend
+        mapaIdsNovasPecas[pecaNova.id] = resposta.data.id;
+      }
+
+      // Enviar peças normais (não solicitadas)
+      const pecasNormais = pecasSelecionadas.filter(p => !p.solicitada && !p.novaPeca);
       for (const peca of pecasNormais) {
         await axios.post("http://localhost:8080/pecas-utilizadas", {
           ordemId: ordemId,
@@ -199,33 +222,33 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
       // Enviar solicitações de peças (existentes e novas)
       const solicitacoes = pecasSelecionadas.filter(p => p.solicitada);
       for (const solicitacao of solicitacoes) {
+        let pecaIdParaEnviar = solicitacao.peca_id;
+
+        // Se for peça nova, pega o ID gerado na API
         if (solicitacao.novaPeca) {
-          // Enviar solicitação para peça não cadastrada
-          await axios.post("http://localhost:8080/solicitacoes-novas-pecas", {
-            ordemId: ordemId,
-            tipo: solicitacao.tipo,
-            modelo: solicitacao.modelo,
-            marca: solicitacao.marca,
-            segmento: solicitacao.segmento,
-            quantidade: solicitacao.quantidade
-          });
-        } else {
-          // Enviar solicitação para peça existente
-          await axios.post("http://localhost:8080/solicitacoes-pecas", {
-            ordemId: ordemId,
-            pecaId: solicitacao.peca_id,
-            quantidade: solicitacao.quantidade
-          });
+          pecaIdParaEnviar = mapaIdsNovasPecas[solicitacao.id];
         }
+
+      const payloadRequisicao = {
+        observacao: "Solicitação automática de peça",
+        tecnicoId: tecnicoId ? parseInt(tecnicoId) : null,
+        pecas: solicitacoes.map(solicitacao => ({
+          pecaId: solicitacao.novaPeca ? mapaIdsNovasPecas[solicitacao.id] : solicitacao.peca_id,
+          quantidade: solicitacao.quantidade
+        }))
+      };
+      await axios.post("http://localhost:8080/api/requisicoes", payloadRequisicao);
       }
 
       onPeçasAdicionadas(pecasSelecionadas);
       onClose();
+
     } catch (err) {
       setErro("Erro ao salvar peças. Tente novamente.");
       console.error(err);
     }
   };
+
 
   const pecasFiltradas = pecasDisponiveis.filter(peca => 
     peca.tipo.toLowerCase().includes(busca.toLowerCase())

@@ -1,11 +1,19 @@
 package io.manager.backend.controller;
 
 import io.manager.backend.dto.RequisicaoDTO;
+import io.manager.backend.dto.RequisicaoInputDTO;
+import io.manager.backend.model.Peca;
 import io.manager.backend.model.Requisicao;
+import io.manager.backend.model.RequisicaoPeca;
+import io.manager.backend.model.Tecnico;
+import io.manager.backend.service.PecaService;
 import io.manager.backend.service.RequisicaoService;
+import io.manager.backend.service.TecnicoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +28,12 @@ public class RequisicaoController {
 
     @Autowired
     private RequisicaoService requisicaoService;
+
+    @Autowired
+    private PecaService pecaService;
+
+    @Autowired
+    private TecnicoService tecnicoService;
 
     // Listar todas as requisições como DTOs
     @GetMapping
@@ -38,21 +52,22 @@ public class RequisicaoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Criar uma nova requisição (espera objeto JSON compatível com Requisicao)
-    @PostMapping
-    public ResponseEntity<RequisicaoDTO> criar(@RequestBody Requisicao requisicao) {
+   @PostMapping
+    public ResponseEntity<RequisicaoDTO> criar(@RequestBody RequisicaoInputDTO inputDTO) {
+        Requisicao requisicao = mapInputDtoToEntity(inputDTO);
         Requisicao salva = requisicaoService.salvar(requisicao);
         return ResponseEntity.ok(new RequisicaoDTO(salva));
     }
 
-    // Atualizar uma requisição existente
     @PutMapping("/{id}")
-    public ResponseEntity<RequisicaoDTO> atualizar(@PathVariable Integer id, @RequestBody Requisicao requisicaoAtualizada) {
+    public ResponseEntity<RequisicaoDTO> atualizar(@PathVariable Integer id, @RequestBody RequisicaoInputDTO inputDTO) {
         if (!requisicaoService.existePorId(id)) {
             return ResponseEntity.notFound().build();
         }
-        requisicaoAtualizada.setId(id);
-        Requisicao salva = requisicaoService.salvar(requisicaoAtualizada);
+
+        Requisicao requisicao = mapInputDtoToEntity(inputDTO);
+        requisicao.setId(id);
+        Requisicao salva = requisicaoService.salvar(requisicao);
         return ResponseEntity.ok(new RequisicaoDTO(salva));
     }
 
@@ -65,4 +80,32 @@ public class RequisicaoController {
         requisicaoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    private Requisicao mapInputDtoToEntity(RequisicaoInputDTO inputDTO) {
+        Requisicao requisicao = new Requisicao();
+        requisicao.setStatus(inputDTO.getStatus());
+        requisicao.setObservacao(inputDTO.getObservacao());
+
+        if (inputDTO.getTecnicoId() != null) {
+            Tecnico tecnico = tecnicoService.buscarPorId(inputDTO.getTecnicoId());
+            requisicao.setTecnico(tecnico);
+        }
+
+        if (inputDTO.getPecas() != null) {
+            List<RequisicaoPeca> requisicaoPecas = inputDTO.getPecas().stream().map(item -> {
+                RequisicaoPeca rp = new RequisicaoPeca();
+                Peca peca = pecaService.getPecaById(item.getPecaId())
+                        .orElseThrow(() -> new RuntimeException("Peça não encontrada com ID: " + item.getPecaId()));
+                rp.setPeca(peca);
+                rp.setQuantidade(item.getQuantidade());
+                rp.setRequisicao(requisicao); // importante para manter o relacionamento bidirecional
+                return rp;
+            }).collect(Collectors.toList());
+
+            requisicao.setRequisicaoPecas(requisicaoPecas);
+        }
+
+        return requisicao;
+    }
+
 }

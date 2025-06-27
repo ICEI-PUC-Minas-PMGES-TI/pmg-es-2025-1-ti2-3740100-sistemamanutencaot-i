@@ -2,6 +2,8 @@ package io.manager.backend.dto;
 
 import io.manager.backend.model.Requisicao;
  import com.fasterxml.jackson.annotation.JsonFormat;
+ 
+ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,20 +18,16 @@ public class RequisicaoDTO {
 
     private String tecnicoNome;
 
-    private List<PecaDTO> pecasRequeridas; // nova lista de peças no DTO
+    private List<RequisicaoPecaDTO> requisicaoPecas; // nova lista de peças no DTO
 
     public RequisicaoDTO(Requisicao requisicao) {
         this.id = String.format("%03d", requisicao.getId());
         this.status = requisicao.getStatus();
         this.observacao = requisicao.getObservacao();
         this.dataSolicitacao = requisicao.getDataSolicitacao();
-        this.tecnicoNome = requisicao.getTecnico().getNome();
-
-        // Converter lista de Peca para PecaDTO
-        this.pecasRequeridas = requisicao.getPecasRequeridas()
-                                        .stream()
-                                        .map(PecaDTO::new)
-                                        .collect(Collectors.toList());
+        this.tecnicoNome = requisicao.getTecnico() != null ? requisicao.getTecnico().getNome() : null;
+        this.requisicaoPecas = requisicao.getRequisicaoPecas() == null ? new ArrayList<>() : requisicao.getRequisicaoPecas().stream().map(RequisicaoPecaDTO::new)
+        .collect(Collectors.toList());
     }
 
     // Getters
@@ -38,5 +36,5 @@ public class RequisicaoDTO {
     public String getObservacao() { return observacao; }
     public Date getDataSolicitacao() { return dataSolicitacao; }
     public String getTecnicoNome() { return tecnicoNome; }
-    public List<PecaDTO> getPecasRequeridas() { return pecasRequeridas; }
+    public List<RequisicaoPecaDTO> getRequisicaoPecas() { return requisicaoPecas; }
 }

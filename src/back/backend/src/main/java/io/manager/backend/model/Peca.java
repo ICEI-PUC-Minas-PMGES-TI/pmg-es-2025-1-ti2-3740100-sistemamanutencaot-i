@@ -1,7 +1,7 @@
 package io.manager.backend.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Peca {
@@ -17,6 +17,10 @@ public class Peca {
     private String modelo;
     private String segmento;
     private Integer quantidade;
+
+    @OneToMany(mappedBy = "peca")
+    private List<RequisicaoPeca> requisicaoPecas;
+
 
     // Getters e Setters
     public int getId() {
@@ -62,5 +66,13 @@ public class Peca {
     }
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public List<RequisicaoPeca> getRequisicaoPecas() {
+    return requisicaoPecas;
+}
+
+    public void setRequisicaoPecas(List<RequisicaoPeca> requisicaoPecas) {
+        this.requisicaoPecas = requisicaoPecas;
     }
 }
