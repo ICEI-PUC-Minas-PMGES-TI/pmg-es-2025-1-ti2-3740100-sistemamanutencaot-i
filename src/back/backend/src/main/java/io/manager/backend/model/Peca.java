@@ -3,6 +3,8 @@ package io.manager.backend.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Peca {
 
@@ -19,6 +21,7 @@ public class Peca {
     private Integer quantidade;
 
     @OneToMany(mappedBy = "peca")
+    @JsonManagedReference(value = "peca-requisicaoPeca")
     private List<RequisicaoPeca> requisicaoPecas;
 
 

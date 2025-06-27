@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Requisicao {
     @Id
@@ -14,6 +16,7 @@ public class Requisicao {
     private String status;
 
     @OneToMany(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value = "requisicao-requisicaoPeca")
     private List<RequisicaoPeca> requisicaoPecas;
 
     private String observacao;

@@ -1,24 +1,42 @@
 package io.manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "requisicao_peca")
 public class RequisicaoPeca {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;  // Id simples e gerado automaticamente
+
     @ManyToOne
-    @JoinColumn(name = "requisicao_id")
+    @JoinColumn(name = "requisicao_id", nullable = false)
+    @JsonBackReference(value = "requisicao-requisicaoPeca")
     private Requisicao requisicao;
 
     @ManyToOne
-    @JoinColumn(name = "peca_id")
+    @JoinColumn(name = "peca_id", nullable = false)
+    @JsonBackReference(value = "peca-requisicaoPeca")
     private Peca peca;
 
     @Column(nullable = false)
     private Integer quantidade;
+
+    public RequisicaoPeca() {
+    }
+
+    // Getters e setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Requisicao getRequisicao() {
         return requisicao;

@@ -39,13 +39,13 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
   useEffect(() => {
     axios.get("http://localhost:8080/pecas")
       .then(response => {
+        console.log("response.data:", response.data);
         setPecasDisponiveis(response.data);
       })
       .catch(error => {
         console.error("Erro ao buscar peças:", error);
       });
   }, []);
-
   const adicionarPeca = () => {
     if (!pecaIdSelecionada.trim()) {
       setErro("Selecione uma peça.");
