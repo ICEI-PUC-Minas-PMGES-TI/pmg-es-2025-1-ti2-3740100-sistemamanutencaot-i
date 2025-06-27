@@ -103,12 +103,21 @@ const NovaOrdemServico = () => {
       );
       const computadorCriado = computadorResponse.data;
 
+      // Função para formatar data como dd/MM/yyyy
+      const formatarData = (isoString) => {
+        const data = new Date(isoString);
+        const dia = String(data.getDate()).padStart(2, "0");
+        const mes = String(data.getMonth() + 1).padStart(2, "0");
+        const ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+      };
+
       const novaOS = {
         computadorId: computadorCriado.id,
         tecnicoId: null,
         status: "Aguardando Diagnóstico",
-        dataEntrada: dataHoje,
-        prazo: formData.prazoDiagnostico,
+        dataEntrada: formatarData(new Date()), // hoje, formatado
+        prazo: formatarData(formData.prazoDiagnostico), // data do form, formatada
         valorTotal: 0.0,
         descricaoOs: formData.descricaoProblema,
         solucaoOs: "Aguardando",
