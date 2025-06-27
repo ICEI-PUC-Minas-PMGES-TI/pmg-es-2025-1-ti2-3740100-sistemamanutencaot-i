@@ -4,6 +4,7 @@ import Cabecalho from './Cabecalho';
 import RequisicaoCard from './RequisicaoCard';
 import DetalhesRequisicaoModal from './DetalhesRequisicaoModal';
 import Swal from 'sweetalert2';
+import noRequestsImage from '../../assets/images/solicitacaoNaoEncontrada.png'; // Ajuste o caminho conforme necessário
 
 const API_URL = 'http://localhost:8080/api/requisicoes'; // ajuste para sua URL real
 
@@ -147,13 +148,24 @@ const RequisicaoDePecas = () => {
       />
 
       <div className={styles.cardGrid}>
-        {requisicoesFiltradas.map(requisicao => (
-          <RequisicaoCard 
-            key={requisicao.id} 
-            requisicao={requisicao} 
-            onVerDetalhes={() => abrirDetalhes(requisicao)}
-          />
-        ))}
+        {requisicoesFiltradas.length > 0 ? (
+          requisicoesFiltradas.map(requisicao => (
+            <RequisicaoCard 
+              key={requisicao.id} 
+              requisicao={requisicao} 
+              onVerDetalhes={() => abrirDetalhes(requisicao)}
+            />
+          ))
+        ) : (
+          <div className={styles.noRequestsContainer}>
+            <img 
+              src={noRequestsImage} 
+              alt="Nenhuma solicitação encontrada" 
+              className={styles.noRequestsImage}
+            />
+            <p className={styles.noRequestsText}>Nenhuma solicitação encontrada</p>
+          </div>
+        )}
       </div>
 
       {modalAberto && (

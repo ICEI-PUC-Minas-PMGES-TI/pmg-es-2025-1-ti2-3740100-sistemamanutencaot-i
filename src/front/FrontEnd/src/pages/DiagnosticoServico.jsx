@@ -57,19 +57,13 @@ export default function DiagnosticoServico() {
 
   // Função para verificar permissão de edição/modificação
   const podeEditar = () => {
-    console.log("tipoUsuario:", tipoUsuario);
-    console.log("tecnicoIdLogado:", tecnicoIdLogado);
-    console.log("servicoData.tecnico?.id:", servicoData?.tecnico?.id);
-    console.log("servicoData.tecnicoId:", servicoData?.tecnicoId);
-
     if (tipoUsuario === "gerente") return true;
-    if (
-      tipoUsuario === "tecnico" &&
-      String(servicoData?.tecnico?.id || servicoData?.tecnicoId) === String(tecnicoIdLogado)
-    )
-      return true;
 
-    return false;
+    const tecnicoResponsavelId =
+      servicoData?.tecnico?.id?.toString() ||
+      servicoData?.tecnicoId?.toString(); // fallback caso venha só o id
+
+    return tipoUsuario === "tecnico" && tecnicoResponsavelId === tecnicoIdLogado;
   };
 
   // Funções de bloqueio para ações se não tiver permissão

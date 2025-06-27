@@ -4,6 +4,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   margin: 16px;
+  min-height: 97vh; /* Garante altura mínima */
 }
 
 .cardGrid {
@@ -11,4 +12,31 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   margin-top: 24px;
+  min-height: 300px;
+  place-items: center; /* <- garante centralização quando está vazio */
+}
+
+
+/* Estilos para quando não há requisições */
+.noRequestsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1; /* Ocupa todas as colunas */
+  padding: 40px;
+  text-align: center;
+  height: 100%;
+}
+
+.noRequestsImage {
+  max-width: 300px;
+  opacity: 0.7;
+  margin: 150px 0 20px 0;
+}
+
+.noRequestsText {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 500;
 }

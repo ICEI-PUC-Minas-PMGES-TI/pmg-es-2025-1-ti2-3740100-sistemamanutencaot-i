@@ -8,6 +8,7 @@ import detalhes from "../../assets/images/detalhes.png";
 import atribuirIcon from "../../assets/images/adicionar.png";
 import AtribuirManutencao from "./AtribuirManutencao.jsx";
 import FiltroDownDrop from "../FiltroDownDrop/FiltroDownDrop.jsx"; // Importe o componente de filtro
+import semRegistros from "../../assets/images/nada-encontrado.png";
 
 const OrdensServico = () => {
   const [ordens, setOrdens] = useState([]);
@@ -130,7 +131,7 @@ const OrdensServico = () => {
   const ordensPagina = ordensFiltradas.slice(inicio, fim);
   const totalItens = ordensFiltradas.length;
 
-  return (
+return (
     <main className="ordem-management">
       {showAtribuirModal && (
         <AtribuirManutencao
@@ -159,7 +160,6 @@ const OrdensServico = () => {
             <span className="button-text">Adicionar</span>
           </button>
           
-          {/* Substituído o botão de filtrar pelo componente de filtro */}
           <FiltroDownDrop
             opcoes={opcoesFiltroStatus}
             filtroSelecionado={filtroStatus}
@@ -182,49 +182,65 @@ const OrdensServico = () => {
             </tr>
           </thead>
           <tbody>
-            {ordensPagina.map((ordem, index) => (
-              <tr key={index}>
-                <td>{ordem.id}</td>
-                <td>{ordem.computador.cliente.pessoa.nome}</td>
-                <td>{ordem.computador.tipo}</td>
-                <td>{ordem.dataEntrada}</td>
-                <td>
-                  <span
-                    className={`status-badge status-${ordem.status
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`}
-                  >
-                    {ordem.status}
-                  </span>
-                </td>
-                <td>{ordem.tecnico ? ordem.tecnico.nome : "Não atribuído"}</td>
-                <td className="acoes">
-                  <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
-                    <button
-                      className="view-button"
-                      onClick={() => handleViewDetails(ordem.id)}
+            {ordensPagina.length > 0 ? (
+              ordensPagina.map((ordem, index) => (
+                <tr key={index}>
+                  <td>{ordem.id}</td>
+                  <td>{ordem.computador.cliente.pessoa.nome}</td>
+                  <td>{ordem.computador.tipo}</td>
+                  <td>{ordem.dataEntrada}</td>
+                  <td>
+                    <span
+                      className={`status-badge status-${ordem.status
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
                     >
-                      <img src={detalhes} alt="Ver Detalhes" />
-                      <span>Ver Detalhes</span>
-                    </button>
-                    {!ordem.tecnico && (
+                      {ordem.status}
+                    </span>
+                  </td>
+                  <td>{ordem.tecnico ? ordem.tecnico.nome : "Não atribuído"}</td>
+                  <td className="acoes">
+                    <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
                       <button
                         className="view-button"
-                        style={{ background: "#f1c40f" }}
-                        onClick={() => atribuirTecnico(ordem.id)}
+                        onClick={() => handleViewDetails(ordem.id)}
                       >
-                        <img
-                          src={atribuirIcon}
-                          alt="Atribuir"
-                          style={{ filter: "brightness(0) invert(1)" }}
-                        />
-                        <span>Atribuir</span>
+                        <img src={detalhes} alt="Ver Detalhes" />
+                        <span>Ver Detalhes</span>
                       </button>
-                    )}
+                      {!ordem.tecnico && (
+                        <button
+                          className="view-button"
+                          style={{ background: "#f1c40f" }}
+                          onClick={() => atribuirTecnico(ordem.id)}
+                        >
+                          <img
+                            src={atribuirIcon}
+                            alt="Atribuir"
+                            style={{ filter: "brightness(0) invert(1)" }}
+                          />
+                          <span>Atribuir</span>
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              // Mostra imagem quando não há registros
+              <tr>
+                <td colSpan="7" className="no-records-cell">
+                  <div className="no-records-container">
+                    <img 
+                      src={semRegistros} 
+                      alt="Nenhuma ordem encontrada" 
+                      className="no-records-image"
+                    />
+                    <p className="no-records-text">Nenhuma ordem de serviço encontrada</p>
                   </div>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

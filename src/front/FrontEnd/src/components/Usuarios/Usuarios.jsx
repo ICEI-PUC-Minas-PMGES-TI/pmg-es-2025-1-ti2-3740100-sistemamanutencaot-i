@@ -11,6 +11,7 @@ import FiltroDownDrop from "../FiltroDownDrop/FiltroDownDrop.jsx";
 import Swal from 'sweetalert2';
 import EditarCliente from "./EditarCliente.jsx";
 import EditarTecnico from "./EditarTecnico.jsx";
+import noUser from "../../assets/images/noUser.png";
 
 const UserManagement = () => {
   const tipoUsuario = localStorage.getItem("tipoUsuario");
@@ -250,37 +251,53 @@ const UserManagement = () => {
               <th>Ações</th>
             </tr>
           </thead>
-          <tbody>
-            {currentItems.map((user, index) => (
-              <tr key={index}>
-                <td>
-                  <label>
-                    <input type="radio" name="user-select" />
-                    {user.name}
-                  </label>
-                </td>
-                <td>{user.cpf}</td>
-                <td>{user.phone}</td>
-                <td>{user.type}</td>
-                <td className="acoes">
-                  <div className="actions">
-                    <button
-                      className="edit-button"
-                      onClick={() => handleEdit(user)}
-                    >
-                      <img src={editar} alt="Editar" />
-                    </button>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDelete(user)}
-                    >
-                      <img src={excluir} alt="Excluir" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+            <tbody>
+              {currentItems.length > 0 ? (
+                currentItems.map((user, index) => (
+                  <tr key={index}>
+                    <td>
+                      <label>
+                        <input type="radio" name="user-select" />
+                        {user.name}
+                      </label>
+                    </td>
+                    <td>{user.cpf}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.type}</td>
+                    <td className="acoes">
+                      <div className="actions">
+                        <button
+                          className="edit-button"
+                          onClick={() => handleEdit(user)}
+                        >
+                          <img src={editar} alt="Editar" />
+                        </button>
+                        <button
+                          className="delete-button"
+                          onClick={() => handleDelete(user)}
+                        >
+                          <img src={excluir} alt="Excluir" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                // Mostrar imagem quando não há usuários
+                <tr>
+                  <td colSpan="5" className="no-records-cell">
+                    <div className="no-records-container">
+                      <img 
+                        src={noUser} 
+                        alt="Nenhum usuário encontrado" 
+                        className="no-records-image"
+                      />
+                      <p className="no-records-text">Nenhum usuário encontrado</p>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
         </table>
       </div>
       

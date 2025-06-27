@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 
 const EditarItemEstoque = ({ item, onClose, onUpdate }) => {
   const [formData, setFormData] = useState({
-    nome: item.nome,
     marca: item.marca,
     modelo: item.modelo,
     estoque: item.estoque,
@@ -50,84 +49,99 @@ const EditarItemEstoque = ({ item, onClose, onUpdate }) => {
       <form onSubmit={handleSubmit} className={styles.envoltorioFormulario}>
         <h1 className={styles.tituloFormulario}>Editar Item</h1>
         <p className={styles.descricaoFormulario}>
-          Atualize as informações do item para manter o estoque atualizado
+          Atualize as informações do item para manter o 
+          <span className={styles.textoAzul}> estoque atualizado</span>
         </p>
 
-        <div className={styles.formGrid}>
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Nome</label>
-            <input
-              type="text"
-              name="nome"
-              value={formData.nome}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-            />
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Marca</label>
+          <input
+            type="text"
+            name="marca"
+            value={formData.marca}
+            onChange={handleChange}
+            className={styles.entradaFormulario}
+            placeholder="Digite a marca do item"
+            required
+          />
+        </div>
+        
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Modelo</label>
+          <input
+            type="text"
+            name="modelo"
+            value={formData.modelo}
+            onChange={handleChange}
+            className={styles.entradaFormulario}
+            placeholder="Digite o modelo do item"
+            required
+          />
+        </div>
+        
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Quantidade</label>
+          <input
+            type="number"
+            name="estoque"
+            value={formData.estoque}
+            onChange={handleChange}
+            className={styles.entradaFormulario}
+            placeholder="Digite a quantidade em estoque"
+            required
+            min="0"
+          />
+        </div>
+        
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Segmento</label>
+          <div className={styles.radioGroup}>
+            <label className={styles.radioOption}>
+              <input
+                type="radio"
+                name="segmento"
+                value="Notebook"
+                checked={formData.segmento === "Notebook"}
+                onChange={handleChange}
+              />
+              Notebook
+            </label>
+            <label className={styles.radioOption}>
+              <input
+                type="radio"
+                name="segmento"
+                value="Computador"
+                checked={formData.segmento === "Computador"}
+                onChange={handleChange}
+              />
+              Computador
+            </label>
+            <label className={styles.radioOption}>
+              <input
+                type="radio"
+                name="segmento"
+                value="Outros"
+                checked={formData.segmento === "Outros"}
+                onChange={handleChange}
+              />
+              Outros
+            </label>
           </div>
-          
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Marca</label>
-            <input
-              type="text"
-              name="marca"
-              value={formData.marca}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-            />
-          </div>
-          
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Modelo</label>
-            <input
-              type="text"
-              name="modelo"
-              value={formData.modelo}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-            />
-          </div>
-          
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Quantidade</label>
-            <input
-              type="number"
-              name="estoque"
-              value={formData.estoque}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-              min="0"
-            />
-          </div>
-          
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Segmento</label>
-            <input
-              type="text"
-              name="segmento"
-              value={formData.segmento}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-            />
-          </div>
-          
-          <div className={styles.grupoCampoFormulario}>
-            <label className={styles.rotuloFormulario}>Preço (R$)</label>
-            <input
-              type="number"
-              name="preco"
-              step="0.01"
-              value={formData.preco}
-              onChange={handleChange}
-              className={styles.entradaFormulario}
-              required
-              min="0"
-            />
-          </div>
+        </div>
+        
+        <div className={styles.grupoCampoFormulario}>
+          <label className={styles.rotuloFormulario}>Preço (R$)</label>
+          <input
+            type="number"
+            name="preco"
+            step="0.01"
+            value={formData.preco}
+            onChange={handleChange}
+            className={styles.entradaFormulario}
+            placeholder="Digite o preço do item"
+            required
+            min="0"
+          />
         </div>
 
         <div className={styles.botoesFormulario}>
@@ -139,7 +153,7 @@ const EditarItemEstoque = ({ item, onClose, onUpdate }) => {
             Cancelar
           </button>
           <button type="submit" className={styles.botaoSalvar}>
-            Salvar
+            Salvar Alterações
           </button>
         </div>
       </form>
