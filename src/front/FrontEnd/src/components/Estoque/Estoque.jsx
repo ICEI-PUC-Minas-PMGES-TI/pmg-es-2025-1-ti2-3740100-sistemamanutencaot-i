@@ -5,7 +5,6 @@ import styles from "./Estoque.module.css";
 import AdicionarAlert from "./AdicionarAlert";
 import adicionar from "../../assets/images/adicionar.png";
 import pesquisar from "../../assets/images/search.png";
-import ver from "../../assets/images/ver.png";
 import editar from "../../assets/images/edit.png";
 import excluir from "../../assets/images/lixo.png";
 import Swal from 'sweetalert2';
@@ -20,7 +19,6 @@ const EstoqueTecnico = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentItem, setCurrentItem] = useState(null);
 
-  // Opções de filtro para estoque
   const opcoesFiltroEstoque = [
     { label: 'Todos', valor: 'Todos' },
     { label: 'Baixo Estoque', valor: 'Baixo' },
@@ -36,10 +34,10 @@ const EstoqueTecnico = () => {
       .then((res) => {
         const pecas = res.data.map(p => ({
           id: p.id,
-          nome: p.tipo || "Não informado",
+          tipo: p.tipo || "Não informado",
           marca: p.marca || "Não informado",
           modelo: p.modelo || "Não informado",
-          estoque: p.quantidade || 0,
+          quantidade: p.quantidade || 0,
           segmento: p.segmento || "Não informado",
           preco: p.preco || 0,
         }));
@@ -48,26 +46,23 @@ const EstoqueTecnico = () => {
       .catch(() => Swal.fire('Erro!', 'Não foi possível carregar os itens do estoque.', 'error'));
   };
 
-  // Aplicar filtro sempre que o estado de filtro, items ou searchTerm mudar
   useEffect(() => {
     let filtered = items;
 
-    // Aplicar filtro por termo de busca
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
-      filtered = filtered.filter(item => 
-        item.nome.toLowerCase().includes(term) ||
+      filtered = filtered.filter(item =>
+        item.tipo.toLowerCase().includes(term) ||
         item.marca.toLowerCase().includes(term) ||
         item.modelo.toLowerCase().includes(term) ||
         item.segmento.toLowerCase().includes(term)
       );
     }
 
-    // Aplicar filtro por estoque
     if (filtro === 'Baixo') {
-      filtered = filtered.filter(item => item.estoque < 5);
+      filtered = filtered.filter(item => item.quantidade < 5);
     } else if (filtro === 'Normal') {
-      filtered = filtered.filter(item => item.estoque >= 5);
+      filtered = filtered.filter(item => item.quantidade >= 5);
     }
 
     setItemsFiltrados(filtered);
@@ -88,22 +83,26 @@ const EstoqueTecnico = () => {
 
   const handleAddItem = (newItem) => {
     const itemToSave = {
-      ...newItem,
-      tipo: "Peça",
+      tipo: newItem.tipo,
+      marca: newItem.marca,
+      modelo: newItem.modelo,
+      quantidade: newItem.quantidade,
+      segmento: newItem.segmento,
+      preco: newItem.preco,
     };
 
     axios.post("http://localhost:8080/pecas", itemToSave)
       .then((res) => {
         const novoItem = {
           id: res.data.id,
-          nome: res.data.nome,
+          tipo: res.data.tipo,
           marca: res.data.marca,
           modelo: res.data.modelo,
-          estoque: res.data.estoque,
+          quantidade: res.data.quantidade,
           segmento: res.data.segmento,
           preco: res.data.preco,
         };
-        
+
         setItems(prev => [...prev, novoItem]);
         closeAddModal();
         Swal.fire('Sucesso!', 'Item adicionado ao estoque.', 'success');
@@ -112,7 +111,7 @@ const EstoqueTecnico = () => {
   };
 
   const handleUpdateItem = (updatedItem) => {
-    setItems(prevItems => 
+    setItems(prevItems =>
       prevItems.map(item => item.id === updatedItem.id ? updatedItem : item)
     );
     closeEditModal();
@@ -121,7 +120,7 @@ const EstoqueTecnico = () => {
   const handleDeleteItem = (item) => {
     Swal.fire({
       title: 'Tem certeza?',
-      text: `Você está prestes a excluir o item "${item.nome}". Essa ação não pode ser desfeita!`,
+      text: `Você está prestes a excluir o item "${item.tipo}". Essa ação não pode ser desfeita!`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -142,13 +141,8 @@ const EstoqueTecnico = () => {
     });
   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-  };
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const handleSearchSubmit = (e) => e.preventDefault();
 
   return (
     <main className={styles["user-management"]}>
@@ -159,9 +153,9 @@ const EstoqueTecnico = () => {
 
       <div className={styles["controls-container"]}>
         <form className={styles["search-form"]} onSubmit={handleSearchSubmit}>
-          <input 
-            type="search" 
-            placeholder="Buscar..." 
+          <input
+            type="search"
+            placeholder="Buscar..."
             aria-label="Buscar"
             value={searchTerm}
             onChange={handleSearchChange}
@@ -205,12 +199,12 @@ const EstoqueTecnico = () => {
                 <td>
                   <label>
                     <input type="radio" name={`item-${item.id}`} />
-                    {item.nome}
+                    {item.tipo}
                   </label>
                 </td>
                 <td>{item.marca}</td>
                 <td>{item.modelo}</td>
-                <td className={styles.quantidade}>{item.estoque}</td>
+                <td className={styles.quantidade}>{item.quantidade}</td>
                 <td>{item.segmento}</td>
                 <td className={styles.acoes}>
                   <div className={styles.actions}>
@@ -249,10 +243,10 @@ const EstoqueTecnico = () => {
       {isEditModalOpen && currentItem && (
         <div className={styles.modalOverlay} onClick={closeEditModal}>
           <div onClick={(e) => e.stopPropagation()}>
-            <EditarItemEstoque 
-              item={currentItem} 
-              onClose={closeEditModal} 
-              onUpdate={handleUpdateItem} 
+            <EditarItemEstoque
+              item={currentItem}
+              onClose={closeEditModal}
+              onUpdate={handleUpdateItem}
             />
           </div>
         </div>

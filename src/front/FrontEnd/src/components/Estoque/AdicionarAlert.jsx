@@ -4,12 +4,12 @@ import "./AdicionarAlert.css";
 
 const AddItemForm = ({ onClose, onAddItem }) => {
   const [formData, setFormData] = useState({
-    nome: "",
+    tipo: "", // era "nome"
     marca: "",
     modelo: "",
     segmento: "computador",
     quantidade: "",
-    preco: "" // Novo campo para o preço
+    preco: ""
   });
 
   const handleChange = (e) => {
@@ -32,16 +32,16 @@ const AddItemForm = ({ onClose, onAddItem }) => {
 
       <form onSubmit={handleSubmit}>
         {/* Campos do formulário */}
-        <label htmlFor="nome" className="input-label">
-          Nome do Item:
+        <label htmlFor="tipo" className="input-label">
+          Tipo do Item:
         </label>
         <input
-          id="nome"
-          name="nome"
+          id="tipo"
+          name="tipo"
           type="text"
-          placeholder="Adicione o nome do Item..."
+          placeholder="Adicione o tipo do Item..."
           className="form-input"
-          value={formData.nome}
+          value={formData.tipo}
           onChange={handleChange}
           required
         />
