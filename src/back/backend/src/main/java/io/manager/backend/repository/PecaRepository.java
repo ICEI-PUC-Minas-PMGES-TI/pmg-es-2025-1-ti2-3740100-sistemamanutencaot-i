@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import io.manager.backend.model.Peca;
 import io.manager.backend.dto.EstoqueAtualDTO;
-import java.util.Optional;
 import java.util.List;
 
 @Repository
