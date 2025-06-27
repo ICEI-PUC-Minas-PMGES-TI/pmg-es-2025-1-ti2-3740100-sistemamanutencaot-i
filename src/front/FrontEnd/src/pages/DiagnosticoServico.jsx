@@ -83,7 +83,7 @@ export default function DiagnosticoServico() {
     axios
       .put(`http://localhost:8080/ordem-servicos/${servicoData.id}`, {
         solucaoOs: solucaoEditada,
-        status: "Diagnostico feito",
+        status: "Diagnóstico",
       })
       .then((res) => {
         setServicoData(res.data);
@@ -145,7 +145,7 @@ export default function DiagnosticoServico() {
     // Cria payload com os nomes de campos corretos
     const payload = {
       data_finalizacao: dataFinalizacao, // Campo correto para data
-      status: "concluido",
+      status: "Concluído",
       valor_total: custoTotal, // Campo correto para valor total
     };
 
@@ -195,7 +195,7 @@ export default function DiagnosticoServico() {
     );
   }
 
-  if (servicoData.status === "concluido") {
+  if (servicoData.status === "Concluído") {
     return (
       <div className="layout-principal">
         <BarraLateral />

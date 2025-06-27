@@ -115,7 +115,7 @@ const NovaOrdemServico = () => {
       const novaOS = {
         computadorId: computadorCriado.id,
         tecnicoId: null,
-        status: "Aguardando Diagnóstico",
+        status: "Aguardando Peças",
         dataEntrada: formatarData(new Date()), // hoje, formatado
         prazo: formatarData(formData.prazoDiagnostico), // data do form, formatada
         valorTotal: 0.0,
@@ -127,7 +127,7 @@ const NovaOrdemServico = () => {
       setMensagem("Ordem de Serviço criada com sucesso!");
 
       setTimeout(() => {
-        navigate("/home-tecnico");
+        navigate("/ordens-servico");
       }, 3000);
     } catch (error) {
       console.error("Erro ao criar Ordem de Serviço:", error);

@@ -27,7 +27,6 @@ const OrdensServico = () => {
   // Opções de filtro para status
   const opcoesFiltroStatus = [
     { label: 'Todos', valor: 'Todos' },
-    { label: 'Em Andamento', valor: 'Em Andamento' },
     { label: 'Concluído', valor: 'Concluído' },
     { label: 'Aguardando Peças', valor: 'Aguardando Peças' },
     { label: 'Diagnóstico', valor: 'Diagnóstico' },

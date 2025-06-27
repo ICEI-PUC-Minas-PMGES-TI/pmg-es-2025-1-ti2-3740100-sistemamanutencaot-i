@@ -12,7 +12,7 @@ public interface PecaRepository extends JpaRepository<Peca, Integer> {
 
     @Query("""
         SELECT new io.manager.backend.dto.EstoqueAtualDTO(
-            p.tipo,
+            p.modelo,
             p.quantidade,
             CASE
                 WHEN p.quantidade >= 10 THEN 'aumento'

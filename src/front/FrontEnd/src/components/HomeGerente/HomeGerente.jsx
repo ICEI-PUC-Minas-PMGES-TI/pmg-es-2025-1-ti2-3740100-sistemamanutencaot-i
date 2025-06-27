@@ -8,7 +8,6 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
 
 // Opções de mês
 const meses = [
-  { value: 'todos', label: 'Ano Todo' },
   { value: '1', label: 'Janeiro' },
   { value: '2', label: 'Fevereiro' },
   { value: '3', label: 'Março' },
@@ -45,8 +44,38 @@ const fetchVendasDiarias = async (mes, ano) => {
 };
 
 const fetchProdutosDestaque = async (mes, ano) => {
-  const response = await fetch(`${BASE_URL}/produtos-destaque?mes=${mes}&ano=${ano}`);
-  return await response.json();
+  // Simulando retorno diferente por mês
+  const dadosPorMes = {
+    '1': [ // Janeiro
+      { nome: "Teclado Mecânico", valor: 1200, cor: "#4F46E5" },
+      { nome: "Mouse Gamer", valor: 950, cor: "#22C55E" },
+    ],
+    '2': [ // Fevereiro
+      { nome: "Monitor UltraWide", valor: 1450, cor: "#FACC15" },
+      { nome: "Headset RGB", valor: 600, cor: "#EC4899" },
+    ],
+    '3': [ // Março
+      { nome: "Webcam HD", valor: 420, cor: "#06B6D4" },
+      { nome: "Teclado Ergonômico", valor: 700, cor: "#8B5CF6" },
+    ],
+    '4': [
+      { nome: "Notebook Gamer", valor: 5200, cor: "#EF4444" },
+      { nome: "Mouse Sem Fio", valor: 350, cor: "#10B981" },
+    ],
+    '5': [
+      { nome: "SSD 1TB", valor: 500, cor: "#F59E0B" },
+      { nome: "Placa de Vídeo RTX", valor: 3500, cor: "#3B82F6" },
+    ],
+    // Adicione mais meses conforme quiser
+  };
+
+  // Se o mês for "todos" ou não estiver na lista, retorna tudo junto
+  if (mes === 'todos' || !dadosPorMes[mes]) {
+    return Object.values(dadosPorMes).flat();
+  }
+
+  // Retorna os produtos do mês específico
+  return dadosPorMes[mes];
 };
 
 const fetchTaxaAtrasoPorMes = async (ano) => {
@@ -60,7 +89,7 @@ const fetchEstoqueAtual = async () => {
 };
 
 const HomeGerente = () => {
-  const [mesSelecionado, setMesSelecionado] = useState('5');
+  const [mesSelecionado, setMesSelecionado] = useState('1');
   const [anoSelecionado, setAnoSelecionado] = useState('2025');
   const [hoveredCardId, setHoveredCardId] = useState(null);
 
@@ -218,7 +247,7 @@ const usuario = {
     scales: {
       y: {
         beginAtZero: true,
-        max: 20,
+        max: 100,
         ticks: {
           callback: function(value) {
             return `${value}%`;
