@@ -57,8 +57,18 @@ export default function DiagnosticoServico() {
 
   // Função para verificar permissão de edição/modificação
   const podeEditar = () => {
-    if (tipoUsuario === "gerente") return true; // gerente pode tudo
-    if (tipoUsuario === "tecnico" && servicoData?.tecnico?.id?.toString() === tecnicoIdLogado) return true;
+    console.log("tipoUsuario:", tipoUsuario);
+    console.log("tecnicoIdLogado:", tecnicoIdLogado);
+    console.log("servicoData.tecnico?.id:", servicoData?.tecnico?.id);
+    console.log("servicoData.tecnicoId:", servicoData?.tecnicoId);
+
+    if (tipoUsuario === "gerente") return true;
+    if (
+      tipoUsuario === "tecnico" &&
+      String(servicoData?.tecnico?.id || servicoData?.tecnicoId) === String(tecnicoIdLogado)
+    )
+      return true;
+
     return false;
   };
 
