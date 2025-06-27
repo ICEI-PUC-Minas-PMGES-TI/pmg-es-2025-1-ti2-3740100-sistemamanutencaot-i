@@ -18,6 +18,23 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
     segmento: "",
     quantidade: 1
   });
+  
+  // Tipos de peças pré-definidos (mesmo do estoque)
+  const tiposDePecas = [
+    "Processador",
+    "Memória RAM",
+    "Placa de Vídeo",
+    "Placa Mãe",
+    "Armazenamento (SSD/HDD)",
+    "Fonte",
+    "Gabinete",
+    "Cooler",
+    "Monitor",
+    "Teclado",
+    "Mouse",
+    "Headset",
+    "Outros"
+  ];
 
   useEffect(() => {
     axios.get("http://localhost:8080/pecas")
@@ -222,48 +239,91 @@ const AdicionarPecas = ({ ordemId, onClose, onPeçasAdicionadas }) => {
             <h3>Solicitar Nova Peça</h3>
             
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="Tipo (ex: Memória RAM)"
+              <label className="input-label">Tipo:</label>
+              <select
                 value={novaPeca.tipo}
                 onChange={(e) => setNovaPeca({...novaPeca, tipo: e.target.value})}
-              />
+                className="form-input"
+                required
+              >
+                <option value="">Selecione um tipo</option>
+                {tiposDePecas.map((tipo, index) => (
+                  <option key={index} value={tipo}>
+                    {tipo}
+                  </option>
+                ))}
+              </select>
             </div>
             
             <div className="form-row">
+              <label className="input-label">Modelo:</label>
               <input
                 type="text"
                 placeholder="Modelo (ex: DDR4 8GB)"
                 value={novaPeca.modelo}
                 onChange={(e) => setNovaPeca({...novaPeca, modelo: e.target.value})}
+                className="form-input"
+                required
               />
             </div>
             
             <div className="form-row">
+              <label className="input-label">Marca:</label>
               <input
                 type="text"
                 placeholder="Marca"
                 value={novaPeca.marca}
                 onChange={(e) => setNovaPeca({...novaPeca, marca: e.target.value})}
+                className="form-input"
+                required
               />
             </div>
             
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="Segmento (ex: Computador)"
-                value={novaPeca.segmento}
-                onChange={(e) => setNovaPeca({...novaPeca, segmento: e.target.value})}
-              />
+              <p className="radio-label">Segmento:</p>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="segmento"
+                    value="notebook"
+                    checked={novaPeca.segmento === "notebook"}
+                    onChange={(e) => setNovaPeca({...novaPeca, segmento: e.target.value})}
+                  />
+                  <span>Notebook</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="segmento"
+                    value="computador"
+                    checked={novaPeca.segmento === "computador"}
+                    onChange={(e) => setNovaPeca({...novaPeca, segmento: e.target.value})}
+                  />
+                  <span>Computador</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="segmento"
+                    value="outros"
+                    checked={novaPeca.segmento === "outros"}
+                    onChange={(e) => setNovaPeca({...novaPeca, segmento: e.target.value})}
+                  />
+                  <span>Outros</span>
+                </label>
+              </div>
             </div>
             
             <div className="form-row">
+              <label className="input-label">Quantidade:</label>
               <input
                 type="number"
                 min="1"
                 value={novaPeca.quantidade}
                 onChange={(e) => setNovaPeca({...novaPeca, quantidade: parseInt(e.target.value) || 1})}
-                placeholder="Quantidade"
+                className="form-input"
+                required
                 style={{ width: '100px' }}
               />
             </div>

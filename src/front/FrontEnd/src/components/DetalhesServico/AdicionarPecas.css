@@ -279,3 +279,70 @@ select option.opcao-esgotada {
 .peca-info > div {
   flex: 1;
 }
+
+/* Adicione ao final do arquivo */
+
+/* Estilos para o formulário padronizado */
+.formulario-nova-peca .input-label {
+  display: block;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.formulario-nova-peca .form-input {
+  width: 100%;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  color: #495057;
+  font-size: 0.875rem;
+  padding: 0.625rem 0.75rem;
+  margin-bottom: 1.25rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formulario-nova-peca .form-input:focus {
+  border-color: #0C21C1;
+  box-shadow: 0 0 0 0.2rem rgba(12, 33, 193, 0.25);
+}
+
+.formulario-nova-peca .radio-label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+.formulario-nova-peca .radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.formulario-nova-peca .radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.formulario-nova-peca .radio-option span {
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+/* Melhorias para o select */
+.formulario-nova-peca select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}

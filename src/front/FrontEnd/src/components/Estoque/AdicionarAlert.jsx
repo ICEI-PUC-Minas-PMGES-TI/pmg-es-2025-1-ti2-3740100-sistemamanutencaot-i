@@ -4,13 +4,31 @@ import "./AdicionarAlert.css";
 
 const AddItemForm = ({ onClose, onAddItem }) => {
   const [formData, setFormData] = useState({
-    tipo: "", // era "nome"
+    codigo: "", // Novo campo: código único da peça
+    tipo: "",
     marca: "",
     modelo: "",
     segmento: "computador",
     quantidade: "",
     preco: ""
   });
+
+  // Tipos de peças pré-definidos
+  const tiposDePecas = [
+    "Processador",
+    "Memória RAM",
+    "Placa de Vídeo",
+    "Placa Mãe",
+    "Armazenamento (SSD/HDD)",
+    "Fonte",
+    "Gabinete",
+    "Cooler",
+    "Monitor",
+    "Teclado",
+    "Mouse",
+    "Headset",
+    "Outros"
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,23 +49,31 @@ const AddItemForm = ({ onClose, onAddItem }) => {
       <hr className="form-divider" />
 
       <form onSubmit={handleSubmit}>
-        {/* Campos do formulário */}
+        {/* Campo Código (novo) */}
+        
+
+        {/* Campo Tipo: agora é um select */}
         <label htmlFor="tipo" className="input-label">
           Tipo do Item:
         </label>
-        <input
+        <select
           id="tipo"
           name="tipo"
-          type="text"
-          placeholder="Adicione o tipo do Item..."
           className="form-input"
           value={formData.tipo}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">Selecione um tipo</option>
+          {tiposDePecas.map((tipo, index) => (
+            <option key={index} value={tipo}>
+              {tipo}
+            </option>
+          ))}
+        </select>
 
         <label htmlFor="marca" className="input-label">
-          <b>Marca:</b>
+          Marca:
         </label>
         <input
           id="marca"
@@ -61,7 +87,7 @@ const AddItemForm = ({ onClose, onAddItem }) => {
         />
 
         <label htmlFor="modelo" className="input-label">
-          <b>Modelo:</b>
+          Modelo:
         </label>
         <input
           id="modelo"
@@ -74,9 +100,8 @@ const AddItemForm = ({ onClose, onAddItem }) => {
           required
         />
 
-        {/* Novo campo: Preço */}
         <label htmlFor="preco" className="input-label">
-          <b>Preço (R$):</b>
+          Preço (R$):
         </label>
         <input
           id="preco"
@@ -91,7 +116,7 @@ const AddItemForm = ({ onClose, onAddItem }) => {
           required
         />
 
-        <p className="radio-label">Selecionar seguimento:</p>
+        <p className="radio-label">Selecionar segmento:</p>
         <div className="radio-group">
           <label className="radio-option">
             <input
@@ -114,6 +139,17 @@ const AddItemForm = ({ onClose, onAddItem }) => {
               onChange={handleChange}
             />
             <span>Computador</span>
+          </label>
+          <label className="radio-option">
+            <input
+              type="radio"
+              name="segmento"
+              value="outros"
+              className="radio-input"
+              checked={formData.segmento === "outros"}
+              onChange={handleChange}
+            />
+            <span>Outros</span>
           </label>
         </div>
 
