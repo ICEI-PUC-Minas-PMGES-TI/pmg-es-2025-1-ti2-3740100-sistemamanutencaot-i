@@ -1,12 +1,15 @@
 package io.manager.backend.controller;
 
 import io.manager.backend.dto.OrdemServicoRequest;
+import io.manager.backend.dto.OrdemServicoDTO;
 import io.manager.backend.model.OrdemServico;
 import io.manager.backend.service.OrdemServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 
@@ -39,10 +42,12 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdemServico> buscarOrdemServicoPorId(@PathVariable Integer id) {
-        return ordemServicoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<OrdemServicoDTO> buscarPorId(@PathVariable Integer id) {
+        OrdemServico ordem = ordemServicoService.buscarPorId(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ordem não encontrada"));
+
+        OrdemServicoDTO dto = new OrdemServicoDTO(ordem);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/tecnico/{tecnicoId}")
@@ -98,6 +103,4 @@ public class OrdemServicoController {
         ordemServicoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }

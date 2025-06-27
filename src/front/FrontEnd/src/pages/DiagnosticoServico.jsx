@@ -237,7 +237,7 @@ export default function DiagnosticoServico() {
             <div>
               <div className="servico-numero">Serviço #{servicoData.id}</div>
               <div className="cliente-nome">
-                Cliente: <strong>{servicoData.computador.cliente.pessoa.nome}</strong>
+                Cliente: <strong>{servicoData.nomeCliente}</strong>
               </div>
             </div>
           </div>
@@ -247,14 +247,14 @@ export default function DiagnosticoServico() {
         <div className="conteudo-bloco">
           <div className="detalhes-superiores">
             <div className="detalhes-esquerda">
-              Técnico: <strong>{servicoData?.tecnico?.nome || "Nenhum técnico selecionou essa O.S"}</strong>
+              Técnico: <strong>{servicoData.tecnicoNome || "Nenhum técnico selecionou essa O.S"}</strong>
               <br />
               Status: <strong>{servicoData.status}</strong>
             </div>
             <div className="detalhes-direita">
-              Marca: <strong>{servicoData.computador.marca}</strong>
+              Marca: <strong>{servicoData.computadorMarca}</strong>
               <br />
-              Modelo: <strong>{servicoData.computador.modelo}</strong>
+              Modelo: <strong>{servicoData.computadorModelo}</strong>
             </div>
             <div className="detalhes-direita">
               Data da Solicitação: <strong>{servicoData.dataEntrada}</strong>
