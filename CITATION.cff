@@ -14,15 +14,18 @@ authors:
     given-names: Igor Rodrigo
   - family-names: Fiuza
     given-names: João Ricardo
-  - family-names: Soares de Andrade
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Soares de Andrade
     given-names: Michelle Hanne
+  - name-suffix: Professor
     affiliation: PUC Minas
-  - family-names: Ribeiro de Souza
+    family-names: Ribeiro de Souza
     given-names: Joana Gabriela
+  - name-suffix: Professor
     affiliation: PUC Minas
-  - family-names: de Quadros Maia Filho
+    family-names: de Quadros Maia Filho
     given-names: Danilo
-    affiliation: PUC Minas
 keywords:
   - Gerenciamento de processos
   - Sistema de Ordem de Serviço
